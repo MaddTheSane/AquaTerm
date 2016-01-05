@@ -185,7 +185,7 @@
 		CBF3082D04D51B9300EBD329 /* AQTAdapter.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTAdapter.h; sourceTree = "<group>"; };
 		CBF3082E04D51B9400EBD329 /* AQTAdapter.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AQTAdapter.m; sourceTree = "<group>"; };
 		CBF3083904D51CF100EBD329 /* AQTPlot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTPlot.h; sourceTree = "<group>"; };
-		CBF3083A04D51CF100EBD329 /* AQTPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQTPlot.m; sourceTree = "<group>"; };
+		CBF3083A04D51CF100EBD329 /* AQTPlot.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTPlot.m; sourceTree = "<group>"; usesTabs = 0; };
 		F50F0B540205D23401AA2E68 /* AQTColorMap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTColorMap.h; sourceTree = "<group>"; };
 		F50F0B550205D23401AA2E68 /* AQTColorMap.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AQTColorMap.m; sourceTree = "<group>"; };
 		F51551CC01FE762E01000102 /* ColorInspector.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ColorInspector.nib; path = English.lproj/ColorInspector.nib; sourceTree = "<group>"; };

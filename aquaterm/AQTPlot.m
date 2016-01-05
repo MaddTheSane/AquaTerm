@@ -425,35 +425,28 @@ static inline void NOOP_(id x, ...) {;}
    }
    [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:@"CurrentSaveFormat"]];
    [savePanel setAccessoryView:extendSavePanelView];
-   [savePanel beginSheetForDirectory:[preferences objectForKey:@"CurrentSaveFolder"] 
-                                file:[model title]
-                      modalForWindow:[canvas window]
-                       modalDelegate:self
-                      didEndSelector:@selector(savePanelDidEnd:returnCode:contextInfo:)
-                         contextInfo:saveFormatPopUp
-      ];
-}
-
-- (void)savePanelDidEnd:(NSSavePanel *)theSheet returnCode:(int32_t)returnCode contextInfo:(NSPopUpButton *)formatPopUp
-{
-   NSData *data;
-   NSString *filename;
-   AQTView *printView;
-   if (NSFileHandlingPanelOKButton == returnCode) {
-      printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, [model canvasSize].width, [model canvasSize].height)];
-      [printView setModel:model];
-      filename = [[[theSheet URL] path] stringByDeletingPathExtension];
-      if ([[formatPopUp titleOfSelectedItem] isEqualToString:@"PDF"]) {
-         data = [printView dataWithPDFInsideRect: [printView bounds]];
-         [data writeToFile:[filename stringByAppendingPathExtension:@"pdf"] atomically: NO];
-      } else {
-         data = [printView dataWithEPSInsideRect: [printView bounds]];
-         [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
+   savePanel.directoryURL = [NSURL fileURLWithPath:[preferences objectForKey:@"CurrentSaveFolder"]];
+   savePanel.nameFieldLabel = [model title];
+   [savePanel beginSheetModalForWindow:[canvas window] completionHandler:^(NSInteger result) {
+      NSData *data;
+      NSString *filename;
+      AQTView *printView;
+      if (NSFileHandlingPanelOKButton == result) {
+         printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, [model canvasSize].width, [model canvasSize].height)];
+         [printView setModel:model];
+         filename = [[[savePanel URL] path] stringByDeletingPathExtension];
+         if ([[saveFormatPopUp titleOfSelectedItem] isEqualToString:@"PDF"]) {
+            data = [printView dataWithPDFInsideRect: [printView bounds]];
+            [data writeToFile:[filename stringByAppendingPathExtension:@"pdf"] atomically: NO];
+         } else {
+            data = [printView dataWithEPSInsideRect: [printView bounds]];
+            [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
+         }
+         [preferences setObject:[filename stringByDeletingLastPathComponent] forKey:@"CurrentSaveFolder"];
+         [preferences setObject:[saveFormatPopUp titleOfSelectedItem] forKey:@"CurrentSaveFormat"];
+         [printView release];
       }
-      [preferences setObject:[filename stringByDeletingLastPathComponent] forKey:@"CurrentSaveFolder"];
-      [preferences setObject:[formatPopUp titleOfSelectedItem] forKey:@"CurrentSaveFormat"];
-      [printView release];
-   }
+   }];
 }
 
 

@@ -44,13 +44,10 @@ typedef struct _AQTRect {
 }
 
 /*" accessor methods "*/
--(NSRect)bounds;
--(void)setBounds:(NSRect)bounds;
--(NSRect)clipRect;
--(void)setClipRect:(NSRect)clipRect;
+@property NSRect bounds;
+@property NSRect clipRect;
 -(void)setIsClipped:(BOOL)clipState;
 
 /*" color handling "*/
--(AQTColor)color;
--(void)setColor:(AQTColor)newColor;
+@property AQTColor color;
 @end

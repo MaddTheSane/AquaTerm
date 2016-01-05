@@ -17,17 +17,15 @@
    NSRect         dirtyRect;
    BOOL           isDirty;
 }
--(id)initWithCanvasSize:(NSSize)canvasSize;
--(void)setCanvasSize:(NSSize)canvasSize;
--(NSSize)canvasSize;
+-(instancetype)initWithCanvasSize:(NSSize)canvasSize;
+@property NSSize canvasSize;
 -(NSRect)dirtyRect;
 -(BOOL)isDirty;
--(int32_t)count;
+@property (readonly) int32_t count;
 -(void)addObject:(AQTGraphic *)graphic;
--(void)addObjectsFromArray:(NSArray *)graphics;
--(NSArray *)modelObjects;
+-(void)addObjectsFromArray:(NSArray<AQTGraphic*> *)graphics;
+-(NSArray<AQTGraphic*> *)modelObjects;
 -(void)removeAllObjects;
 -(void)removeObjectAtIndex:(uint32_t)i;
--(void)setTitle:(NSString *)newTitle;
--(NSString *)title;
+@property (copy) NSString *title;
 @end

@@ -13,9 +13,9 @@
 <constant name='AQTAlignMiddle' type='i'/>
 <constant name='AQTAlignRight' type='i'/>
 <constant name='AQTAlignTop' type='i'/>
-<constant name='AQTButtLineCapStyle' type='i'/>
-<constant name='AQTRoundLineCapStyle' type='i'/>
-<constant name='AQTSquareLineCapStyle' type='i'/>
+<constant name='AQTLineCapStyleButt' type='i'/>
+<constant name='AQTLineCapStyleRound' type='i'/>
+<constant name='AQTLineCapStyleLine' type='i'/>
 <enum name='AQT_EVENTBUF_SIZE' value='128'/>
 <function name='aqtAddEdgeToVertex'>
 <arg type='f'/>

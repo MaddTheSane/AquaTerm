@@ -192,7 +192,7 @@
 		F54B0FE601FF5CDC014110A7 /* ExtendSavePanel.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = ExtendSavePanel.nib; path = English.lproj/ExtendSavePanel.nib; sourceTree = "<group>"; };
 		F55BA2E403589FD301D20925 /* English */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = English; path = English.lproj/AquaTerm.icns; sourceTree = "<group>"; };
 		F55D241701C0F0F501A80104 /* AQTGraphic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTGraphic.h; sourceTree = "<group>"; };
-		F55D241801C0F0F501A80104 /* AQTGraphic.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AQTGraphic.m; sourceTree = "<group>"; };
+		F55D241801C0F0F501A80104 /* AQTGraphic.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTGraphic.m; sourceTree = "<group>"; };
 		F55D241901C0F0F501A80104 /* AQTLabel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTLabel.h; sourceTree = "<group>"; };
 		F55D241A01C0F0F501A80104 /* AQTLabel.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTLabel.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		F55D241B01C0F0F501A80104 /* AQTModel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTModel.h; sourceTree = "<group>"; };
@@ -294,8 +294,10 @@
 				CB91251407CB3BDE001D5EAF /* AquaTerm.framework-Info.plist */,
 				CBAD39C913A2BAF100DA13A1 /* postflight */,
 			);
+			indentWidth = 3;
 			name = AquaTerm;
 			sourceTree = "<group>";
+			usesTabs = 0;
 		};
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
@@ -567,6 +569,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = CB699C8C08953AAD00C4B248 /* Build configuration list for PBXProject "AquaTerm" */;
@@ -578,6 +581,7 @@
 				Japanese,
 				French,
 				German,
+				Base,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* AquaTerm */;
 			projectDirPath = "";

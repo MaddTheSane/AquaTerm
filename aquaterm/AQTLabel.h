@@ -13,14 +13,14 @@
 {
    id string;		/*" The text (label, legend etc.) "*/
    NSString *fontName;
-   float fontSize;
+   CGFloat fontSize;
    NSPoint position;		/*" The position of the text "*/
-   float angle;
+   CGFloat angle;
    int32_t justification;		/*" Justification with respect to the position of the text "*/
-   float shearAngle;
+   CGFloat shearAngle;
 }
-- (id)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(float)textAngle shearAngle:(float)shearAngle justification:(int32_t)justify;
-- (id)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(float)textAngle shearAngle:(float)shearAngle justification:(int32_t)justify;
-- (void)setFontName:(NSString *)newFontName;
-- (void)setFontSize:(float)newFontSize;
+- (instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(int32_t)justify;
+- (instancetype)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(int32_t)justify;
+@property (copy) NSString *fontName;
+@property CGFloat fontSize;
 @end

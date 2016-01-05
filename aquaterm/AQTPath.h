@@ -29,11 +29,10 @@
    int32_t patternCount;
    float patternPhase;
 }
-- (id)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount;
-- (void)setLinewidth:(float)lw;
-- (void)setLineCapStyle:(int32_t)capStyle;
-- (void)setIsFilled:(BOOL)flag;
-- (BOOL)isFilled;
-- (BOOL)hasPattern;
+- (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount;
+@property (setter=setLinewidth:) float lineWidth;
+@property int32_t lineCapStyle;
+@property BOOL isFilled;
+@property (readonly) BOOL hasPattern;
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 @end

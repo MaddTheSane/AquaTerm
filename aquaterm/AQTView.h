@@ -17,11 +17,9 @@
   NSCursor *crosshairCursor;  /*" Holds an alternate cursor for use with mouse input."*/
   BOOL _enableTiming;
 }
-- (void)setModel:(AQTModel *)newModel;
-- (AQTModel *)model;
-- (BOOL)isPrinting;
-- (BOOL)isProcessingEvents;
-- (void)setIsProcessingEvents:(BOOL)flag;
+@property (unsafe_unretained) AQTModel *model;
+@property (readonly, getter=isPrinting) BOOL printing;
+@property (nonatomic) BOOL isProcessingEvents;
 
 /*" Utility methods "*/
 - (NSPoint)convertPointToCanvasCoordinates:(NSPoint)viewPoint;

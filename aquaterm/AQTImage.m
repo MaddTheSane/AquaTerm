@@ -8,6 +8,7 @@
 #import "AQTImage.h"
 
 @implementation AQTImage
+@synthesize transform;
 /*
 - (id)initWithContentsOfFile:(NSString *)filename
 {
@@ -80,6 +81,8 @@
 {
   return bitmap;
 }
+
+
 
 - (void)setTransform:(AQTAffineTransformStruct)newTransform
 {

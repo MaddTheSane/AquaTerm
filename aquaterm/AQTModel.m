@@ -9,6 +9,8 @@
 #import "AQTModel.h"
 
 @implementation AQTModel
+@synthesize title;
+@synthesize canvasSize;
 /**"
 *** A class representing a collection of objects making up the plot.
 "**/
@@ -80,16 +82,6 @@
    return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)[modelObjects count],  NSStringFromRect(_bounds)];
 }
 
- -(NSSize)canvasSize
- {
-    return canvasSize;
- }
-
- -(void)setCanvasSize:(NSSize)cs
- {
-    canvasSize = cs;
- }
-
 -(BOOL)isDirty
 {
    return isDirty;
@@ -132,18 +124,6 @@
 -(void)removeObjectAtIndex:(uint32_t)i
 {
    [modelObjects removeObjectAtIndex:i];
-}
-
--(void)setTitle:(NSString *)newTitle
-{
-  [newTitle retain];
-  [title release];
-  title = newTitle;
-}
-
--(NSString *)title
-{
-  return [[title copy] autorelease];
 }
 
 @end

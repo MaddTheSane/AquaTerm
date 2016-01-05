@@ -373,7 +373,7 @@ _{Attribute value}
 _{@"NSSuperScript" raise-level}
 _{@"NSUnderline" 0or1}
 "*/
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(int32_t)just
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just
 {
    [_selectedBuilder addLabel:text position:pos angle:angle shearAngle:shearAngle justification:just];
 }
@@ -412,9 +412,9 @@ _{@"NSUnderline" 0or1}
 
 /*" Set the current line cap style (in points), used for all subsequent lines. Any line currently being built by #moveToPoint:/#addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same cap style.
 _{capStyle Description}
-_{AQTButtLineCapStyle ButtLineCapStyle}
-_{AQTRoundLineCapStyle RoundLineCapStyle}
-_{AQTSquareLineCapStyle SquareLineCapStyle}
+_{AQTLineCapStyleButt ButtLineCapStyle}
+_{AQTLineCapStyleRound RoundLineCapStyle}
+_{AQTLineCapStyleLine SquareLineCapStyle}
 Default is RoundLineCapStyle. "*/
 - (void)setLineCapStyle:(int32_t)capStyle
 {

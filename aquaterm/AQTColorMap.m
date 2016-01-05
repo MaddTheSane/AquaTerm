@@ -9,6 +9,7 @@
 #import "AQTColorMap.h"
 
 @implementation AQTColorMap
+@synthesize size;
 -(id)init
 {
     return [self initWithColormapSize:1]; // Black
@@ -36,11 +37,6 @@
       free(colormap);
    }
    [super dealloc];
-}
-
--(int32_t)size
-{
-   return size;
 }
 
 -(void)setColor:(AQTColor)newColor forIndex:(int32_t)index

@@ -64,31 +64,20 @@ typedef struct _AQTColor_v100 {
 -(id)initWithCoder:(NSCoder *)coder
 {
   AQTRect r;
-  self = [super init];
-  [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
-  [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-  _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
-  _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-  [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-  _clipRect.origin.x = r.origin.x; _clipRect.origin.y = r.origin.y;
-  _clipRect.size.width = r.size.width; _clipRect.size.height = r.size.height;
-  [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
+  if (self = [super init]) {
+    [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
+    [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+    _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
+    _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
+    [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+    _clipRect.origin.x = r.origin.x; _clipRect.origin.y = r.origin.y;
+    _clipRect.size.width = r.size.width; _clipRect.size.height = r.size.height;
+    [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
+  }
   return self;
 }
 
--(AQTColor)color
-{
-   return _color;
-}
-
--(NSRect)clipRect
-{
-   return _clipRect;
-}
--(void)setClipRect:(NSRect)newClipRect
-{
-   _clipRect = newClipRect;
-}
+@synthesize clipRect = _clipRect;
 
 -(void)setIsClipped:(BOOL)clipState
 {
@@ -107,11 +96,7 @@ typedef struct _AQTColor_v100 {
 //
 //	Stubs, needs to be overridden by subclasses
 //
--(NSRect)bounds {return  _bounds;}
--(void)setBounds:(NSRect)bounds {_bounds = bounds;}
+@synthesize bounds = _bounds;
+@synthesize color = _color;
 
--(void)setColor:(AQTColor)newColor
-{
-  _color = newColor;
-}
 @end

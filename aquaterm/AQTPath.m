@@ -8,6 +8,10 @@
 
 #import "AQTPath.h"
 @implementation AQTPath
+@synthesize lineWidth = linewidth;
+@synthesize lineCapStyle;
+@synthesize isFilled;
+@synthesize hasPattern;
 
 /*" A private method to provide storage for an NSPointArray "*/
 - (int32_t)_aqtSetupPathStoreForPointCount:(int32_t)pc
@@ -132,28 +136,4 @@
    hasPattern = YES;
 }
 
-- (void)setLinewidth:(float)lw
-{
-  linewidth = lw;
-}
-
-- (void)setLineCapStyle:(int32_t)capStyle
-{
-  lineCapStyle = capStyle;
-}
-
-- (void)setIsFilled:(BOOL)flag
-{
-   isFilled = flag;
-}
-
-- (BOOL)isFilled
-{
-   return isFilled;
-}
-
-- (BOOL)hasPattern
-{
-   return hasPattern;
-}
 @end

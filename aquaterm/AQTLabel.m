@@ -9,13 +9,15 @@
 #import "AQTLabel.h"
 
 @implementation AQTLabel
+@synthesize fontName;
+@synthesize fontSize;
     /**"
     *** A leaf object class representing an actual item in the plot. 
     *** Since the app is a viewer we do three things with the object:
     *** create (once), draw (any number of times) and (eventually) dispose of it.
     "**/
 
--(id)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(float)textAngle shearAngle:(float)beta justification:(int32_t)justify  
+-(id)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(int32_t)justify  
 {
   if (self=[super init])
   {
@@ -30,7 +32,7 @@
   return self; 
 }
 
--(id)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(float)textAngle shearAngle:(float)beta justification:(int32_t)justify
+-(id)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(int32_t)justify
 {
   
  /* return [self initWithAttributedString:[[[NSAttributedString alloc] initWithString:aString] autorelease]
@@ -52,27 +54,11 @@
 
 }
 
-
 -(void)dealloc
 {
   [string release];
   [fontName release];
   [super dealloc];
-}
-
-- (void)setFontName:(NSString *)newFontName
-{
-  if (fontName != newFontName)
-  {
-    NSString *oldValue = fontName;
-    fontName = [newFontName retain];
-    [oldValue release];
-  }
-}
-
-- (void)setFontSize:(float)newFontSize
-{
-    fontSize = newFontSize;
 }
 
 -(NSString *)description

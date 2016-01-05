@@ -8,21 +8,7 @@
 
 #import <Foundation/NSString.h>
 #import <Foundation/NSGeometry.h>
-
-/*" Constants that specify linecap styles. "*/
-extern const int32_t AQTButtLineCapStyle;
-extern const int32_t AQTRoundLineCapStyle;
-extern const int32_t AQTSquareLineCapStyle;
-
-/*" Constants that specify horizontal and vertical alignment for labels. See #addLabel:atPoint:angle:align: for definitions and use."*/
-extern const int32_t AQTAlignLeft;
-extern const int32_t AQTAlignCenter;
-extern const int32_t AQTAlignRight;
-/* Constants that specify vertical alignment for labels. */
-extern const int32_t AQTAlignMiddle;
-extern const int32_t AQTAlignBaseline;
-extern const int32_t AQTAlignBottom;
-extern const int32_t AQTAlignTop;
+#include "aquaterm.h"
 
 @class AQTPlotBuilder, AQTClientManager;
 @interface AQTAdapter : NSObject
@@ -35,8 +21,8 @@ extern const int32_t AQTAlignTop;
 }
 
 /*" Class initialization etc."*/
-- (id)init;
-- (id)initWithServer:(id)localServer;
+- (instancetype)init;
+- (instancetype)initWithServer:(id)localServer;
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
 - (void)setEventHandler:(void (*)(int32_t index, NSString *event))fPtr;
 
@@ -84,7 +70,7 @@ extern const int32_t AQTAlignTop;
 - (void)setFontsize:(float)newFontsize;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(int32_t)just;
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(int32_t)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just;
 
   /*" Line handling "*/
 - (void)setLinewidth:(float)newLinewidth;

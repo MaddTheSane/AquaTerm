@@ -6,24 +6,35 @@
 //  Copyright (c) 2003-2012 The AquaTerm team.
 //
 
+#pragma once
+
+#ifndef __AQUATERM_AQUATERM_H__
+#define __AQUATERM_AQUATERM_H__
+
 #include <stdint.h>
+#include <CoreFoundation/CFAvailability.h>
 
 #define AQT_EVENTBUF_SIZE 128
 
 /*" Constants that specify linecap styles. "*/
-extern const int32_t AQTButtLineCapStyle;
-extern const int32_t AQTRoundLineCapStyle;
-extern const int32_t AQTSquareLineCapStyle;
+typedef CF_ENUM(int32_t, AQTLineCapStyle) {
+   AQTLineCapStyleButt = 0,
+   AQTLineCapStyleRound = 1,
+   AQTLineCapStyleLine = 2
+};
 
-/*" Constants that specify horizontal alignment for labels. "*/
-extern const int32_t AQTAlignLeft;
-extern const int32_t AQTAlignCenter;
-extern const int32_t AQTAlignRight;
-/*" Constants that specify vertical alignment for labels. "*/
-extern const int32_t AQTAlignMiddle;
-extern const int32_t AQTAlignBaseline;
-extern const int32_t AQTAlignBottom;
-extern const int32_t AQTAlignTop;
+/*" Constants that specify horizontal and vertical alignment for labels. See #addLabel:atPoint:angle:align: for definitions and use."*/
+typedef CF_OPTIONS(int32_t, AQTAlign) {
+   /*" Constants that specify horizontal alignment for labels. "*/
+   AQTAlignLeft = 0x00,
+   AQTAlignCenter = 0x01,
+   AQTAlignRight = 0x02,
+   /* Constants that specify vertical alignment for labels. */
+   AQTAlignMiddle = 0x00,
+   AQTAlignBaseline = 0x04,
+   AQTAlignBottom = 0x08,
+   AQTAlignTop = 0x10
+};
 
 /*" Class initialization etc."*/
 int32_t aqtInit(void);
@@ -100,3 +111,4 @@ void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight);
 
+#endif

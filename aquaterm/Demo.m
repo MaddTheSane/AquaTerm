@@ -155,10 +155,10 @@ for (f=1.0; f<13.0; f+=2.0)
 [adapter setFontsize:8.0];
 [adapter setLinewidth:11.0];
 [adapter takeColorFromColormapEntry:1];
-[adapter setLineCapStyle:AQTButtLineCapStyle];
+[adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(40.5, 170.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 170.5)];
-[adapter addLabel:@"AQTButtLineCapStyle" atPoint:NSMakePoint(160.5, 170.5) angle:0.0 align:AQTAlignLeft];
+[adapter addLabel:@"AQTLineCapStyleButt" atPoint:NSMakePoint(160.5, 170.5) angle:0.0 align:AQTAlignLeft];
 [adapter setLinewidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 170.5)];
@@ -166,10 +166,10 @@ for (f=1.0; f<13.0; f+=2.0)
 
 [adapter setLinewidth:11.0];
 [adapter takeColorFromColormapEntry:1];
-[adapter setLineCapStyle:AQTRoundLineCapStyle];
+[adapter setLineCapStyle:AQTLineCapStyleRound];
 [adapter moveToPoint:NSMakePoint(40.5, 150.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 150.5)];
-[adapter addLabel:@"AQTRoundLineCapStyle" atPoint:NSMakePoint(160.5, 150.5) angle:0.0 align:AQTAlignLeft];
+[adapter addLabel:@"AQTLineCapStyleRound" atPoint:NSMakePoint(160.5, 150.5) angle:0.0 align:AQTAlignLeft];
 [adapter setLinewidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 150.5)];
@@ -177,10 +177,10 @@ for (f=1.0; f<13.0; f+=2.0)
 
 [adapter setLinewidth:11.0];
 [adapter takeColorFromColormapEntry:1];
-[adapter setLineCapStyle:AQTSquareLineCapStyle];
+[adapter setLineCapStyle:AQTLineCapStyleLine];
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
-[adapter addLabel:@"AQTSquareLineCapStyle" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
+[adapter addLabel:@"AQTLineCapStyleLine" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
 [adapter setLinewidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];
@@ -191,7 +191,7 @@ for (f=1.0; f<13.0; f+=2.0)
 [adapter takeColorFromColormapEntry:1];
 [adapter addLabel:@"Line joins:" atPoint:NSMakePoint(40, 90) angle:0.0 align:AQTAlignLeft];
 [adapter setLinewidth:11.0];
-[adapter setLineCapStyle:AQTButtLineCapStyle];
+[adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(40, 50)];
 [adapter addLineToPoint:NSMakePoint(75, 70)];
 [adapter addLineToPoint:NSMakePoint(110, 50)];
@@ -214,7 +214,7 @@ for (f=1.0; f<13.0; f+=2.0)
 
 [adapter setLinewidth:11.0];
 [adapter takeColorFromColormapEntry:1];
-[adapter setLineCapStyle:AQTButtLineCapStyle];
+[adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(190, 50)];
 [adapter addLineToPoint:NSMakePoint(200, 70)];
 [adapter addLineToPoint:NSMakePoint(210, 50)];

@@ -56,10 +56,8 @@
 - (void)setDefaultClipRect;
 
   /*" Color handling "*/
-- (AQTColor)color;
-- (void)setColor:(AQTColor)newColor;
-- (AQTColor)backgroundColor;
-- (void)setBackgroundColor:(AQTColor)newColor;
+@property AQTColor color;
+@property AQTColor backgroundColor;
 
 - (void)takeColorFromColormapEntry:(int32_t)index;
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;

@@ -13,6 +13,8 @@
 #import "AQTPlot.h"
 
 @implementation AQTView
+@synthesize model;
+@synthesize isProcessingEvents = _isProcessingEvents;
 
 -(void)setCrosshairCursorColor
 {
@@ -65,16 +67,6 @@
    return YES;
 }
 
--(void)setModel:(AQTModel *)newModel
-{
-   model = newModel;
-}
-
-- (AQTModel *)model
-{
-   return model;
-}
-
 -(BOOL)isOpaque
 {
    return YES;
@@ -83,11 +75,6 @@
 -(BOOL)isPrinting
 {
    return ![NSGraphicsContext currentContextDrawingToScreen]; 
-}
-
-- (BOOL)isProcessingEvents
-{
-   return _isProcessingEvents;
 }
 
 - (void)setIsProcessingEvents:(BOOL)flag

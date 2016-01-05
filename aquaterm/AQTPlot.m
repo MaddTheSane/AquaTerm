@@ -160,11 +160,11 @@ static inline void NOOP_(id x, ...) {;}
    if (_client != nil)
    {
       validAndResponding = YES;
-      NS_DURING
+      @try {
          [_client ping];
-      NS_HANDLER
+      } @catch (NSException *localException) {
          validAndResponding = NO;
-      NS_ENDHANDLER
+      }
    }      
    return validAndResponding;
 }
@@ -299,14 +299,14 @@ static inline void NOOP_(id x, ...) {;}
 {
    if(_acceptingEvents) // FIXME: redundant!?
    {
-      NS_DURING
+      @try {
          [_client processEvent:event sender:self];
-      NS_HANDLER
+      } @catch (NSException *localException) {
          if ([[localException name] isEqualToString:NSObjectInaccessibleException])
             [self invalidateClient];//:_client]; // invalidate client
          else
             [localException raise];
-      NS_ENDHANDLER
+      }
    }
 }
 #pragma mark === Delegate methods ===

@@ -11,17 +11,16 @@
 #import <Foundation/Foundation.h>
 #import "AQTAdapter.h"
 
-static void (*_aqtEventHandlerPtr)(NSInteger, const char *);
 static NSAutoreleasePool *_pool;
 static AQTAdapter *_adapter;
 static BOOL _mayCleanPool = YES;
 
-void _aqtCleanPool(void)
+static void _aqtCleanPool(void)
 {
    // NSLog(@"#arpool=%d", [NSAutoreleasePool autoreleasedObjectCount]);
    if (_mayCleanPool)
    {
-      [_pool release];
+      [_pool drain];
       _pool = [[NSAutoreleasePool alloc] init];
    }
    else
@@ -42,29 +41,33 @@ bool aqtInit(void) // FIXME: retval?
       _adapter = [[AQTAdapter alloc] init];
    }
 
-   return (_adapter==nil)?1:0;
+   return (_adapter==nil)?true:false;
 }
 
 void aqtTerminate(void)
 {
    [_adapter release];
    _adapter = nil;
-   [_pool release];
+   [_pool drain];
    _pool = nil;
 }
 
-void _aqtEventTranslator(NSInteger index, NSString *event)
+void aqtSetEventBlock(void (^func)(long ref, const char *event))
 {
-   // NSLog(@"_aqtEventTranslator --- %@ from %d", event, index);
-   _mayCleanPool = NO;
-   _aqtEventHandlerPtr(index, [event UTF8String]);
-   _mayCleanPool = YES;
+   _adapter.eventBlock = ^(long ref, NSString *event){
+      _mayCleanPool = NO;
+      func(ref, [event UTF8String]);
+      _mayCleanPool = YES;
+   };
 }
 
 void aqtSetEventHandler(void (*func)(NSInteger ref, const char *event))
 {
-   _aqtEventHandlerPtr = func;
-   [_adapter setEventHandler:_aqtEventTranslator];
+   _adapter.eventBlock = ^(long ref, NSString *event){
+      _mayCleanPool = NO;
+      func(ref, [event UTF8String]);
+      _mayCleanPool = YES;
+   };
 }
 
 /*" Control operations "*/
@@ -85,7 +88,11 @@ void aqtSetPlotSize(float width, float height)
 
 void aqtSetPlotTitle(const char *title)
 {
-    [_adapter setPlotTitle:title?[NSString stringWithCString:title encoding: NSISOLatin1StringEncoding]:@"Untitled"];
+   NSString *titleStr = [NSString stringWithCString:title encoding: NSUTF8StringEncoding];
+   if (!titleStr) {
+      titleStr = [NSString stringWithCString:title encoding: NSISOLatin1StringEncoding];
+   }
+   [_adapter setPlotTitle:title?titleStr:@"Untitled"];
 }
 
 void aqtRenderPlot(void)
@@ -240,16 +247,16 @@ void aqtGetBackgroundColor(float *r, float *g, float *b)
 {
     if (newFontname != nil)
     {
-       [_adapter setFontname:[NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding]];
+       [_adapter setFontName:[NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding]];
     }
 }
 
 void aqtSetFontsize(float newFontsize)
 {
-   [_adapter setFontsize:newFontsize];
+   [_adapter setFontSize:newFontsize];
 }
 
-void aqtAddLabel(const char *text, float x, float y, float angle, int32_t align)
+void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align)
 {
    if (text != nil)
    {
@@ -257,7 +264,7 @@ void aqtAddLabel(const char *text, float x, float y, float angle, int32_t align)
    }
 }
 
-void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, int32_t align)
+void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, AQTAlign align)
 {
    if (text != nil)
    {
@@ -269,10 +276,10 @@ void aqtAddShearedLabel(const char *text, float x, float y, float angle, float s
 /*" Line handling "*/
 void aqtSetLinewidth(float newLinewidth)
 {
-   [_adapter setLinewidth:newLinewidth];
+   [_adapter setLineWidth:newLinewidth];
 }
 
-void aqtSetLineCapStyle(int32_t capStyle)
+void aqtSetLineCapStyle(AQTLineCapStyle capStyle)
 {
    [_adapter setLineCapStyle:capStyle];
 }

@@ -7,6 +7,7 @@
 //
 
 #import <AquaTerm/AquaTerm.h>
+#import <AquaTerm/AQTGraphic.h>
 
 @interface AQTGraphic (NonSwiftable)
 - (id)_cache;

@@ -18,8 +18,10 @@
    NSMutableDictionary *_builders; /* The objects responsible for assembling a model object from client's calls. */
    NSMutableDictionary *_plots; /* The objects responsible for assembling a model object from client's calls. */
    id _activePlotKey;
-   void (*_errorHandler)(NSString *msg);	/* A callback function optionally installed by the client */
-   void (*_eventHandler)(long index, NSString *event); /* A callback function optionally installed by the client */
+   //void (*_errorHandler)(NSString *msg);	/* A callback function optionally installed by the client */
+   //void (*_eventHandler)(long index, NSString *event); /* A callback function optionally installed by the client */
+   void (^_eventBlock)(long index, NSString *event);
+   void (^_errorBlock)(NSString *msg);
    id _eventBuffer;
    int32_t _logLimit;
    BOOL errorState;
@@ -31,6 +33,8 @@
 - (BOOL)launchServer;
 - (void)terminateConnection;
 - (void)setActivePlotKey:(id)newActivePlotKey;
+@property (copy) void (^errorBlock)(NSString *msg);
+@property (copy) void (^eventBlock)(long index, NSString *event);
 - (void)setErrorHandler:(void (*)(NSString *errMsg))fPtr;
 - (void)setEventHandler:(void (*)(long index, NSString *event))fPtr;
 

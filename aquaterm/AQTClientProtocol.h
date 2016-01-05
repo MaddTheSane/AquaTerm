@@ -4,8 +4,8 @@
 
 @protocol AQTClientProtocol <NSObject>
 // FIXME: Add "oneway" later
-- (void)setClient:(nonnull byref id)aClient;
-- (void)setModel:(nonnull bycopy AQTModel*)aModel; // (id)?
+- (void)setClient:(nullable byref id)aClient;
+- (void)setModel:(nullable bycopy AQTModel*)aModel; // (id)?
 - (void)appendModel:(nonnull bycopy AQTModel*)aModel;
 - (void)draw;
 - (void)removeGraphicsInRect:(AQTRect)aRect; // FIXME: Replace by an AQTErase object?

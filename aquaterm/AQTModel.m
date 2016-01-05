@@ -23,7 +23,7 @@
   if (self)
   {
     modelObjects = [[NSMutableArray alloc] initWithCapacity:1024];
-    [self setTitle:@"Untitled"];
+    self.title = @"Untitled";
     canvasSize = size;
   }
   return self;
@@ -66,7 +66,7 @@
   AQTSize s;
   AQTRect r;
 
-  self = [super initWithCoder:coder];
+  if (self = [super initWithCoder:coder]) {
   modelObjects = [[coder decodeObject] retain];
   title = [[coder decodeObject] retain];
   [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
@@ -75,7 +75,8 @@
   dirtyRect.origin.x = r.origin.x; dirtyRect.origin.x = r.origin.y;
   dirtyRect.size.width = r.size.width; dirtyRect.size.height = r.size.height;
   [coder decodeValueOfObjCType:@encode(BOOL) at:&isDirty];
-
+  }
+  
   return self;
 }
 
@@ -115,6 +116,11 @@
 -(void)removeObjectAtIndex:(NSInteger)i
 {
    [modelObjects removeObjectAtIndex:i];
+}
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nonnull *)buffer count:(NSUInteger)len
+{
+   return [modelObjects countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

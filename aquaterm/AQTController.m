@@ -297,7 +297,7 @@ extern void aqtLineDrawingTest(id sender);
    [adapter openPlotWithIndex:1];
    [adapter setPlotTitle:@"Available fonts"];
    [adapter setPlotSize:NSMakeSize(1000, 700)];
-   [adapter setFontsize:8.0];
+   [adapter setFontSize:8.0];
 
    // Collect all fontnames
    NSArray *allFontFamilies = [fontManager availableFontFamilies];
@@ -315,17 +315,15 @@ extern void aqtLineDrawingTest(id sender);
    
    // Display them in alphabetical order
    [allFontnames sortUsingSelector:@selector(caseInsensitiveCompare:)];
-   NSEnumerator *fontEnumerator = [allFontnames objectEnumerator];
-   NSString *fontname;
    
-   while (fontname = [fontEnumerator nextObject]) {
-      [adapter setFontname:systemFont];
+   for (NSString *fontname in allFontnames) {
+      [adapter setFontName:systemFont];
       [adapter setColorRed:0.0 green:0.0 blue:0.0];
       [adapter addLabel:fontname
                 atPoint:NSMakePoint(row, 700-col)
                   angle:0.0
                   align:0];
-      [adapter setFontname:fontname];
+      [adapter setFontName:fontname];
       [adapter setColorRed:0.0 green:0.0 blue:1.0];
       [adapter addLabel:@"ABC abc"
                 atPoint:NSMakePoint(row+140, 700-col)

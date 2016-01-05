@@ -8,6 +8,7 @@
 
 import Cocoa
 import AquaTerm
+import AquaTerm.AQTModel
 
 class AQView: NSView {
 	private var enableTiming = false

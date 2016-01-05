@@ -88,6 +88,26 @@ Event handling of user input is provided through an optional callback function.
    [super dealloc];
 }
 
+- (void)setErrorBlock:(void (^)(NSString *))errorBlock
+{
+   _clientManager.errorBlock = errorBlock;
+}
+
+- (void (^)(NSString *))errorBlock
+{
+   return _clientManager.errorBlock;
+}
+
+- (void)setEventBlock:(void (^)(long, NSString *))eventBlock
+{
+   _clientManager.eventBlock = eventBlock;
+}
+
+- (void (^)(long, NSString *))eventBlock
+{
+   return _clientManager.eventBlock;
+}
+
 /*" Optionally set an error handling routine of the form #customErrorHandler(NSString *errMsg) to override default behaviour. "*/
 - (void)setErrorHandler:(void (*)(NSString *errMsg))fPtr
 {
@@ -345,16 +365,37 @@ _{43:%{x,y}:%key Error } "*/
 }
 
 
-/*" Set the font to be used. Applies to all future operations. Default is Times-Roman."*/
 - (void)setFontname:(NSString *)newFontname
 {
-   [_selectedBuilder setFontname:newFontname];
+   self.fontName = newFontname;
+}
+
+- (void)setFontsize:(float)newFontsize
+{
+   self.fontSize = newFontsize;
+}
+
+
+/*" Set the font to be used. Applies to all future operations. Default is Times-Roman."*/
+- (void)setFontName:(NSString *)newFontname
+{
+   [_selectedBuilder setFontName:newFontname];
+}
+
+- (NSString *)fontName
+{
+   return _selectedBuilder.fontName;
 }
 
 /*" Set the font size in points. Applies to all future operations. Default is 14pt. "*/
-- (void)setFontsize:(float)newFontsize
+- (void)setFontSize:(CGFloat)newFontsize
 {
-   [_selectedBuilder setFontsize:newFontsize];
+   [_selectedBuilder setFontSize:newFontsize];
+}
+
+- (CGFloat)fontSize
+{
+   return _selectedBuilder.fontSize;
 }
 
 /*" Add text at coordinate given by pos, rotated by angle degrees and aligned vertically and horisontally (with respect to pos and rotation) according to align. Horizontal and vertical align may be combined by an OR operation, e.g. (AQTAlignCenter | AQTAlignMiddle).
@@ -379,7 +420,7 @@ _{@"NSUnderline" 0or1}
 }
 
 /*" Same as #addLabel:atPoint:angle:shearAngle:align: except that shearAngle defaults to 0."*/
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(int32_t)just
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just
 {
    [_selectedBuilder addLabel:text position:pos angle:angle shearAngle:0.0 justification:just];
 }
@@ -396,6 +437,16 @@ _{@"NSUnderline" 0or1}
 - (void)setLinewidth:(float)newLinewidth
 {
    [_selectedBuilder setLinewidth:newLinewidth];
+}
+
+- (void)setLineWidth:(CGFloat)lineWidth
+{
+   _selectedBuilder.lineWidth = lineWidth;
+}
+
+- (CGFloat)lineWidth
+{
+   return _selectedBuilder.lineWidth;
 }
 
 /*" Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}."*/
@@ -416,9 +467,14 @@ _{AQTLineCapStyleButt ButtLineCapStyle}
 _{AQTLineCapStyleRound RoundLineCapStyle}
 _{AQTLineCapStyleLine SquareLineCapStyle}
 Default is RoundLineCapStyle. "*/
-- (void)setLineCapStyle:(int32_t)capStyle
+- (void)setLineCapStyle:(AQTLineCapStyle)capStyle
 {
    [_selectedBuilder setLineCapStyle:capStyle];
+}
+
+- (AQTLineCapStyle)lineCapStyle
+{
+   return _selectedBuilder.lineCapStyle;
 }
 
 /*" Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments. "*/

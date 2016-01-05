@@ -55,7 +55,7 @@ void aqtDebug(id sender)
   {
     NSLog(@"Failed to init adapter");
   }
-  [adapter setFontname:@"Times-Roman"];
+  [adapter setFontName:@"Times-Roman"];
   NSString *s = [NSString stringWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", 0x2124, 0x2133, 0x5925, 0x2654, 0x2655, 0x2656, 0x2657, 0x2658]; 
   NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
   [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"AppleSymbols", @"AQTFontname", nil] range:NSMakeRange(9,11)];
@@ -63,7 +63,7 @@ void aqtDebug(id sender)
   [adapter openPlotWithIndex:1];
   [adapter setPlotSize:NSMakeSize(620,420)];
   [adapter setPlotTitle:@"Unicode"];
-  [adapter setFontsize:20];
+  [adapter setFontSize:20];
   [adapter addLabel:as atPoint:NSMakePoint(100,100)];
   //[adapter setFontname:@"Song Regular"];
   //[adapter addLabel:[NSString stringWithFormat:@"%C", 0x5925] atPoint:NSMakePoint(100,120)];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AQTGraphic.h"
 
-@interface AQTModel : AQTGraphic /*" NSObject "*/ 
+@interface AQTModel : AQTGraphic <NSFastEnumeration> /*" NSObject "*/
 {
    NSMutableArray *modelObjects; /*" An array of AQTGraphic objects (leaf or collection) "*/
    NSString       *title; /*" Associate a title with the model. Default is 'Figure n'. "*/

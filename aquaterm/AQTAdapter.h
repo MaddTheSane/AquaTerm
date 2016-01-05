@@ -23,6 +23,8 @@
 /*" Class initialization etc."*/
 - (instancetype)init;
 - (instancetype)initWithServer:(id)localServer;
+@property (copy) void (^errorBlock)(NSString *msg);
+@property (copy) void (^eventBlock)(long index, NSString *event);
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
 - (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr;
 
@@ -66,17 +68,21 @@
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b;
 
   /*" Text handling "*/
-- (void)setFontname:(NSString *)newFontname;
-- (void)setFontsize:(float)newFontsize;
+@property (copy) NSString *fontName;
+@property CGFloat fontSize;
+- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE;
+- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos;
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(int32_t)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth;
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
+@property CGFloat lineWidth;
 - (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
-- (void)setLineCapStyle:(int32_t)capStyle;
+@property AQTLineCapStyle lineCapStyle;
+- (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  
 - (void)addLineToPoint:(NSPoint)point; 
 - (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc;
@@ -91,8 +97,10 @@
   /*" Image handling "*/
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY;
 - (void)resetImageTransform;
+/// Add a bitmap image of size bitmapSize scaled to fit destBounds, does <i>not</i> apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; 
-- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds;
+/// Deprecated, use \c addTransformedImageWithBitmap:size: instead. Add a bitmap image of size bitmapSize <i>honoring</i> transform, transformed image is clipped to destBounds. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color.
+- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
   /*"Private methods"*/

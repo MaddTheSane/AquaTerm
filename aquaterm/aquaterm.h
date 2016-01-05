@@ -45,6 +45,8 @@ void aqtTerminate(void);
    If in doubt, use aqtWaitNextEvent() instead. */
 void aqtSetEventHandler(void (*func)(long ref, const char *event));
 
+void aqtSetEventBlock(void (^func)(long ref, const char *event));
+
 /*" Control operations "*/
 void aqtOpenPlot(int32_t refNum);
 int32_t aqtSelectPlot(int32_t refNum);
@@ -87,14 +89,14 @@ void aqtGetBackgroundColor(float *r, float *g, float *b);
 /*" Text handling "*/
 void aqtSetFontname(const char *newFontname);
 void aqtSetFontsize(float newFontsize);
-void aqtAddLabel(const char *text, float x, float y, float angle, int32_t align);
-void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, int32_t align);
+void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align);
+void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, AQTAlign align);
 
 /*" Line handling "*/
 void aqtSetLinewidth(float newLinewidth);
 void aqtSetLinestylePattern(float *newPattern, int32_t newCount, float newPhase);
 void aqtSetLinestyleSolid(void);
-void aqtSetLineCapStyle(int32_t capStyle);
+void aqtSetLineCapStyle(AQTLineCapStyle capStyle);
 void aqtMoveTo(float x, float y);
 void aqtAddLineTo(float x, float y);
 void aqtAddPolyline(float *x, float *y, int32_t pointCount);
@@ -110,6 +112,6 @@ void aqtEraseRect(float originX, float originY, float width, float height);
 void aqtSetImageTransform(float m11, float m12, float m21, float m22, float tX, float tY);
 void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
-void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight);
+void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
 
 #endif

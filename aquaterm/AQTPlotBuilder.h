@@ -11,6 +11,7 @@
 #import "AQTImage.h"
 #import "AQTPath.h"
 #import "AQTClientProtocol.h"
+#include "aquaterm.h"
 
 // This is the default colormap size
 #define AQT_COLORMAP_SIZE 256
@@ -26,9 +27,9 @@
   AQTModel *_model;	/*" The graph currently being built "*/
   AQTColor _color;	/*" Currently selected color "*/
   NSString *_fontName;	/*" Currently selected font "*/
-  float _fontSize;	/*" Currently selected fontsize [pt]"*/
-  float _linewidth;	/*" Currently selected linewidth [pt] "*/
-  int32_t _capStyle; /*" Currently selected linecap style "*/
+  CGFloat _fontSize;	/*" Currently selected fontsize [pt]"*/
+  CGFloat _linewidth;	/*" Currently selected linewidth [pt] "*/
+  AQTLineCapStyle _capStyle; /*" Currently selected linecap style "*/
   NSPoint _polylinePoints[MAX_POLYLINE_POINTS];	/*" A cache for coalescing connected line segments into a single path "*/
   int32_t _polylinePointCount;	/*" The current number of points in _polylinePoints"*/
   NSPoint _polygonPoints[MAX_POLYGON_POINTS];	/*" A cache for coalescing connected line segments into a single path "*/
@@ -40,7 +41,7 @@
   BOOL _hasPattern; /*" Current pattern state "*/
   float _pattern[MAX_PATTERN_COUNT]; /*" Currently selected dash pattern "*/
   int32_t _patternCount;   /*" Currently selected dash count "*/
-  float _patternPhase; /*" Currently selected dash phase "*/
+  CGFloat _patternPhase; /*" Currently selected dash phase "*/
   NSRect _clipRect;
   BOOL _isClipped;
 }
@@ -48,8 +49,8 @@
 /*" Acessors "*/
 - (BOOL)modelIsDirty;
 - (AQTModel *)model;
-- (void)setSize:(NSSize)canvasSize;
-- (void)setTitle:(NSString *)title;
+@property NSSize size;
+@property (copy) NSString *title;
 
    /*" Clip rect, applies to all objects "*/
 - (void)setClipRect:(NSRect)clip;
@@ -67,15 +68,19 @@
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
   /*" Text handling "*/
-- (void)setFontname:(NSString *)newFontname;
-- (void)setFontsize:(float)newFontsize;
-- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(int32_t)just;
+- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE;
+- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE;
+@property (copy) NSString* fontName;
+@property CGFloat fontSize;
+- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth;
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
+@property (nonatomic) CGFloat lineWidth;
 - (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
-- (void)setLineCapStyle:(int32_t)capStyle;
+@property (nonatomic) AQTLineCapStyle lineCapStyle;
+- (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
 - (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc;

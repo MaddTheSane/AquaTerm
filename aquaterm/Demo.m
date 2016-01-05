@@ -70,8 +70,8 @@ AQTAdapter *adapter = [sender sharedAdapter];
 [adapter setColormapEntry:7 red:0.0 green:0.5 blue:0.5]; // dark green
                                                          // Set color directly
 [adapter setColorRed:0.0 green:0.0 blue:0.0];
-[adapter setFontname:@"Helvetica"];
-[adapter setFontsize:12.0];
+[adapter setFontName:@"Helvetica"];
+[adapter setFontSize:12.0];
 [adapter addLabel:@"Testview 620x420 pt" atPoint:NSMakePoint(4,412) angle:0.0 align:AQTAlignLeft];
 // Frame plot
 [adapter moveToPoint:NSMakePoint(20,20)];
@@ -99,7 +99,7 @@ for (i=0; i<8; i++)
 // Contiouos colors
 [adapter takeColorFromColormapEntry:1];
 [adapter addLabel:@"\"Any color you like\"" atPoint:NSMakePoint(320, 385) angle:0.0 align:AQTAlignLeft];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 for (i=0; i<256; i++)
 {
   f = (float)i/255.0;
@@ -119,7 +119,7 @@ static float pat[4][4]={{4,2,4,2},{4,2,2,2},{8,4,8,4},{2,2,2,2}};
 for (f=1.0; f<13.0; f+=2.0)
 {
   float lw = f/2.0;
-  [adapter setLinewidth:round(lw-.5)];
+  [adapter setLineWidth:round(lw-.5)];
   [adapter setLinestylePattern:pat[((int32_t)f)%3] count:4 phase:0.0];
   [adapter moveToPoint:NSMakePoint(30, 200.5+f*10)];
   [adapter addLineToPoint:NSMakePoint(180, 200.5+f*10)];
@@ -135,7 +135,7 @@ for (f=1.0; f<13.0; f+=2.0)
    [adapter setColorRed:0 green:0 blue:0];
    [adapter setClipRect:r];
    [adapter addLabel:@"Clipped text. Clipped text. Clipped text." atPoint:NSMakePoint(180, 230) angle:30.0 align:(AQTAlignCenter | AQTAlignMiddle)];
-   [adapter setLinewidth:1.0];
+   [adapter setLineWidth:1.0];
    for (i=0; i<5; i++)
    {
       double radians=(double)i*pi*0.8, r=30.0;
@@ -152,73 +152,73 @@ for (f=1.0; f<13.0; f+=2.0)
    // ***** Reset clip rect! *****
 }
 // linecap styles
-[adapter setFontsize:8.0];
-[adapter setLinewidth:11.0];
+[adapter setFontSize:8.0];
+[adapter setLineWidth:11.0];
 [adapter takeColorFromColormapEntry:1];
 [adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(40.5, 170.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 170.5)];
 [adapter addLabel:@"AQTLineCapStyleButt" atPoint:NSMakePoint(160.5, 170.5) angle:0.0 align:AQTAlignLeft];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 170.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 170.5)];
 
-[adapter setLinewidth:11.0];
+[adapter setLineWidth:11.0];
 [adapter takeColorFromColormapEntry:1];
 [adapter setLineCapStyle:AQTLineCapStyleRound];
 [adapter moveToPoint:NSMakePoint(40.5, 150.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 150.5)];
 [adapter addLabel:@"AQTLineCapStyleRound" atPoint:NSMakePoint(160.5, 150.5) angle:0.0 align:AQTAlignLeft];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 150.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 150.5)];
 
-[adapter setLinewidth:11.0];
+[adapter setLineWidth:11.0];
 [adapter takeColorFromColormapEntry:1];
 [adapter setLineCapStyle:AQTLineCapStyleLine];
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
 [adapter addLabel:@"AQTLineCapStyleLine" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
-[adapter setFontsize:12.0];
+[adapter setFontSize:12.0];
 
 // line joins
 [adapter takeColorFromColormapEntry:1];
 [adapter addLabel:@"Line joins:" atPoint:NSMakePoint(40, 90) angle:0.0 align:AQTAlignLeft];
-[adapter setLinewidth:11.0];
+[adapter setLineWidth:11.0];
 [adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(40, 50)];
 [adapter addLineToPoint:NSMakePoint(75, 70)];
 [adapter addLineToPoint:NSMakePoint(110, 50)];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40, 50)];
 [adapter addLineToPoint:NSMakePoint(75, 70)];
 [adapter addLineToPoint:NSMakePoint(110, 50)];
 
-[adapter setLinewidth:11.0];
+[adapter setLineWidth:11.0];
 [adapter takeColorFromColormapEntry:1];
 [adapter moveToPoint:NSMakePoint(130, 50)];
 [adapter addLineToPoint:NSMakePoint(150, 70)];
 [adapter addLineToPoint:NSMakePoint(170, 50)];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(130, 50)];
 [adapter addLineToPoint:NSMakePoint(150, 70)];
 [adapter addLineToPoint:NSMakePoint(170, 50)];
 
-[adapter setLinewidth:11.0];
+[adapter setLineWidth:11.0];
 [adapter takeColorFromColormapEntry:1];
 [adapter setLineCapStyle:AQTLineCapStyleButt];
 [adapter moveToPoint:NSMakePoint(190, 50)];
 [adapter addLineToPoint:NSMakePoint(200, 70)];
 [adapter addLineToPoint:NSMakePoint(210, 50)];
-[adapter setLinewidth:1.0];
+[adapter setLineWidth:1.0];
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(190, 50)];
 [adapter addLineToPoint:NSMakePoint(200, 70)];
@@ -287,7 +287,7 @@ for (i=0; i<8; i++)
 
 
 // Text
-[adapter setFontname:@"Times-Roman"];
+[adapter setFontName:@"Times-Roman"];
 NSString *s = [NSString stringWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658]; 
 NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
 [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"AppleSymbols", @"AQTFontname", nil] range:NSMakeRange(9,11)];
@@ -295,21 +295,21 @@ NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithStrin
 
 
 [adapter takeColorFromColormapEntry:1];
-[adapter setFontname:@"Times-Roman"];
-[adapter setFontsize:12.0];
+[adapter setFontName:@"Times-Roman"];
+[adapter setFontSize:12.0];
 [adapter addLabel:as atPoint:NSMakePoint(320,150)];
 //[adapter addLabel:@"Times-Roman 16pt" atPoint:NSMakePoint(320, 150) angle:0.0 align:AQTAlignLeft];
 [adapter takeColorFromColormapEntry:2];
-[adapter setFontname:@"Times-Italic"];
-[adapter setFontsize:16.0];
+[adapter setFontName:@"Times-Italic"];
+[adapter setFontSize:16.0];
 [adapter addLabel:@"Times-Italic 16pt" atPoint:NSMakePoint(320, 130) angle:0.0 align:AQTAlignLeft];
 [adapter takeColorFromColormapEntry:4];
-[adapter setFontname:@"Zapfino"];
-[adapter setFontsize:12.0];
+[adapter setFontName:@"Zapfino"];
+[adapter setFontSize:12.0];
 [adapter addLabel:@"Zapfino 12pt" atPoint:NSMakePoint(320, 104) angle:0.0 align:AQTAlignLeft];
 
 [adapter takeColorFromColormapEntry:2];
-[adapter setLinewidth:0.5];
+[adapter setLineWidth:0.5];
 [adapter moveToPoint:NSMakePoint(510.5, 160)];
 [adapter addLineToPoint:NSMakePoint(510.5, 100)];
 pos = NSMakePoint(540.5, 75.5);
@@ -319,21 +319,21 @@ pos = NSMakePoint(540.5, 75.5);
 [adapter addLineToPoint:NSMakePoint(pos.x, pos.y-5)];
 
 [adapter takeColorFromColormapEntry:1];
-[adapter setFontname:@"Verdana"];
-[adapter setFontsize:10.0];
+[adapter setFontName:@"Verdana"];
+[adapter setFontSize:10.0];
 [adapter addLabel:@"left align" atPoint:NSMakePoint(510.5, 150) angle:0.0 align:AQTAlignLeft];
 [adapter addLabel:@"centered" atPoint:NSMakePoint(510.5, 130) angle:0.0 align:AQTAlignCenter];
 [adapter addLabel:@"right align" atPoint:NSMakePoint(510.5, 110) angle:0.0 align:AQTAlignRight];
-[adapter setFontname:@"Times-Roman"];
-[adapter setFontsize:14.0];
+[adapter setFontName:@"Times-Roman"];
+[adapter setFontSize:14.0];
 [adapter addLabel:@"-rotate" atPoint:pos angle:90.0 align:AQTAlignLeft];
 [adapter addLabel:@"-rotate" atPoint:pos angle:45.0 align:AQTAlignLeft];
 [adapter addLabel:@"-rotate" atPoint:pos angle:-30.0 align:AQTAlignLeft];
 [adapter addLabel:@"-rotate" atPoint:pos angle:-60.0 align:AQTAlignLeft];
 [adapter addLabel:@"-rotate" atPoint:pos angle:-90.0 align:AQTAlignLeft];
 // Shear
-[adapter setFontname:@"Arial"];
-[adapter setFontsize:12.0];
+[adapter setFontName:@"Arial"];
+[adapter setFontSize:12.0];
 [adapter addLabel:@"Rotate & shear" atPoint:NSMakePoint(430, 105) angle:45.0 shearAngle:45.0 align:AQTAlignLeft];
 
 
@@ -346,12 +346,12 @@ pos = NSMakePoint(540.5, 75.5);
   [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];  
 }
 [adapter takeColorFromColormapEntry:2];
-[adapter setLinewidth:0.5];
+[adapter setLineWidth:0.5];
 [adapter moveToPoint:NSMakePoint(320, 45.5)];
 [adapter addLineToPoint:NSMakePoint(520, 45.5)];
 [adapter takeColorFromColormapEntry:1];
-[adapter setFontname:@"Times-Italic"];
-[adapter setFontsize:14.0];
+[adapter setFontName:@"Times-Italic"];
+[adapter setFontSize:14.0];
 [adapter addLabel:@"Top" atPoint:NSMakePoint(330, 45.5) angle:0.0 align:(AQTAlignLeft | AQTAlignTop)];
 [adapter addLabel:@"Bottom" atPoint:NSMakePoint(360, 45.5) angle:0.0 align:(AQTAlignLeft | AQTAlignBottom)];
 [adapter addLabel:@"Middle" atPoint:NSMakePoint(410, 45.5) angle:0.0 align:(AQTAlignLeft | AQTAlignMiddle)];
@@ -360,12 +360,12 @@ pos = NSMakePoint(540.5, 75.5);
 // Equations
 {
    NSMutableAttributedString *attrStr;
-   [adapter setFontname:@"Helvetica"];
-   [adapter setFontsize:12.0];
+   [adapter setFontName:@"Helvetica"];
+   [adapter setFontSize:12.0];
    [adapter addLabel:@"Equation style" atPoint:NSMakePoint(260, 95) angle:0.0 align:AQTAlignCenter];
 
-   [adapter setFontname:@"Times-Roman"];
-   [adapter setFontsize:14.0];
+   [adapter setFontName:@"Times-Roman"];
+   [adapter setFontSize:14.0];
 
    attrStr = [[[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"] autorelease];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(3,1)]; // Greek

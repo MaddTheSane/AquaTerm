@@ -113,6 +113,10 @@
    return _model;
 }
 
+- (NSSize)size
+{
+   return _model.canvasSize;
+}
 
 - (void)setSize:(NSSize)canvasSize
 {
@@ -123,6 +127,11 @@
 - (void)setTitle:(NSString *)title
 {
    [_model setTitle:title];
+}
+
+- (NSString *)title
+{
+   return _model.title;
 }
 
 - (void)setClipRect:(NSRect)clip
@@ -197,20 +206,23 @@
 
 - (void)setFontname:(NSString *)newFontname
 {
-   if (_fontName != newFontname)
-   {
-      NSString *oldValue = _fontName;
-      _fontName = [newFontname retain];
-      [oldValue release];
-   }
+   self.fontName = newFontname;
 }
 
 - (void)setFontsize:(float)newFontsize
 {
-   _fontSize = newFontsize;
+   self.fontSize = newFontsize;
 }
+@synthesize fontName = _fontName;
+@synthesize fontSize = _fontSize;
+@synthesize lineWidth = _linewidth;
 
 - (void)setLinewidth:(float)newLinewidth
+{
+   self.lineWidth = newLinewidth;
+}
+
+- (void)setLineWidth:(CGFloat)newLinewidth
 {
    // FIXME: The following line seems to be a bug...
    [self _flushPolygonBuffer]; // FIXME: expose flush methods in API?
@@ -244,7 +256,9 @@
    _hasPattern = NO;
 }
 
-- (void)setLineCapStyle:(int32_t)capStyle
+@synthesize lineCapStyle = _capStyle;
+
+- (void)setLineCapStyle:(AQTLineCapStyle)capStyle
 {
    [self _flushBuffers];
    _capStyle = capStyle;
@@ -258,7 +272,7 @@
 //
 // AQTLabel
 //
-- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(int32_t)just;
+- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(AQTAlign)just;
 {
    AQTLabel *lb = nil;
    if ([text isKindOfClass:[NSString class]])

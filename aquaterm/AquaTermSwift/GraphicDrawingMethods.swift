@@ -8,6 +8,10 @@
 
 import Cocoa
 import AquaTerm
+import AquaTerm.AQTModel.AQTGraphic
+import AquaTerm.AQTModel.AQTLabel
+import AquaTerm.AQTModel.AQTPath
+import AquaTerm.AQTModel.AQTImage
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,
 this is ugly, but I can't see a simple way to do it without affecting performance. */
@@ -58,6 +62,14 @@ extension AQTModel {
 		self.bounds = tmpRect
 		return tmpRect;
 	}
+}
+
+extension AQTLabel {
+	
+}
+
+extension AQTPath {
+	
 }
 
 /*

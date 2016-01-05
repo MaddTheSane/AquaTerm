@@ -14,6 +14,9 @@
 #import "AQTConnectionProtocol.h"
 
 @implementation AQTClientManager
+@synthesize errorBlock = _errorBlock;
+@synthesize eventBlock = _eventBlock;
+
 #pragma mark ==== Error handling ====
 - (void)_aqtHandlerError:(NSString *)msg
 {
@@ -30,12 +33,12 @@
 
    [self logMessage:@"Trying to recover from error." logLevel:3];
 
-   NS_DURING
+   @try {
       [_server ping];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       [self logMessage:@"Server not responding." logLevel:1];
       serverDidDie = YES;
-   NS_ENDHANDLER
+   }
 
    if (serverDidDie) {
       [self terminateConnection];
@@ -117,7 +120,7 @@
       }
    }
    if (_server) {
-      NS_DURING
+      @try {
          if ([_server conformsToProtocol:@protocol(AQTConnectionProtocol)]) {
             int32_t a,b,c;
              [_server retain];
@@ -129,10 +132,10 @@
             [self logMessage:@"server is too old info" logLevel:1];
             _server = nil;
          }
-         NS_HANDLER
+         } @catch (NSException *localException) {
             // [localException raise];
             [self logMessage:@"An error occurred while talking to the server" logLevel:1];
-         NS_ENDHANDLER
+         }
    }
    [self logMessage:didConnect?@"Connected!":@"Could not connect" logLevel:1];
    return didConnect;
@@ -193,12 +196,16 @@
 
 - (void)setErrorHandler:(void (*)(NSString *errMsg))fPtr
 {
-   _errorHandler = fPtr;
+   self.errorBlock = ^(NSString *errnsg){
+      (*fPtr)(errnsg);
+   };
 }
 
 - (void)setEventHandler:(void (*)(long index, NSString *event))fPtr
 {
-   _eventHandler = fPtr;
+   self.eventBlock = ^(long index, NSString *event) {
+      (*fPtr)(index, event);
+   };
 }
 
 - (void)logMessage:(NSString *)msg logLevel:(int32_t)level
@@ -233,15 +240,15 @@
       return newBuilder;
    }   
 
-   NS_DURING
+   @try {
       newPlot = [_server addAQTClient:key
                                  name:[[NSProcessInfo processInfo] processName]
                                   pid:[[NSProcessInfo processInfo] processIdentifier]];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       // [localException raise];
       [self _aqtHandlerError:[localException name]];
       newPlot = nil;
-   NS_ENDHANDLER
+   }
    if (newPlot) {
       [newPlot setClient:self];
       // set active plot
@@ -282,7 +289,7 @@
    pb = [_builders objectForKey:_activePlotKey];
    if ([pb modelIsDirty]) {
       id <NSObject, AQTClientProtocol> thePlot = [_plots objectForKey:_activePlotKey];
-      NS_DURING
+      @try {
          if ([thePlot isProxy]) {
             [thePlot appendModel:[pb model]];
             [pb removeAllParts];
@@ -290,10 +297,10 @@
             [thePlot setModel:[pb model]];
          }
          [thePlot draw];
-      NS_HANDLER
+      } @catch (NSException *localException) {
          // [localException raise];
          [self _aqtHandlerError:[localException name]];
-      NS_ENDHANDLER
+      }
    }
 }
 
@@ -313,13 +320,13 @@
    [newBuilder setBackgroundColor:[oldBuilder backgroundColor]];
    
    [_builders setObject:newBuilder forKey:_activePlotKey];
-   NS_DURING
+   @try {
       [thePlot setModel:[newBuilder model]];
       [thePlot draw];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       // [localException raise];
       [self _aqtHandlerError:[localException name]];
-   NS_ENDHANDLER
+   }
    [newBuilder release];
    return newBuilder;
 }
@@ -335,7 +342,7 @@
    pb = [_builders objectForKey:_activePlotKey];
    thePlot = [_plots objectForKey:_activePlotKey];
 
-   NS_DURING
+   @try {
       if ([pb modelIsDirty]) {
          if ([thePlot isProxy]) {
             [thePlot appendModel:[pb model]]; // Push any pending output to the viewer, don't draw
@@ -353,22 +360,22 @@
       aqtRect.size.height = aRect.size.height;
       [thePlot removeGraphicsInRect:aqtRect];
       // [thePlot draw];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       // [localException raise];
       [self _aqtHandlerError:[localException name]];
-   NS_ENDHANDLER
+   }
 }
 
 - (void)closePlot
 {
    if (_activePlotKey == nil) return;
 
-   NS_DURING
+   @try {
       [[_plots objectForKey:_activePlotKey] setClient:nil];
       [[_plots objectForKey:_activePlotKey] close];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       [self logMessage:@"Closing plot, discarding exception..." logLevel:2];
-   NS_ENDHANDLER
+   }
    [_plots removeObjectForKey:_activePlotKey];
    [_builders removeObjectForKey:_activePlotKey];
    [self setActivePlotKey:nil];
@@ -379,11 +386,11 @@
 - (void)setAcceptingEvents:(BOOL)flag  
 {
    if (errorState == YES || _activePlotKey == nil) return;
-   NS_DURING
+   @try {
       [[_plots objectForKey:_activePlotKey] setAcceptingEvents:flag];
-   NS_HANDLER
+   } @catch (NSException *localException) {
       [self _aqtHandlerError:[localException name]];
-   NS_ENDHANDLER
+   }
 }
 
 - (NSString *)lastEvent  
@@ -412,8 +419,8 @@
    if ([keys count] == 0) return;
    key = [keys objectAtIndex:0];
 
-   if (_eventHandler != nil) {
-      _eventHandler([key integerValue], event);
+   if (_eventBlock != nil) {
+      _eventBlock([key integerValue], event);
    }
    [_eventBuffer setObject:event forKey:key];
 }
@@ -428,7 +435,7 @@
    pb = [_builders objectForKey:_activePlotKey];
    if ([pb modelIsDirty]) {
       id <NSObject, AQTClientProtocol> thePlot = [_plots objectForKey:_activePlotKey];
-      NS_DURING
+      @try {
          if ([thePlot isProxy]) {
             [thePlot appendModel:[pb model]];
             [pb removeAllParts];
@@ -436,10 +443,10 @@
             [thePlot setModel:[pb model]];
          }
          [thePlot timingTestWithTag:tag];
-      NS_HANDLER
+      } @catch (NSException *localException) {
          // [localException raise];
          [self _aqtHandlerError:[localException name]];
-      NS_ENDHANDLER
+      }
    }
 }
 @end

@@ -8,6 +8,8 @@
 
 import Cocoa
 import AquaTerm
+import AquaTerm.AQTFunctions
+import AquaTerm.AQTModel.AQTGraphic
 
 public func ==(lhs: AQTColor, rhs: AQTColor) -> Bool {
 	return AQTEqualColors(lhs, rhs)

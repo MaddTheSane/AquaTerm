@@ -9,6 +9,8 @@
 
 @implementation AQTImage
 @synthesize transform;
+@synthesize fitBounds;
+@synthesize bitmapSize;
 /*
 - (id)initWithContentsOfFile:(NSString *)filename
 {
@@ -40,6 +42,11 @@
 {
   [bitmap release];
   [super dealloc];
+}
+
++ (BOOL)supportsSecureCoding;
+{
+   return NO;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder

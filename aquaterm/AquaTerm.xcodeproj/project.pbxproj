@@ -39,7 +39,7 @@
 		55D31EE01C3C2E780060FF56 /* AQPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EDF1C3C2E780060FF56 /* AQPlot.swift */; };
 		55D31EE31C3C343E0060FF56 /* GraphicDrawingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */; };
 		55D31EE51C3C36170060FF56 /* SwiftHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */; };
-		55D31EE91C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */; };
+		55D31EE91C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		55D31EEC1C3C44790060FF56 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC10F0677017B0042863D /* AQTModelAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2CC10D0677017B0042863D /* AQTModelAdditions.h */; };

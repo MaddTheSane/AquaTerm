@@ -6,11 +6,25 @@
 //
 //
 
+#import <Foundation/Foundation.h>
 #import <AquaTerm/AquaTerm.h>
 #import <AquaTerm/AQTGraphic.h>
+#import <AquaTerm/AQTLabel.h>
+#import <AquaTerm/AQTPath.h>
+#import <AquaTerm/AQTModel.h>
 
 @interface AQTGraphic (NonSwiftable)
-- (id)_cache;
-- (void)_setCache:(id)object;
+- (nullable id)_cache;
+- (void)_setCache:(nullable id)object;
+@property (getter=_cache, setter=_setCache:, nullable, retain) id _cache;
 
 @end
+
+@interface AQTLabel (AQTLabelDrawing)
+-(void)_aqtLabelUpdateCache;
+@end
+
+@interface AQTPath (AQTPathDrawing)
+-(void)_aqtPathUpdateCache;
+@end
+

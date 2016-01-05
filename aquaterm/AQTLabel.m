@@ -66,35 +66,48 @@
   return [NSString stringWithFormat:@"%@\nwith string:\n%@", [super description], [string description]];
 }
 
++ (BOOL)supportsSecureCoding;
+{
+  return NO;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   AQTPoint p;
+  float tmpFloat;
 
   [super encodeWithCoder:coder];
   [coder encodeObject:string];
   [coder encodeObject:fontName];
-  [coder encodeValueOfObjCType:@encode(float) at:&fontSize];
+  tmpFloat = fontSize;
+  [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
   // 64bit safe
   p.x = position.x; p.y = position.y;
   [coder encodeValueOfObjCType:@encode(AQTPoint) at:&p];
-  [coder encodeValueOfObjCType:@encode(float) at:&angle];
+  tmpFloat = angle;
+  [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
   [coder encodeValueOfObjCType:@encode(int32_t) at:&justification];
-  [coder encodeValueOfObjCType:@encode(float) at:&shearAngle];
+  tmpFloat = shearAngle;
+  [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
   AQTPoint p;
+  float tmpFloat = 0;
 
   self = [super initWithCoder:coder];
   string = [[coder decodeObject] retain];
   fontName = [[coder decodeObject] retain];
-  [coder decodeValueOfObjCType:@encode(float) at:&fontSize];
+  [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+  fontSize = tmpFloat;
   [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];
   position.x = p.x; position.y = p.y;
-  [coder decodeValueOfObjCType:@encode(float) at:&angle];
+  [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+  angle = tmpFloat;
   [coder decodeValueOfObjCType:@encode(int32_t) at:&justification];
-  [coder decodeValueOfObjCType:@encode(float) at:&shearAngle];
+  [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+  shearAngle = tmpFloat;
   return self;
 }
 @end

@@ -21,18 +21,18 @@
    NSPoint staticPathStore[STATIC_POINT_STORAGE];
    NSPointArray dynamicPathStore;
    int32_t pointCount;
-   float linewidth;
+   CGFloat linewidth;
    int32_t lineCapStyle;
    BOOL isFilled;
    BOOL hasPattern;
    float pattern[MAX_PATTERN_COUNT];
    int32_t patternCount;
-   float patternPhase;
+   CGFloat patternPhase;
 }
 - (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount;
-@property (setter=setLinewidth:) float lineWidth;
+@property (setter=setLinewidth:) CGFloat lineWidth;
 @property int32_t lineCapStyle;
 @property BOOL isFilled;
 @property (readonly) BOOL hasPattern;
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 @end

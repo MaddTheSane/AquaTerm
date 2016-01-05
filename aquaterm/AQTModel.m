@@ -44,6 +44,11 @@
    [super dealloc];
 }
 
++ (BOOL)supportsSecureCoding;
+{
+  return NO;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   AQTSize s;

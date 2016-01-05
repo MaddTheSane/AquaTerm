@@ -72,6 +72,11 @@
   [super dealloc];
 }
 
++ (BOOL)supportsSecureCoding;
+{
+   return NO;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   AQTPoint p;
@@ -120,14 +125,14 @@
   return self;
 }
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase 
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase
 {
   // Create a local copy of the pattern.
    int32_t i;
    if (newCount <= 0) // Sanity check
       return;
    // constrain count to MAX_PATTERN_COUNT
-   newCount = newCount>MAX_PATTERN_COUNT?MAX_PATTERN_COUNT:newCount;
+   newCount = MIN(newCount, MAX_PATTERN_COUNT);
    for (i=0; i<newCount; i++) {
       pattern[i] = newPattern[i]; 
    }

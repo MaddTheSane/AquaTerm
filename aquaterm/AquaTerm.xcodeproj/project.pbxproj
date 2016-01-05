@@ -35,6 +35,7 @@
 		554387E71C3BA9E1006FBFB4 /* ExtendSavePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554387E91C3BA9E1006FBFB4 /* ExtendSavePanel.xib */; };
 		554387EA1C3BA9E6006FBFB4 /* MainMenu1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554387EC1C3BA9E6006FBFB4 /* MainMenu1.xib */; };
 		554387ED1C3BA9EC006FBFB4 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554387EF1C3BA9EC006FBFB4 /* Preferences.xib */; };
+		554387F21C3BAC80006FBFB4 /* ProtsAndHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC10F0677017B0042863D /* AQTModelAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2CC10D0677017B0042863D /* AQTModelAdditions.h */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
@@ -175,6 +176,8 @@
 		554387E81C3BA9E1006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExtendSavePanel.xib; sourceTree = "<group>"; };
 		554387EB1C3BA9E6006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu1.xib; sourceTree = "<group>"; };
 		554387EE1C3BA9EC006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		554387F01C3BAC7F006FBFB4 /* AquaTermSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AquaTermSwift-Bridging-Header.h"; sourceTree = "<group>"; };
+		554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtsAndHelp.m; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
@@ -395,6 +398,18 @@
 			children = (
 				554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */,
 				554387D01C3B9A19006FBFB4 /* AQView.swift */,
+				554387F01C3BAC7F006FBFB4 /* AquaTermSwift-Bridging-Header.h */,
+				554387F31C3BAC8F006FBFB4 /* Resources */,
+				554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */,
+			);
+			indentWidth = 4;
+			path = AquaTermSwift;
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		554387F31C3BAC8F006FBFB4 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				554387C11C3B95AA006FBFB4 /* Assets.xcassets */,
 				554387C31C3B95AA006FBFB4 /* MainMenu.xib */,
 				554387E31C3BA9D7006FBFB4 /* AQTWindow.xib */,
@@ -405,10 +420,8 @@
 				554387E01C3BA9B7006FBFB4 /* Credits.rtf */,
 				554387C61C3B95AA006FBFB4 /* Info.plist */,
 			);
-			indentWidth = 4;
-			path = AquaTermSwift;
+			name = Resources;
 			sourceTree = "<group>";
-			usesTabs = 1;
 		};
 		CB138D3E05722C2E00D208BA /* ClientController */ = {
 			isa = PBXGroup;
@@ -767,6 +780,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554387D11C3B9A19006FBFB4 /* AQView.swift in Sources */,
+				554387F21C3BAC80006FBFB4 /* ProtsAndHelp.m in Sources */,
 				554387C01C3B95AA006FBFB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1020,6 +1034,7 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AquaTermSwift/AquaTermSwift-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -1062,6 +1077,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "AquaTermSwift/AquaTermSwift-Bridging-Header.h";
 			};
 			name = Release;
 		};

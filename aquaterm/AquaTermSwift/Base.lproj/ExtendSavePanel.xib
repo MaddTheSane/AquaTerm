@@ -6,7 +6,7 @@
         <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="AQTPlot">
+        <customObject id="-2" userLabel="File's Owner" customClass="AQPlot" customModule="AquaTermSwift" customModuleProvider="target">
             <connections>
                 <outlet property="extendSavePanelView" destination="22" id="26"/>
                 <outlet property="saveFormatPopUp" destination="19" id="27"/>

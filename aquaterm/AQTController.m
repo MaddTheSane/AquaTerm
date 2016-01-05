@@ -99,7 +99,7 @@ extern void aqtLineDrawingTest(id sender);
 
   if([doConnection registerName:@"aquatermServer"] == NO)
   {
-    int32_t retCode = NSRunCriticalAlertPanel(@"Could not establish service",
+    NSInteger retCode = NSRunCriticalAlertPanel(@"Could not establish service",
                                        @"Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm.",
                                        @"Quit", @"Cancel", nil);
     if (retCode == NSAlertDefaultReturn)
@@ -146,7 +146,7 @@ extern void aqtLineDrawingTest(id sender);
 
    if(validClients)
    {
-      int32_t retCode;
+      NSInteger retCode;
       if(eventsActive)
       {
          retCode = NSRunCriticalAlertPanel(@"Clients still awaiting events",
@@ -196,7 +196,7 @@ extern void aqtLineDrawingTest(id sender);
    *rev   = 1;
 }
 
--(id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(int32_t)procId
+-(id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(pid_t)procId
 {
   id newPlot;
    newPlot = [[AQTPlot alloc] init];
@@ -247,7 +247,7 @@ extern void aqtLineDrawingTest(id sender);
    NSPoint tileOrigin;
    
    int32_t i, row, col, nRow, nCol;
-   int32_t n = [handlerList count];
+   NSInteger n = [handlerList count];
    
    if (n==0)
       return;

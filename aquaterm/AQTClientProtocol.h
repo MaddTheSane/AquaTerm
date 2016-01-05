@@ -1,10 +1,12 @@
 #import "AQTGraphic.h"
 
-@protocol AQTClientProtocol
+@class AQTModel;
+
+@protocol AQTClientProtocol <NSObject>
 // FIXME: Add "oneway" later
-- (void)setClient:(byref id)aClient;
-- (void)setModel:(bycopy id)aModel; // (id)?
-- (void)appendModel:(bycopy id)aModel;
+- (void)setClient:(nonnull byref id)aClient;
+- (void)setModel:(nonnull bycopy AQTModel*)aModel; // (id)?
+- (void)appendModel:(nonnull bycopy AQTModel*)aModel;
 - (void)draw;
 - (void)removeGraphicsInRect:(AQTRect)aRect; // FIXME: Replace by an AQTErase object?
 - (void)setAcceptingEvents:(BOOL)flag;

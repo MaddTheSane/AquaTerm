@@ -1,5 +1,5 @@
 framework module AquaTerm {
-  umbrella header "AquaTerm.h"
+  umbrella header "aquaterm.h"
 
   export *
   module * { export * }
@@ -14,4 +14,15 @@ framework module AquaTerm {
      header "AQTModel.h"
   }
 
+  module AQTFunctions {
+    requires objc
+    header "AQTFunctions.h"
+  }
+  
+  module AQTProtocols {
+    requires objc
+    header "AQTClientProtocol.h"
+    header "AQTEventProtocol.h"
+    header "AQTConnectionProtocol.h"
+  }
 }

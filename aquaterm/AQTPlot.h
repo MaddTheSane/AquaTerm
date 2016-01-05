@@ -6,9 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
+#import <Cocoa/Cocoa.h>
 #import "AQTClientProtocol.h"
+#import "AQTEventProtocol.h"
 
 @class AQTModel, AQTView;
 @protocol AQTEventProtocol;
@@ -29,7 +29,7 @@
 - (void)constrainWindowToFrame:(NSRect)tileFrame;
 - (id)canvas;
 - (void)setClient:(id)client;
-- (void)setClientInfoName:(NSString *)name pid:(int32_t)pid;
+- (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
 - (BOOL)clientValidAndResponding;
 - (BOOL)invalidateClient; 
 - (BOOL)acceptingEvents;

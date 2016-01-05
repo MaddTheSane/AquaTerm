@@ -287,7 +287,7 @@ static inline void NOOP_(id x, ...) {;}
 }
 
 
--(void)setClientInfoName:(NSString *)name pid:(int32_t)pid
+-(void)setClientInfoName:(NSString *)name pid:(pid_t)pid
 {
    [name retain];
    [_clientName release];

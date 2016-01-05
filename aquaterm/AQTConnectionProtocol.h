@@ -1,6 +1,9 @@
-@protocol AQTConnectionProtocol
+#import <Foundation/NSObject.h>
+
+@protocol AQTConnectionProtocol <NSObject>
 - (oneway void)ping;
-- (void)getServerVersionMajor:(out int32_t *)major minor:(out int32_t *)minor rev:(out int32_t *)rev;
-- (id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(int32_t)procId; 
+- (void)getServerVersionMajor:(nonnull out int32_t *)major minor:(nonnull out int32_t *)minor rev:(nonnull out int32_t *)rev;
+- (nonnull id)addAQTClient:(nullable bycopy id)client name:(nonnull bycopy NSString *)name pid:(pid_t)procId;
+@optional
 //- (BOOL)removeAQTClient:(bycopy id)client; 
 @end

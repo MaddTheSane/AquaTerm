@@ -12,6 +12,7 @@
 #define __AQUATERM_AQUATERM_H__
 
 #include <stdint.h>
+#include <stdbool.h>
 #include <CoreFoundation/CFAvailability.h>
 
 #define AQT_EVENTBUF_SIZE 128
@@ -37,12 +38,12 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
 };
 
 /*" Class initialization etc."*/
-int32_t aqtInit(void);
+bool aqtInit(void);
 void aqtTerminate(void);
 /* The event handler callback functionality should be used with caution, it may 
    not be safe to use in all circumstances. It is certainly _not_ threadsafe. 
    If in doubt, use aqtWaitNextEvent() instead. */
-void aqtSetEventHandler(void (*func)(int32_t ref, const char *event));
+void aqtSetEventHandler(void (*func)(long ref, const char *event));
 
 /*" Control operations "*/
 void aqtOpenPlot(int32_t refNum);
@@ -54,7 +55,7 @@ void aqtClearPlot(void);
 void aqtClosePlot(void);
 
 /*" Event handling "*/
-void aqtSetAcceptingEvents(int32_t flag);
+void aqtSetAcceptingEvents(bool flag);
 int32_t aqtGetLastEvent(char *buffer);
 int32_t aqtWaitNextEvent(char *buffer);
 

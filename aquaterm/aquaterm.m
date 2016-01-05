@@ -11,7 +11,7 @@
 #import <Foundation/Foundation.h>
 #import "AQTAdapter.h"
 
-static void (*_aqtEventHandlerPtr)(int32_t, const char *);
+static void (*_aqtEventHandlerPtr)(NSInteger, const char *);
 static NSAutoreleasePool *_pool;
 static AQTAdapter *_adapter;
 static BOOL _mayCleanPool = YES;
@@ -31,7 +31,7 @@ void _aqtCleanPool(void)
 }
 
 /*" Class initialization etc."*/
-int32_t aqtInit(void) // FIXME: retval?
+bool aqtInit(void) // FIXME: retval?
 {
    if (!_pool)
    {
@@ -53,7 +53,7 @@ void aqtTerminate(void)
    _pool = nil;
 }
 
-void _aqtEventTranslator(int32_t index, NSString *event)
+void _aqtEventTranslator(NSInteger index, NSString *event)
 {
    // NSLog(@"_aqtEventTranslator --- %@ from %d", event, index);
    _mayCleanPool = NO;
@@ -61,7 +61,7 @@ void _aqtEventTranslator(int32_t index, NSString *event)
    _mayCleanPool = YES;
 }
 
-void aqtSetEventHandler(void (*func)(int32_t ref, const char *event))
+void aqtSetEventHandler(void (*func)(NSInteger ref, const char *event))
 {
    _aqtEventHandlerPtr = func;
    [_adapter setEventHandler:_aqtEventTranslator];
@@ -105,7 +105,7 @@ void aqtClosePlot(void)
 }
 
 /*" Event handling "*/
-void aqtSetAcceptingEvents(int32_t flag)
+void aqtSetAcceptingEvents(bool flag)
 {
    [_adapter setAcceptingEvents:flag?YES:NO];
 }
@@ -117,7 +117,7 @@ int32_t aqtGetLastEvent(char *buffer) // FIXME: retval?
    NSString *eventStr = [[NSString alloc] initWithData:[event dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
                                           encoding:NSASCIIStringEncoding];
    const char *cStr = [eventStr cStringUsingEncoding:NSASCIIStringEncoding];
-   int copyLen = MIN(AQT_EVENTBUF_SIZE - 1, strlen(cStr));
+   size_t copyLen = MIN(AQT_EVENTBUF_SIZE - 1, strlen(cStr));
    strncpy(buffer, cStr, copyLen);
    buffer[copyLen] = '\0';
    [eventStr release];
@@ -127,15 +127,15 @@ int32_t aqtGetLastEvent(char *buffer) // FIXME: retval?
 int32_t aqtWaitNextEvent(char *buffer) // FIXME: retval?
 {
    NSString *event  = [_adapter waitNextEvent];
-  // Perform a lossy conversion from UTF8 to ASCII
-  NSString *eventStr = [[NSString alloc] initWithData:[event dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
-                                             encoding:NSASCIIStringEncoding];
-  const char *cStr = [eventStr cStringUsingEncoding:NSASCIIStringEncoding];
-  int copyLen = MIN(AQT_EVENTBUF_SIZE - 1, strlen(cStr));
-  strncpy(buffer, cStr, copyLen);
-  buffer[copyLen] = '\0';
-  [eventStr release];
-  return 0;
+   // Perform a lossy conversion from UTF8 to ASCII
+   NSString *eventStr = [[NSString alloc] initWithData:[event dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
+                                              encoding:NSASCIIStringEncoding];
+   const char *cStr = [eventStr cStringUsingEncoding:NSASCIIStringEncoding];
+   size_t copyLen = MIN(AQT_EVENTBUF_SIZE - 1, strlen(cStr));
+   strncpy(buffer, cStr, copyLen);
+   buffer[copyLen] = '\0';
+   [eventStr release];
+   return 0;
 }
 
 void aqtEventProcessingMode()

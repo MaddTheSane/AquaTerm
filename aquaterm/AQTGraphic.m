@@ -15,6 +15,8 @@ typedef struct _AQTColor_v100 {
 } AQTColor_v100;
 
 @implementation AQTGraphic
+@synthesize isClipped = _isClipped;
+@synthesize clipRect = _clipRect;
     /**"
     *** An abstract class to derive model objects from
     *** (Overkill at present but could come in handy if the app grows)
@@ -75,13 +77,6 @@ typedef struct _AQTColor_v100 {
     [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
   }
   return self;
-}
-
-@synthesize clipRect = _clipRect;
-
--(void)setIsClipped:(BOOL)clipState
-{
-   _isClipped = clipState;
 }
 
 - (BOOL)shouldShowBounds

@@ -36,6 +36,10 @@
 		554387EA1C3BA9E6006FBFB4 /* MainMenu1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554387EC1C3BA9E6006FBFB4 /* MainMenu1.xib */; };
 		554387ED1C3BA9EC006FBFB4 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 554387EF1C3BA9EC006FBFB4 /* Preferences.xib */; };
 		554387F21C3BAC80006FBFB4 /* ProtsAndHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */; };
+		55D31EE01C3C2E780060FF56 /* AQPlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EDF1C3C2E780060FF56 /* AQPlot.swift */; };
+		55D31EE31C3C343E0060FF56 /* GraphicDrawingMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */; };
+		55D31EE51C3C36170060FF56 /* SwiftHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */; };
+		55D31EE91C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC10F0677017B0042863D /* AQTModelAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2CC10D0677017B0042863D /* AQTModelAdditions.h */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
@@ -66,11 +70,11 @@
 		CB91253D07CB48A2001D5EAF /* AQTPath.h in Headers */ = {isa = PBXBuildFile; fileRef = F5653B8001C4B8F201A80104 /* AQTPath.h */; };
 		CB91253E07CB48A4001D5EAF /* AQTPath.m in Sources */ = {isa = PBXBuildFile; fileRef = F5653B8101C4B8F201A80104 /* AQTPath.m */; };
 		CB91253F07CB48A7001D5EAF /* AQTConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = CB77583A056B83E300D208BA /* AQTConstants.m */; };
-		CB91254007CB48A8001D5EAF /* AQTFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = CBB06FE805740EB900D208BA /* AQTFunctions.h */; };
+		CB91254007CB48A8001D5EAF /* AQTFunctions.h in Headers */ = {isa = PBXBuildFile; fileRef = CBB06FE805740EB900D208BA /* AQTFunctions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB91254107CB48A9001D5EAF /* AQTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB06FE905740EB900D208BA /* AQTFunctions.m */; };
-		CB91254207CB48AD001D5EAF /* AQTClientProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB5B1BEE04A9C2E900EBD329 /* AQTClientProtocol.h */; };
-		CB91254307CB48AD001D5EAF /* AQTConnectionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */; };
-		CB91254407CB48AE001D5EAF /* AQTEventProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2DDBAB056D10FB00D208BA /* AQTEventProtocol.h */; };
+		CB91254207CB48AD001D5EAF /* AQTClientProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB5B1BEE04A9C2E900EBD329 /* AQTClientProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB91254307CB48AD001D5EAF /* AQTConnectionProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		CB91254407CB48AE001D5EAF /* AQTEventProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2DDBAB056D10FB00D208BA /* AQTEventProtocol.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB91259D07CB4A92001D5EAF /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB91259C07CB4A92001D5EAF /* AquaTerm.framework */; };
 		CB9B70CD065A0AD100563010 /* Preferences.nib in Resources */ = {isa = PBXBuildFile; fileRef = CB9B70CB065A0AD100563010 /* Preferences.nib */; };
 		CB9B70D3065A0B9C00563010 /* AQTPrefController.h in Headers */ = {isa = PBXBuildFile; fileRef = CB9B70D1065A0B9C00563010 /* AQTPrefController.h */; };
@@ -168,7 +172,7 @@
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387C41C3B95AA006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		554387C61C3B95AA006FBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; };
+		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 2; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; };
 		554387D01C3B9A19006FBFB4 /* AQView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQView.swift; sourceTree = "<group>"; };
 		554387DF1C3BA9B7006FBFB4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		554387E21C3BA9D7006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AQTWindow.xib; sourceTree = "<group>"; };
@@ -178,6 +182,11 @@
 		554387EE1C3BA9EC006FBFB4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
 		554387F01C3BAC7F006FBFB4 /* AquaTermSwift-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AquaTermSwift-Bridging-Header.h"; sourceTree = "<group>"; };
 		554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtsAndHelp.m; sourceTree = "<group>"; };
+		55D31EDF1C3C2E780060FF56 /* AQPlot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQPlot.swift; sourceTree = "<group>"; };
+		55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphicDrawingMethods.swift; sourceTree = "<group>"; };
+		55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftHelpers.swift; sourceTree = "<group>"; };
+		55D31EE71C3C38E00060FF56 /* AQTGraphic+NonSwiftable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AQTGraphic+NonSwiftable.h"; sourceTree = "<group>"; };
+		55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AQTGraphic+NonSwiftable.m"; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
@@ -358,6 +367,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				554387CF1C3B96B1006FBFB4 /* module copy.modulemap */,
 				CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 			);
@@ -398,6 +408,11 @@
 			children = (
 				554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */,
 				554387D01C3B9A19006FBFB4 /* AQView.swift */,
+				55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */,
+				55D31EDF1C3C2E780060FF56 /* AQPlot.swift */,
+				55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */,
+				55D31EE71C3C38E00060FF56 /* AQTGraphic+NonSwiftable.h */,
+				55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */,
 				554387F01C3BAC7F006FBFB4 /* AquaTermSwift-Bridging-Header.h */,
 				554387F31C3BAC8F006FBFB4 /* Resources */,
 				554387F11C3BAC80006FBFB4 /* ProtsAndHelp.m */,
@@ -405,6 +420,7 @@
 			indentWidth = 4;
 			path = AquaTermSwift;
 			sourceTree = "<group>";
+			tabWidth = 4;
 			usesTabs = 1;
 		};
 		554387F31C3BAC8F006FBFB4 /* Resources */ = {
@@ -482,7 +498,6 @@
 				CB0C496E065ABF7C00AC22F7 /* INSTALL */,
 				CBAA608305E7AFF0009B33CD /* distroMakefile */,
 				F57C16A302506DE3010D3DE4 /* ToDo */,
-				554387CF1C3B96B1006FBFB4 /* module copy.modulemap */,
 			);
 			name = Dist;
 			sourceTree = "<group>";
@@ -779,7 +794,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D31EE31C3C343E0060FF56 /* GraphicDrawingMethods.swift in Sources */,
+				55D31EE01C3C2E780060FF56 /* AQPlot.swift in Sources */,
+				55D31EE91C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m in Sources */,
 				554387D11C3B9A19006FBFB4 /* AQView.swift in Sources */,
+				55D31EE51C3C36170060FF56 /* SwiftHelpers.swift in Sources */,
 				554387F21C3BAC80006FBFB4 /* ProtsAndHelp.m in Sources */,
 				554387C01C3B95AA006FBFB4 /* AppDelegate.swift in Sources */,
 			);
@@ -1097,7 +1116,6 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				PRODUCT_NAME = Package;
-				ZERO_LINK = NO;
 			};
 			name = Release;
 		};
@@ -1305,6 +1323,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				ENABLE_TESTABILITY = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -1315,6 +1334,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};

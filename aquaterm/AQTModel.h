@@ -19,13 +19,13 @@
 }
 -(instancetype)initWithCanvasSize:(NSSize)canvasSize;
 @property NSSize canvasSize;
--(NSRect)dirtyRect;
--(BOOL)isDirty;
-@property (readonly) int32_t count;
+@property (readonly) NSRect dirtyRect;
+@property (readonly, getter=isDirty) BOOL dirty;
+@property (readonly) NSInteger count;
 -(void)addObject:(AQTGraphic *)graphic;
 -(void)addObjectsFromArray:(NSArray<AQTGraphic*> *)graphics;
--(NSArray<AQTGraphic*> *)modelObjects;
+@property (readonly, copy) NSArray<AQTGraphic*> *modelObjects;
 -(void)removeAllObjects;
--(void)removeObjectAtIndex:(uint32_t)i;
+-(void)removeObjectAtIndex:(NSInteger)i;
 @property (copy) NSString *title;
 @end

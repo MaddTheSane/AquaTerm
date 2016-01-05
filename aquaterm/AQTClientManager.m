@@ -196,7 +196,7 @@
    _errorHandler = fPtr;
 }
 
-- (void)setEventHandler:(void (*)(int32_t index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(long index, NSString *event))fPtr
 {
    _eventHandler = fPtr;
 }

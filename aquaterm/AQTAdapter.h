@@ -24,7 +24,7 @@
 - (instancetype)init;
 - (instancetype)initWithServer:(id)localServer;
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
-- (void)setEventHandler:(void (*)(int32_t index, NSString *event))fPtr;
+- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr;
 
   /*" Control operations "*/
 - (void)openPlotWithIndex:(int32_t)refNum; 

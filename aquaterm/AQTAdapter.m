@@ -104,7 +104,7 @@ _{1:%{x,y}:%button MouseDownEvent }
 _{2:%{x,y}:%key KeyDownEvent } 
 _{42:%{x,y}:%key ServerError }
 _{43:%{x,y}:%key Error } "*/
-- (void)setEventHandler:(void (*)(int32_t index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr
 {
    [_clientManager setEventHandler:fPtr];
 }

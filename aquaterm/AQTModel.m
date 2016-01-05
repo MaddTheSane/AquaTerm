@@ -11,6 +11,8 @@
 @implementation AQTModel
 @synthesize title;
 @synthesize canvasSize;
+@synthesize dirtyRect;
+@synthesize dirty = isDirty;
 /**"
 *** A class representing a collection of objects making up the plot.
 "**/
@@ -82,18 +84,7 @@
    return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)[modelObjects count],  NSStringFromRect(_bounds)];
 }
 
--(BOOL)isDirty
-{
-   return isDirty;
-}
-
--(NSRect)dirtyRect
-{
-   return dirtyRect;
-}
-
-
--(int32_t)count
+-(NSInteger)count
 {
   return [modelObjects count];
 }
@@ -113,7 +104,7 @@
 
 -(NSArray *)modelObjects
 {
-   return modelObjects;
+   return [[modelObjects copy] autorelease];
 }
 
 -(void)removeAllObjects
@@ -121,7 +112,7 @@
    [modelObjects removeAllObjects];
 }
 
--(void)removeObjectAtIndex:(uint32_t)i
+-(void)removeObjectAtIndex:(NSInteger)i
 {
    [modelObjects removeObjectAtIndex:i];
 }

@@ -6,9 +6,11 @@
 //  Copyright (c) 2004-2012 The AquaTerm Team. All rights reserved.
 //
 
+#include <tgmath.h>
+
 #import "AQTStringDrawingAdditions.h"
 
-NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, float defaultFontSize, int32_t *i, int32_t sublevel, NSPoint pos, float fontScale);
+NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
 
 
 
@@ -49,9 +51,9 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 @implementation NSString (AQTStringDrawingAdditions)
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)aFont
 {
-   int32_t i;
-   int32_t firstChar = 0;
-   int32_t strLen = [self length];
+   NSInteger i;
+   NSInteger firstChar = 0;
+   NSInteger strLen = [self length];
    NSPoint pos = NSZeroPoint;
    NSBezierPath *tmpPath = [NSBezierPath bezierPath];
    BOOL convertSymbolFontToUnicode = [[aFont fontName] isEqualToString:@"Symbol"] 
@@ -90,10 +92,10 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)defaultFont
 {
    NSString *text = [self string]; // Yuck!
-   int32_t strLen = [text length];
+   NSInteger strLen = [text length];
    NSBezierPath *tmpPath = [NSBezierPath bezierPath];
    NSPoint pos = NSZeroPoint;
-   int32_t firstChar = 0;
+   NSInteger firstChar = 0;
    int32_t index = 0;
    
    // 
@@ -120,18 +122,18 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
  *
  * If Symbol font is specified (defaultFont or as attribute), automatic conversion to Unicode is performed. 
 */
-NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, float defaultFontSize, int32_t *i, int32_t sublevel, NSPoint pos, float fontScale)
+NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale)
 {
-   static float maxRight = 0.0;
+   static CGFloat maxRight = 0.0;
    static NSPoint underlineLeftPoint;
    NSString *text = [attrString string];
    NSPoint subPos = pos;
    BOOL extendsRight = NO;
    BOOL underlining = NO;
-   int32_t strLen = [text length];
-   float glyphHeight = defaultFontSize * fontScale;
-   int32_t attributedSublevel = 0;
-   float baselineOffset = 0.0;
+   NSInteger strLen = [text length];
+   CGFloat glyphHeight = defaultFontSize * fontScale;
+   NSInteger attributedSublevel = 0;
+   CGFloat baselineOffset = 0.0;
    BOOL convertSymbolFontToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldConvertSymbolFont"];
     
    while (*i < strLen) {
@@ -194,7 +196,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          maxRight = MAX(pos.x, maxRight);
          extendsRight = NO; 
          (*i)++;
-      } else if(abs(attributedSublevel) <= abs(sublevel)) {
+      } else if(labs(attributedSublevel) <= labs(sublevel)) {
          return pos;
       } else {
          float baseline;

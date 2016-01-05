@@ -42,8 +42,8 @@
     NSRect testRect;
     NSRect clipRect = AQTRectFromSize([self canvasSize]);
     NSRect newBounds = NSZeroRect;
-    int32_t i;
-    int32_t  objectCount = [self count];
+    NSInteger i;
+    NSInteger  objectCount = [self count];
 
     targetRect.origin.x = aRect.origin.x; targetRect.origin.y = aRect.origin.y;
     targetRect.size.width = aRect.size.width; targetRect.size.height = aRect.size.height;

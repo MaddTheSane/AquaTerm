@@ -19,7 +19,7 @@
 -(void)setCrosshairCursorColor
 {
   NSString *cursorImageName;
-  int cursorIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"CrosshairCursorColor"];
+  NSInteger cursorIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"CrosshairCursorColor"];
 
   switch (cursorIndex) {
     case 0: 

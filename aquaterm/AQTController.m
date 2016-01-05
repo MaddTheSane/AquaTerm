@@ -94,7 +94,7 @@ extern void aqtLineDrawingTest(id sender);
   //
   // Set up a DO connection:
   //
-  NSConnection * doConnection = [NSConnection defaultConnection];
+  NSConnection * doConnection = [NSConnection new];
   [doConnection setRootObject:self];
 
   if([doConnection registerName:@"aquatermServer"] == NO)
@@ -183,12 +183,12 @@ extern void aqtLineDrawingTest(id sender);
 }
 
 #pragma mark === AQTConnectionProtocol ===
--(void)ping
+-(oneway void)ping
 {
    return;
 }
 
-- (void)getServerVersionMajor:(int32_t *)major minor:(int32_t *)minor rev:(int32_t *)rev
+- (void)getServerVersionMajor:(out int32_t *)major minor:(out int32_t *)minor rev:(out int32_t *)rev
 {
    // 1.1.1
    *major = 1;
@@ -196,7 +196,7 @@ extern void aqtLineDrawingTest(id sender);
    *rev   = 1;
 }
 
--(id)addAQTClient:(id)client name:(NSString *)name pid:(int32_t)procId
+-(id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(int32_t)procId
 {
   id newPlot;
    newPlot = [[AQTPlot alloc] init];

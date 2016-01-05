@@ -10,6 +10,7 @@
 #import "AQTGraphic.h"
 #import "AQTModel.h"
 #import "AQTGraphicDrawingMethods.h"
+#import "AQTPlot.h"
 
 @implementation AQTView
 
@@ -147,7 +148,7 @@
    {
       point = [self convertPoint:point fromView:nil];
       point = [self convertPointToCanvasCoordinates:point];
-      [[[self window] delegate] processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
+      [(AQTPlot*)[[self window] delegate] processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
    }
 }
 
@@ -185,7 +186,7 @@
         NSStringFromPoint([self convertPointToCanvasCoordinates:pos]), 
         [theEvent characters], 
         [theEvent keyCode]];
-      [[[self window] delegate] processEvent:eventString];
+      [(AQTPlot*)[[self window] delegate] processEvent:eventString];
    }
 }
 

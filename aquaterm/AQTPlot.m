@@ -14,6 +14,7 @@
 #import "AQTModelAdditions.h"
 #import "AQTFunctions.h"
 #import "AQTPrefController.h"
+#import "AQTController.h"
 
 #import "AQTEventProtocol.h"
 
@@ -174,7 +175,7 @@ static inline void NOOP_(id x, ...) {;}
 }
 
 #pragma mark === AQTClientProtocol methods ===
--(void)setModel:(AQTModel *)newModel
+-(void)setModel:(bycopy AQTModel *)newModel
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__); 
    LOG([newModel description]);
@@ -194,7 +195,7 @@ static inline void NOOP_(id x, ...) {;}
    }
 }
 
--(void)appendModel:(AQTModel *)newModel
+-(void)appendModel:(bycopy AQTModel *)newModel
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
    if (!model) {
@@ -346,7 +347,7 @@ static inline void NOOP_(id x, ...) {;}
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-   [[NSApp delegate] removePlot:self];
+   [(AQTController*)[NSApp delegate] removePlot:self];
 }
 
 - (void)windowDidBecomeKey:(NSNotification *)notification

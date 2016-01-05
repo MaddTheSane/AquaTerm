@@ -74,7 +74,7 @@ Event handling of user input is provided through an optional callback function.
    return [self initWithServer:nil];
 }
 
-- (void)release
+- (oneway void)release
 {
    [_clientManager logMessage:[NSString stringWithFormat:@"adapter rc = %lu", (unsigned long)[self retainCount]] logLevel:3];
    [super release];

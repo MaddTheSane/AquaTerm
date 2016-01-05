@@ -399,12 +399,12 @@
 }
 
 #pragma mark ==== AQTEventProtocol ====
-- (void)ping
+- (oneway void)ping
 {
    return;
 }
 
-- (void)processEvent:(NSString *)event sender:(id)sender
+- (oneway void)processEvent:(bycopy NSString *)event sender:(id)sender
 {
    NSNumber *key;
    

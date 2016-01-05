@@ -1,0 +1,17 @@
+framework module AquaTerm {
+  umbrella header "AquaTerm.h"
+
+  export *
+  module * { export * }
+  
+  module AQTAdapter {
+     requires objc
+     header "AQTAdapter.h"
+  }
+  
+  module AQTModel {
+     requires objc
+     header "AQTModel.h"
+  }
+
+}

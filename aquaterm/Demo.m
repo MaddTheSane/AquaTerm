@@ -343,9 +343,9 @@ adapter.fontSize = 12.0;
 // Some styling is possible
 {
   NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:@"Underline, super- and subscript123"] autorelease];
-  [attrStr addAttribute:NSUnderlineStyleAttributeName value:@1 range:NSMakeRange(0,9)];
-  [attrStr addAttribute:NSSuperscriptAttributeName value:@(-1) range:NSMakeRange(31,1)];
-  [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(32,2)];
+  [attrStr addAttribute:@"NSUnderline" value:@1 range:NSMakeRange(0,9)];
+  [attrStr addAttribute:@"NSSuperScript" value:@(-1) range:NSMakeRange(31,1)];
+  [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(32,2)];
   [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];  
 }
 [adapter takeColorFromColormapEntry:2];
@@ -372,7 +372,7 @@ adapter.fontSize = 14.0;
 
    attrStr = [[[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"] autorelease];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // eponent
+   [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(1,3)]; // eponent
    [attrStr addAttribute:@"AQTFontsize" value:@6.0 range:NSMakeRange(7,1)]; // extra spacing
    
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 75) angle:0.0 align:AQTAlignCenter];
@@ -381,12 +381,12 @@ adapter.fontSize = 14.0;
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(0,2)];
    [attrStr addAttribute:@"AQTFontsize" value:@20.0 range:NSMakeRange(1,1)];
    [attrStr addAttribute:@"AQTBaselineAdjust" value:@-0.25 range:NSMakeRange(1,1)]; // Lower symbol 25%
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@-1 range:NSMakeRange(2,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:@-1 range:NSMakeRange(2,1)];
    [attrStr addAttribute:@"AQTFontname" value:@"Times-Roman" range:NSMakeRange(3,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(4,2)];
+   [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(4,2)];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(5,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@-2 range:NSMakeRange(6,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@2 range:NSMakeRange(7,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:@-2 range:NSMakeRange(6,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:@2 range:NSMakeRange(7,1)];
 
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 45) angle:0.0 align:AQTAlignCenter];
 

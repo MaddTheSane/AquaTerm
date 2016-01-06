@@ -31,7 +31,7 @@
 - (void)setClient:(id)client;
 - (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
 @property (readonly) BOOL clientValidAndResponding;
-@property (readonly) BOOL invalidateClient; 
+- (BOOL)invalidateClient;
 @property (readonly) BOOL acceptingEvents;
 
 - (void)processEvent:(NSString *)theEvent;

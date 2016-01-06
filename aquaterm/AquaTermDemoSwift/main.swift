@@ -23,7 +23,8 @@ extension NSPoint {
 		var pos = NSPoint()
 		//var i = 0
 		var f: Float = 0
-		let pi = 4.0*atan(1.0);
+		//let pi = 4.0*atan(1.0)
+		let pi = M_PI
 		let rgbImage: [UInt8] = [
 			255, 0, 0,
 			0, 255, 0,
@@ -91,7 +92,7 @@ extension NSPoint {
 		
 		adapter.takeColorFromColormapEntry(1)
 		adapter.addLabel("Specify linewidth and pattern", atPoint:NSPoint(x: 30, y: 325))
-		for (f=1.0; f<13.0; f+=2.0) {
+		for f=1.0; f<13.0; f+=2.0 {
 			let lw = f/2.0;
 			adapter.lineWidth = CGFloat(round(lw - 0.5))
 			adapter.setLinestylePattern(pat[(Int(f)) % 3], count:4, phase:0.0)
@@ -124,109 +125,109 @@ extension NSPoint {
 			adapter.setDefaultClipRect()
 			
 			// ***** Reset clip rect! *****
-		}/*
+		}
 		// linecap styles
-		[adapter setFontSize:8.0];
-		[adapter setLineWidth:11.0];
-		[adapter takeColorFromColormapEntry:1];
-		[adapter setLineCapStyle:AQTLineCapStyleButt];
-		[adapter moveToPoint:NSMakePoint(40.5, 170.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 170.5)];
-		[adapter addLabel:@"AQTLineCapStyleButt" atPoint:NSMakePoint(160.5, 170.5) angle:0.0 align:AQTAlignLeft];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(40.5, 170.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 170.5)];
+		adapter.fontSize = 8
+		adapter.lineWidth = 11
+		adapter.takeColorFromColormapEntry(1)
+		adapter.lineCapStyle = .Butt
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 170.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 170.5))
+		adapter.addLabel("AQTLineCapStyle.Butt", atPoint:NSMakePoint(160.5, 170.5), angle:0.0, align:.Left)
+		adapter.lineWidth = 1.0
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 170.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 170.5))
 		
-		[adapter setLineWidth:11.0];
-		[adapter takeColorFromColormapEntry:1];
-		[adapter setLineCapStyle:AQTLineCapStyleRound];
-		[adapter moveToPoint:NSMakePoint(40.5, 150.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 150.5)];
-		[adapter addLabel:@"AQTLineCapStyleRound" atPoint:NSMakePoint(160.5, 150.5) angle:0.0 align:AQTAlignLeft];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(40.5, 150.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 150.5)];
+		adapter.lineWidth = 11
+		adapter.takeColorFromColormapEntry(1)
+		adapter.lineCapStyle = .Round
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 150.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 150.5))
+		adapter.addLabel("AQTLineCapStyle.Round", atPoint: NSPoint(x: 160.5, y: 150.5), angle:0.0, align:.Left)
+		adapter.lineWidth = 1.0
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 150.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 150.5))
 		
-		[adapter setLineWidth:11.0];
-		[adapter takeColorFromColormapEntry:1];
-		[adapter setLineCapStyle:AQTLineCapStyleLine];
-		[adapter moveToPoint:NSMakePoint(40.5, 130.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
-		[adapter addLabel:@"AQTLineCapStyleLine" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(40.5, 130.5)];
-		[adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
-		[adapter setFontSize:12.0];
+		adapter.lineWidth = 11
+		adapter.takeColorFromColormapEntry(1)
+		adapter.lineCapStyle = .Line
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 130.5))
+		adapter.addLabel("AQTLineCapStyle.Line", atPoint: NSPoint(x: 160.5, y: 130.5), angle:0.0, align:.Left)
+		adapter.lineWidth = 1.0
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
+		adapter.addLineToPoint(NSPoint(x: 150.5, y: 130.5))
+		adapter.fontSize = 12
 		
 		// line joins
-		[adapter takeColorFromColormapEntry:1];
-		[adapter addLabel:@"Line joins:" atPoint:NSMakePoint(40, 90) angle:0.0 align:AQTAlignLeft];
-		[adapter setLineWidth:11.0];
-		[adapter setLineCapStyle:AQTLineCapStyleButt];
-		[adapter moveToPoint:NSMakePoint(40, 50)];
-		[adapter addLineToPoint:NSMakePoint(75, 70)];
-		[adapter addLineToPoint:NSMakePoint(110, 50)];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(40, 50)];
-		[adapter addLineToPoint:NSMakePoint(75, 70)];
-		[adapter addLineToPoint:NSMakePoint(110, 50)];
+		adapter.takeColorFromColormapEntry(1)
+		adapter.addLabel("Line joins:", atPoint: NSPoint(x: 40, y: 90), angle: 0.0, align: .Left)
+		adapter.lineWidth = 11
+		adapter.lineCapStyle = .Butt
+		adapter.moveToPoint(NSPoint(x: 40, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 75, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 110, y: 50))
+		adapter.lineWidth = 1
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 40, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 75, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 110, y: 50))
 		
-		[adapter setLineWidth:11.0];
-		[adapter takeColorFromColormapEntry:1];
-		[adapter moveToPoint:NSMakePoint(130, 50)];
-		[adapter addLineToPoint:NSMakePoint(150, 70)];
-		[adapter addLineToPoint:NSMakePoint(170, 50)];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(130, 50)];
-		[adapter addLineToPoint:NSMakePoint(150, 70)];
-		[adapter addLineToPoint:NSMakePoint(170, 50)];
+		adapter.lineWidth = 11
+		adapter.takeColorFromColormapEntry(1)
+		adapter.moveToPoint(NSPoint(x: 130, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 150, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 170, y: 50))
+		adapter.lineWidth = 1
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 130, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 150, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 170, y: 50))
 		
-		[adapter setLineWidth:11.0];
-		[adapter takeColorFromColormapEntry:1];
-		[adapter setLineCapStyle:AQTLineCapStyleButt];
-		[adapter moveToPoint:NSMakePoint(190, 50)];
-		[adapter addLineToPoint:NSMakePoint(200, 70)];
-		[adapter addLineToPoint:NSMakePoint(210, 50)];
-		[adapter setLineWidth:1.0];
-		[adapter takeColorFromColormapEntry:6];
-		[adapter moveToPoint:NSMakePoint(190, 50)];
-		[adapter addLineToPoint:NSMakePoint(200, 70)];
-		[adapter addLineToPoint:NSMakePoint(210, 50)];
-		
+		adapter.lineWidth = 11
+		adapter.takeColorFromColormapEntry(1)
+		adapter.lineCapStyle = .Butt
+		adapter.moveToPoint(NSPoint(x: 190, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 200, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 210, y: 50))
+		adapter.lineWidth = 1
+		adapter.takeColorFromColormapEntry(6)
+		adapter.moveToPoint(NSPoint(x: 190, y: 50))
+		adapter.addLineToPoint(NSPoint(x: 200, y: 70))
+		adapter.addLineToPoint(NSPoint(x: 210, y: 50))
+
 		// Polygons
-		[adapter takeColorFromColormapEntry:1];
-		[adapter addLabel:@"Polygons" atPoint:NSMakePoint(320, 290) angle:0.0 align:AQTAlignLeft];
-		for (i=0; i<4; i++)
-		{
-		double radians=(double)i*pi/2.0, r=20.0;
-		points[i]=NSMakePoint(340.0+r*cos(radians), 255.0+r*sin(radians));
+		adapter.takeColorFromColormapEntry(1)
+		adapter.addLabel("Polygons", atPoint: NSPoint(x: 320, y: 290), angle: 0.0, align:. Left)
+		for i in 0..<4 {
+			let radians=Double(i)*pi/2.0
+			let r=20.0;
+			points[i]=NSPoint(x: 340.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 		}
-		[adapter takeColorFromColormapEntry:2];
-		[adapter addPolygonWithVertexPoints:points pointCount:4];
-		for (i=0; i<5; i++)
-		{
-		double radians=(double)i*pi*0.8, r=20.0;
-		points[i]=NSMakePoint(400.0+r*cos(radians), 255.0+r*sin(radians));
+		adapter.takeColorFromColormapEntry(2)
+		adapter.addPolygonWithVertexPoints(points, pointCount:4)
+		for i in 0..<5 {
+			let radians=Double(i)*pi*0.8
+			let r=20.0;
+			points[i] = NSPoint(x: 400.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 		}
-		[adapter takeColorFromColormapEntry:3];
-		[adapter addPolygonWithVertexPoints:points pointCount:5];
-		[adapter takeColorFromColormapEntry:1];
+		adapter.takeColorFromColormapEntry(3)
+		adapter.addPolygonWithVertexPoints(points, pointCount:5)
+		adapter.takeColorFromColormapEntry(1)
 		points[5] = points[0];
-		[adapter addPolylineWithPoints:points pointCount:6];
+		adapter.addPolygonWithVertexPoints(points, pointCount:6)
 		
-		for (i=0; i<8; i++)
-		{
-		double radians=(double)i*pi/4.0, r=20.0;
-		points[i]=NSMakePoint(460.0+r*cos(radians), 255.0+r*sin(radians));
+		for i in 0..<8 {
+			let radians = Double(i)*pi/4.0
+			let r = 20.0;
+			points[i] = NSPoint(x: 460.0+r*cos(radians), y: 255.0+r*sin(radians));
 		}
-		[adapter takeColorFromColormapEntry:4];
-		[adapter addPolygonWithVertexPoints:points pointCount:8];
-		
+		adapter.takeColorFromColormapEntry(4)
+		adapter.addPolygonWithVertexPoints(points, pointCount:8)
+		/*
 		// Circles with alpha transparency
 		[adapter takeColorFromColormapEntry:1];
 		[adapter addLabel:@"Alpha channel" atPoint:NSMakePoint(530, 290) angle:0.0 align:AQTAlignCenter];
@@ -261,6 +262,7 @@ extension NSPoint {
 		*/
 		
 		// Text
+		do {
 		adapter.fontName = "Times-Roman"
 		//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
 		let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}";
@@ -310,6 +312,7 @@ extension NSPoint {
 		adapter.fontName = "Arial"
 		adapter.fontSize = 12.0
 		adapter.addLabel("Rotate & shear", atPoint: NSPoint(x: 430, y: 105), angle:45.0, shearAngle:45.0, align: .Left)
+		}
 		/*
 		
 		// Some styling is possible
@@ -372,6 +375,4 @@ extension NSPoint {
 autoreleasepool() {
 	aqtTestview(adap)
 }
-
-print("Hello, World!")
 

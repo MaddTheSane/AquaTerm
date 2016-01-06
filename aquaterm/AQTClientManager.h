@@ -29,8 +29,8 @@
 + (AQTClientManager *)sharedManager;
 - (void)setServer:(id)server;
 - (BOOL)connectToServerWithName:(NSString *)registeredName;
-@property (readonly) BOOL connectToServer;
-@property (readonly) BOOL launchServer;
+- (BOOL)connectToServer;
+- (BOOL)launchServer;
 - (void)terminateConnection;
 - (void)setActivePlotKey:(id)newActivePlotKey;
 @property (copy) void (^errorBlock)(NSString *msg);
@@ -45,7 +45,7 @@
 - (void)closePlot; 
 
 - (void)renderPlot; 
-@property (readonly, strong) AQTPlotBuilder *clearPlot;
+- (AQTPlotBuilder *)clearPlot;
 - (void)clearPlotRect:(NSRect)aRect;
 
 - (void)setAcceptingEvents:(BOOL)flag; 

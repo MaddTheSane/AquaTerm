@@ -10,6 +10,22 @@ import Cocoa
 import AquaTerm
 import AquaTerm.AQTProtocols
 
-class AQController: NSObject, NSApplicationDelegate {
+@NSApplicationMain
+class AQController: NSObject, NSApplicationDelegate, AQTConnectionProtocol {
+	func ping() {
+		
+	}
 	
+	func getServerVersionMajor(major: UnsafeMutablePointer<Int32>, minor: UnsafeMutablePointer<Int32>, rev: UnsafeMutablePointer<Int32>) {
+		major.memory = 1
+		minor.memory = 0
+		rev.memory = 0
+	}
+	
+	func addAQTClient(client: AnyObject?, name: String, pid procId: pid_t) -> AnyObject {
+		
+		
+		return NSObject()
+	}
+
 }

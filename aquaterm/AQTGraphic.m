@@ -18,10 +18,6 @@ typedef struct _AQTColor_v100 {
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @end
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 @implementation AQTGraphic
 @synthesize isClipped = _isClipped;
 @synthesize clipRect = _clipRect;

@@ -114,4 +114,9 @@ void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
 
+/*" Deprecated constants "*/
+#define AQTButtLineCapStyle AQTLineCapStyleButt
+#define AQTRoundLineCapStyle AQTLineCapStyleRound
+#define AQTSquareLineCapStyle AQTLineCapStyleSquare
+
 #endif

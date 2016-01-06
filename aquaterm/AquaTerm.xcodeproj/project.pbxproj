@@ -23,7 +23,6 @@
 
 /* Begin PBXBuildFile section */
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		554387C01C3B95AA006FBFB4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */; };
 		554387C21C3B95AA006FBFB4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554387C11C3B95AA006FBFB4 /* Assets.xcassets */; };
 		554387CA1C3B9607006FBFB4 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		554387CB1C3B9607006FBFB4 /* AquaTerm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -224,7 +223,6 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		554387BD1C3B95AA006FBFB4 /* AquaTermSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTermSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387C61C3B95AA006FBFB4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
@@ -461,14 +459,9 @@
 		554387BE1C3B95AA006FBFB4 /* AquaTermSwift */ = {
 			isa = PBXGroup;
 			children = (
-				554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */,
-				554387D01C3B9A19006FBFB4 /* AQView.swift */,
-				55D31F0A1C3CB4AD0060FF56 /* AQController.swift */,
-				55D31EDF1C3C2E780060FF56 /* AQPlot.swift */,
-				55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */,
+				55D74C891C3DC2CB0013C8EC /* View */,
+				55D74C8A1C3DC2DA0013C8EC /* App Controller */,
 				55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */,
-				55D31EE71C3C38E00060FF56 /* AQTGraphic+NonSwiftable.h */,
-				55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */,
 				554387F01C3BAC7F006FBFB4 /* AquaTermSwift-Bridging-Header.h */,
 				554387F31C3BAC8F006FBFB4 /* Resources */,
 			);
@@ -530,6 +523,26 @@
 			path = AquaTermDemoSwift;
 			sourceTree = "<group>";
 			usesTabs = 1;
+		};
+		55D74C891C3DC2CB0013C8EC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				554387D01C3B9A19006FBFB4 /* AQView.swift */,
+				55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */,
+				55D31EE71C3C38E00060FF56 /* AQTGraphic+NonSwiftable.h */,
+				55D31EE81C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		55D74C8A1C3DC2DA0013C8EC /* App Controller */ = {
+			isa = PBXGroup;
+			children = (
+				55D31F0A1C3CB4AD0060FF56 /* AQController.swift */,
+				55D31EDF1C3C2E780060FF56 /* AQPlot.swift */,
+			);
+			name = "App Controller";
+			sourceTree = "<group>";
 		};
 		CB138D3E05722C2E00D208BA /* ClientController */ = {
 			isa = PBXGroup;
@@ -938,7 +951,6 @@
 				55D31EE51C3C36170060FF56 /* SwiftHelpers.swift in Sources */,
 				55D31EED1C3C6AF90060FF56 /* AQTStringDrawingAdditions.m in Sources */,
 				55D31F0B1C3CB4AD0060FF56 /* AQController.swift in Sources */,
-				554387C01C3B95AA006FBFB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,38 +1172,13 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AquaTerm;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = AquaTermSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1199,7 +1186,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "AquaTermSwift/AquaTermSwift-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1209,33 +1195,12 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AquaTerm;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = AquaTermSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1334,10 +1299,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1348,7 +1313,6 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -1356,10 +1320,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
@@ -1592,7 +1556,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1602,6 +1566,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};

@@ -29,11 +29,10 @@ void aqtTestview(AQTAdapter *adapter);
 
 int32_t main(void)
 {
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  AQTAdapter *adapter = [[AQTAdapter alloc] init];
-  aqtTestview(adapter);
-  [adapter release];
-  [pool drain];
+  @autoreleasepool {
+    AQTAdapter *adapter = [[AQTAdapter alloc] init];
+    aqtTestview(adapter);
+   }
   return 0;
 }
 void aqtTestview(AQTAdapter *adapter)
@@ -290,8 +289,8 @@ for (i=0; i<8; i++)
 
 // Text
 [adapter setFontName:@"Times-Roman"];
-//NSString *s = [NSString stringWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
-NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
+  NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
+  //NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
 NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
 [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"AppleSymbols", @"AQTFontname", nil] range:NSMakeRange(9,11)];
 [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"STSong", @"AQTFontname", nil] range:NSMakeRange(13,1)];
@@ -342,10 +341,10 @@ pos = NSMakePoint(540.5, 75.5);
 
 // Some styling is possible
 {
-  NSMutableAttributedString *attrStr = [[[NSMutableAttributedString alloc] initWithString:@"Underline, super- and subscript123"] autorelease];
-  [attrStr addAttribute:NSUnderlineStyleAttributeName value:@1 range:NSMakeRange(0,9)];
-  [attrStr addAttribute:NSSuperscriptAttributeName value:@(-1) range:NSMakeRange(31,1)];
-  [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(32,2)];
+  NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"Underline, super- and subscript123"];
+  [attrStr addAttribute:@"NSUnderline" value:[NSNumber numberWithInteger:1] range:NSMakeRange(0,9)];
+  [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:-1] range:NSMakeRange(31,1)];
+  [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:1] range:NSMakeRange(32,2)];
   [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];  
 }
 [adapter takeColorFromColormapEntry:2];
@@ -370,23 +369,23 @@ pos = NSMakePoint(540.5, 75.5);
    [adapter setFontName:@"Times-Roman"];
    [adapter setFontSize:14.0];
 
-   attrStr = [[[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"] autorelease];
+   attrStr = [[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
-   [attrStr addAttribute:NSSuperscriptAttributeName value:[NSNumber numberWithInteger:1] range:NSMakeRange(1,3)]; // eponent
+   [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:1] range:NSMakeRange(1,3)]; // eponent
    [attrStr addAttribute:@"AQTFontsize" value:[NSNumber numberWithDouble:6.0] range:NSMakeRange(7,1)]; // extra spacing
    
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 75) angle:0.0 align:AQTAlignCenter];
 
-   attrStr = [[[NSMutableAttributedString alloc] initWithString:@"mSke-wk2"] autorelease];
+   attrStr = [[NSMutableAttributedString alloc] initWithString:@"mSke-wk2"];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(0,2)];
    [attrStr addAttribute:@"AQTFontsize" value:[NSNumber numberWithDouble:20.0] range:NSMakeRange(1,1)];
    [attrStr addAttribute:@"AQTBaselineAdjust" value:[NSNumber numberWithDouble:-0.25] range:NSMakeRange(1,1)]; // Lower symbol 25%
-   [attrStr addAttribute:NSSuperscriptAttributeName value:[NSNumber numberWithInteger:-1] range:NSMakeRange(2,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:-1] range:NSMakeRange(2,1)];
    [attrStr addAttribute:@"AQTFontname" value:@"Times-Roman" range:NSMakeRange(3,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:[NSNumber numberWithInteger:1] range:NSMakeRange(4,2)];
+   [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:1] range:NSMakeRange(4,2)];
    [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(5,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:[NSNumber numberWithInteger:-2] range:NSMakeRange(6,1)];
-   [attrStr addAttribute:NSSuperscriptAttributeName value:[NSNumber numberWithInteger:2] range:NSMakeRange(7,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:-2] range:NSMakeRange(6,1)];
+   [attrStr addAttribute:@"NSSuperScript" value:[NSNumber numberWithInteger:2] range:NSMakeRange(7,1)];
 
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 45) angle:0.0 align:AQTAlignCenter];
 

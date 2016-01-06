@@ -32,7 +32,7 @@ typedef struct _AQTRect {
   AQTSize size;
 } AQTRect;
 
-@interface AQTGraphic : NSObject <NSCoding>
+@interface AQTGraphic : NSObject <NSSecureCoding>
 {
     AQTColor _color;
     NSRect _bounds;
@@ -46,7 +46,7 @@ typedef struct _AQTRect {
 /*" accessor methods "*/
 @property NSRect bounds;
 @property NSRect clipRect;
-@property (nonatomic) BOOL isClipped;
+@property BOOL isClipped;
 
 /*" color handling "*/
 @property AQTColor color;

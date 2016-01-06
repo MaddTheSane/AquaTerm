@@ -9,6 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "AQTGraphic+NonSwiftable.h"
 #import <AquaTerm/AQTFunctions.h>
+#import "AQTStringDrawingAdditions.h"
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,
  this is ugly, but I can't see a simple way to do it without affecting performance. */
@@ -92,7 +93,7 @@ static float _aqtMinimumLinewidth;
 	NSBezierPath *scratch = [NSBezierPath bezierPath];
 	[scratch appendBezierPathWithPoints:path count:pointCount];
 	[scratch setLineJoinStyle:NSRoundLineJoinStyle]; //CM FIXME - This looks like a bug. This explains why join styles don't work in the TestView... //CM
-	[scratch setLineCapStyle:lineCapStyle];
+	[scratch setLineCapStyle:(NSLineCapStyle)lineCapStyle];
 	[scratch setLineWidth: MAX(lw, _aqtMinimumLinewidth)];
 	if([self hasPattern]) {
 		CGFloat temppat[patternCount];

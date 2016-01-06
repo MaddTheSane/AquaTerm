@@ -24,15 +24,15 @@
 - (instancetype)init;
 - (instancetype)initWithServer:(id)localServer;
 @property (copy) void (^errorBlock)(NSString *msg);
-@property (copy) void (^eventBlock)(long index, NSString *event);
+@property (copy) void (^eventBlock)(NSInteger index, NSString *event);
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
 - (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr;
 
   /*" Control operations "*/
 - (void)openPlotWithIndex:(int32_t)refNum; 
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
-- (void)setPlotSize:(NSSize)canvasSize;
-- (void)setPlotTitle:(NSString *)title;
+@property NSSize plotSize;
+@property (copy) NSString *plotTitle;
 - (void)renderPlot;
 - (void)clearPlot;
 - (void)closePlot;

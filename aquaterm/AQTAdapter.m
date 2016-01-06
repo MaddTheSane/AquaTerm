@@ -98,12 +98,12 @@ Event handling of user input is provided through an optional callback function.
    return _clientManager.errorBlock;
 }
 
-- (void)setEventBlock:(void (^)(long, NSString *))eventBlock
+- (void)setEventBlock:(void (^)(NSInteger, NSString *))eventBlock
 {
    _clientManager.eventBlock = eventBlock;
 }
 
-- (void (^)(long, NSString *))eventBlock
+- (void (^)(NSInteger, NSString *))eventBlock
 {
    return _clientManager.eventBlock;
 }
@@ -164,10 +164,20 @@ _{43:%{x,y}:%key Error } "*/
    [_selectedBuilder setSize:canvasSize];
 }
 
+- (NSSize)plotSize
+{
+   return _selectedBuilder.size;
+}
+
 /*" Set title to appear in window titlebar, also default name when saving. "*/
 - (void)setPlotTitle:(NSString *)title
 {
    [_selectedBuilder setTitle:title?title:@"Untitled"];
+}
+
+- (NSString*)plotTitle
+{
+   return _selectedBuilder.title;
 }
 
 /*" Render the current plot in the viewer. "*/

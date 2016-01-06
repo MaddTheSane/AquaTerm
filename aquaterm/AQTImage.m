@@ -11,6 +11,7 @@
 @synthesize transform;
 @synthesize fitBounds;
 @synthesize bitmapSize;
+@synthesize bitmap;
 /*
 - (id)initWithContentsOfFile:(NSString *)filename
 {
@@ -28,7 +29,7 @@
   {
     _bounds = bounds;
     bitmapSize = size;
-    bitmap = [[NSData alloc] initWithBytes:bytes length:3*size.width*size.height];  // 3 bytes/sample
+    bitmap = [[NSData alloc] initWithBytes:bytes length:3 * (NSInteger)size.width * (NSInteger)size.height];  // 3 bytes/sample
     // Identity matrix
     transform.m11 = 1.0;
     transform.m22 = 1.0;
@@ -44,57 +45,68 @@
   [super dealloc];
 }
 
-+ (BOOL)supportsSecureCoding;
-{
-   return NO;
-}
+#define AQTImageBitmapKey @"Bitmap"
+#define AQTImageBitmapSizeKey @"BitmapSize"
+#define AQTImageBoundsKey @"Bounds"
+#define AQTImageTransformKey @"Transform"
+#define AQTImageFitBoundsKey @"FitBounds"
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-  AQTRect r;
-  AQTSize s;
-
   [super encodeWithCoder:coder];
-  [coder encodeObject:bitmap];
-  // 64bit compatibility
-  s.width = bitmapSize.width; s.height = bitmapSize.height;
-  [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
-  r.origin.x = _bounds.origin.x; r.origin.y = _bounds.origin.y;
-  r.size.width = _bounds.size.width; r.size.height = _bounds.size.height;
-  [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-  [coder encodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
-  [coder encodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
+  if ([coder allowsKeyedCoding]) {
+    [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
+    [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
+    [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
+    [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
+    [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
+  } else {
+    AQTRect r;
+    AQTSize s;
+    
+    [coder encodeObject:bitmap];
+    // 64bit compatibility
+    s.width = bitmapSize.width; s.height = bitmapSize.height;
+    [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
+    r.origin.x = _bounds.origin.x; r.origin.y = _bounds.origin.y;
+    r.size.width = _bounds.size.width; r.size.height = _bounds.size.height;
+    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
+    [coder encodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
+    [coder encodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
+  }
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
-  AQTRect r;
-  AQTSize s;
-
-  self = [super initWithCoder:coder];
-  bitmap = [[coder decodeObject] retain];
-  [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
-  bitmapSize.width = s.width; bitmapSize.height = s.height;
-  [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-  _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
-  _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-  [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
-  [coder decodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
+  if (self = [super initWithCoder:coder]) {
+    if ([coder allowsKeyedCoding]) {
+      bitmap = [[coder decodeObjectForKey:AQTImageBitmapKey] retain];
+      bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
+      _bounds = [coder decodeRectForKey:AQTImageBoundsKey];
+      NSValue * tmpVal = [coder decodeObjectForKey:AQTImageTransformKey];
+      [tmpVal getValue:&transform];
+      fitBounds = [coder decodeBoolForKey:AQTImageFitBoundsKey];
+    } else {
+      AQTRect r;
+      AQTSize s;
+      
+      bitmap = [[coder decodeObject] retain];
+      [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
+      bitmapSize.width = s.width; bitmapSize.height = s.height;
+      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+      _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
+      _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
+      [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
+      [coder decodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
+    }
+  }
   return self;
 }
-
-
-- (NSData *)bitmap
-{
-  return bitmap;
-}
-
-
 
 - (void)setTransform:(AQTAffineTransformStruct)newTransform
 {
   transform = newTransform;
-   fitBounds = NO;
+  fitBounds = NO;
 }
 
 @end

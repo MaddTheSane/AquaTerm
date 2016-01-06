@@ -54,16 +54,16 @@ void aqtTerminate(void)
 
 void aqtSetEventBlock(void (^func)(long ref, const char *event))
 {
-   _adapter.eventBlock = ^(long ref, NSString *event){
+   _adapter.eventBlock = ^(NSInteger ref, NSString *event){
       _mayCleanPool = NO;
       func(ref, [event UTF8String]);
       _mayCleanPool = YES;
    };
 }
 
-void aqtSetEventHandler(void (*func)(NSInteger ref, const char *event))
+void aqtSetEventHandler(void (*func)(long ref, const char *event))
 {
-   _adapter.eventBlock = ^(long ref, NSString *event){
+   _adapter.eventBlock = ^(NSInteger ref, NSString *event){
       _mayCleanPool = NO;
       func(ref, [event UTF8String]);
       _mayCleanPool = YES;

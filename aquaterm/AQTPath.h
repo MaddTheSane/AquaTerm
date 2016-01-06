@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "aquaterm.h"
 #import "AQTGraphic.h"
 
 /*" This balances the fixed size of the objects vs. the need for dynamic allocation of storage. "*/
@@ -22,7 +23,7 @@
    NSPointArray dynamicPathStore;
    int32_t pointCount;
    CGFloat linewidth;
-   int32_t lineCapStyle;
+   AQTLineCapStyle lineCapStyle;
    BOOL isFilled;
    BOOL hasPattern;
    float pattern[MAX_PATTERN_COUNT];
@@ -30,8 +31,9 @@
    CGFloat patternPhase;
 }
 - (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount;
-@property (setter=setLinewidth:) CGFloat lineWidth;
-@property int32_t lineCapStyle;
+- (void)setLinewidth:(float)lw DEPRECATED_ATTRIBUTE;
+@property CGFloat lineWidth;
+@property AQTLineCapStyle lineCapStyle;
 @property BOOL isFilled;
 @property (readonly) BOOL hasPattern;
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;

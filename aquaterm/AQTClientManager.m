@@ -201,9 +201,9 @@
    };
 }
 
-- (void)setEventHandler:(void (*)(long index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr
 {
-   self.eventBlock = ^(long index, NSString *event) {
+   self.eventBlock = ^(NSInteger index, NSString *event) {
       (*fPtr)(index, event);
    };
 }

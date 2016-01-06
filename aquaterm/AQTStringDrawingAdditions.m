@@ -10,11 +10,10 @@
 
 #import "AQTStringDrawingAdditions.h"
 
-NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
+static NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
 
 
-
-NSImage *_aqtSharedScratchPad(void)
+static NSImage *_aqtSharedScratchPad(void)
 {
    static NSImage *scratchPadImage;
    if (!scratchPadImage) {
@@ -212,10 +211,4 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    maxRight = 0.0; 
    return pos;
 }
-
-
-
-
-
-
 

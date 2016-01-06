@@ -43,7 +43,7 @@
    if (_modelIsDirty && NSEqualSizes(NSZeroSize, [_model canvasSize]))
    {
 #warning 64BIT: Check formatting arguments
-      [NSException raise:@"AQTDebugException" format:NSStringFromSelector(_cmd)];
+      [NSException raise:@"AQTDebugException" format:@"%@", NSStringFromSelector(_cmd)];
    }
 #endif
 }
@@ -272,7 +272,7 @@
 //
 // AQTLabel
 //
-- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(AQTAlign)just;
+- (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 {
    AQTLabel *lb = nil;
    if ([text isKindOfClass:[NSString class]])
@@ -358,7 +358,7 @@
    [tmpPath setClipRect:_clipRect];
    [tmpPath setIsClipped:_isClipped];
    [tmpPath setColor:_color];
-   [tmpPath setLinewidth:_linewidth];
+   [tmpPath setLineWidth:_linewidth];
    [tmpPath setLineCapStyle:_capStyle];
    // [tmpPath setHasPattern:_hasPattern];
    if(_hasPattern == YES) {
@@ -411,7 +411,7 @@
    [tmpPath setClipRect:_clipRect];
    [tmpPath setIsClipped:_isClipped];
    [tmpPath setColor:_color];
-   [tmpPath setLinewidth:0.25]; // FIXME: What to do about the see-through edges?
+   [tmpPath setLineWidth:0.25]; // FIXME: What to do about the see-through edges?
    //[tmpPath setLineCapStyle:_capStyle];
    [tmpPath setIsFilled:YES];
    [_model addObject:tmpPath];

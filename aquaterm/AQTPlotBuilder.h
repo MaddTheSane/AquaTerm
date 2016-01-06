@@ -47,8 +47,8 @@
 }
 
 /*" Acessors "*/
-- (BOOL)modelIsDirty;
-- (AQTModel *)model;
+@property (readonly) BOOL modelIsDirty;
+@property (readonly, retain) AQTModel *model;
 @property NSSize size;
 @property (copy) NSString *title;
 
@@ -63,7 +63,7 @@
 - (void)takeColorFromColormapEntry:(int32_t)index;
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;
 
-- (int32_t)colormapSize;
+@property (readonly) int32_t colormapSize;
 - (void)setColor:(AQTColor)newColor forColormapEntry:(int32_t)entryIndex;
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
@@ -72,7 +72,7 @@
 - (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE;
 @property (copy) NSString* fontName;
 @property CGFloat fontSize;
-- (void)addLabel:(id)text position:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle justification:(AQTAlign)just;
+- (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
   /*" Line handling "*/
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;

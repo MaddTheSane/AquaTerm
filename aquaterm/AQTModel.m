@@ -44,42 +44,59 @@
    [super dealloc];
 }
 
-+ (BOOL)supportsSecureCoding;
-{
-  return NO;
-}
+#define AQTModelModelsKey @"Models"
+#define AQTModelTitleKey @"Title"
+#define AQTModelCanvasSizeKey @"CanvasSize"
+#define AQTModelDirtyRectKey @"DirtyRect"
+#define AQTModelIsDirtyKey @"IsDirty"
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-  AQTSize s;
-  AQTRect r;
-
   [super encodeWithCoder:coder];
-  [coder encodeObject:modelObjects];
-  [coder encodeObject:title];
-  // 64bit compatibility
-  s.width = canvasSize.width; s.height = canvasSize.height;
-  [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
-  r.origin.x = dirtyRect.origin.x; r.origin.x = dirtyRect.origin.y;
-  r.size.width = dirtyRect.size.width; r.size.height = dirtyRect.size.height;
-  [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-  [coder encodeValueOfObjCType:@encode(BOOL) at:&isDirty];
+  if ([coder allowsKeyedCoding]) {
+    [coder encodeObject:modelObjects forKey:AQTModelModelsKey];
+    [coder encodeObject:title forKey:AQTModelTitleKey];
+    [coder encodeSize:canvasSize forKey:AQTModelCanvasSizeKey];
+    [coder encodeRect:dirtyRect forKey:AQTModelDirtyRectKey];
+    [coder encodeBool:isDirty forKey:AQTModelIsDirtyKey];
+  } else {
+    AQTSize s;
+    AQTRect r;
+    
+    [coder encodeObject:modelObjects];
+    [coder encodeObject:title];
+    // 64bit compatibility
+    s.width = canvasSize.width; s.height = canvasSize.height;
+    [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
+    r.origin.x = dirtyRect.origin.x; r.origin.x = dirtyRect.origin.y;
+    r.size.width = dirtyRect.size.width; r.size.height = dirtyRect.size.height;
+    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
+    [coder encodeValueOfObjCType:@encode(BOOL) at:&isDirty];
+  }
 }
 
 -(id)initWithCoder:(NSCoder *)coder
 {
-  AQTSize s;
-  AQTRect r;
-
   if (self = [super initWithCoder:coder]) {
-  modelObjects = [[coder decodeObject] retain];
-  title = [[coder decodeObject] retain];
-  [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
-  canvasSize.width = s.width; canvasSize.height = s.height;
-  [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-  dirtyRect.origin.x = r.origin.x; dirtyRect.origin.x = r.origin.y;
-  dirtyRect.size.width = r.size.width; dirtyRect.size.height = r.size.height;
-  [coder decodeValueOfObjCType:@encode(BOOL) at:&isDirty];
+    if ([coder allowsKeyedCoding]) {
+      modelObjects = [[coder decodeObjectForKey:AQTModelModelsKey] retain];
+      title = [[coder decodeObjectForKey:AQTModelTitleKey] retain];
+      canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];
+      dirtyRect = [coder decodeRectForKey:AQTModelDirtyRectKey];
+      isDirty = [coder decodeBoolForKey:AQTModelIsDirtyKey];
+    } else {
+      AQTSize s;
+      AQTRect r;
+      
+      modelObjects = [[coder decodeObject] retain];
+      title = [[coder decodeObject] retain];
+      [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
+      canvasSize.width = s.width; canvasSize.height = s.height;
+      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+      dirtyRect.origin.x = r.origin.x; dirtyRect.origin.x = r.origin.y;
+      dirtyRect.size.width = r.size.width; dirtyRect.size.height = r.size.height;
+      [coder decodeValueOfObjCType:@encode(BOOL) at:&isDirty];
+    }
   }
   
   return self;

@@ -40,6 +40,3 @@ static inline NSRect AQTRectFromSize(NSSize aSize) {
 static inline BOOL AQTProportionalSizes(NSSize aSize, NSSize bSize) {
    return EQ(aSize.height/aSize.width, bSize.height/bSize.width);
 }
-
-
-

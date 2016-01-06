@@ -45,6 +45,7 @@
 /*" Plotting related commands "*/
 
 /*" Clip rect, applies to all objects "*/
+@property NSRect clipRect;
 - (void)setClipRect:(NSRect)clip;
 - (void)setDefaultClipRect;
 
@@ -79,18 +80,18 @@
   /*" Line handling "*/
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
 @property CGFloat lineWidth;
-- (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
+- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
 @property AQTLineCapStyle lineCapStyle;
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  
 - (void)addLineToPoint:(NSPoint)point; 
-- (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc;
+- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(NSInteger)pc;
 
   /*" Rect and polygon handling"*/
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToVertexPoint:(NSPoint)point; 
-- (void)addPolygonWithVertexPoints:(NSPoint *)points pointCount:(int32_t)pc;
+- (void)addPolygonWithVertexPoints:(const NSPoint *)points pointCount:(NSInteger)pc;
 - (void)addFilledRect:(NSRect)aRect;
 - (void)eraseRect:(NSRect)aRect;
 

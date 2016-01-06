@@ -244,6 +244,11 @@ _{43:%{x,y}:%key Error } "*/
    [_selectedBuilder setClipRect:clip];
 }
 
+- (NSRect)clipRect
+{
+   return _selectedBuilder.clipRect;
+}
+
 /*" Restore clipping region to the deafult (object bounds), i.e. no clipping performed. "*/
 - (void)setDefaultClipRect
 {
@@ -460,9 +465,9 @@ _{@"NSUnderline" 0or1}
 }
 
 /*" Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}."*/
-- (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase
+- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase
 {
-   [_selectedBuilder setLinestylePattern:newPattern count:newCount phase:newPhase];
+   [_selectedBuilder setLinestylePattern:newPattern count:(int32_t)newCount phase:newPhase];
 }
 
 /*" Set the current line style to solid, used for all subsequent lines. This is the default."*/
@@ -500,9 +505,9 @@ Default is RoundLineCapStyle. "*/
 }
 
 /*" Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points. Parameter pc is number of line segments + 1."*/
-- (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(NSInteger)pc
 {
-   [_selectedBuilder addPolylineWithPoints:points pointCount:pc];
+   [_selectedBuilder addPolylineWithPoints:points pointCount:(int32_t)pc];
 }
 
 - (void)moveToVertexPoint:(NSPoint)point
@@ -516,9 +521,9 @@ Default is RoundLineCapStyle. "*/
 }
 
 /*" Add a polygon specified by a list of corner points. Number of corners is passed in pc."*/
-- (void)addPolygonWithVertexPoints:(NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolygonWithVertexPoints:(const NSPoint *)points pointCount:(NSInteger)pc
 {
-   [_selectedBuilder addPolygonWithPoints:points pointCount:pc];
+   [_selectedBuilder addPolygonWithPoints:points pointCount:(int32_t)pc];
 }
 
 /*" Add a filled rectangle. Will attempt to remove any objects that will be covered by aRect."*/

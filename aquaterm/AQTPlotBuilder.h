@@ -53,6 +53,7 @@
 @property (copy) NSString *title;
 
    /*" Clip rect, applies to all objects "*/
+@property (nonatomic) NSRect clipRect;
 - (void)setClipRect:(NSRect)clip;
 - (void)setDefaultClipRect;
 
@@ -77,18 +78,18 @@
   /*" Line handling "*/
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
 @property (nonatomic) CGFloat lineWidth;
-- (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
 @property (nonatomic) AQTLineCapStyle lineCapStyle;
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
-- (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc;
+- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(int32_t)pc;
 
   /*" Filled areas"*/
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToPoint:(NSPoint)point; 
-- (void)addPolygonWithPoints:(NSPoint *)points pointCount:(int32_t)pc; // AQTPatch
+- (void)addPolygonWithPoints:(const NSPoint *)points pointCount:(int32_t)pc; // AQTPatch
 - (void)addFilledRect:(NSRect)aRect;
 
   /*" Image handling "*/

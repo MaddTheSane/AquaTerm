@@ -33,7 +33,7 @@ static inline void NOOP_(id x, ...) {;}
 
 
 @implementation AQTPlot
--(id)init
+-(instancetype)init
 {
    if (self = [super init])
    {
@@ -47,9 +47,9 @@ static inline void NOOP_(id x, ...) {;}
 -(void)_aqtSetupViewShouldResize:(BOOL)shouldResize
 {
    NSSize contentSize, windowSize, maxSize, minSize, ratio;
-   NSRect windowFrame = [[canvas window] frame];
+   NSRect windowFrame = canvas.window.frame;
    NSPoint windowTopLeft = NSMakePoint(NSMinX(windowFrame), NSMaxY(windowFrame)); 
-   contentSize = [model canvasSize];
+   contentSize = model.canvasSize;
    windowSize = contentSize;
    windowSize.height += TITLEBAR_HEIGHT;
    // FIXME: Better handling of min/max size
@@ -57,31 +57,31 @@ static inline void NOOP_(id x, ...) {;}
    minSize = NSMakeSize(WINDOW_MIN_WIDTH, WINDOW_MIN_WIDTH*contentSize.height/contentSize.width + TITLEBAR_HEIGHT);
    ratio = windowSize;
    
-   [canvas setModel:model];
+   canvas.model = model;
    [canvas setFrameOrigin:NSMakePoint(0.0, 0.0)];
    if (_clientPID != -1)
    {
       NSString *nameString = [preferences integerForKey:@"ShowProcessName"]?[NSString stringWithFormat:@"%@ ", _clientName]:@"";
       NSString *pidString = [preferences integerForKey:@"ShowProcessId"]?[NSString stringWithFormat:@"(%d) ", _clientPID]:@"";
-      [[canvas window] setTitle:[NSString stringWithFormat:@"%@%@%@", nameString, pidString, [model title]]];
+      canvas.window.title = [NSString stringWithFormat:@"%@%@%@", nameString, pidString, model.title];
    }
    else
    {
-      [[canvas window] setTitle:[model title]];
+      canvas.window.title = model.title;
    }
    
    if (shouldResize)
    {
       NSRect contentFrame = NSZeroRect;
       contentFrame.size = contentSize;
-      [[canvas window] setContentSize:contentSize];
-      [[canvas window] setFrameTopLeftPoint:windowTopLeft];      
-      [canvas setFrame:contentFrame];
-      [[canvas window] setAspectRatio:ratio];
+      [canvas.window setContentSize:contentSize];
+      [canvas.window setFrameTopLeftPoint:windowTopLeft];      
+      canvas.frame = contentFrame;
+      canvas.window.aspectRatio = ratio;
    }
-   [[canvas window] setMaxSize:maxSize];   // FIXME: take screen size into account
-   [[canvas window] setMinSize:minSize];
-   [canvas setIsProcessingEvents:_acceptingEvents];
+   canvas.window.maxSize = maxSize;   // FIXME: take screen size into account
+   canvas.window.minSize = minSize;
+   canvas.isProcessingEvents = _acceptingEvents;
 }
 
 -(void)awakeFromNib
@@ -90,7 +90,7 @@ static inline void NOOP_(id x, ...) {;}
    if (model)
    {
       [self _aqtSetupViewShouldResize:YES];
-      [[canvas window] makeKeyAndOrderFront:self];
+      [canvas.window makeKeyAndOrderFront:self];
    }
    _isWindowLoaded = YES;
 }
@@ -117,16 +117,16 @@ static inline void NOOP_(id x, ...) {;}
 
 -(void)cascadeWindowOrderFront:(BOOL)orderFront
 {
-   [[NSApp delegate] setWindowPos:[canvas window]];
+   [(AQTController*)NSApp.delegate setWindowPos:canvas.window];
    if (orderFront)
-      [[canvas window] makeKeyAndOrderFront:self];      
+      [canvas.window makeKeyAndOrderFront:self];      
 }   
 
 -(void)constrainWindowToFrame:(NSRect)tileFrame
 {
    NSRect tmpFrame;
    float tileContentHWRatio = (tileFrame.size.height - TITLEBAR_HEIGHT)/tileFrame.size.width;
-   float canvasHWRatio = [model canvasSize].height/[model canvasSize].width;
+   float canvasHWRatio = model.canvasSize.height/model.canvasSize.width;
    
    if (canvasHWRatio < tileContentHWRatio) {
       // limited by width
@@ -137,8 +137,8 @@ static inline void NOOP_(id x, ...) {;}
       tmpFrame = NSMakeRect(tileFrame.origin.x, tileFrame.origin.y, (tileFrame.size.height - TITLEBAR_HEIGHT)/canvasHWRatio, tileFrame.size.height);
    }
    // NSLog(@"%@ --> %@", NSStringFromRect(tileFrame), NSStringFromRect(tmpFrame));
-   [[canvas window] setFrame:tmpFrame display:YES];
-   [[canvas window] makeKeyAndOrderFront:self];      
+   [canvas.window setFrame:tmpFrame display:YES];
+   [canvas.window makeKeyAndOrderFront:self];      
 }   
 
 
@@ -178,12 +178,12 @@ static inline void NOOP_(id x, ...) {;}
 -(void)setModel:(bycopy AQTModel *)newModel
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__); 
-   LOG([newModel description]);
+   LOG(newModel.description);
    BOOL viewNeedResize = YES;
    [newModel retain];
    if (model) {
       // Respect the windowsize set by user
-      viewNeedResize = !AQTProportionalSizes([model canvasSize], [newModel canvasSize]);
+      viewNeedResize = !AQTProportionalSizes(model.canvasSize, newModel.canvasSize);
    }
    [model release];		// let go of any temporary model not used (unlikely)
    model = newModel;		// Make it point to new model
@@ -202,8 +202,8 @@ static inline void NOOP_(id x, ...) {;}
       LOG(@"No model, passing to setModel:");
       [self setModel:newModel];
    } else {
-      LOG([newModel description]);
-      BOOL viewNeedResize = !AQTProportionalSizes([model canvasSize], [newModel canvasSize]);
+      LOG(newModel.description);
+      BOOL viewNeedResize = !AQTProportionalSizes(model.canvasSize, newModel.canvasSize);
       [model appendModel:newModel];
       if (_isWindowLoaded)
       {
@@ -217,8 +217,8 @@ static inline void NOOP_(id x, ...) {;}
 - (void)draw
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
-   [canvas setNeedsDisplayInRect:[canvas convertRectToViewCoordinates:[model dirtyRect]]];
-   [[canvas window] makeKeyAndOrderFront:self];
+   [canvas setNeedsDisplayInRect:[canvas convertRectToViewCoordinates:model.dirtyRect]];
+   [canvas.window makeKeyAndOrderFront:self];
    [model clearDirtyRect];
 }
 
@@ -235,7 +235,7 @@ static inline void NOOP_(id x, ...) {;}
    _acceptingEvents = flag; // && (_client != nil);
    if (_isWindowLoaded)
    {
-      [canvas setIsProcessingEvents:_acceptingEvents];
+      canvas.isProcessingEvents = _acceptingEvents;
    }
 }
 
@@ -243,7 +243,7 @@ static inline void NOOP_(id x, ...) {;}
 {
    LOG(@"", NSStringFromSelector(_cmd));
    if (retCode == NSAlertAlternateReturn) {
-      [[canvas window] close];
+      [canvas.window close];
    }
 }
 
@@ -254,12 +254,12 @@ static inline void NOOP_(id x, ...) {;}
       if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ConfirmCloseWindowWhenClosingPlot"] == YES) {
       NSBeginAlertSheet(@"Close window?", 
                         @"Keep", @"Close", 
-                        nil, [canvas window], self, 
+                        nil, canvas.window, self, 
                         @selector(aqtClosePanelDidEnd:returnCode:contextInfo:), 
                         NULL, nil, 
                         @"The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?");
       } else {
-         [[canvas window] close];
+         [canvas.window close];
       }
    }
 }
@@ -282,7 +282,7 @@ static inline void NOOP_(id x, ...) {;}
    [self setAcceptingEvents:NO];
    [self setClient:nil];
    [self setClientInfoName:@"No connection" pid:-1];
-   [[canvas window] setTitle:[model title]];
+   canvas.window.title = model.title;
    return YES;
 }
 
@@ -302,7 +302,7 @@ static inline void NOOP_(id x, ...) {;}
       @try {
          [_client processEvent:event sender:self];
       } @catch (NSException *localException) {
-         if ([[localException name] isEqualToString:NSObjectInaccessibleException])
+         if ([localException.name isEqualToString:NSObjectInaccessibleException])
             [self invalidateClient];//:_client]; // invalidate client
          else
             [localException raise];
@@ -313,17 +313,17 @@ static inline void NOOP_(id x, ...) {;}
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
 {
    // FIXME: take screen size into account
-   NSSize tmpSize = [model canvasSize]; 
+   NSSize tmpSize = model.canvasSize; 
    // NSLog(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
    if (tmpSize.width > tmpSize.height)
    {
       // decide by width
-      proposedFrameSize.height = proposedFrameSize.width * ([model canvasSize].height/[model canvasSize].width) + TITLEBAR_HEIGHT;
+      proposedFrameSize.height = proposedFrameSize.width * (model.canvasSize.height/model.canvasSize.width) + TITLEBAR_HEIGHT;
    }
    else
    {
       // decide by height
-      proposedFrameSize.width = (proposedFrameSize.height - TITLEBAR_HEIGHT) * ([model canvasSize].width/[model canvasSize].height);
+      proposedFrameSize.width = (proposedFrameSize.height - TITLEBAR_HEIGHT) * (model.canvasSize.width/model.canvasSize.height);
    }
    return proposedFrameSize;
 }
@@ -347,13 +347,13 @@ static inline void NOOP_(id x, ...) {;}
 
 - (void)windowWillClose:(NSNotification *)notification
 {
-   [(AQTController*)[NSApp delegate] removePlot:self];
+   [(AQTController*)NSApp.delegate removePlot:self];
 }
 
 - (void)windowDidBecomeKey:(NSNotification *)notification
 {
    // FIXME: who should be the delegate of whom?
-   [[notification object] invalidateCursorRectsForView:canvas];
+   [notification.object invalidateCursorRectsForView:canvas];
 }
 
 #pragma mark === Menu actions ===
@@ -372,12 +372,12 @@ static inline void NOOP_(id x, ...) {;}
    NSPasteboard *pasteboard = [NSPasteboard generalPasteboard];
    AQTView *printView;
    
-   printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, [model canvasSize].width, [model canvasSize].height)];
-   [printView setModel:model];
+   printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height)];
+   printView.model = model;
    
-   [pasteboard declareTypes:[NSArray arrayWithObjects:NSPDFPboardType, NSPostScriptPboardType, nil] owner:nil];
-   [pasteboard setData:[printView dataWithPDFInsideRect:[printView bounds]] forType:NSPDFPboardType];
-   [pasteboard setData:[printView dataWithEPSInsideRect:[printView bounds]] forType:NSPostScriptPboardType];
+   [pasteboard declareTypes:@[NSPDFPboardType, NSPostScriptPboardType] owner:nil];
+   [pasteboard setData:[printView dataWithPDFInsideRect:printView.bounds] forType:NSPDFPboardType];
+   [pasteboard setData:[printView dataWithEPSInsideRect:printView.bounds] forType:NSPostScriptPboardType];
    [printView release];
 }
 
@@ -389,25 +389,25 @@ static inline void NOOP_(id x, ...) {;}
 {
    AQTView *printView;
    NSPrintInfo *printInfo = [NSPrintInfo sharedPrintInfo]; 
-   NSSize paperSize = [printInfo paperSize];
+   NSSize paperSize = printInfo.paperSize;
    NSPrintOperation *printOp;
    
-   paperSize.width -= ([printInfo leftMargin] + [printInfo rightMargin]);
-   paperSize.height -= ([printInfo topMargin] + [printInfo bottomMargin]);
-   if ([printInfo orientation] == NSPortraitOrientation)
+   paperSize.width -= (printInfo.leftMargin + printInfo.rightMargin);
+   paperSize.height -= (printInfo.topMargin + printInfo.bottomMargin);
+   if (printInfo.orientation == NSPortraitOrientation)
    {
-      paperSize.height = ([model canvasSize].height * paperSize.width) / [model canvasSize].width;
+      paperSize.height = (model.canvasSize.height * paperSize.width) / model.canvasSize.width;
    }
    else
    {
-      paperSize.width = ([model canvasSize].width * paperSize.height) / [model canvasSize].height;
+      paperSize.width = (model.canvasSize.width * paperSize.height) / model.canvasSize.height;
    }
    
    printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, paperSize.width, paperSize.height)];
-   [printView setModel:model];
+   printView.model = model;
    
    printOp = [NSPrintOperation printOperationWithView:printView];
-   (void)[printOp runOperationModalForWindow:[canvas window]
+   (void)[printOp runOperationModalForWindow:canvas.window
                                     delegate:self
                               didRunSelector:nil // @selector(printOperationDidRun:success:contextInfo:)
                                  contextInfo:printView];
@@ -424,26 +424,26 @@ static inline void NOOP_(id x, ...) {;}
       return;
    }
    [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:@"CurrentSaveFormat"]];
-   [savePanel setAccessoryView:extendSavePanelView];
+   savePanel.accessoryView = extendSavePanelView;
    savePanel.directoryURL = [NSURL fileURLWithPath:[preferences objectForKey:@"CurrentSaveFolder"]];
-   savePanel.nameFieldLabel = [model title];
-   [savePanel beginSheetModalForWindow:[canvas window] completionHandler:^(NSInteger result) {
+   savePanel.nameFieldLabel = model.title;
+   [savePanel beginSheetModalForWindow:canvas.window completionHandler:^(NSInteger result) {
       NSData *data;
       NSString *filename;
       AQTView *printView;
       if (NSFileHandlingPanelOKButton == result) {
-         printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, [model canvasSize].width, [model canvasSize].height)];
-         [printView setModel:model];
-         filename = [[[savePanel URL] path] stringByDeletingPathExtension];
-         if ([[saveFormatPopUp titleOfSelectedItem] isEqualToString:@"PDF"]) {
-            data = [printView dataWithPDFInsideRect: [printView bounds]];
+         printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height)];
+         printView.model = model;
+         filename = savePanel.URL.path.stringByDeletingPathExtension;
+         if ([saveFormatPopUp.titleOfSelectedItem isEqualToString:@"PDF"]) {
+            data = [printView dataWithPDFInsideRect: printView.bounds];
             [data writeToFile:[filename stringByAppendingPathExtension:@"pdf"] atomically: NO];
          } else {
-            data = [printView dataWithEPSInsideRect: [printView bounds]];
+            data = [printView dataWithEPSInsideRect: printView.bounds];
             [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
          }
-         [preferences setObject:[filename stringByDeletingLastPathComponent] forKey:@"CurrentSaveFolder"];
-         [preferences setObject:[saveFormatPopUp titleOfSelectedItem] forKey:@"CurrentSaveFormat"];
+         [preferences setObject:filename.stringByDeletingLastPathComponent forKey:@"CurrentSaveFolder"];
+         [preferences setObject:saveFormatPopUp.titleOfSelectedItem forKey:@"CurrentSaveFormat"];
          [printView release];
       }
    }];
@@ -467,15 +467,15 @@ static inline void NOOP_(id x, ...) {;}
    static float totalTime = 0.0;
    float thisTime;
    NSDate *startTime;
-   NSRect viewRect = NSMakeRect(0.0, 0.0, [model canvasSize].width, [model canvasSize].height);
+   NSRect viewRect = NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height);
    AQTView *testView = [self canvas];
-   [testView setModel:model];
+   testView.model = model;
    if ([testView lockFocusIfCanDraw]) {
       startTime = [NSDate date];   
       [testView drawRect:viewRect];
-      thisTime = -[startTime timeIntervalSinceNow];
+      thisTime = -startTime.timeIntervalSinceNow;
       totalTime += thisTime;
-      NSLog(@"tag:%d time: %f for %lu objects.", tag, thisTime, (unsigned long)[[model modelObjects] count]);
+      NSLog(@"tag:%d time: %f for %lu objects.", tag, thisTime, (unsigned long)model.modelObjects.count);
       [testView unlockFocus];
    } else {
       NSLog(@"Can't draw for tag:%d", tag);

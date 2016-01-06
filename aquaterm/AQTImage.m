@@ -7,6 +7,16 @@
 //
 #import "AQTImage.h"
 
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface AQTImage ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+
 @implementation AQTImage
 @synthesize transform;
 @synthesize fitBounds;
@@ -23,7 +33,13 @@
 }
 */
 
-- (id)initWithBitmap:(const char *)bytes size:(NSSize)size bounds:(NSRect)bounds
+- (instancetype)init
+{
+  static const char whiteChars[] = {0,0,0};
+  return [self initWithBitmap:whiteChars size:NSMakeSize(1, 1) bounds:NSMakeRect(0, 0, 1, 1)];
+}
+
+- (instancetype)initWithBitmap:(const char *)bytes size:(NSSize)size bounds:(NSRect)bounds
 {
   if (self = [super init])
   {
@@ -54,7 +70,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if ([coder allowsKeyedCoding]) {
+  if (coder.allowsKeyedCoding) {
     [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
     [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
     [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
@@ -76,10 +92,10 @@
   }
 }
 
--(id)initWithCoder:(NSCoder *)coder
+-(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if ([coder allowsKeyedCoding]) {
+    if (coder.allowsKeyedCoding) {
       bitmap = [[coder decodeObjectForKey:AQTImageBitmapKey] retain];
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];

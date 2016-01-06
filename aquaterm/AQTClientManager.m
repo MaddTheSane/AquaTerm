@@ -58,7 +58,7 @@
    return sharedManager;
 }
 
-- (id)init
+- (instancetype)init
 {
    if(self = [super init]) {
       char *envPtr;
@@ -148,7 +148,7 @@
    OSStatus status;
    
     if (getenv("AQUATERM_PATH") != (char *)NULL) {
-       appURL = [NSURL fileURLWithPath:[NSString stringWithCString:getenv("AQUATERM_PATH") encoding: NSUTF8StringEncoding]];
+       appURL = [NSURL fileURLWithPath:@(getenv("AQUATERM_PATH"))];
       status = LSOpenCFURLRef((CFURLRef)appURL, NULL);
    } else {
       // Look for AquaTerm at default location
@@ -224,7 +224,7 @@
 - (AQTPlotBuilder *)newPlotWithIndex:(int32_t)refNum
 {
    AQTPlotBuilder *newBuilder = nil;
-   NSNumber *key = [NSNumber numberWithInteger:refNum];;
+   NSNumber *key = @(refNum);;
    id <AQTClientProtocol> newPlot;
 
    if (errorState == YES) {
@@ -236,29 +236,29 @@
    // Check if plot already exists. If so, just select and clear it.
    if ([self selectPlotWithIndex:refNum] != nil) {
       newBuilder = [self clearPlot];
-      [_eventBuffer setObject:@"0" forKey:key];
+      _eventBuffer[key] = @"0";
       return newBuilder;
    }   
 
    @try {
       newPlot = [_server addAQTClient:key
-                                 name:[[NSProcessInfo processInfo] processName]
-                                  pid:[[NSProcessInfo processInfo] processIdentifier]];
+                                 name:[NSProcessInfo processInfo].processName
+                                  pid:[NSProcessInfo processInfo].processIdentifier];
    } @catch (NSException *localException) {
       // [localException raise];
-      [self _aqtHandlerError:[localException name]];
+      [self _aqtHandlerError:localException.name];
       newPlot = nil;
    }
    if (newPlot) {
       [newPlot setClient:self];
       // set active plot
       [self setActivePlotKey:key];
-      [_plots setObject:newPlot forKey:key];
+      _plots[key] = newPlot;
       // Also create a corresponding builder
       newBuilder = [[AQTPlotBuilder alloc] init];
-      [_builders setObject:newBuilder forKey:key];
+      _builders[key] = newBuilder;
       // Clear event buffer
-      [_eventBuffer setObject:@"0" forKey:key];
+      _eventBuffer[key] = @"0";
       [newBuilder release];
    }
    return newBuilder;
@@ -271,8 +271,8 @@
  
    if (errorState == YES) return nil; // FIXME: Clear error state here too???
 
-   key = [NSNumber numberWithInteger:refNum];
-   aBuilder = [_builders objectForKey:key];
+   key = @(refNum);
+   aBuilder = _builders[key];
 
    if(aBuilder != nil) {
       [self setActivePlotKey:key];
@@ -286,20 +286,20 @@
 
    if (errorState == YES || _activePlotKey == nil) return;
 
-   pb = [_builders objectForKey:_activePlotKey];
-   if ([pb modelIsDirty]) {
-      id <NSObject, AQTClientProtocol> thePlot = [_plots objectForKey:_activePlotKey];
+   pb = _builders[_activePlotKey];
+   if (pb.modelIsDirty) {
+      id <NSObject, AQTClientProtocol> thePlot = _plots[_activePlotKey];
       @try {
          if ([thePlot isProxy]) {
-            [thePlot appendModel:[pb model]];
+            [thePlot appendModel:pb.model];
             [pb removeAllParts];
          } else {
-            [thePlot setModel:[pb model]];
+            [thePlot setModel:pb.model];
          }
          [thePlot draw];
       } @catch (NSException *localException) {
          // [localException raise];
-         [self _aqtHandlerError:[localException name]];
+         [self _aqtHandlerError:localException.name];
       }
    }
 }
@@ -312,20 +312,20 @@
    if (errorState == YES || _activePlotKey == nil) return nil;
 
    newBuilder = [[AQTPlotBuilder alloc] init];
-   oldBuilder = [_builders objectForKey:_activePlotKey];
-   thePlot = [_plots objectForKey:_activePlotKey];
+   oldBuilder = _builders[_activePlotKey];
+   thePlot = _plots[_activePlotKey];
   
-   [newBuilder setSize:[[oldBuilder model] canvasSize]];
-   [newBuilder setTitle:[[oldBuilder model] title]];
-   [newBuilder setBackgroundColor:[oldBuilder backgroundColor]];
+   newBuilder.size = oldBuilder.model.canvasSize;
+   newBuilder.title = oldBuilder.model.title;
+   newBuilder.backgroundColor = oldBuilder.backgroundColor;
    
-   [_builders setObject:newBuilder forKey:_activePlotKey];
+   _builders[_activePlotKey] = newBuilder;
    @try {
-      [thePlot setModel:[newBuilder model]];
+      [thePlot setModel:newBuilder.model];
       [thePlot draw];
    } @catch (NSException *localException) {
       // [localException raise];
-      [self _aqtHandlerError:[localException name]];
+      [self _aqtHandlerError:localException.name];
    }
    [newBuilder release];
    return newBuilder;
@@ -339,16 +339,16 @@
 
    if (errorState == YES || _activePlotKey == nil) return;
 
-   pb = [_builders objectForKey:_activePlotKey];
-   thePlot = [_plots objectForKey:_activePlotKey];
+   pb = _builders[_activePlotKey];
+   thePlot = _plots[_activePlotKey];
 
    @try {
-      if ([pb modelIsDirty]) {
+      if (pb.modelIsDirty) {
          if ([thePlot isProxy]) {
-            [thePlot appendModel:[pb model]]; // Push any pending output to the viewer, don't draw
+            [thePlot appendModel:pb.model]; // Push any pending output to the viewer, don't draw
             [pb removeAllParts];
          } else {
-            [thePlot setModel:[pb model]];
+            [thePlot setModel:pb.model];
          }
             
       }
@@ -362,7 +362,7 @@
       // [thePlot draw];
    } @catch (NSException *localException) {
       // [localException raise];
-      [self _aqtHandlerError:[localException name]];
+      [self _aqtHandlerError:localException.name];
    }
 }
 
@@ -371,8 +371,8 @@
    if (_activePlotKey == nil) return;
 
    @try {
-      [[_plots objectForKey:_activePlotKey] setClient:nil];
-      [[_plots objectForKey:_activePlotKey] close];
+      [_plots[_activePlotKey] setClient:nil];
+      [_plots[_activePlotKey] close];
    } @catch (NSException *localException) {
       [self logMessage:@"Closing plot, discarding exception..." logLevel:2];
    }
@@ -387,9 +387,9 @@
 {
    if (errorState == YES || _activePlotKey == nil) return;
    @try {
-      [[_plots objectForKey:_activePlotKey] setAcceptingEvents:flag];
+      [_plots[_activePlotKey] setAcceptingEvents:flag];
    } @catch (NSException *localException) {
-      [self _aqtHandlerError:[localException name]];
+      [self _aqtHandlerError:localException.name];
    }
 }
 
@@ -400,8 +400,8 @@
    if (errorState == YES) return @"42:Server error";
    if (_activePlotKey == nil) return @"43:No plot selected";
    
-   event = [[[_eventBuffer objectForKey:_activePlotKey] copy] autorelease];
-   [_eventBuffer setObject:@"0" forKey:_activePlotKey];
+   event = [[_eventBuffer[_activePlotKey] copy] autorelease];
+   _eventBuffer[_activePlotKey] = @"0";
    return event;
 }
 
@@ -416,13 +416,13 @@
    NSNumber *key;
    
    NSArray *keys = [_plots allKeysForObject:sender];
-   if ([keys count] == 0) return;
-   key = [keys objectAtIndex:0];
+   if (keys.count == 0) return;
+   key = keys[0];
 
    if (_eventBlock != nil) {
-      _eventBlock([key integerValue], event);
+      _eventBlock(key.integerValue, event);
    }
-   [_eventBuffer setObject:event forKey:key];
+   _eventBuffer[key] = event;
 }
 
 #pragma mark ==== Testing methods ====
@@ -432,20 +432,20 @@
    
    if (errorState == YES || _activePlotKey == nil) return;
    
-   pb = [_builders objectForKey:_activePlotKey];
-   if ([pb modelIsDirty]) {
-      id <NSObject, AQTClientProtocol> thePlot = [_plots objectForKey:_activePlotKey];
+   pb = _builders[_activePlotKey];
+   if (pb.modelIsDirty) {
+      id <NSObject, AQTClientProtocol> thePlot = _plots[_activePlotKey];
       @try {
          if ([thePlot isProxy]) {
-            [thePlot appendModel:[pb model]];
+            [thePlot appendModel:pb.model];
             [pb removeAllParts];
          } else {
-            [thePlot setModel:[pb model]];
+            [thePlot setModel:pb.model];
          }
          [thePlot timingTestWithTag:tag];
       } @catch (NSException *localException) {
          // [localException raise];
-         [self _aqtHandlerError:[localException name]];
+         [self _aqtHandlerError:localException.name];
       }
    }
 }

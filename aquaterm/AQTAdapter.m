@@ -46,7 +46,7 @@ Event handling of user input is provided through an optional callback function.
 "*/
 
 /*" This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases #init should be used, which calls #initWithHandler: with a nil argument."*/
--(id)initWithServer:(id)localServer
+-(instancetype)initWithServer:(id)localServer
 {
    if(self = [super init]) {
       BOOL serverIsOK = YES;
@@ -69,7 +69,7 @@ Event handling of user input is provided through an optional callback function.
 }
 
 /*" Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary. "*/
-- (id)init
+- (instancetype)init
 {
    return [self initWithServer:nil];
 }
@@ -161,7 +161,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Set the limits of the plot area. Must be set %before any drawing command following an #openPlotWithIndex: or #clearPlot command or behaviour is undefined.  "*/
 - (void)setPlotSize:(NSSize)canvasSize
 {
-   [_selectedBuilder setSize:canvasSize];
+   _selectedBuilder.size = canvasSize;
 }
 
 - (NSSize)plotSize
@@ -172,7 +172,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Set title to appear in window titlebar, also default name when saving. "*/
 - (void)setPlotTitle:(NSString *)title
 {
-   [_selectedBuilder setTitle:title?title:@"Untitled"];
+   _selectedBuilder.title = title?title:@"Untitled";
 }
 
 - (NSString*)plotTitle
@@ -256,7 +256,7 @@ _{43:%{x,y}:%key Error } "*/
    int32_t size = AQT_COLORMAP_SIZE; // Default size
    if (_selectedBuilder)
    {
-      size = [_selectedBuilder colormapSize];
+      size = _selectedBuilder.colormapSize;
    }
    else
    {
@@ -316,7 +316,7 @@ _{43:%{x,y}:%key Error } "*/
 - (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a
 {
    AQTColor newColor = (AQTColor){r, g, b, a};
-   [_selectedBuilder setColor:newColor];
+   _selectedBuilder.color = newColor;
 }
 
 - (void)setColorRed:(float)r green:(float)g blue:(float)b
@@ -329,7 +329,7 @@ _{43:%{x,y}:%key Error } "*/
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a
 {
    AQTColor newColor = (AQTColor){r, g, b, a};
-   [_selectedBuilder setBackgroundColor:newColor];
+   _selectedBuilder.backgroundColor = newColor;
 }
 
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b
@@ -341,7 +341,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Get current RGB color components by reference. "*/
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a
 {
-   AQTColor tmpColor = [_selectedBuilder color];
+   AQTColor tmpColor = _selectedBuilder.color;
    *r = tmpColor.red;
    *g = tmpColor.green;
    *b = tmpColor.blue;
@@ -351,7 +351,7 @@ _{43:%{x,y}:%key Error } "*/
 
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b
 {
-   AQTColor tmpColor = [_selectedBuilder color];
+   AQTColor tmpColor = _selectedBuilder.color;
    *r = tmpColor.red;
    *g = tmpColor.green;
    *b = tmpColor.blue;
@@ -360,7 +360,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Get background color components by reference. "*/
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a
 {
-    AQTColor tmpColor = [_selectedBuilder backgroundColor];
+    AQTColor tmpColor = _selectedBuilder.backgroundColor;
     *r = tmpColor.red;
     *g = tmpColor.green;
     *b = tmpColor.blue;
@@ -389,7 +389,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Set the font to be used. Applies to all future operations. Default is Times-Roman."*/
 - (void)setFontName:(NSString *)newFontname
 {
-   [_selectedBuilder setFontName:newFontname];
+   _selectedBuilder.fontName = newFontname;
 }
 
 - (NSString *)fontName
@@ -400,7 +400,7 @@ _{43:%{x,y}:%key Error } "*/
 /*" Set the font size in points. Applies to all future operations. Default is 14pt. "*/
 - (void)setFontSize:(CGFloat)newFontsize
 {
-   [_selectedBuilder setFontSize:newFontsize];
+   _selectedBuilder.fontSize = newFontsize;
 }
 
 - (CGFloat)fontSize
@@ -479,7 +479,7 @@ _{AQTLineCapStyleLine SquareLineCapStyle}
 Default is RoundLineCapStyle. "*/
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle
 {
-   [_selectedBuilder setLineCapStyle:capStyle];
+   _selectedBuilder.lineCapStyle = capStyle;
 }
 
 - (AQTLineCapStyle)lineCapStyle

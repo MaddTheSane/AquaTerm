@@ -80,7 +80,7 @@ static float _aqtMinimumLinewidth;
       */
       tmpRect = AQTUnionRect(tmpRect, [graphic updateBounds]);
    }
-   [self setBounds:tmpRect];
+   self.bounds = tmpRect;
    return tmpRect;
 }
 
@@ -116,18 +116,18 @@ static float _aqtMinimumLinewidth;
       normalFont = [NSFont systemFontOfSize:fontSize]; // Fall back to a system font 
                                                        // Convert (attributed) string into a path
    tmpPath = [string aqtBezierPathInFont:normalFont]; // Implemented in AQTStringDrawingAdditions
-   tmpSize = [tmpPath bounds].size;
+   tmpSize = tmpPath.bounds.size;
    // Place the path according to position, angle and align  
    adjust.x = -(float)(justification & 0x03)*0.5*tmpSize.width; // hAlign:
    switch (justification & 0x1C) { // vAlign:
       case 0x00:// AQTAlignMiddle: // align middle wrt *font size*
-         adjust.y = -([normalFont descender] + [normalFont capHeight])*0.5; 
+         adjust.y = -(normalFont.descender + normalFont.capHeight)*0.5; 
          break;
       case 0x08:// AQTAlignBottom: // align bottom wrt *bounding box*
-         adjust.y = -[tmpPath bounds].origin.y;
+         adjust.y = -tmpPath.bounds.origin.y;
          break;
       case 0x10:// AQTAlignTop: // align top wrt *bounding box*
-         adjust.y = -([tmpPath bounds].origin.y + tmpSize.height) ;
+         adjust.y = -(tmpPath.bounds.origin.y + tmpSize.height) ;
          break;
       case 0x04:// AQTAlignBaseline: // align baseline (do nothing)
       default:
@@ -137,9 +137,9 @@ static float _aqtMinimumLinewidth;
    // Avoid multiples of 90 degrees (pi/2) since tan(k*pi/2)=inf, set beta to 0.0 instead. 
    float beta = (fabs(shearAngle - 90.0*roundf(shearAngle/90.0))<0.1)?0.0:-shearAngle;
    // shearTransform is an identity transform so we can just stuff the shearing into m21...
-   ts = [shearTransform transformStruct];
+   ts = shearTransform.transformStruct;
    ts.m21 = -tan(beta*atan(1.0)/45.0); // =-tan(beta*pi/180.0)
-   [shearTransform setTransformStruct:ts];
+   shearTransform.transformStruct = ts;
    [tmpPath transformUsingAffineTransform:shearTransform];
    // Now, place the sheared label correctly
    [aTransform translateXBy:position.x yBy:position.y];
@@ -157,7 +157,7 @@ static float _aqtMinimumLinewidth;
       [self _aqtLabelUpdateCache];
    }
    tempBounds = [_cache bounds];
-   [self setBounds:tempBounds];
+   self.bounds = tempBounds;
    return tempBounds;
 }
 
@@ -197,18 +197,18 @@ static float _aqtMinimumLinewidth;
 -(void)_aqtPathUpdateCache
 {
    int32_t i;
-   float lw = [self isFilled]?1.0:linewidth; // FIXME: this is a hack to avoid tiny gaps between filled patches
+   float lw = self.isFilled?1.0:linewidth; // FIXME: this is a hack to avoid tiny gaps between filled patches
    NSBezierPath *scratch = [NSBezierPath bezierPath];
    [scratch appendBezierPathWithPoints:path count:pointCount];
-   [scratch setLineJoinStyle:NSRoundLineJoinStyle]; //CM FIXME - This looks like a bug. This explains why join styles don't work in the TestView... //CM
-   [scratch setLineCapStyle:lineCapStyle];
-   [scratch setLineWidth:(lw<_aqtMinimumLinewidth)?_aqtMinimumLinewidth:lw];
-   if([self hasPattern]) {
+   scratch.lineJoinStyle = NSRoundLineJoinStyle; //CM FIXME - This looks like a bug. This explains why join styles don't work in the TestView... //CM
+   scratch.lineCapStyle = (NSLineCapStyle)lineCapStyle;
+   scratch.lineWidth = (lw<_aqtMinimumLinewidth)?_aqtMinimumLinewidth:lw;
+   if(self.hasPattern) {
        CGFloat temppat[patternCount];
        for( i = 0; i < patternCount; i++) temppat[i] = pattern[i];
       [scratch setLineDash:temppat count:patternCount phase:patternPhase];
    }
-   if([self isFilled]) {
+   if(self.isFilled) {
       [scratch closePath];
    }
    if(EQ(path[0].x, path[pointCount-1].x) && EQ(path[0].y, path[pointCount-1].y)) {
@@ -225,13 +225,13 @@ static float _aqtMinimumLinewidth;
       [self _aqtPathUpdateCache];
    }   
    tmpBounds = NSInsetRect([[self _cache] bounds], -linewidth/2, -linewidth/2);
-   [self  setBounds:tmpBounds];
+   self.bounds = tmpBounds;
    return tmpBounds;
 }
 
 -(void)renderInRect:(NSRect)boundsRect
 {
-   NSGraphicsContext *context;
+   NSGraphicsContext *context = nil;
    NSRect clippedBounds = _isClipped?NSIntersectionRect(_bounds, _clipRect):_bounds;
    if (AQTIntersectsRect(boundsRect, clippedBounds)) {
       [self setAQTColor];
@@ -241,7 +241,7 @@ static float _aqtMinimumLinewidth;
          NSRectClip(clippedBounds);
       }
       [_cache stroke];
-      if ([self isFilled]) {
+      if (self.isFilled) {
          [_cache fill];
       }
       if (_isClipped)
@@ -285,24 +285,24 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
    NSRect tmpBounds;
    if (fitBounds)
    {
-      tmpBounds = [self bounds];
+      tmpBounds = self.bounds;
    } else {
-      [transf setTransformStruct:AQTConvertTransformStructToNS(transform)];
+      transf.transformStruct = AQTConvertTransformStructToNS(transform);
       // FIXME: This is lazy beyond any reasonable measure...
-      tmpBounds = [[transf transformBezierPath:[NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, bitmapSize.width, bitmapSize.height)]] bounds];
-      [self  setBounds:tmpBounds];
+      tmpBounds = [transf transformBezierPath:[NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, bitmapSize.width, bitmapSize.height)]].bounds;
+      self.bounds = tmpBounds;
    }
    return tmpBounds;
 }
 
 -(void)renderInRect:(NSRect)boundsRect
 {
-   NSGraphicsContext *context;
+   NSGraphicsContext *context = nil;
    NSRect clippedBounds = _isClipped?NSIntersectionRect(_bounds, _clipRect):_bounds;
    if (AQTIntersectsRect(boundsRect, clippedBounds)) {
       if (![self _cache]) {
          // Install an NSImage in _cache
-         unsigned char *theBytes = (unsigned char*) [bitmap bytes];
+         unsigned char *theBytes = (unsigned char*) bitmap.bytes;
          NSImage *tmpImage = [[NSImage alloc] initWithSize:bitmapSize];
          NSBitmapImageRep *tmpBitmap =
             [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&(theBytes)
@@ -338,7 +338,7 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
             context = [NSGraphicsContext currentContext];
             [context saveGraphicsState];
          }
-         [transf setTransformStruct:AQTConvertTransformStructToNS(transform)];
+         transf.transformStruct = AQTConvertTransformStructToNS(transform);
          [transf concat];
          [_cache drawAtPoint:NSMakePoint(0,0)
                     fromRect:NSMakeRect(0,0,[_cache size].width,[_cache size].height)

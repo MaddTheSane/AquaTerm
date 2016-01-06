@@ -40,7 +40,7 @@
    // It ain't dirty until the fat lady has a size
    _modelIsDirty = isDirty && _hasSize;
 #ifdef DEBUG
-   if (_modelIsDirty && NSEqualSizes(NSZeroSize, [_model canvasSize]))
+   if (_modelIsDirty && NSEqualSizes(NSZeroSize, _model.canvasSize))
    {
 #warning 64BIT: Check formatting arguments
       [NSException raise:@"AQTDebugException" format:@"%@", NSStringFromSelector(_cmd)];
@@ -79,7 +79,7 @@
    [self _flushPolygonBuffer];
 }
 
-- (id)init
+- (instancetype)init
 {
    if(self = [super init])
    {
@@ -121,12 +121,12 @@
 - (void)setSize:(NSSize)canvasSize
 {
    _hasSize = !NSEqualSizes(NSZeroSize, canvasSize); 
-   [_model setCanvasSize:canvasSize];
+   _model.canvasSize = canvasSize;
 }
 
 - (void)setTitle:(NSString *)title
 {
-   [_model setTitle:title];
+   _model.title = title;
 }
 
 - (NSString *)title
@@ -165,33 +165,33 @@
 
 - (void)setBackgroundColor:(AQTColor)newColor
 {
-   AQTColor oldColor = [_model color];
+   AQTColor oldColor = _model.color;
    // FIXME: Use AQTEqualColor instead
    if ((newColor.red != oldColor.red) || (newColor.green != oldColor.green) || (newColor.blue != oldColor.blue) || (newColor.alpha != oldColor.alpha))
    {
-      [_model setColor:newColor];
+      _model.color = newColor;
       [self _aqtPlotBuilderSetModelIsDirty:YES];
    }
 }
 
 - (AQTColor)backgroundColor
 {
-   return [_model color];
+   return _model.color;
 }
 
 - (void)takeColorFromColormapEntry:(int32_t)index
 {
-   [self setColor:[_colormap colorForIndex:index]];
+   self.color = [_colormap colorForIndex:index];
 }
 
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index
 {
-   [self setBackgroundColor:[_colormap colorForIndex:index]];
+   self.backgroundColor = [_colormap colorForIndex:index];
 }
 
 - (int32_t)colormapSize
 {
-   return [_colormap size];
+   return _colormap.size;
 }
 
 - (void)setColor:(AQTColor)newColor forColormapEntry:(int32_t)entryIndex
@@ -298,11 +298,11 @@
          NSLog(@"Error, not a string.");
       }
    }
-   [lb setIsClipped:_isClipped];
-   [lb setClipRect:_clipRect];
-   [lb setColor:_color];
-   [lb setFontName:_fontName];
-   [lb setFontSize:_fontSize];
+   lb.isClipped = _isClipped;
+   lb.clipRect = _clipRect;
+   lb.color = _color;
+   lb.fontName = _fontName;
+   lb.fontSize = _fontSize;
    [_model addObject:lb];
    [lb release];
    [self _aqtPlotBuilderSetModelIsDirty:YES];
@@ -355,11 +355,11 @@
    // Create a path
    tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
    // Copy current properties to path
-   [tmpPath setClipRect:_clipRect];
-   [tmpPath setIsClipped:_isClipped];
-   [tmpPath setColor:_color];
-   [tmpPath setLineWidth:_linewidth];
-   [tmpPath setLineCapStyle:_capStyle];
+   tmpPath.clipRect = _clipRect;
+   tmpPath.isClipped = _isClipped;
+   tmpPath.color = _color;
+   tmpPath.lineWidth = _linewidth;
+   tmpPath.lineCapStyle = _capStyle;
    // [tmpPath setHasPattern:_hasPattern];
    if(_hasPattern == YES) {
       [tmpPath setLinestylePattern:_pattern count:_patternCount phase:_patternPhase];
@@ -408,10 +408,10 @@
 {
    AQTPath *tmpPath;
    tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
-   [tmpPath setClipRect:_clipRect];
-   [tmpPath setIsClipped:_isClipped];
-   [tmpPath setColor:_color];
-   [tmpPath setLineWidth:0.25]; // FIXME: What to do about the see-through edges?
+   tmpPath.clipRect = _clipRect;
+   tmpPath.isClipped = _isClipped;
+   tmpPath.color = _color;
+   tmpPath.lineWidth = 0.25; // FIXME: What to do about the see-through edges?
    //[tmpPath setLineCapStyle:_capStyle];
    [tmpPath setIsFilled:YES];
    [_model addObject:tmpPath];
@@ -442,8 +442,8 @@
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
 {
    AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:destBounds];
-   [tmpImage setClipRect:_clipRect];
-   [tmpImage setIsClipped:_isClipped];
+   tmpImage.clipRect = _clipRect;
+   tmpImage.isClipped = _isClipped;
    [_model addObject:tmpImage];
    [tmpImage release];
    [self _aqtPlotBuilderSetModelIsDirty:YES];
@@ -454,8 +454,8 @@
 {
    // FIXME: Bounds either needs to be transformed bounds or NOT tested for in AQTDrawingMethods
    AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:NSZeroRect];
-   [tmpImage setTransform:_transform];
-   [tmpImage setClipRect:destBounds]; // Override _clipRect to restore old behaviour
+   tmpImage.transform = _transform;
+   tmpImage.clipRect = destBounds; // Override _clipRect to restore old behaviour
    [tmpImage setIsClipped:YES];
    [_model addObject:tmpImage];
    [tmpImage release];

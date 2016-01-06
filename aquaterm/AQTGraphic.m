@@ -14,14 +14,15 @@ typedef struct _AQTColor_v100 {
    float blue;
 } AQTColor_v100;
 
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
 @implementation AQTGraphic
-
-//TODO: Secure Coding
-+ (BOOL)supportsSecureCoding;
-{
-  return YES;
-}
-
 @synthesize isClipped = _isClipped;
 @synthesize clipRect = _clipRect;
     /**"
@@ -35,7 +36,7 @@ typedef struct _AQTColor_v100 {
   return [super replacementObjectForPortCoder:portCoder];
 }  
 
--(id)init
+-(instancetype)init
 {
     if (self = [super init])
     {
@@ -62,9 +63,14 @@ typedef struct _AQTColor_v100 {
 #define AQTGraphicClipRectKey @"ClipRectKey"
 #define AQTGraphicIsClippedKey @"IsClippedKey"
 
++ (BOOL)supportsSecureCoding;
+{
+  return YES;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-  if ([coder allowsKeyedCoding]) {
+  if (coder.allowsKeyedCoding) {
     [coder encodeObject:[NSValue value:&_color withObjCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
     [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
     [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
@@ -82,11 +88,11 @@ typedef struct _AQTColor_v100 {
   }
 }
 
--(id)initWithCoder:(NSCoder *)coder
+-(instancetype)initWithCoder:(NSCoder *)coder
 {
   AQTRect r;
   if (self = [super init]) {
-    if ([coder allowsKeyedCoding]) {
+    if (coder.allowsKeyedCoding) {
       NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
       [tmpColor getValue:&_color];
       _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];

@@ -67,8 +67,8 @@ void aqtLineDrawingTest(id sender)
       index++;
       int32_t cMax = (64*16)/l;
       [adapter openPlotWithIndex:l];
-      [adapter setPlotSize:NSMakeSize(620,420)];
-      [adapter setPlotTitle:[NSString stringWithFormat:@"Line test l = %d, cMax = %d", l, cMax]];
+      adapter.plotSize = NSMakeSize(620,420);
+      adapter.plotTitle = [NSString stringWithFormat:@"Line test l = %d, cMax = %d", l, cMax];
       for (c = 0; c < cMax; c++)
       {
          int32_t i;
@@ -91,8 +91,8 @@ void aqtLineDrawingTest(id sender)
    index = 1;
    int32_t x;
    [adapter openPlotWithIndex:1];
-   [adapter setPlotSize:NSMakeSize(620,420)];
-   [adapter setPlotTitle:@"Test 2"];
+   adapter.plotSize = NSMakeSize(620,420);
+   adapter.plotTitle = @"Test 2";
    for (x = 10; x < 610; x += 10)
    {
       [adapter moveToPoint:NSMakePoint(x, 10)];

@@ -10,12 +10,12 @@
 
 @implementation AQTColorMap
 @synthesize size;
--(id)init
+-(instancetype)init
 {
     return [self initWithColormapSize:1]; // Black
 }
 
--(id)initWithColormapSize:(int32_t)mapsize
+-(instancetype)initWithColormapSize:(int32_t)mapsize
 {
   if (self = [super init])
   {

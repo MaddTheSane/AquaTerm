@@ -44,6 +44,7 @@
 		55D31EED1C3C6AF90060FF56 /* AQTStringDrawingAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB800C70723A4740068A0C9 /* AQTStringDrawingAdditions.m */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
 		55D31F091C3C8F840060FF56 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8252ACC5B321F400CFA73B /* Demo.m */; };
+		55D31F0B1C3CB4AD0060FF56 /* AQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F0A1C3CB4AD0060FF56 /* AQController.swift */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC10F0677017B0042863D /* AQTModelAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = CB2CC10D0677017B0042863D /* AQTModelAdditions.h */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
@@ -226,6 +227,7 @@
 		55D31EF21C3C8DFA0060FF56 /* AquaTermDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D31F061C3C8F020060FF56 /* AquaTermDemoARC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemoARC; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = "Demo-ARC.m"; sourceTree = "<group>"; };
+		55D31F0A1C3CB4AD0060FF56 /* AQController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQController.swift; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 			children = (
 				554387BF1C3B95AA006FBFB4 /* AppDelegate.swift */,
 				554387D01C3B9A19006FBFB4 /* AQView.swift */,
+				55D31F0A1C3CB4AD0060FF56 /* AQController.swift */,
 				55D31EDF1C3C2E780060FF56 /* AQPlot.swift */,
 				55D31EE21C3C343E0060FF56 /* GraphicDrawingMethods.swift */,
 				55D31EE41C3C36170060FF56 /* SwiftHelpers.swift */,
@@ -793,6 +796,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "AquaTerm Team";
 				TargetAttributes = {
 					554387BC1C3B95AA006FBFB4 = {
 						CreatedOnToolsVersion = 7.2;
@@ -907,6 +911,7 @@
 				55D31EE51C3C36170060FF56 /* SwiftHelpers.swift in Sources */,
 				554387F21C3BAC80006FBFB4 /* ProtsAndHelp.m in Sources */,
 				55D31EED1C3C6AF90060FF56 /* AQTStringDrawingAdditions.m in Sources */,
+				55D31F0B1C3CB4AD0060FF56 /* AQController.swift in Sources */,
 				554387C01C3B95AA006FBFB4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -33,46 +33,30 @@ extern void aqtLineDrawingTest(id sender);
 
 + (void)initialize{
    NSUserDefaults *defaults = preferences;
-   NSDictionary *appDefaults = [NSDictionary dictionaryWithObjects:
-      [NSArray arrayWithObjects:
-         NSHomeDirectory(), 
-         @"PDF", 
-         [NSNumber numberWithInteger:0], 
-         [NSNumber numberWithInteger:0], 
-         [NSNumber numberWithDouble:0.0], 
-         [NSNumber numberWithInteger:1],
-         [NSNumber numberWithInteger:1], 
-         [NSNumber numberWithInteger:1],
-         [NSNumber numberWithInteger:0], 
-         [NSNumber numberWithInteger:0], 
-         [NSNumber numberWithInteger:1], 
-         nil]
-      forKeys:[NSArray arrayWithObjects:
-         @"CurrentSaveFolder", 
-         @"CurrentSaveFormat", 
-         @"ShowProcessName", 
-         @"ShowProcessId", 
-         @"MinimumLinewidth",
-         @"ShouldConvertSymbolFont",
-         @"ShouldAntialiasDrawing", 
-         @"ImageInterpolationLevel",
-         @"CrosshairCursorColor",
-         @"CloseWindowWhenClosingPlot",
-         @"ConfirmCloseWindowWhenClosingPlot",
-         nil]];
+   NSDictionary *appDefaults = @{@"CurrentSaveFolder": NSHomeDirectory(), 
+         @"CurrentSaveFormat": @"PDF", 
+         @"ShowProcessName": @0, 
+         @"ShowProcessId": @0, 
+         @"MinimumLinewidth": @0.0,
+         @"ShouldConvertSymbolFont": @1,
+         @"ShouldAntialiasDrawing": @1, 
+         @"ImageInterpolationLevel": @1,
+         @"CrosshairCursorColor": @0,
+         @"CloseWindowWhenClosingPlot": @0,
+         @"ConfirmCloseWindowWhenClosingPlot": @1};
    [defaults registerDefaults:appDefaults];
    
    // Make landscape printing the default
    NSPrintInfo *pi = [NSPrintInfo sharedPrintInfo];
-   [pi setOrientation:NSLandscapeOrientation];
+   pi.orientation = NSPaperOrientationLandscape;
    [NSPrintInfo setSharedPrintInfo:pi];
 }
 
--(id)init
+-(instancetype)init
 {
   if (self =  [super init])
   {
-     NSRect screenFrame = [[NSScreen mainScreen] visibleFrame];
+     NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
      handlerList = [[NSMutableArray alloc] initWithCapacity:256];
      cascadingPoint = NSMakePoint(NSMinX(screenFrame), NSMaxY(screenFrame));
   }
@@ -95,7 +79,7 @@ extern void aqtLineDrawingTest(id sender);
   // Set up a DO connection:
   //
   NSConnection * doConnection = [NSConnection new];
-  [doConnection setRootObject:self];
+  doConnection.rootObject = self;
 
   if([doConnection registerName:@"aquatermServer"] == NO)
   {
@@ -224,7 +208,7 @@ extern void aqtLineDrawingTest(id sender);
 {
    // NSLog(@"in %@, %s:%d\nnotification %@", NSStringFromSelector(_cmd), __FILE__, __LINE__, [aNotification description]);
 
-   AQTPlot *aPlot = [aNotification object]; 
+   AQTPlot *aPlot = aNotification.object; 
    if ([aPlot clientValidAndResponding] == NO)
    {
       [[[aPlot canvas] window] close];
@@ -242,12 +226,12 @@ extern void aqtLineDrawingTest(id sender);
 {
    /* FIXME: This algorithm just divides the screen into N equally size tiles and fits the 
       windows into the tiles trying to maximize screen usage. Could be improved... */ 
-   NSRect screenFrame = [[NSScreen mainScreen] visibleFrame];
+   NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
    NSSize tileSize;
    NSPoint tileOrigin;
    
    int32_t i, row, col, nRow, nCol;
-   NSInteger n = [handlerList count];
+   NSInteger n = handlerList.count;
    
    if (n==0)
       return;
@@ -255,12 +239,12 @@ extern void aqtLineDrawingTest(id sender);
    nRow = nCol = 1 + (int32_t)sqrt(n-1);
    tileSize = NSMakeSize((int32_t)screenFrame.size.width/nCol, (int32_t)screenFrame.size.height/nRow);
    tileOrigin = NSMakePoint(NSMinX(screenFrame), NSMaxY(screenFrame)-tileSize.height);
-   for(i=0;i<[handlerList count];i++) {
+   for(i=0;i<handlerList.count;i++) {
       row = i/nCol;
       col = i%nRow;
       // NSLog(@"(row, col)=(%d, %d)", row, col);
       NSRect tmpFrame = NSMakeRect(tileOrigin.x+col*tileSize.width, tileOrigin.y-row*tileSize.height, tileSize.width, tileSize.height);
-      [[handlerList objectAtIndex:i] constrainWindowToFrame:tmpFrame];
+      [handlerList[i] constrainWindowToFrame:tmpFrame];
    }
 }
 
@@ -268,10 +252,10 @@ extern void aqtLineDrawingTest(id sender);
 {
    // FIXME: Cascading point should be reset (moved) when a window hits screen bottom
    int32_t i;
-   NSRect screenFrame = [[NSScreen mainScreen] visibleFrame];
+   NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
    cascadingPoint = NSMakePoint(NSMinX(screenFrame), NSMaxY(screenFrame));
-   for(i=0;i<[handlerList count];i++) {
-      [[handlerList objectAtIndex:i] cascadeWindowOrderFront:YES];
+   for(i=0;i<handlerList.count;i++) {
+      [handlerList[i] cascadeWindowOrderFront:YES];
    }
 }
 
@@ -289,18 +273,18 @@ extern void aqtLineDrawingTest(id sender);
    int32_t row = 10;
    int32_t col = 10;
    NSFontManager *fontManager = [NSFontManager sharedFontManager];
-   NSString *systemFont = [[NSFont systemFontOfSize:10.0] fontName];
+   NSString *systemFont = [NSFont systemFontOfSize:10.0].fontName;
    NSMutableArray *allFontnames = [NSMutableArray arrayWithCapacity:1024];
 
    // Set up Aquaterm
    AQTAdapter *adapter = [self sharedAdapter];
    [adapter openPlotWithIndex:1];
-   [adapter setPlotTitle:@"Available fonts"];
-   [adapter setPlotSize:NSMakeSize(1000, 700)];
-   [adapter setFontSize:8.0];
+   adapter.plotTitle = @"Available fonts";
+   adapter.plotSize = NSMakeSize(1000, 700);
+   adapter.fontSize = 8.0;
 
    // Collect all fontnames
-   NSArray *allFontFamilies = [fontManager availableFontFamilies];
+   NSArray *allFontFamilies = fontManager.availableFontFamilies;
    NSEnumerator *fontFamilyEnumerator = [allFontFamilies objectEnumerator];
    NSString *familyName;
    
@@ -309,7 +293,7 @@ extern void aqtLineDrawingTest(id sender);
       NSEnumerator *fontEnumerator = [allFonts objectEnumerator];
       NSArray *variation;
       while (variation = [fontEnumerator nextObject]) {
-         [allFontnames addObject:[variation objectAtIndex:0]];
+         [allFontnames addObject:variation[0]];
       }
    }
    
@@ -317,13 +301,13 @@ extern void aqtLineDrawingTest(id sender);
    [allFontnames sortUsingSelector:@selector(caseInsensitiveCompare:)];
    
    for (NSString *fontname in allFontnames) {
-      [adapter setFontName:systemFont];
+      adapter.fontName = systemFont;
       [adapter setColorRed:0.0 green:0.0 blue:0.0];
       [adapter addLabel:fontname
                 atPoint:NSMakePoint(row, 700-col)
                   angle:0.0
                   align:0];
-      [adapter setFontName:fontname];
+      adapter.fontName = fontname;
       [adapter setColorRed:0.0 green:0.0 blue:1.0];
       [adapter addLabel:@"ABC abc"
                 atPoint:NSMakePoint(row+140, 700-col)
@@ -348,7 +332,7 @@ extern void aqtLineDrawingTest(id sender);
 {
 //   APPKIT_EXTERN double NSAppKitVersionNumber;
    NSString *version = @"";   
-   NSString *location = [[NSBundle mainBundle] bundlePath];
+   NSString *location = [NSBundle mainBundle].bundlePath;
    
    // Get a system version or system info for >= 10.3
    if (floor(NSAppKitVersionNumber) <= NSAppKitVersionNumber10_0) {

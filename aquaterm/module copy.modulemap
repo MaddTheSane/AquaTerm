@@ -11,23 +11,23 @@ framework module AquaTerm {
 		header "AQTModel.h"
 		
 		
-		explicit module AQTGraphic {
+		module AQTGraphic {
 			header "AQTGraphic.h"
 		}
 		
-		explicit module AQTColorMap {
+		module AQTColorMap {
 			header "AQTColorMap.h"
 		}
 		
-		explicit module AQTLabel {
+		module AQTLabel {
 			header "AQTLabel.h"
 		}
 		
-		explicit module AQTImage {
+		module AQTImage {
 			header "AQTImage.h"
 		}
 		
-		explicit module AQTPath {
+		module AQTPath {
 			header "AQTPath.h"
 		}
 	}
@@ -49,9 +49,16 @@ framework module AquaTerm {
 	
 	explicit module AQTProtocols {
 		requires objc
-		header "AQTClientProtocol.h"
-		header "AQTEventProtocol.h"
-		header "AQTConnectionProtocol.h"
+		
+		module AQTClientProtocol {
+			header "AQTClientProtocol.h"
+		}
+		module AQTEventProtocol {
+			header "AQTEventProtocol.h"
+		}
+		module AQTConnectionProtocol {
+			header "AQTConnectionProtocol.h"
+		}
 	}
 	
 	export *

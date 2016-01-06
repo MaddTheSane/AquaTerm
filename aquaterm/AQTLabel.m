@@ -8,6 +8,15 @@
 
 #import "AQTLabel.h"
 
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+
+@interface AQTLabel ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
 @implementation AQTLabel
 @synthesize fontName;
 @synthesize fontSize;
@@ -17,7 +26,12 @@
     *** create (once), draw (any number of times) and (eventually) dispose of it.
     "**/
 
--(id)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(int32_t)justify  
+-(instancetype)init
+{
+  return [self initWithString:@"Placeholder" position:NSZeroPoint angle:0 shearAngle:0 justification:0];
+}
+
+-(instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(AQTAlign)justify  
 {
   if (self=[super init])
   {
@@ -32,7 +46,7 @@
   return self; 
 }
 
--(id)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(int32_t)justify
+-(instancetype)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(AQTAlign)justify
 {
   
  /* return [self initWithAttributedString:[[[NSAttributedString alloc] initWithString:aString] autorelease]
@@ -63,7 +77,7 @@
 
 -(NSString *)description
 {
-  return [NSString stringWithFormat:@"%@\nwith string:\n%@", [super description], [string description]];
+  return [NSString stringWithFormat:@"%@\nwith string:\n%@", super.description, [string description]];
 }
 
 #define AQTLabelStringKey @"LabelString"
@@ -77,7 +91,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if ([coder allowsKeyedCoding]) {
+  if (coder.allowsKeyedCoding) {
     [coder encodeObject:string forKey:AQTLabelStringKey];
     [coder encodeObject:fontName forKey:AQTLabelFontNameKey];
     [coder encodeDouble:fontSize forKey:AQTLabelFontSizeKey];
@@ -103,10 +117,10 @@
   }
 }
 
--(id)initWithCoder:(NSCoder *)coder
+-(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if ([coder allowsKeyedCoding]) {
+    if (coder.allowsKeyedCoding) {
       string = [[coder decodeObjectForKey:AQTLabelStringKey] retain];
       fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] retain];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];

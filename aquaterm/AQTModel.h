@@ -17,7 +17,8 @@
    NSRect         dirtyRect;
    BOOL           isDirty;
 }
--(instancetype)initWithCanvasSize:(NSSize)canvasSize;
+- (instancetype)init;
+-(instancetype)initWithCanvasSize:(NSSize)canvasSize NS_DESIGNATED_INITIALIZER;
 @property NSSize canvasSize;
 @property (readonly) NSRect dirtyRect;
 @property (readonly, getter=isDirty) BOOL dirty;

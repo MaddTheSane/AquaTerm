@@ -10,6 +10,8 @@
 #import <Foundation/NSAttributedString.h>
 #import <AppKit/AppKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 /* Using an undocumented method in NSFont. */
 @interface NSFont (NSFontHiddenMethods)
 - (NSGlyph)_defaultGlyphForChar:(unichar)theChar;
@@ -22,3 +24,5 @@
 @interface NSAttributedString (AQTStringDrawingAdditions)
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)aFont;
 @end
+
+NS_ASSUME_NONNULL_END

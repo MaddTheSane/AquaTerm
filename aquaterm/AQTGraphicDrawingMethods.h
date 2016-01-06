@@ -14,10 +14,10 @@
 
 @interface AQTGraphic (AQTGraphicDrawingMethods)
 // + (NSImage *)sharedScratchPad;
-- (id)_cache;
+@property (setter=_setCache:, strong) id _cache;
 - (void)_setCache:(id)object;
 - (void)setAQTColor;
-- (NSRect)updateBounds;
+@property (readonly) NSRect updateBounds;
 - (void)renderInRect:(NSRect)boundsRect; // <--- canvas coords
 @end
 

@@ -56,7 +56,7 @@ void aqtSetEventBlock(void (^func)(long ref, const char *event))
 {
    _adapter.eventBlock = ^(NSInteger ref, NSString *event){
       _mayCleanPool = NO;
-      func(ref, [event UTF8String]);
+      func(ref, event.UTF8String);
       _mayCleanPool = YES;
    };
 }
@@ -65,7 +65,7 @@ void aqtSetEventHandler(void (*func)(long ref, const char *event))
 {
    _adapter.eventBlock = ^(NSInteger ref, NSString *event){
       _mayCleanPool = NO;
-      func(ref, [event UTF8String]);
+      func(ref, event.UTF8String);
       _mayCleanPool = YES;
    };
 }
@@ -83,16 +83,16 @@ int32_t aqtSelectPlot(int32_t refNum) // FIXME: retval?
 
 void aqtSetPlotSize(float width, float height)
 {
-   [_adapter setPlotSize:NSMakeSize(width, height)];
+   _adapter.plotSize = NSMakeSize(width, height);
 }
 
 void aqtSetPlotTitle(const char *title)
 {
-   NSString *titleStr = [NSString stringWithCString:title encoding: NSUTF8StringEncoding];
+   NSString *titleStr = @(title);
    if (!titleStr) {
       titleStr = [NSString stringWithCString:title encoding: NSISOLatin1StringEncoding];
    }
-   [_adapter setPlotTitle:title?titleStr:@"Untitled"];
+   _adapter.plotTitle = title?titleStr:@"Untitled";
 }
 
 void aqtRenderPlot(void)
@@ -247,13 +247,13 @@ void aqtGetBackgroundColor(float *r, float *g, float *b)
 {
     if (newFontname != nil)
     {
-       [_adapter setFontName:[NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding]];
+       _adapter.fontName = [NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding];
     }
 }
 
 void aqtSetFontsize(float newFontsize)
 {
-   [_adapter setFontSize:newFontsize];
+   _adapter.fontSize = newFontsize;
 }
 
 void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align)
@@ -276,12 +276,12 @@ void aqtAddShearedLabel(const char *text, float x, float y, float angle, float s
 /*" Line handling "*/
 void aqtSetLinewidth(float newLinewidth)
 {
-   [_adapter setLineWidth:newLinewidth];
+   _adapter.lineWidth = newLinewidth;
 }
 
 void aqtSetLineCapStyle(AQTLineCapStyle capStyle)
 {
-   [_adapter setLineCapStyle:capStyle];
+   _adapter.lineCapStyle = capStyle;
 }
 
 void aqtMoveTo(float x, float y)

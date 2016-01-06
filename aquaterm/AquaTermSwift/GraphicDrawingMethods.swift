@@ -8,6 +8,7 @@
 
 import Cocoa
 import AquaTerm
+import AquaTerm.AQTModel
 import AquaTerm.AQTModel.AQTGraphic
 import AquaTerm.AQTModel.AQTLabel
 import AquaTerm.AQTModel.AQTPath

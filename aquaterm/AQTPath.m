@@ -7,6 +7,15 @@
 //
 
 #import "AQTPath.h"
+
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+@interface AQTPath ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
 @implementation AQTPath
 @synthesize lineWidth = linewidth;
 @synthesize lineCapStyle;
@@ -40,7 +49,7 @@
 *** Since the app is a viewer we do three things with the object:
 *** create (once), draw (any number of times) and (eventually) dispose of it.
 "**/
--(id)initWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
+-(instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
 {
   int32_t i;
   if (self = [super init])
@@ -58,7 +67,7 @@
   return self;
 }
 
--(id)init
+-(instancetype)init
 {
   return [self initWithPoints:nil pointCount:0];
 }
@@ -89,7 +98,7 @@
 {
   NSInteger i;
   [super encodeWithCoder:coder];
-  if ([coder allowsKeyedCoding]) {
+  if (coder.allowsKeyedCoding) {
     [coder encodeBool:isFilled forKey:AQTPathIsFilledKey];
     [coder encodeInt32:lineCapStyle forKey:AQTPathLineCapStyleKey];
     [coder encodeDouble:linewidth forKey:AQTPathLineWidthKey];
@@ -132,16 +141,16 @@
   }
 }
 
--(id)initWithCoder:(NSCoder *)coder
+-(instancetype)initWithCoder:(NSCoder *)coder
 {
   NSInteger i;
   if (self = [super initWithCoder:coder]) {
-    if ([coder allowsKeyedCoding]) {
+    if (coder.allowsKeyedCoding) {
       isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
       lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
       linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];
       NSArray *tmpArr = [coder decodeObjectForKey:AQTPathPathKey];
-      pointCount = (int)[tmpArr count];
+      pointCount = (int)tmpArr.count;
       pointCount = [self _aqtSetupPathStoreForPointCount:pointCount];
 
       i = 0;
@@ -149,7 +158,7 @@
         if (i >= pointCount) {
           break;
         }
-        path[i] = [val pointValue];
+        path[i] = val.pointValue;
         
         i++;
       }

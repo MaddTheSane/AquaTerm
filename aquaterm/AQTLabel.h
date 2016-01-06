@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "AQTGraphic.h"
+#import "aquaterm.h"
 
 @interface AQTLabel : AQTGraphic /*" NSObject "*/
 {
@@ -16,11 +17,11 @@
    CGFloat fontSize;
    NSPoint position;		/*" The position of the text "*/
    CGFloat angle;
-   int32_t justification;		/*" Justification with respect to the position of the text "*/
+   AQTAlign justification;		/*" Justification with respect to the position of the text "*/
    CGFloat shearAngle;
 }
-- (instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(int32_t)justify;
-- (instancetype)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(int32_t)justify;
+- (instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)justify NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)justify NS_DESIGNATED_INITIALIZER;
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
 @end

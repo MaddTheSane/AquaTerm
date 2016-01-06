@@ -52,10 +52,10 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 {
    NSInteger i;
    NSInteger firstChar = 0;
-   NSInteger strLen = [self length];
+   NSInteger strLen = self.length;
    NSPoint pos = NSZeroPoint;
    NSBezierPath *tmpPath = [NSBezierPath bezierPath];
-   BOOL convertSymbolFontToUnicode = [[aFont fontName] isEqualToString:@"Symbol"] 
+   BOOL convertSymbolFontToUnicode = [aFont.fontName isEqualToString:@"Symbol"] 
       && [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldConvertSymbolFont"];
    
    // Remove leading spaces FIXME: trailing as well?, need better solution
@@ -90,8 +90,8 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 @implementation NSAttributedString (AQTStringDrawingAdditions)
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)defaultFont
 {
-   NSString *text = [self string]; // Yuck!
-   NSInteger strLen = [text length];
+   NSString *text = self.string; // Yuck!
+   NSInteger strLen = text.length;
    NSBezierPath *tmpPath = [NSBezierPath bezierPath];
    NSPoint pos = NSZeroPoint;
    NSInteger firstChar = 0;
@@ -105,7 +105,7 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    
    [_aqtSharedScratchPad() lockFocus];   
    [tmpPath moveToPoint:pos];   
-   pos = recurse(tmpPath, self, [defaultFont fontName], [defaultFont pointSize], &index, 0, pos, 1.0);
+   pos = recurse(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
    [_aqtSharedScratchPad() unlockFocus];
    return tmpPath;
 }
@@ -125,11 +125,11 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
 {
    static CGFloat maxRight = 0.0;
    static NSPoint underlineLeftPoint;
-   NSString *text = [attrString string];
+   NSString *text = attrString.string;
    NSPoint subPos = pos;
    BOOL extendsRight = NO;
    BOOL underlining = NO;
-   NSInteger strLen = [text length];
+   NSInteger strLen = text.length;
    CGFloat glyphHeight = defaultFontSize * fontScale;
    NSInteger attributedSublevel = 0;
    CGFloat baselineOffset = 0.0;
@@ -138,22 +138,22 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    while (*i < strLen) {
       // Read attributes
       NSDictionary *attributes = [attrString attributesAtIndex:*i effectiveRange:nil];
-      NSString *attributedFontname = ([attributes objectForKey:@"AQTFontname"] != nil)?
-         [attributes objectForKey:@"AQTFontname"]:
+      NSString *attributedFontname = (attributes[@"AQTFontname"] != nil)?
+         attributes[@"AQTFontname"]:
          defaultFontName; 
-      float attributedFontsize = ([attributes objectForKey:@"AQTFontsize"] != nil)?
-         [[attributes objectForKey:@"AQTFontsize"] integerValue]:
+      float attributedFontsize = (attributes[@"AQTFontsize"] != nil)?
+         [attributes[@"AQTFontsize"] integerValue]:
          defaultFontSize;
-      attributedSublevel = ([attributes objectForKey:NSSuperscriptAttributeName] != nil)?
-         [[attributes objectForKey:NSSuperscriptAttributeName] integerValue]:
+      attributedSublevel = (attributes[NSSuperscriptAttributeName] != nil)?
+         [attributes[NSSuperscriptAttributeName] integerValue]:
          0;
-      float baselineAdjust = ([attributes objectForKey:@"AQTBaselineAdjust"] != nil)?
-         [[attributes objectForKey:@"AQTBaselineAdjust"] doubleValue]:
+      float baselineAdjust = (attributes[@"AQTBaselineAdjust"] != nil)?
+         [attributes[@"AQTBaselineAdjust"] doubleValue]:
          0.0;
-      BOOL isVisible = ([attributes objectForKey:@"AQTNonPrintingChar"] == nil 
-         || [[attributes objectForKey:@"AQTNonPrintingChar"] integerValue] == 0);
-      BOOL newUnderlining = ([attributes objectForKey:@"NSUnderline"] != nil 
-                        && [[attributes objectForKey:@"NSUnderline"] integerValue] == 1);
+      BOOL isVisible = (attributes[@"AQTNonPrintingChar"] == nil 
+         || [attributes[@"AQTNonPrintingChar"] integerValue] == 0);
+      BOOL newUnderlining = (attributes[@"NSUnderline"] != nil 
+                        && [attributes[@"NSUnderline"] integerValue] == 1);
       if (attributedSublevel == sublevel) {
          NSFont *aFont;
          unichar theChar;
@@ -163,7 +163,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
             aFont = [NSFont systemFontOfSize:attributedFontsize * fontScale]; 
          theChar = [text characterAtIndex:*i];
          // Perform neccessary conversion to Unicode
-         if ([[aFont fontName] isEqualToString:@"Symbol"] && convertSymbolFontToUnicode) {
+         if ([aFont.fontName isEqualToString:@"Symbol"] && convertSymbolFontToUnicode) {
             theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
          }
          // Get the glyph
@@ -177,9 +177,9 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          if (underlining) {
             if (!newUnderlining) 
                [path appendBezierPathWithRect:NSMakeRect(underlineLeftPoint.x, 
-                                                         underlineLeftPoint.y+[aFont underlinePosition],
+                                                         underlineLeftPoint.y+aFont.underlinePosition,
                                                          pos.x-underlineLeftPoint.x, 
-                                                         [aFont underlineThickness])];
+                                                         aFont.underlineThickness)];
          } else {
             if (newUnderlining)
                underlineLeftPoint = pos;

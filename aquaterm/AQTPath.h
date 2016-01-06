@@ -30,7 +30,7 @@
    int32_t patternCount;
    CGFloat patternPhase;
 }
-- (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount;
+- (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 - (void)setLinewidth:(float)lw DEPRECATED_ATTRIBUTE;
 @property CGFloat lineWidth;
 @property AQTLineCapStyle lineCapStyle;

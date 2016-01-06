@@ -22,7 +22,7 @@ typedef struct _AQTAffineTransformStruct {
   AQTAffineTransformStruct transform;
   BOOL fitBounds;
 }
-- (instancetype)initWithBitmap:(const char *)bytes size:(NSSize)size bounds:(NSRect)bounds;
+- (instancetype)initWithBitmap:(const char *)bytes size:(NSSize)size bounds:(NSRect)bounds NS_DESIGNATED_INITIALIZER;
 @property (readonly, retain) NSData *bitmap;
 @property (nonatomic) AQTAffineTransformStruct transform;
 @property (readonly) BOOL fitBounds;

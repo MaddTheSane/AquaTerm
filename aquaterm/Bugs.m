@@ -55,15 +55,15 @@ void aqtDebug(id sender)
   {
     NSLog(@"Failed to init adapter");
   }
-  [adapter setFontName:@"Times-Roman"];
+  adapter.fontName = @"Times-Roman";
   NSString *s = [NSString stringWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", 0x2124, 0x2133, 0x5925, 0x2654, 0x2655, 0x2656, 0x2657, 0x2658]; 
   NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
-  [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"AppleSymbols", @"AQTFontname", nil] range:NSMakeRange(9,11)];
-  [as setAttributes:[NSDictionary dictionaryWithObjectsAndKeys:@"Song Regular", @"AQTFontname", nil] range:NSMakeRange(13,1)];
+  [as setAttributes:@{@"AQTFontname": @"AppleSymbols"} range:NSMakeRange(9,11)];
+  [as setAttributes:@{@"AQTFontname": @"Song Regular"} range:NSMakeRange(13,1)];
   [adapter openPlotWithIndex:1];
-  [adapter setPlotSize:NSMakeSize(620,420)];
-  [adapter setPlotTitle:@"Unicode"];
-  [adapter setFontSize:20];
+  adapter.plotSize = NSMakeSize(620,420);
+  adapter.plotTitle = @"Unicode";
+  adapter.fontSize = 20;
   [adapter addLabel:as atPoint:NSMakePoint(100,100)];
   //[adapter setFontname:@"Song Regular"];
   //[adapter addLabel:[NSString stringWithFormat:@"%C", 0x5925] atPoint:NSMakePoint(100,120)];
@@ -104,16 +104,16 @@ void aqtDebug(id sender)
   
   // Resizing bug
   [adapter openPlotWithIndex:2];
-  [adapter setPlotSize:NSMakeSize(200,400)];
-  [adapter setPlotTitle:@"Page 1 200x400"];
+  adapter.plotSize = NSMakeSize(200,400);
+  adapter.plotTitle = @"Page 1 200x400";
   [adapter addLabel:@"Hello" atPoint:NSMakePoint(100,100)];
   [adapter renderPlot];
 #ifdef AQT_STANDALONE
   [adapter waitNextEvent];
 #endif
   [adapter openPlotWithIndex:2];
-  [adapter setPlotSize:NSMakeSize(400,200)];
-  [adapter setPlotTitle:@"Page 2 400x200"];
+  adapter.plotSize = NSMakeSize(400,200);
+  adapter.plotTitle = @"Page 2 400x200";
   [adapter addLabel:@"World" atPoint:NSMakePoint(100,100)];
   [adapter renderPlot];
   

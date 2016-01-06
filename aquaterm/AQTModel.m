@@ -8,6 +8,15 @@
 
 #import "AQTModel.h"
 
+@interface AQTGraphic ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+@interface AQTModel ()
+-(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
+@end
+
+
 @implementation AQTModel
 @synthesize title;
 @synthesize canvasSize;
@@ -17,7 +26,7 @@
 *** A class representing a collection of objects making up the plot.
 "**/
 
--(id)initWithCanvasSize:(NSSize)size
+-(instancetype)initWithCanvasSize:(NSSize)size
 {
   self = [super init];
   if (self)
@@ -29,7 +38,7 @@
   return self;
 }
 
--(id)init
+-(instancetype)init
 {
   return [self initWithCanvasSize:NSMakeSize(200,200)];
 }
@@ -53,7 +62,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if ([coder allowsKeyedCoding]) {
+  if (coder.allowsKeyedCoding) {
     [coder encodeObject:modelObjects forKey:AQTModelModelsKey];
     [coder encodeObject:title forKey:AQTModelTitleKey];
     [coder encodeSize:canvasSize forKey:AQTModelCanvasSizeKey];
@@ -75,10 +84,10 @@
   }
 }
 
--(id)initWithCoder:(NSCoder *)coder
+-(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if ([coder allowsKeyedCoding]) {
+    if (coder.allowsKeyedCoding) {
       modelObjects = [[coder decodeObjectForKey:AQTModelModelsKey] retain];
       title = [[coder decodeObjectForKey:AQTModelTitleKey] retain];
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];
@@ -104,12 +113,12 @@
 
 -(NSString *)description
 {
-   return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)[modelObjects count],  NSStringFromRect(_bounds)];
+   return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)modelObjects.count,  NSStringFromRect(_bounds)];
 }
 
 -(NSInteger)count
 {
-  return [modelObjects count];
+  return modelObjects.count;
 }
 
 /**"

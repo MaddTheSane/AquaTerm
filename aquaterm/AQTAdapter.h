@@ -22,7 +22,7 @@
 
 /*" Class initialization etc."*/
 - (instancetype)init;
-- (instancetype)initWithServer:(id)localServer;
+- (instancetype)initWithServer:(id)localServer NS_DESIGNATED_INITIALIZER;
 @property (copy) void (^errorBlock)(NSString *msg);
 @property (copy) void (^eventBlock)(NSInteger index, NSString *event);
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
@@ -39,8 +39,8 @@
 
   /*" Event handling "*/
 - (void)setAcceptingEvents:(BOOL)flag;
-- (NSString *)lastEvent;
-- (NSString *)waitNextEvent; 
+@property (readonly, copy) NSString *lastEvent;
+@property (readonly, copy) NSString *waitNextEvent; 
 
 /*" Plotting related commands "*/
 
@@ -49,7 +49,7 @@
 - (void)setDefaultClipRect;
 
 /*" Colormap (utility) "*/
-- (int32_t)colormapSize;
+@property (readonly) int32_t colormapSize;
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b alpha:(float)a;
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b;

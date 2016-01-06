@@ -27,12 +27,12 @@
 }
 - (void)cascadeWindowOrderFront:(BOOL)orderFront;
 - (void)constrainWindowToFrame:(NSRect)tileFrame;
-- (id)canvas;
+@property (readonly, strong) id canvas;
 - (void)setClient:(id)client;
 - (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
-- (BOOL)clientValidAndResponding;
-- (BOOL)invalidateClient; 
-- (BOOL)acceptingEvents;
+@property (readonly) BOOL clientValidAndResponding;
+@property (readonly) BOOL invalidateClient; 
+@property (readonly) BOOL acceptingEvents;
 
 - (void)processEvent:(NSString *)theEvent;
 

@@ -84,22 +84,22 @@
       // Change in state
       _isProcessingEvents = flag;
       [self setCrosshairCursorColor];
-      [[self window] invalidateCursorRectsForView:self];
+      [self.window invalidateCursorRectsForView:self];
    }
 }
 
 -(void)resetCursorRects
 {
    NSCursor *aCursor = _isProcessingEvents?crosshairCursor:[NSCursor arrowCursor];
-   [self addCursorRect:[self bounds] cursor:aCursor];
+   [self addCursorRect:self.bounds cursor:aCursor];
    [aCursor setOnMouseEntered:YES];
 }
 
 - (NSPoint)convertPointToCanvasCoordinates:(NSPoint) aPoint
 {
    NSAffineTransform *localTransform = [NSAffineTransform transform];
-   [localTransform scaleXBy:[model canvasSize].width/NSWidth([self bounds])
-                        yBy:[model canvasSize].height/NSHeight([self bounds])];
+   [localTransform scaleXBy:model.canvasSize.width/NSWidth(self.bounds)
+                        yBy:model.canvasSize.height/NSHeight(self.bounds)];
 
    return [localTransform transformPoint:aPoint];
 }
@@ -108,8 +108,8 @@
 {
    NSRect tmpRect;
    NSAffineTransform *localTransform = [NSAffineTransform transform];
-   [localTransform scaleXBy:[model canvasSize].width/NSWidth([self bounds])
-                        yBy:[model canvasSize].height/NSHeight([self bounds])];
+   [localTransform scaleXBy:model.canvasSize.width/NSWidth(self.bounds)
+                        yBy:model.canvasSize.height/NSHeight(self.bounds)];
 
    tmpRect.origin = [localTransform transformPoint:viewRect.origin];
    tmpRect.size = [localTransform transformSize:viewRect.size];
@@ -120,8 +120,8 @@
 {
    NSRect tmpRect;
    NSAffineTransform *localTransform = [NSAffineTransform transform];
-   [localTransform scaleXBy:NSWidth([self bounds])/[model canvasSize].width
-                        yBy:NSHeight([self bounds])/[model canvasSize].height];
+   [localTransform scaleXBy:NSWidth(self.bounds)/model.canvasSize.width
+                        yBy:NSHeight(self.bounds)/model.canvasSize.height];
 
    tmpRect.origin = [localTransform transformPoint:canvasRect.origin];
    tmpRect.size = [localTransform transformSize:canvasRect.size];
@@ -131,32 +131,32 @@
 
 -(void)_aqtHandleMouseDownAtLocation:(NSPoint)point button:(int32_t)button
 {
-   if ([self isProcessingEvents])
+   if (self.isProcessingEvents)
    {
       point = [self convertPoint:point fromView:nil];
       point = [self convertPointToCanvasCoordinates:point];
-      [(AQTPlot*)[[self window] delegate] processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
+      [(AQTPlot*)self.window.delegate processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
    }
 }
 
 
 -(void)mouseDown:(NSEvent *)theEvent
 {
-   [self _aqtHandleMouseDownAtLocation:[theEvent locationInWindow] button:1];
+   [self _aqtHandleMouseDownAtLocation:theEvent.locationInWindow button:1];
 }
 
 -(void)rightMouseDown:(NSEvent *)theEvent
 {
-   [self _aqtHandleMouseDownAtLocation:[theEvent locationInWindow] button:2];
+   [self _aqtHandleMouseDownAtLocation:theEvent.locationInWindow button:2];
 }   
 
 -(void)keyDown:(NSEvent *)theEvent
 {
-   if ([self isProcessingEvents])
+   if (self.isProcessingEvents)
    {
       NSString *eventString;
-      NSPoint pos = [self convertPoint:[[self window] mouseLocationOutsideOfEventStream] fromView:nil];
-      NSRect viewBounds = [self bounds];
+      NSPoint pos = [self convertPoint:self.window.mouseLocationOutsideOfEventStream fromView:nil];
+      NSRect viewBounds = self.bounds;
       if (!NSPointInRect(pos, viewBounds))
       {
          // Just crop it to be inside [self bounds];
@@ -171,21 +171,21 @@
       }
       eventString = [NSString stringWithFormat:@"2:%@:%@:%d", 
         NSStringFromPoint([self convertPointToCanvasCoordinates:pos]), 
-        [theEvent characters], 
-        [theEvent keyCode]];
-      [(AQTPlot*)[[self window] delegate] processEvent:eventString];
+        theEvent.characters, 
+        theEvent.keyCode];
+      [(AQTPlot*)self.window.delegate processEvent:eventString];
    }
 }
 
 -(void)drawRect:(NSRect)dirtyRect // <--- argument _always_ in view coords
 {
-   NSRect viewBounds = [self bounds];
-   NSSize canvasSize = [model canvasSize];
+   NSRect viewBounds = self.bounds;
+   NSSize canvasSize = model.canvasSize;
    NSRect dirtyCanvasRect;
    NSAffineTransform *transform = [NSAffineTransform transform];
 
-   [[NSGraphicsContext currentContext] setImageInterpolation:[[NSUserDefaults standardUserDefaults] integerForKey:@"ImageInterpolationLevel"]]; // NSImageInterpolationNone FIXME: user prefs
-   [[NSGraphicsContext currentContext] setShouldAntialias:[[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldAntialiasDrawing"]]; // FIXME: user prefs
+   [NSGraphicsContext currentContext].imageInterpolation = [[NSUserDefaults standardUserDefaults] integerForKey:@"ImageInterpolationLevel"]; // NSImageInterpolationNone FIXME: user prefs
+   [NSGraphicsContext currentContext].shouldAntialias = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldAntialiasDrawing"]; // FIXME: user prefs
 #ifdef DEBUG_BOUNDS
    [[NSColor redColor] set];
    NSFrameRect(dirtyRect);

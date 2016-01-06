@@ -9,7 +9,7 @@
    }   return sharedPrefController;
 }
 
--(id)init
+-(instancetype)init
 {
    if (self = [super init])
    {
@@ -27,29 +27,29 @@
    float lw = [preferences floatForKey:@"MinimumLinewidth"];
    [imageInterpolateLevel selectItemAtIndex:[preferences integerForKey:@"ImageInterpolationLevel"]];
    [crosshairCursorColor selectItemAtIndex:[preferences integerForKey:@"CrosshairCursorColor"]];
-   [shouldAntialiasSwitch setIntegerValue:[preferences integerForKey:@"ShouldAntialiasDrawing"]];
-   [minimumLinewidthSlider setDoubleValue:lw];
-   [linewidthDisplay setStringValue:(lw < 0.04)?@"off":[NSString stringWithFormat:@"%4.2f", lw]];
-   [minimumLinewidthSlider setDoubleValue:[preferences floatForKey:@"MinimumLinewidth"]];
-   [convertSymbolFontSwitch setIntegerValue:[preferences integerForKey:@"ShouldConvertSymbolFont"]];
-   [closeWindowSwitch setIntegerValue:[preferences integerForKey:@"CloseWindowWhenClosingPlot"]];
-   [confirmCloseWindowSwitch setIntegerValue:[preferences integerForKey:@"ConfirmCloseWindowWhenClosingPlot"]];
-   [showProcessNameSwitch setIntegerValue:[preferences integerForKey:@"ShowProcessName"]];
-   [showProcessIdSwitch setIntegerValue:[preferences integerForKey:@"ShowProcessId"]];
+   shouldAntialiasSwitch.integerValue = [preferences integerForKey:@"ShouldAntialiasDrawing"];
+   minimumLinewidthSlider.doubleValue = lw;
+   linewidthDisplay.stringValue = (lw < 0.04)?@"off":[NSString stringWithFormat:@"%4.2f", lw];
+   minimumLinewidthSlider.doubleValue = [preferences floatForKey:@"MinimumLinewidth"];
+   convertSymbolFontSwitch.integerValue = [preferences integerForKey:@"ShouldConvertSymbolFont"];
+   closeWindowSwitch.integerValue = [preferences integerForKey:@"CloseWindowWhenClosingPlot"];
+   confirmCloseWindowSwitch.integerValue = [preferences integerForKey:@"ConfirmCloseWindowWhenClosingPlot"];
+   showProcessNameSwitch.integerValue = [preferences integerForKey:@"ShowProcessName"];
+   showProcessIdSwitch.integerValue = [preferences integerForKey:@"ShowProcessId"];
    
-   [confirmCloseWindowSwitch setEnabled:([closeWindowSwitch integerValue] == 0)?NO:YES];
+   confirmCloseWindowSwitch.enabled = (closeWindowSwitch.integerValue == 0)?NO:YES;
    [self updateTitleExample:self];
    [prefWindow makeKeyAndOrderFront:self];
 }
 
 - (IBAction)windowClosingChanged:(id)sender
 {
-   [confirmCloseWindowSwitch setEnabled:([closeWindowSwitch integerValue] == 0)?NO:YES];
+   confirmCloseWindowSwitch.enabled = (closeWindowSwitch.integerValue == 0)?NO:YES;
 }
 
 - (IBAction)updateTitleExample:(id)sender
 {
-   [titleExample setStringValue:[NSString stringWithFormat:@"%@%@Figure 1", [showProcessNameSwitch integerValue]?@"gnuplot ":@"", [showProcessIdSwitch integerValue]?@"(1151) ":@""]];
+   titleExample.stringValue = [NSString stringWithFormat:@"%@%@Figure 1", showProcessNameSwitch.integerValue?@"gnuplot ":@"", showProcessIdSwitch.integerValue?@"(1151) ":@""];
 }
 
 - (IBAction)cancelButtonPressed:(id)sender
@@ -59,22 +59,22 @@
 
 - (IBAction)OKButtonPressed:(id)sender
 {
-   [preferences setInteger:[imageInterpolateLevel indexOfSelectedItem] forKey:@"ImageInterpolationLevel"];
-   [preferences setInteger:[crosshairCursorColor indexOfSelectedItem] forKey:@"CrosshairCursorColor"];
-   [preferences setInteger:[shouldAntialiasSwitch integerValue] forKey:@"ShouldAntialiasDrawing"];
-   [preferences setFloat:[minimumLinewidthSlider doubleValue] forKey:@"MinimumLinewidth"];
-   [preferences setInteger:[convertSymbolFontSwitch integerValue] forKey:@"ShouldConvertSymbolFont"];
-   [preferences setInteger:[closeWindowSwitch integerValue] forKey:@"CloseWindowWhenClosingPlot"];
-   [preferences setInteger:[confirmCloseWindowSwitch integerValue] forKey:@"ConfirmCloseWindowWhenClosingPlot"];
-   [preferences setInteger:[showProcessNameSwitch integerValue] forKey:@"ShowProcessName"];
-   [preferences setInteger:[showProcessIdSwitch integerValue] forKey:@"ShowProcessId"];
+   [preferences setInteger:imageInterpolateLevel.indexOfSelectedItem forKey:@"ImageInterpolationLevel"];
+   [preferences setInteger:crosshairCursorColor.indexOfSelectedItem forKey:@"CrosshairCursorColor"];
+   [preferences setInteger:shouldAntialiasSwitch.integerValue forKey:@"ShouldAntialiasDrawing"];
+   [preferences setFloat:minimumLinewidthSlider.doubleValue forKey:@"MinimumLinewidth"];
+   [preferences setInteger:convertSymbolFontSwitch.integerValue forKey:@"ShouldConvertSymbolFont"];
+   [preferences setInteger:closeWindowSwitch.integerValue forKey:@"CloseWindowWhenClosingPlot"];
+   [preferences setInteger:confirmCloseWindowSwitch.integerValue forKey:@"ConfirmCloseWindowWhenClosingPlot"];
+   [preferences setInteger:showProcessNameSwitch.integerValue forKey:@"ShowProcessName"];
+   [preferences setInteger:showProcessIdSwitch.integerValue forKey:@"ShowProcessId"];
    [prefWindow orderOut:self];
 }
 
 - (IBAction)linewidthSliderMoved:(id)sender
 {
    float lw = [sender doubleValue];
-   [linewidthDisplay setStringValue:(lw < 0.04)?@"off":[NSString stringWithFormat:@"%4.2f", lw]];
+   linewidthDisplay.stringValue = (lw < 0.04)?@"off":[NSString stringWithFormat:@"%4.2f", lw];
 }
 
 @end

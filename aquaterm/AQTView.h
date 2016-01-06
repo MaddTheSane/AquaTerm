@@ -12,7 +12,7 @@
 @class AQTModel;
 @interface AQTView : NSView
 {
-  AQTModel *model;
+  __unsafe_unretained AQTModel *model;
   BOOL _isProcessingEvents; /*" Holds state of mouse input."*/
   NSCursor *crosshairCursor;  /*" Holds an alternate cursor for use with mouse input."*/
   BOOL _enableTiming;

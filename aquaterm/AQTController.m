@@ -21,7 +21,7 @@ extern void aqtLineDrawingTest(id sender);
 @implementation NSString (AQTRFC2396Support)
 - (NSString *)stringByAddingPercentEscapes
 {
-  return [(NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, CFStringConvertNSStringEncodingToEncoding(NSASCIIStringEncoding)) autorelease];
+  return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, CFStringConvertNSStringEncodingToEncoding(NSASCIIStringEncoding)));
 }
 @end
 
@@ -66,7 +66,6 @@ extern void aqtLineDrawingTest(id sender);
 -(void)dealloc
 {
    [[NSNotificationCenter defaultCenter] removeObserver:self];
-   [super dealloc];
 }
 
 /**"
@@ -187,7 +186,6 @@ extern void aqtLineDrawingTest(id sender);
    // [newPlot setPlotKey:client];
    [newPlot setClientInfoName:name pid:procId];
    [handlerList addObject:newPlot];
-   [newPlot release];
 
    return newPlot;
 }

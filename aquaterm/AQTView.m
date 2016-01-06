@@ -45,21 +45,13 @@
       break;
   }
   NSImage *curImg = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:cursorImageName ofType:@"tiff"]];
-  [crosshairCursor autorelease];
   crosshairCursor = [[NSCursor alloc] initWithImage:curImg hotSpot:NSMakePoint(7,7)];
-  [curImg release];
 }
 
 -(void)awakeFromNib
 {
    [self setCrosshairCursorColor];
    [self setIsProcessingEvents:NO];   
-}
-
--(void)dealloc
-{
-   [crosshairCursor release];
-   [super dealloc];
 }
 
 -(BOOL)acceptsFirstResponder

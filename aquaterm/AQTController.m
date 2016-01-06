@@ -177,7 +177,7 @@ extern void aqtLineDrawingTest(id sender);
    // 1.1.1
    *major = 1;
    *minor = 1;
-   *rev   = 1;
+   *rev   = 2;
 }
 
 -(id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(pid_t)procId

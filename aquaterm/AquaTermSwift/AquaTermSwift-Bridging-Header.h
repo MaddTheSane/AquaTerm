@@ -4,3 +4,4 @@
 
 #import "AQTGraphic+NonSwiftable.h"
 #import "AQTStringDrawingAdditions.h"
+#import "AQModelAdditions.h"

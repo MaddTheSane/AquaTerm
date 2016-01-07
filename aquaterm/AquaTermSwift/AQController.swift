@@ -12,6 +12,12 @@ import AquaTerm.AQTProtocols
 
 @NSApplicationMain
 class AQController: NSObject, NSApplicationDelegate, AQTConnectionProtocol {
+	private var cascadingPoint: NSPoint = {
+		var screenFrame = NSScreen.mainScreen()!.visibleFrame;
+		//handlerList = [[NSMutableArray alloc] initWithCapacity:256];
+		return NSPoint(x: screenFrame.minX, y: screenFrame.maxY)
+	}()
+	
 	func ping() {
 		
 	}
@@ -26,6 +32,10 @@ class AQController: NSObject, NSApplicationDelegate, AQTConnectionProtocol {
 		
 		
 		return NSObject()
+	}
+
+	func setWindowPos(plotWindow: NSWindow) {
+		cascadingPoint = plotWindow.cascadeTopLeftFromPoint(cascadingPoint)
 	}
 
 }

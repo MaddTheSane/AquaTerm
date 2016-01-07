@@ -7,8 +7,8 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AQTClientProtocol.h"
-#import "AQTEventProtocol.h"
+#import <AquaTerm/AQTClientProtocol.h>
+#import <AquaTerm/AQTEventProtocol.h>
 
 @class AQTModel, AQTView;
 @protocol AQTEventProtocol;
@@ -19,7 +19,7 @@
   BOOL _isWindowLoaded;
   BOOL _acceptingEvents;
   id <NSObject, AQTEventProtocol> _client;
-  int32_t _clientPID;
+  pid_t _clientPID;
   NSString *_clientName;
   // interface additions
   IBOutlet NSBox *extendSavePanelView;
@@ -28,11 +28,11 @@
 - (void)cascadeWindowOrderFront:(BOOL)orderFront;
 - (void)constrainWindowToFrame:(NSRect)tileFrame;
 @property (readonly, strong) id canvas;
-- (void)setClient:(id)client;
+- (void)setClient:(id<AQTEventProtocol>)client;
 - (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
 @property (readonly) BOOL clientValidAndResponding;
 - (BOOL)invalidateClient;
-@property (readonly) BOOL acceptingEvents;
+@property (readwrite) BOOL acceptingEvents;
 
 - (void)processEvent:(NSString *)theEvent;
 

@@ -7,10 +7,10 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "AQTConnectionProtocol.h"
+#import <AquaTerm/AQTConnectionProtocol.h>
 
 @class AQTAdapter;
-@interface AQTController : NSObject <AQTConnectionProtocol>
+@interface AQTController : NSObject <NSApplicationDelegate, NSWindowDelegate, AQTConnectionProtocol>
 {
   NSMutableArray	*handlerList;		/*" Array of client handlers "*/
   NSPopUpButton		*saveFormatPopup;

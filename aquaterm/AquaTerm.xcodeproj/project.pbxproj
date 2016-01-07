@@ -51,6 +51,7 @@
 		55D74C701C3DB4F80013C8EC /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C721C3DB4F80013C8EC /* AQTWindow.xib */; };
 		55D74C751C3DB5160013C8EC /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C771C3DB5160013C8EC /* Preferences.xib */; };
 		55D74C881C3DB8830013C8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554387C11C3B95AA006FBFB4 /* Assets.xcassets */; };
+		55E5D1521C3F21AA002F0E32 /* AQModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 55E5D1511C3F21AA002F0E32 /* AQModelAdditions.m */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
 		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
@@ -251,12 +252,14 @@
 		55D74C711C3DB4F80013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AQTWindow.xib; sourceTree = "<group>"; };
 		55D74C761C3DB5160013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
 		55D74C871C3DB6F70013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		55E5D1501C3F218F002F0E32 /* AQModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQModelAdditions.h; sourceTree = "<group>"; };
+		55E5D1511C3F21AA002F0E32 /* AQModelAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQModelAdditions.m; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
 		CB2CC10E0677017B0042863D /* AQTModelAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQTModelAdditions.m; sourceTree = "<group>"; };
 		CB2DDBAB056D10FB00D208BA /* AQTEventProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTEventProtocol.h; sourceTree = "<group>"; };
-		CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = AquaTerm.bridgesupport; sourceTree = "<group>"; };
+		CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = AquaTerm.bridgesupport; path = ../AquaTerm.bridgesupport; sourceTree = "<group>"; };
 		CB58A1FE06F9A60900AF8A5E /* AQTAdapter.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = AQTAdapter.html; path = Help/AQTAdapter.html; sourceTree = SOURCE_ROOT; };
 		CB58A1FF06F9A60900AF8A5E /* help.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = help.html; path = Help/help.html; sourceTree = SOURCE_ROOT; };
 		CB58A23A06FA0FB600AF8A5E /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = SOURCE_ROOT; };
@@ -381,6 +384,7 @@
 				CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */,
 			);
 			name = Protocols;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
@@ -498,6 +502,7 @@
 				080E96DDFE201D6D7F000001 /* Protocols */,
 			);
 			name = Framework;
+			path = "AquaTerm Framework";
 			sourceTree = "<group>";
 		};
 		55D31EEB1C3C42B30060FF56 /* Application */ = {
@@ -540,6 +545,8 @@
 			children = (
 				55D31F0A1C3CB4AD0060FF56 /* AQController.swift */,
 				55D31EDF1C3C2E780060FF56 /* AQPlot.swift */,
+				55E5D1501C3F218F002F0E32 /* AQModelAdditions.h */,
+				55E5D1511C3F21AA002F0E32 /* AQModelAdditions.m */,
 			);
 			name = "App Controller";
 			sourceTree = "<group>";
@@ -555,6 +562,7 @@
 				FEDD21D304EE7C22008D3E17 /* AQTPlotBuilder.m */,
 			);
 			name = ClientController;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CB9E42E00586855A00D208BA /* C API */ = {
@@ -564,6 +572,7 @@
 				CB6785D205867B7300D208BA /* aquaterm.m */,
 			);
 			name = "C API";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CBB06FE305740E0E00D208BA /* Functions and constants */ = {
@@ -574,6 +583,7 @@
 				CBB06FE905740EB900D208BA /* AQTFunctions.m */,
 			);
 			name = "Functions and constants";
+			path = ..;
 			sourceTree = "<group>";
 		};
 		CBDC2B2906F06E98000F0A8D /* Installer */ = {
@@ -659,6 +669,7 @@
 				F59F5FCA021011D301A18598 /* AQTImage.m */,
 			);
 			name = Model;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -945,6 +956,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				55D31EE31C3C343E0060FF56 /* GraphicDrawingMethods.swift in Sources */,
+				55E5D1521C3F21AA002F0E32 /* AQModelAdditions.m in Sources */,
 				55D31EE01C3C2E780060FF56 /* AQPlot.swift in Sources */,
 				55D31EE91C3C38E00060FF56 /* AQTGraphic+NonSwiftable.m in Sources */,
 				554387D11C3B9A19006FBFB4 /* AQView.swift in Sources */,
@@ -1405,10 +1417,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				INFOPLIST_FILE = "AquaTerm.framework-Info.plist";
+				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MODULEMAP_FILE = "module copy.modulemap";
+				MODULEMAP_FILE = "AquaTerm Framework/module copy.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 			};
@@ -1426,10 +1438,10 @@
 				DYLIB_CURRENT_VERSION = 1.1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "AquaTerm.framework-Info.plist";
+				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MODULEMAP_FILE = "module copy.modulemap";
+				MODULEMAP_FILE = "AquaTerm Framework/module copy.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 			};

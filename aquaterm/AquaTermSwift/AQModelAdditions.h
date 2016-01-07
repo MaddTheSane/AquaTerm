@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTModel.h>
 
-@interface AQTModel (AQTModelAdditions)
+@interface AQTModel (AQModelAdditions)
 -(void)invalidate;
 -(void)clearDirtyRect;
 -(void)appendModel:(AQTModel *)newModel;

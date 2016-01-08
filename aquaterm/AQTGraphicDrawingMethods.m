@@ -43,8 +43,6 @@ static float _aqtMinimumLinewidth;
 
 -(void)_setCache:(id)object
 {
-   [object retain];
-   [_cache release];
    _cache = object;
 }
 
@@ -317,8 +315,6 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
                                                   bitsPerPixel:24];
          [tmpImage addRepresentation:tmpBitmap];
          [self _setCache:tmpImage];
-         [tmpImage release];
-         [tmpBitmap release];
       }
       if (_isClipped) {
          context = [NSGraphicsContext currentContext];

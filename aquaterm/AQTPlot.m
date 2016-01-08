@@ -106,17 +106,6 @@ static inline void NOOP_(id x, ...) {;}
 }
 #endif
 
--(void)dealloc
-{
-#ifdef MEM_DEBUG
-#warning 64BIT: Check formatting arguments
-   NSLog(@"[%@(0x%x) %@] %s:%d", NSStringFromClass([self class]), self, NSStringFromSelector(_cmd), __FILE__, __LINE__);
-#endif
-   [model release];
-   [_clientName release];
-   [super dealloc];
-}
-
 -(void)cascadeWindowOrderFront:(BOOL)orderFront
 {
    [(AQTController*)NSApp.delegate setWindowPos:canvas.window];
@@ -182,12 +171,11 @@ static inline void NOOP_(id x, ...) {;}
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__); 
    LOG(newModel.description);
    BOOL viewNeedResize = YES;
-   [newModel retain];
    if (model) {
       // Respect the windowsize set by user
       viewNeedResize = !AQTProportionalSizes(model.canvasSize, newModel.canvasSize);
    }
-   [model release];		// let go of any temporary model not used (unlikely)
+   //[model release];		// let go of any temporary model not used (unlikely)
    model = newModel;		// Make it point to new model
    [model updateBounds];
    
@@ -269,11 +257,9 @@ static inline void NOOP_(id x, ...) {;}
 -(void)setClient:(id)client
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
-   [client retain];
    if ([client isProxy]) {
       [client setProtocolForProxy:@protocol(AQTEventProtocol)];
    }
-   [_client release];
    _client = client;		
 }
 
@@ -291,9 +277,7 @@ static inline void NOOP_(id x, ...) {;}
 
 -(void)setClientInfoName:(NSString *)name pid:(pid_t)pid
 {
-   [name retain];
-   [_clientName release];
-   _clientName = name;	
+   _clientName = [name copy];
    _clientPID = pid;
 }
 
@@ -380,7 +364,6 @@ static inline void NOOP_(id x, ...) {;}
    [pasteboard declareTypes:@[NSPDFPboardType, NSPostScriptPboardType] owner:nil];
    [pasteboard setData:[printView dataWithPDFInsideRect:printView.bounds] forType:NSPDFPboardType];
    [pasteboard setData:[printView dataWithEPSInsideRect:printView.bounds] forType:NSPostScriptPboardType];
-   [printView release];
 }
 
 - (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success  contextInfo:(AQTView *)printView
@@ -412,8 +395,7 @@ static inline void NOOP_(id x, ...) {;}
    (void)[printOp runOperationModalForWindow:canvas.window
                                     delegate:self
                               didRunSelector:nil // @selector(printOperationDidRun:success:contextInfo:)
-                                 contextInfo:printView];
-   [printView release];
+                                 contextInfo:(__bridge void * _Nullable)(printView)];
 }
 
 - (IBAction)saveDocumentAs:(id)sender
@@ -446,7 +428,6 @@ static inline void NOOP_(id x, ...) {;}
          }
          [preferences setObject:filename.stringByDeletingLastPathComponent forKey:@"CurrentSaveFolder"];
          [preferences setObject:saveFormatPopUp.titleOfSelectedItem forKey:@"CurrentSaveFormat"];
-         [printView release];
       }
    }];
 }

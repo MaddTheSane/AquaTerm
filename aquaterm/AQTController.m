@@ -21,11 +21,14 @@ extern void aqtLineDrawingTest(id sender);
 @implementation NSString (AQTRFC2396Support)
 - (NSString *)stringByAddingPercentEscapes
 {
-  return [(NSString *)CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, CFStringConvertNSStringEncodingToEncoding(NSASCIIStringEncoding)) autorelease];
+  return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, CFStringConvertNSStringEncodingToEncoding(NSASCIIStringEncoding)));
 }
 @end
 
 @implementation AQTController
+{
+   NSConnection * doConnection;
+}
 /**"
 *** AQTController is the main controller object which coordinates all the
 *** action and manages the main DO connection.
@@ -66,7 +69,6 @@ extern void aqtLineDrawingTest(id sender);
 -(void)dealloc
 {
    [[NSNotificationCenter defaultCenter] removeObserver:self];
-   [super dealloc];
 }
 
 /**"
@@ -78,7 +80,7 @@ extern void aqtLineDrawingTest(id sender);
   //
   // Set up a DO connection:
   //
-  NSConnection * doConnection = [NSConnection new];
+  doConnection = [NSConnection new];
   doConnection.rootObject = self;
 
   if([doConnection registerName:@"aquatermServer"] == NO)
@@ -187,7 +189,6 @@ extern void aqtLineDrawingTest(id sender);
    // [newPlot setPlotKey:client];
    [newPlot setClientInfoName:name pid:procId];
    [handlerList addObject:newPlot];
-   [newPlot release];
 
    return newPlot;
 }

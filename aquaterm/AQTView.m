@@ -45,7 +45,6 @@
       break;
   }
   NSImage *curImg = [NSImage imageNamed:cursorImageName];
-  [crosshairCursor autorelease];
   crosshairCursor = [[NSCursor alloc] initWithImage:curImg hotSpot:NSMakePoint(7,7)];
 }
 
@@ -53,12 +52,6 @@
 {
    [self setCrosshairCursorColor];
    [self setIsProcessingEvents:NO];   
-}
-
--(void)dealloc
-{
-   [crosshairCursor release];
-   [super dealloc];
 }
 
 -(BOOL)acceptsFirstResponder

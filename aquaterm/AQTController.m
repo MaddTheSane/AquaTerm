@@ -26,6 +26,9 @@ extern void aqtLineDrawingTest(id sender);
 @end
 
 @implementation AQTController
+{
+   NSConnection * doConnection;
+}
 /**"
 *** AQTController is the main controller object which coordinates all the
 *** action and manages the main DO connection.
@@ -77,7 +80,7 @@ extern void aqtLineDrawingTest(id sender);
   //
   // Set up a DO connection:
   //
-  NSConnection * doConnection = [NSConnection new];
+  doConnection = [NSConnection new];
   doConnection.rootObject = self;
 
   if([doConnection registerName:@"aquatermServer"] == NO)

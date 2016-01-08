@@ -52,7 +52,6 @@
     fitBounds = YES;
   }
   return self;
-  
 }
 
 -(void)dealloc

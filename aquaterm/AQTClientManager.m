@@ -155,10 +155,10 @@
       status = LSOpenCFURLRef((CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
       if (status != noErr) {
          // No, search for it based on creator code, choose latest version
-         NSURL *tmpURL;
-         status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, (CFURLRef *)&tmpURL);
+         CFURLRef tmpURL;
+         status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);//LSCopyApplicationURLsForBundleIdentifier
          [self logMessage:[NSString stringWithFormat:@"LSFindApplicationForInfo = %ld", (long)status] logLevel:2];
-         appURL = (status == noErr)?tmpURL:nil;
+         appURL = (NSURL*)((status == noErr)?tmpURL:nil);
          [appURL autorelease];
          status = LSOpenCFURLRef((CFURLRef)appURL, NULL);
       }
@@ -169,13 +169,13 @@
 
 - (void)terminateConnection
 {
-   NSEnumerator *enumObjects = [_plots keyEnumerator];
-   id key;
+   NSArray *allKeys = [[_plots allKeys] copy];
 
-   while (key = [enumObjects nextObject]) {
+   for (id key in allKeys) {
       [self setActivePlotKey:key];
       [self closePlot];
    }
+   [allKeys release];
    if([_server isProxy]) {
       [_server release];
       _server = nil;
@@ -201,9 +201,9 @@
    };
 }
 
-- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(int index, NSString *event))fPtr
 {
-   self.eventBlock = ^(NSInteger index, NSString *event) {
+   self.eventBlock = ^(int index, NSString *event) {
       (*fPtr)(index, event);
    };
 }
@@ -420,7 +420,7 @@
    key = keys[0];
 
    if (_eventBlock != nil) {
-      _eventBlock(key.integerValue, event);
+      _eventBlock(key.intValue, event);
    }
    _eventBuffer[key] = event;
 }

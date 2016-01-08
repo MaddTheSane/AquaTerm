@@ -44,7 +44,7 @@
       cursorImageName = @"crossRed";
       break;
   }
-  NSImage *curImg = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:cursorImageName ofType:@"tiff"]];
+  NSImage *curImg = [NSImage imageNamed:cursorImageName];
   crosshairCursor = [[NSCursor alloc] initWithImage:curImg hotSpot:NSMakePoint(7,7)];
 }
 
@@ -127,6 +127,7 @@
    {
       point = [self convertPoint:point fromView:nil];
       point = [self convertPointToCanvasCoordinates:point];
+      point = NSIntegralRect((NSRect){.origin = point, .size = NSMakeSize(1, 1)}).origin;
       [(AQTPlot*)self.window.delegate processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
    }
 }

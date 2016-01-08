@@ -8,10 +8,10 @@
 
 #import "AQTGraphicDrawingMethods.h"
 
-#import "AQTLabel.h"
-#import "AQTPath.h"
-#import "AQTImage.h"
-#import "AQTFunctions.h"
+#import <AquaTerm/AQTLabel.h>
+#import <AquaTerm/AQTPath.h>
+#import <AquaTerm/AQTImage.h>
+#import <AquaTerm/AQTFunctions.h>
 #import "AQTStringDrawingAdditions.h"
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,

@@ -8,8 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
-#import "AQTGraphic.h"
-#import "AQTModel.h"
+#import <AquaTerm/AQTGraphic.h>
+#import <AquaTerm/AQTModel.h>
 
 
 @interface AQTGraphic (AQTGraphicDrawingMethods)

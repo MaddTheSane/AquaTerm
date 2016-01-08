@@ -179,10 +179,10 @@ adapter.lineWidth = 1.0;
 
 adapter.lineWidth = 11.0;
 [adapter takeColorFromColormapEntry:1];
-adapter.lineCapStyle = AQTLineCapStyleLine;
+adapter.lineCapStyle = AQTLineCapStyleSquare;
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];
 [adapter addLineToPoint:NSMakePoint(150.5, 130.5)];
-[adapter addLabel:@"AQTLineCapStyleLine" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
+[adapter addLabel:@"AQTLineCapStyleSquare" atPoint:NSMakePoint(160.5, 130.5) angle:0.0 align:AQTAlignLeft];
 adapter.lineWidth = 1.0;
 [adapter takeColorFromColormapEntry:6];
 [adapter moveToPoint:NSMakePoint(40.5, 130.5)];

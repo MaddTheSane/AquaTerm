@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AQTModel.h"
+#import <AquaTerm/AQTModel.h>
 
 @interface AQTModel (AQTModelAdditions)
 -(void)invalidate;

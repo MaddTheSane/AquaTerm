@@ -17,6 +17,12 @@
 
 
 @implementation AQTPlotBuilder
+@synthesize color = _color;
+@synthesize modelIsDirty = _modelIsDirty;
+@synthesize clipRect = _clipRect;
+@synthesize fontName = _fontName;
+@synthesize fontSize = _fontSize;
+@synthesize lineWidth = _linewidth;
 - (void)_aqtPlotBuilderSetDefaultValues
 {
    _color.red = 0.0;
@@ -100,11 +106,6 @@
    [_model release];
    [_colormap release];
    [super dealloc];
-}
-
-- (BOOL)modelIsDirty
-{
-   return _modelIsDirty;
 }
 
 - (AQTModel *)model
@@ -213,9 +214,6 @@
 {
    self.fontSize = newFontsize;
 }
-@synthesize fontName = _fontName;
-@synthesize fontSize = _fontSize;
-@synthesize lineWidth = _linewidth;
 
 - (void)setLinewidth:(float)newLinewidth
 {
@@ -233,7 +231,7 @@
    }
 }
 
-- (void)setLinestylePattern:(float *)newPattern count:(int32_t)newCount phase:(float)newPhase //CM
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase //CM
 {
    [self _flushBuffers]; // FIXME: expose flush methods in API?
    // Copy the pattern
@@ -349,11 +347,11 @@
 }
 
    // This is where all line-drawing  ends up eventually. 
-- (void)addPolylineWithPoints:(NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
    // Create a path
-   tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
+   tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
    // Copy current properties to path
    tmpPath.clipRect = _clipRect;
    tmpPath.isClipped = _isClipped;
@@ -404,10 +402,10 @@
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 
-- (void)addPolygonWithPoints:(NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolygonWithPoints:(const NSPoint *)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
-   tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
+   tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
    tmpPath.clipRect = _clipRect;
    tmpPath.isClipped = _isClipped;
    tmpPath.color = _color;

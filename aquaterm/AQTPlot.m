@@ -33,6 +33,8 @@ static inline void NOOP_(id x, ...) {;}
 
 
 @implementation AQTPlot
+@synthesize model = model;
+@synthesize client = _client;
 -(instancetype)init
 {
    if (self = [super init])

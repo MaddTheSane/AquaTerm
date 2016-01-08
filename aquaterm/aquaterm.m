@@ -52,18 +52,18 @@ void aqtTerminate(void)
    _pool = nil;
 }
 
-void aqtSetEventBlock(void (^func)(long ref, const char *event))
+void aqtSetEventBlock(void (^func)(int ref, const char *event))
 {
-   _adapter.eventBlock = ^(NSInteger ref, NSString *event){
+   _adapter.eventBlock = ^(int ref, NSString *event){
       _mayCleanPool = NO;
       func(ref, event.UTF8String);
       _mayCleanPool = YES;
    };
 }
 
-void aqtSetEventHandler(void (*func)(long ref, const char *event))
+void aqtSetEventHandler(void (*func)(int ref, const char *event))
 {
-   _adapter.eventBlock = ^(NSInteger ref, NSString *event){
+   _adapter.eventBlock = ^(int ref, NSString *event){
       _mayCleanPool = NO;
       func(ref, event.UTF8String);
       _mayCleanPool = YES;
@@ -247,7 +247,11 @@ void aqtGetBackgroundColor(float *r, float *g, float *b)
 {
     if (newFontname != nil)
     {
-       _adapter.fontName = [NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding];
+       NSString *aFontName = [NSString stringWithCString:newFontname encoding: NSUTF8StringEncoding];
+       if (!aFontName) {
+          aFontName = [NSString stringWithCString:newFontname encoding: NSISOLatin1StringEncoding];
+       }
+       _adapter.fontName = aFontName;
     }
 }
 
@@ -260,7 +264,11 @@ void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align
 {
    if (text != nil)
    {
-      [_adapter addLabel:[NSString stringWithCString:text encoding: NSISOLatin1StringEncoding] atPoint:NSMakePoint(x,y) angle:angle align:align];
+      NSString *tmpLabel = [NSString stringWithCString:text encoding: NSUTF8StringEncoding];
+      if (!tmpLabel) {
+         tmpLabel = [NSString stringWithCString:text encoding: NSISOLatin1StringEncoding];
+      }
+      [_adapter addLabel:tmpLabel atPoint:NSMakePoint(x,y) angle:angle align:align];
    }
 }
 
@@ -268,7 +276,11 @@ void aqtAddShearedLabel(const char *text, float x, float y, float angle, float s
 {
    if (text != nil)
    {
-      [_adapter addLabel:[NSString stringWithCString:text encoding: NSISOLatin1StringEncoding] atPoint:NSMakePoint(x,y) angle:angle shearAngle:shearAngle align:align];
+      NSString *tmpLabel = [NSString stringWithCString:text encoding: NSUTF8StringEncoding];
+      if (!tmpLabel) {
+         tmpLabel = [NSString stringWithCString:text encoding: NSISOLatin1StringEncoding];
+      }
+      [_adapter addLabel:tmpLabel atPoint:NSMakePoint(x,y) angle:angle shearAngle:shearAngle align:align];
    }
 }
 

@@ -21,7 +21,7 @@
 typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleButt = 0,
    AQTLineCapStyleRound = 1,
-   AQTLineCapStyleLine = 2
+   AQTLineCapStyleSquare = 2
 };
 
 /*" Constants that specify horizontal and vertical alignment for labels. See #addLabel:atPoint:angle:align: for definitions and use."*/
@@ -43,9 +43,9 @@ void aqtTerminate(void);
 /* The event handler callback functionality should be used with caution, it may 
    not be safe to use in all circumstances. It is certainly _not_ threadsafe. 
    If in doubt, use aqtWaitNextEvent() instead. */
-void aqtSetEventHandler(void (*func)(long ref, const char *event));
+void aqtSetEventHandler(void (*func)(int ref, const char *event));
 
-void aqtSetEventBlock(void (^func)(long ref, const char *event));
+void aqtSetEventBlock(void (^func)(int ref, const char *event));
 
 /*" Control operations "*/
 void aqtOpenPlot(int32_t refNum);

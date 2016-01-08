@@ -24,9 +24,9 @@
 - (instancetype)init;
 - (instancetype)initWithServer:(id)localServer NS_DESIGNATED_INITIALIZER;
 @property (copy) void (^errorBlock)(NSString *msg);
-@property (copy) void (^eventBlock)(NSInteger index, NSString *event);
+@property (copy) void (^eventBlock)(int index, NSString *event);
 - (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
-- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr;
+- (void)setEventHandler:(void (*)(int index, NSString *event))fPtr;
 
   /*" Control operations "*/
 - (void)openPlotWithIndex:(int32_t)refNum; 

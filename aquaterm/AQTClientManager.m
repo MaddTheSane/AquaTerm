@@ -201,9 +201,9 @@
    };
 }
 
-- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(int index, NSString *event))fPtr
 {
-   self.eventBlock = ^(NSInteger index, NSString *event) {
+   self.eventBlock = ^(int index, NSString *event) {
       (*fPtr)(index, event);
    };
 }
@@ -420,7 +420,7 @@
    key = keys[0];
 
    if (_eventBlock != nil) {
-      _eventBlock(key.integerValue, event);
+      _eventBlock(key.intValue, event);
    }
    _eventBuffer[key] = event;
 }

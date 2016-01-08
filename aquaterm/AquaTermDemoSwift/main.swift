@@ -151,10 +151,10 @@ func aqtTestview(adapter: AQTAdapter) {
 	
 	adapter.lineWidth = 11
 	adapter.takeColorFromColormapEntry(1)
-	adapter.lineCapStyle = .Line
+	adapter.lineCapStyle = .Square
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
 	adapter.addLineToPoint(NSPoint(x: 150.5, y: 130.5))
-	adapter.addLabel("AQTLineCapStyle.Line", atPoint: NSPoint(x: 160.5, y: 130.5), angle:0.0, align:.Left)
+	adapter.addLabel("AQTLineCapStyle.Square", atPoint: NSPoint(x: 160.5, y: 130.5), angle:0.0, align:.Left)
 	adapter.lineWidth = 1.0
 	adapter.takeColorFromColormapEntry(6)
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))

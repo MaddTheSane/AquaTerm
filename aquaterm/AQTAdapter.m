@@ -98,12 +98,12 @@ Event handling of user input is provided through an optional callback function.
    return _clientManager.errorBlock;
 }
 
-- (void)setEventBlock:(void (^)(NSInteger, NSString *))eventBlock
+- (void)setEventBlock:(void (^)(int, NSString *))eventBlock
 {
    _clientManager.eventBlock = eventBlock;
 }
 
-- (void (^)(NSInteger, NSString *))eventBlock
+- (void (^)(int, NSString *))eventBlock
 {
    return _clientManager.eventBlock;
 }
@@ -124,7 +124,7 @@ _{1:%{x,y}:%button MouseDownEvent }
 _{2:%{x,y}:%key KeyDownEvent } 
 _{42:%{x,y}:%key ServerError }
 _{43:%{x,y}:%key Error } "*/
-- (void)setEventHandler:(void (*)(NSInteger index, NSString *event))fPtr
+- (void)setEventHandler:(void (*)(int index, NSString *event))fPtr
 {
    [_clientManager setEventHandler:fPtr];
 }
@@ -480,7 +480,7 @@ _{@"NSUnderline" 0or1}
 _{capStyle Description}
 _{AQTLineCapStyleButt ButtLineCapStyle}
 _{AQTLineCapStyleRound RoundLineCapStyle}
-_{AQTLineCapStyleLine SquareLineCapStyle}
+_{AQTLineCapStyleSquare SquareLineCapStyle}
 Default is RoundLineCapStyle. "*/
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle
 {

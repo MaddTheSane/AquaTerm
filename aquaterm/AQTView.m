@@ -134,6 +134,7 @@
    {
       point = [self convertPoint:point fromView:nil];
       point = [self convertPointToCanvasCoordinates:point];
+      point = NSIntegralRect((NSRect){.origin = point, .size = NSMakeSize(1, 1)}).origin;
       [(AQTPlot*)self.window.delegate processEvent:[NSString stringWithFormat:@"1:%@:%d", NSStringFromPoint(point), button]];
    }
 }

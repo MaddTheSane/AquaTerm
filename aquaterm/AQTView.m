@@ -44,10 +44,9 @@
       cursorImageName = @"crossRed";
       break;
   }
-  NSImage *curImg = [[NSImage alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource:cursorImageName ofType:@"tiff"]];
+  NSImage *curImg = [NSImage imageNamed:cursorImageName];
   [crosshairCursor autorelease];
   crosshairCursor = [[NSCursor alloc] initWithImage:curImg hotSpot:NSMakePoint(7,7)];
-  [curImg release];
 }
 
 -(void)awakeFromNib

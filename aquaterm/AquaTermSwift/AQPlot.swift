@@ -8,6 +8,7 @@
 
 import Cocoa
 import AquaTerm
+import AquaTerm.AQTModel
 import AquaTerm.AQTProtocols
 
 private let WINDOW_MIN_WIDTH: CGFloat = 200.0
@@ -54,7 +55,13 @@ final class AQPlot: NSObject, NSWindowDelegate, AQTClientProtocol {
 	/// *Actually* holds the model for the view
 	private var _model: AQTModel?
 	private var isWindowLoaded = false
-	var acceptingEvents = false
+	var acceptingEvents = false {
+		didSet {
+			if isWindowLoaded {
+				canvas.isProcessingEvents = acceptingEvents;
+			}
+		}
+	}
 	var client: AQTEventProtocol? = nil {
 		willSet {
 			if newValue?.isProxy() ?? false {
@@ -64,11 +71,26 @@ final class AQPlot: NSObject, NSWindowDelegate, AQTClientProtocol {
 		}
 	}
 	private var clientPID: pid_t = -1
-	private var clientName = ""
+	private var clientName = "No connection"
 	
 	// MARK: -
 
 	func processEvent(theEvent: String) {
+		if acceptingEvents // FIXME: redundant!?
+		{
+			TryCatchBlock({ () -> Void in
+				self.client?.processEvent(theEvent, sender: self)
+				}, { (anException) -> Void in
+					if anException.name == NSObjectInaccessibleException {
+						self.invalidateClient()
+					} else {
+						anException.raise()
+					}
+			})
+		}
+	}
+	
+	func invalidateClient() {
 		
 	}
 	
@@ -114,8 +136,9 @@ final class AQPlot: NSObject, NSWindowDelegate, AQTClientProtocol {
 		
 	}
 	
+	/// This is a "housekeeping" method, to avoid buildup of hidden objects, does not imply redraw(?)
 	func removeGraphicsInRect(aRect: AQTRect) {
-		
+		model?.removeGraphicsInRect(aRect)
 	}
 	
 	func timingTestWithTag(tag: UInt32) {
@@ -155,4 +178,10 @@ final class AQPlot: NSObject, NSWindowDelegate, AQTClientProtocol {
 		canvas.window?.minSize = minSize;
 		canvas.isProcessingEvents = acceptingEvents;
 	}
+	
+	func setClientInfoName(name: String, pid: pid_t) {
+		clientName = name;
+		clientPID = pid;
+	}
+
 }

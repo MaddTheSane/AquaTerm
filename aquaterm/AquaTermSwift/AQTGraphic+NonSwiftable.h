@@ -28,3 +28,4 @@
 -(void)_aqtPathUpdateCache;
 @end
 
+void TryCatchBlock(dispatch_block_t __nonnull tryBlock, void (^__nullable catchBlock)(NSException * __nonnull localException));

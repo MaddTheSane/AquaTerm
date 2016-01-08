@@ -20,3 +20,20 @@ extension AQTColor: Equatable {
 		return NSColor(calibratedRed: CGFloat(self.red), green: CGFloat(self.green), blue: CGFloat(self.blue), alpha: CGFloat(self.alpha))
 	}
 }
+
+#if false
+let OurNSExceptionErrorDomain = "NSException Domain"
+let OurNSExceptionErrorKey = "NSException Key"
+
+func tryCatchExceptionsRethrowAsError(block: () -> Void) throws {
+	var exception: NSException?
+	
+	TryCatchBlock(block) { (except) -> Void in
+		exception = except
+	}
+	
+	if let exception = exception {
+		throw NSError(domain: OurNSExceptionErrorDomain, code: 0, userInfo: [OurNSExceptionErrorKey: exception])
+	}
+}
+#endif

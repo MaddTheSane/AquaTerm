@@ -110,3 +110,16 @@ static float _aqtMinimumLinewidth;
 	[self _setCache:scratch];
 }
 @end
+
+
+void TryCatchBlock(dispatch_block_t tryBlock, void (^catchBlock)(NSException * localException))
+{
+	@try {
+		tryBlock();
+	}
+	@catch (NSException *exception) {
+		if (catchBlock) {
+			catchBlock(exception);
+		}
+	}
+}

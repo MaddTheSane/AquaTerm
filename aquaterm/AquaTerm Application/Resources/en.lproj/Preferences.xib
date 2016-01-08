@@ -122,10 +122,8 @@
                                 <textField verticalHuggingPriority="750" id="78">
                                     <rect key="frame" x="129" y="126" width="35" height="17"/>
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" id="104">
+                                    <textFieldCell key="cell" controlSize="small" sendsActionOnEndEditing="YES" alignment="left" title="0.25" id="104">
                                         <font key="font" metaFont="smallSystem"/>
-                                        <string key="title">0.25
-</string>
                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                     </textFieldCell>

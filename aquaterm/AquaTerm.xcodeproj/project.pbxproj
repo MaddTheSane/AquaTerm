@@ -22,6 +22,7 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
 		55D31F091C3C8F840060FF56 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8252ACC5B321F400CFA73B /* Demo.m */; };
@@ -48,7 +49,7 @@
 		CB91252F07CB4890001D5EAF /* AQTPlotBuilder.h in Headers */ = {isa = PBXBuildFile; fileRef = FEDD21D204EE7C22008D3E17 /* AQTPlotBuilder.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB91253007CB4890001D5EAF /* AQTPlotBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = FEDD21D304EE7C22008D3E17 /* AQTPlotBuilder.m */; };
 		CB91253107CB4895001D5EAF /* aquaterm.h in Headers */ = {isa = PBXBuildFile; fileRef = CB6785CE05866FCE00D208BA /* aquaterm.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		CB91253207CB4895001D5EAF /* aquaterm.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6785D205867B7300D208BA /* aquaterm.m */; };
+		CB91253207CB4895001D5EAF /* aquaterm.m in Sources */ = {isa = PBXBuildFile; fileRef = CB6785D205867B7300D208BA /* aquaterm.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CB91253307CB489A001D5EAF /* AQTColorMap.h in Headers */ = {isa = PBXBuildFile; fileRef = F50F0B540205D23401AA2E68 /* AQTColorMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		CB91253407CB489B001D5EAF /* AQTColorMap.m in Sources */ = {isa = PBXBuildFile; fileRef = F50F0B550205D23401AA2E68 /* AQTColorMap.m */; };
 		CB91253507CB489B001D5EAF /* AQTGraphic.h in Headers */ = {isa = PBXBuildFile; fileRef = F55D241701C0F0F501A80104 /* AQTGraphic.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -187,6 +188,7 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		551A59BE1C3F775D00DED042 /* ARCBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCBridge.h; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
 		55D31EF21C3C8DFA0060FF56 /* AquaTermDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemo; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -398,6 +400,7 @@
 		55D31EEA1C3C42840060FF56 /* Framework */ = {
 			isa = PBXGroup;
 			children = (
+				551A59BE1C3F775D00DED042 /* ARCBridge.h */,
 				554387CF1C3B96B1006FBFB4 /* module copy.modulemap */,
 				CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */,
 				CB91251407CB3BDE001D5EAF /* AquaTerm.framework-Info.plist */,
@@ -565,6 +568,7 @@
 			files = (
 				CB91252B07CB488C001D5EAF /* AQTAdapter.h in Headers */,
 				CB91252D07CB488D001D5EAF /* AQTClientManager.h in Headers */,
+				551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */,
 				CB91252F07CB4890001D5EAF /* AQTPlotBuilder.h in Headers */,
 				CB91253107CB4895001D5EAF /* aquaterm.h in Headers */,
 				CB91253307CB489A001D5EAF /* AQTColorMap.h in Headers */,
@@ -1140,6 +1144,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CLANG_ENABLE_OBJC_ARC[arch=i386]" = NO;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -1164,6 +1170,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CLANG_ENABLE_OBJC_ARC[arch=*]" = NO;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;

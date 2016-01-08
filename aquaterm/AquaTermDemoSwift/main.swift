@@ -126,6 +126,7 @@ func aqtTestview(adapter: AQTAdapter) {
 		// ***** Reset clip rect! *****
 	}
 	// MARK: linecap styles
+	do {
 	adapter.fontSize = 8
 	adapter.lineWidth = 11
 	adapter.takeColorFromColormapEntry(1)
@@ -160,6 +161,7 @@ func aqtTestview(adapter: AQTAdapter) {
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
 	adapter.addLineToPoint(NSPoint(x: 150.5, y: 130.5))
 	adapter.fontSize = 12
+	}
 	
 	// MARK: line joins
 	adapter.takeColorFromColormapEntry(1)
@@ -365,6 +367,4 @@ func aqtTestview(adapter: AQTAdapter) {
 	adapter.closePlot()
 }
 
-autoreleasepool() {
-	aqtTestview(adap)
-}
+aqtTestview(adap)

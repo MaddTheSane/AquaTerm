@@ -7,6 +7,7 @@
 //
 
 #import "AQTPath.h"
+#import "ARCBridge.h"
 
 @interface AQTGraphic ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -78,7 +79,7 @@
   {
      free(dynamicPathStore);
   }
-  [super dealloc];
+  SUPERDEALLOC;
 }
 
 - (void)setLinewidth:(float)lw
@@ -108,13 +109,13 @@
         [points addObject:[NSValue valueWithPoint:path[i]]];
       }
       [coder encodeObject:points forKey:AQTPathPathKey];
-      [points release];
+      RELEASEOBJ(points);
       points = [[NSMutableArray alloc] initWithCapacity:MAX_PATTERN_COUNT];
       for (i = 0; i < patternCount; i++) {
         [points addObject:@(pattern[i])];
       }
       [coder encodeObject:points forKey:AQTPathPatternKey];
-      [points release];
+      RELEASEOBJ(points);
     }
     [coder encodeDouble:patternPhase forKey:AQTPathPatternPhaseKey];
     [coder encodeBool:hasPattern forKey:AQTPathHasPatternKey];

@@ -9,6 +9,7 @@
 #import "AQTAdapter.h"
 #import "AQTClientManager.h"
 #import "AQTPlotBuilder.h"
+#import "ARCBridge.h"
 
 @implementation AQTAdapter
 /*" AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
@@ -57,8 +58,8 @@ Event handling of user input is provided through an optional callback function.
          serverIsOK = [_clientManager connectToServer];
       }
       if (!serverIsOK) {
-         [self autorelease];
-         self = nil;
+         AUTORELEASEOBJNORETURN(self);
+         return nil;
       }
       [[NSNotificationCenter defaultCenter] addObserver:self
                                                selector:@selector(connectionDidDie:)
@@ -74,18 +75,20 @@ Event handling of user input is provided through an optional callback function.
    return [self initWithServer:nil];
 }
 
+#if !__has_feature(objc_arc)
 - (oneway void)release
 {
    [_clientManager logMessage:[NSString stringWithFormat:@"adapter rc = %lu", (unsigned long)[self retainCount]] logLevel:3];
    [super release];
 }
+#endif
 
 - (void)dealloc
 {
    [_clientManager logMessage:@"adapter dealloc, terminating connection." logLevel:3];
    [[NSNotificationCenter defaultCenter] removeObserver:self];
    [_clientManager terminateConnection];
-   [super dealloc];
+   SUPERDEALLOC;
 }
 
 - (void)setErrorBlock:(void (^)(NSString *))errorBlock

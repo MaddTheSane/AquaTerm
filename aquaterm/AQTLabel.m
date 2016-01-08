@@ -7,6 +7,7 @@
 //
 
 #import "AQTLabel.h"
+#import "ARCBridge.h"
 
 @interface AQTGraphic ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -68,12 +69,14 @@
 
 }
 
+#if !__has_feature(objc_arc)
 -(void)dealloc
 {
   [string release];
   [fontName release];
   [super dealloc];
 }
+#endif
 
 -(NSString *)description
 {
@@ -121,8 +124,8 @@
 {
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding) {
-      string = [[coder decodeObjectForKey:AQTLabelStringKey] retain];
-      fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] retain];
+      string = RETAINOBJ([coder decodeObjectForKey:AQTLabelStringKey]);
+      fontName = RETAINOBJ([coder decodeObjectForKey:AQTLabelFontNameKey]);
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];
       position = [coder decodePointForKey:AQTLabelPositionKey];
       angle = [coder decodeDoubleForKey:AQTLabelAngleKey];
@@ -131,8 +134,8 @@
     } else {
       AQTPoint p;
       float tmpFloat = 0;
-      string = [[coder decodeObject] retain];
-      fontName = [[coder decodeObject] retain];
+      string = RETAINOBJ([coder decodeObject]);
+      fontName = RETAINOBJ([coder decodeObject]);
       [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
       fontSize = tmpFloat;
       [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];

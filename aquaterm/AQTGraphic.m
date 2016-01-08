@@ -44,11 +44,13 @@ typedef struct _AQTColor_v100 {
     return self; 
 }
 
+#if !__has_feature(objc_arc)
 -(void)dealloc
 {
    [_cache release];
    [super dealloc];
 }
+#endif
 -(NSString *)description
 {
   return NSStringFromRect(_bounds);

@@ -7,6 +7,7 @@
 //
 
 #import "AQTModel.h"
+#import "ARCBridge.h"
 
 @interface AQTGraphic ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -48,9 +49,12 @@
 #ifdef MEM_DEBUG
    NSLog(@"[%@(0x%x) %@] %s:%d", NSStringFromClass([self class]), self, NSStringFromSelector(_cmd), __FILE__, __LINE__);
 #endif
+  
+#if !__has_feature(objc_arc)
    [title release];
    [modelObjects release];
    [super dealloc];
+#endif
 }
 
 #define AQTModelModelsKey @"Models"
@@ -88,8 +92,8 @@
 {
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding) {
-      modelObjects = [[coder decodeObjectForKey:AQTModelModelsKey] retain];
-      title = [[coder decodeObjectForKey:AQTModelTitleKey] retain];
+      modelObjects = RETAINOBJ([coder decodeObjectForKey:AQTModelModelsKey]);
+      title = RETAINOBJ([coder decodeObjectForKey:AQTModelTitleKey]);
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];
       dirtyRect = [coder decodeRectForKey:AQTModelDirtyRectKey];
       isDirty = [coder decodeBoolForKey:AQTModelIsDirtyKey];
@@ -97,8 +101,8 @@
       AQTSize s;
       AQTRect r;
       
-      modelObjects = [[coder decodeObject] retain];
-      title = [[coder decodeObject] retain];
+      modelObjects = RETAINOBJ([coder decodeObject]);
+      title = RETAINOBJ([coder decodeObject]);
       [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
       canvasSize.width = s.width; canvasSize.height = s.height;
       [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
@@ -136,7 +140,7 @@
 
 -(NSArray *)modelObjects
 {
-   return [[modelObjects copy] autorelease];
+   return AUTORELEASEOBJ([modelObjects copy]);
 }
 
 -(void)removeAllObjects
@@ -149,7 +153,7 @@
    [modelObjects removeObjectAtIndex:i];
 }
 
-- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nonnull *)buffer count:(NSUInteger)len
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id  _Nonnull *)buffer count:(NSUInteger)len
 {
    return [modelObjects countByEnumeratingWithState:state objects:buffer count:len];
 }

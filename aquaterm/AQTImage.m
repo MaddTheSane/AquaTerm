@@ -6,6 +6,7 @@
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
 #import "AQTImage.h"
+#import "ARCBridge.h"
 
 @interface AQTGraphic ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -54,11 +55,13 @@
   return self;
 }
 
+#if !__has_feature(objc_arc)
 -(void)dealloc
 {
   [bitmap release];
   [super dealloc];
 }
+#endif
 
 #define AQTImageBitmapKey @"Bitmap"
 #define AQTImageBitmapSizeKey @"BitmapSize"
@@ -95,7 +98,7 @@
 {
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding) {
-      bitmap = [[coder decodeObjectForKey:AQTImageBitmapKey] retain];
+      bitmap = RETAINOBJ([coder decodeObjectForKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];
       NSValue * tmpVal = [coder decodeObjectForKey:AQTImageTransformKey];
@@ -105,7 +108,7 @@
       AQTRect r;
       AQTSize s;
       
-      bitmap = [[coder decodeObject] retain];
+      bitmap = RETAINOBJ([coder decodeObject]);
       [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
       bitmapSize.width = s.width; bitmapSize.height = s.height;
       [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];

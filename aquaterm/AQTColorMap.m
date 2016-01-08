@@ -7,6 +7,7 @@
 //
 
 #import "AQTColorMap.h"
+#import "ARCBridge.h"
 
 @implementation AQTColorMap
 @synthesize size;
@@ -23,7 +24,7 @@
      colormap = malloc(size*sizeof(AQTColor));
      if(!colormap)
      {
-        [self autorelease];
+        AUTORELEASEOBJNORETURN(self);
         return nil;
      }
   }
@@ -36,7 +37,7 @@
    {
       free(colormap);
    }
-   [super dealloc];
+   SUPERDEALLOC;
 }
 
 -(void)setColor:(AQTColor)newColor forIndex:(int32_t)index

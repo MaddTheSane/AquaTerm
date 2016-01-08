@@ -14,6 +14,7 @@
 #import "AQTPath.h"
 #import "AQTImage.h"
 #import "AQTColorMap.h"
+#import "ARCBridge.h"
 
 
 @implementation AQTPlotBuilder
@@ -103,9 +104,11 @@
 #warning 64BIT: Check formatting arguments
    NSLog(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
 #endif
+#if !__has_feature(objc_arc)
    [_model release];
    [_colormap release];
    [super dealloc];
+#endif
 }
 
 - (AQTModel *)model
@@ -302,7 +305,7 @@
    lb.fontName = _fontName;
    lb.fontSize = _fontSize;
    [_model addObject:lb];
-   [lb release];
+   RELEASEOBJ(lb);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 //
@@ -363,7 +366,7 @@
       [tmpPath setLinestylePattern:_pattern count:_patternCount phase:_patternPhase];
    }
    [_model addObject:tmpPath];
-   [tmpPath release];
+   RELEASEOBJ(tmpPath);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 //
@@ -413,7 +416,7 @@
    //[tmpPath setLineCapStyle:_capStyle];
    [tmpPath setIsFilled:YES];
    [_model addObject:tmpPath];
-   [tmpPath release];
+   RELEASEOBJ(tmpPath);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 
@@ -443,7 +446,7 @@
    tmpImage.clipRect = _clipRect;
    tmpImage.isClipped = _isClipped;
    [_model addObject:tmpImage];
-   [tmpImage release];
+   RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 
@@ -456,7 +459,7 @@
    tmpImage.clipRect = destBounds; // Override _clipRect to restore old behaviour
    [tmpImage setIsClipped:YES];
    [_model addObject:tmpImage];
-   [tmpImage release];
+   RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 

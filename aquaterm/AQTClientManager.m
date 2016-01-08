@@ -12,6 +12,7 @@
 
 #import "AQTEventProtocol.h"
 #import "AQTConnectionProtocol.h"
+#import "ARCBridge.h"
 
 @implementation AQTClientManager
 @synthesize errorBlock = _errorBlock;
@@ -79,11 +80,14 @@
 - (void)dealloc
 {
    [NSException raise:@"AQTException" format:@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__];
+#if !__has_feature(objc_arc)
+
    [_activePlotKey release];
    [_eventBuffer release];
    [_builders release];
    [_plots release];
    [super dealloc];
+#endif
 }
 
 #pragma mark ==== Server methods ====
@@ -123,7 +127,7 @@
       @try {
          if ([_server conformsToProtocol:@protocol(AQTConnectionProtocol)]) {
             int32_t a,b,c;
-             [_server retain];
+            RETAINOBJNORETURN(_server);
             [_server setProtocolForProxy:@protocol(AQTConnectionProtocol)];
             [_server getServerVersionMajor:&a minor:&b rev:&c];
             [self logMessage:[NSString stringWithFormat:@"Server version %d.%d.%d", a, b, c] logLevel:2];
@@ -149,18 +153,17 @@
    
     if (getenv("AQUATERM_PATH") != (char *)NULL) {
        appURL = [NSURL fileURLWithPath:@(getenv("AQUATERM_PATH"))];
-      status = LSOpenCFURLRef((CFURLRef)appURL, NULL);
+      status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
    } else {
       // Look for AquaTerm at default location
-      status = LSOpenCFURLRef((CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
+      status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
       if (status != noErr) {
          // No, search for it based on creator code, choose latest version
          CFURLRef tmpURL;
          status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);//LSCopyApplicationURLsForBundleIdentifier
          [self logMessage:[NSString stringWithFormat:@"LSFindApplicationForInfo = %ld", (long)status] logLevel:2];
-         appURL = (NSURL*)((status == noErr)?tmpURL:nil);
-         [appURL autorelease];
-         status = LSOpenCFURLRef((CFURLRef)appURL, NULL);
+         appURL = (NSURL*)CFBridgingRelease((status == noErr)?tmpURL:NULL);
+         status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
       }
    }
    [self logMessage:[NSString stringWithFormat:@"LSOpenCFURLRef = %ld", (long)status] logLevel:2];
@@ -175,9 +178,9 @@
       [self setActivePlotKey:key];
       [self closePlot];
    }
-   [allKeys release];
+   RELEASEOBJ(allKeys);
    if([_server isProxy]) {
-      [_server release];
+      RELEASEOBJ(_server);
       _server = nil;
    }
    [self logMessage:@"Terminating connection." logLevel:1];
@@ -187,8 +190,8 @@
 
 - (void)setActivePlotKey:(id)newActivePlotKey
 {
-   [newActivePlotKey retain];
-   [_activePlotKey release];
+   RETAINOBJNORETURN(newActivePlotKey);
+   RELEASEOBJ(_activePlotKey);
    _activePlotKey = newActivePlotKey;
    [self logMessage:_activePlotKey?[NSString stringWithFormat:@"Active plot: %ld", (long)[_activePlotKey integerValue]]:@"**** plot invalid ****"
            logLevel:3];
@@ -259,7 +262,7 @@
       _builders[key] = newBuilder;
       // Clear event buffer
       _eventBuffer[key] = @"0";
-      [newBuilder release];
+      RELEASEOBJ(newBuilder);
    }
    return newBuilder;
 }
@@ -327,7 +330,7 @@
       // [localException raise];
       [self _aqtHandlerError:localException.name];
    }
-   [newBuilder release];
+   RELEASEOBJ(newBuilder);
    return newBuilder;
 }
 
@@ -400,7 +403,7 @@
    if (errorState == YES) return @"42:Server error";
    if (_activePlotKey == nil) return @"43:No plot selected";
    
-   event = [[_eventBuffer[_activePlotKey] copy] autorelease];
+   event = AUTORELEASEOBJ([_eventBuffer[_activePlotKey] copy]);
    _eventBuffer[_activePlotKey] = @"0";
    return event;
 }

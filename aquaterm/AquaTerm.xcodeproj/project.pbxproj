@@ -24,6 +24,7 @@
 /* Begin PBXBuildFile section */
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
 		55D31F091C3C8F840060FF56 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8252ACC5B321F400CFA73B /* Demo.m */; };
 		55D31F171C3D0F8D0060FF56 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F161C3D0F8D0060FF56 /* main.swift */; };
@@ -191,6 +192,8 @@
 		551A59BE1C3F775D00DED042 /* ARCBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCBridge.h; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
+		5575FDE41C403A4900B7D002 /* PreferenceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceKeys.m; sourceTree = "<group>"; };
+		5575FDE61C403A5800B7D002 /* PreferenceKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceKeys.h; sourceTree = "<group>"; };
 		55D31EF21C3C8DFA0060FF56 /* AquaTermDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D31F061C3C8F020060FF56 /* AquaTermDemoARC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemoARC; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = "Demo-ARC.m"; sourceTree = "<group>"; };
@@ -212,7 +215,7 @@
 		CB58A1FF06F9A60900AF8A5E /* help.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = help.html; path = Help/help.html; sourceTree = SOURCE_ROOT; };
 		CB58A23A06FA0FB600AF8A5E /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = SOURCE_ROOT; };
 		CB5B187104A9A49E00EBD329 /* AQTController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTController.h; sourceTree = "<group>"; };
-		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
+		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
 		CB5B1BEE04A9C2E900EBD329 /* AQTClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTClientProtocol.h; sourceTree = "<group>"; };
 		CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTConnectionProtocol.h; sourceTree = "<group>"; };
 		CB6785CE05866FCE00D208BA /* aquaterm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aquaterm.h; sourceTree = "<group>"; };
@@ -227,7 +230,7 @@
 		CB96E43F06634622001B32F9 /* adapters.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = adapters.html; path = ../../../../../Users/per/Documents/Source/aquaterm_help/build/adapters.html; sourceTree = SOURCE_ROOT; };
 		CB96E44006634622001B32F9 /* releasenotes.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = releasenotes.html; path = /Users/per/Documents/Source/aquaterm_help/build/releasenotes.html; sourceTree = "<absolute>"; };
 		CB9B70D1065A0B9C00563010 /* AQTPrefController.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTPrefController.h; sourceTree = "<group>"; };
-		CB9B70D2065A0B9C00563010 /* AQTPrefController.m */ = {isa = PBXFileReference; fileEncoding = 5; lastKnownFileType = sourcecode.c.objc; path = AQTPrefController.m; sourceTree = "<group>"; };
+		CB9B70D2065A0B9C00563010 /* AQTPrefController.m */ = {isa = PBXFileReference; fileEncoding = 5; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTPrefController.m; sourceTree = "<group>"; };
 		CBAA608305E7AFF0009B33CD /* distroMakefile */ = {isa = PBXFileReference; explicitFileType = sourcecode.make; fileEncoding = 30; path = distroMakefile; sourceTree = "<group>"; };
 		CBAD39C913A2BAF100DA13A1 /* postflight */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = postflight; path = pmscripts/postflight; sourceTree = "<group>"; };
 		CBB06FE805740EB900D208BA /* AQTFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTFunctions.h; sourceTree = "<group>"; };
@@ -369,9 +372,10 @@
 			isa = PBXGroup;
 			children = (
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				5575FDE61C403A5800B7D002 /* PreferenceKeys.h */,
+				5575FDE41C403A4900B7D002 /* PreferenceKeys.m */,
 			);
 			name = "Other Sources";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
@@ -852,6 +856,7 @@
 			files = (
 				CBC4B43C05E4C784001BE8D7 /* main.m in Sources */,
 				CBC4B43D05E4C784001BE8D7 /* AQTView.m in Sources */,
+				5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */,
 				CBC4B43E05E4C784001BE8D7 /* AQTController.m in Sources */,
 				CBC4B43F05E4C784001BE8D7 /* AQTPlot.m in Sources */,
 				CBC4B44005E4C784001BE8D7 /* AQTGraphicDrawingMethods.m in Sources */,

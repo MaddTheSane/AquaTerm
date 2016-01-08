@@ -9,6 +9,7 @@
 #include <tgmath.h>
 
 #import "AQTStringDrawingAdditions.h"
+#import "PreferenceKeys.h"
 
 static NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
 
@@ -56,7 +57,7 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    NSPoint pos = NSZeroPoint;
    NSBezierPath *tmpPath = [NSBezierPath bezierPath];
    BOOL convertSymbolFontToUnicode = [aFont.fontName isEqualToString:@"Symbol"] 
-      && [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldConvertSymbolFont"];
+      && [[NSUserDefaults standardUserDefaults] boolForKey:ConvertSymbolFontKey];
    
    // Remove leading spaces FIXME: trailing as well?, need better solution
    // Don't skip a single space...
@@ -133,7 +134,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    CGFloat glyphHeight = defaultFontSize * fontScale;
    NSInteger attributedSublevel = 0;
    CGFloat baselineOffset = 0.0;
-   BOOL convertSymbolFontToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldConvertSymbolFont"];
+   BOOL convertSymbolFontToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:ConvertSymbolFontKey];
     
    while (*i < strLen) {
       // Read attributes

@@ -6,12 +6,14 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
 #import "AQTController.h"
 #import "AQTPrefController.h"
 #import "AQTAdapter.h"
 
 #import "AQTPlot.h"
-#import <Foundation/Foundation.h>
+
+#import "PreferenceKeys.h"
 
 extern void aqtDebug(id sender);
 extern void aqtTestview(id sender);
@@ -21,7 +23,7 @@ extern void aqtLineDrawingTest(id sender);
 @implementation NSString (AQTRFC2396Support)
 - (NSString *)stringByAddingPercentEscapes
 {
-  return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, CFStringConvertNSStringEncodingToEncoding(NSASCIIStringEncoding)));
+  return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, kCFStringEncodingASCII));
 }
 @end
 
@@ -36,18 +38,23 @@ extern void aqtLineDrawingTest(id sender);
 
 + (void)initialize{
    NSUserDefaults *defaults = preferences;
-   NSDictionary *appDefaults = @{@"CurrentSaveFolder": NSHomeDirectory(), 
-         @"CurrentSaveFormat": @"PDF", 
-         @"ShowProcessName": @0, 
-         @"ShowProcessId": @0, 
-         @"MinimumLinewidth": @0.0,
-         @"ShouldConvertSymbolFont": @1,
-         @"ShouldAntialiasDrawing": @1, 
-         @"ImageInterpolationLevel": @1,
-         @"CrosshairCursorColor": @0,
-         @"CloseWindowWhenClosingPlot": @0,
-         @"ConfirmCloseWindowWhenClosingPlot": @1};
+   NSDictionary *appDefaults = @{SaveFolderKey: [NSURL fileURLWithPath:NSHomeDirectory()],
+         SaveFormatKey: @"PDF", 
+         ShowProcessNameKey: @NO,
+         ShowProcessIDKey: @NO,
+         MinimumLineWidthKey: @0.0,
+         ConvertSymbolFontKey: @YES,
+         AntialiasDrawingKey: @YES,
+         ImageInterpolationKey: @1,
+         CrosshairColorKey: @0,
+         CloseWindowWithPlotKey: @NO,
+         ConfirmCloseWindowWithPlotKey: @YES};
    [defaults registerDefaults:appDefaults];
+  
+   //Make sure that SaveFolderKey is an NSURL
+   if (![defaults URLForKey:SaveFolderKey]) {
+      [defaults removeObjectForKey:SaveFolderKey];
+   }
    
    // Make landscape printing the default
    NSPrintInfo *pi = [NSPrintInfo sharedPrintInfo];
@@ -116,9 +123,7 @@ extern void aqtLineDrawingTest(id sender);
    int32_t terminateDecision = NSTerminateNow;
    BOOL validClients = NO;
    BOOL eventsActive = NO;
-   NSEnumerator *enumObjects = [handlerList objectEnumerator];
-   AQTPlot *aHandler;
-   while (aHandler = [enumObjects nextObject])
+   for (AQTPlot *aHandler in handlerList)
    {
       if ([aHandler clientValidAndResponding])
       {

@@ -11,6 +11,7 @@
 #import "AQTModel.h"
 #import "AQTGraphicDrawingMethods.h"
 #import "AQTPlot.h"
+#import "PreferenceKeys.h"
 
 @implementation AQTView
 @synthesize model;
@@ -19,7 +20,7 @@
 -(void)setCrosshairCursorColor
 {
   NSString *cursorImageName;
-  NSInteger cursorIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"CrosshairCursorColor"];
+  NSInteger cursorIndex = [[NSUserDefaults standardUserDefaults] integerForKey:CrosshairColorKey];
 
   switch (cursorIndex) {
     case 0: 
@@ -177,8 +178,8 @@
    NSRect dirtyCanvasRect;
    NSAffineTransform *transform = [NSAffineTransform transform];
 
-   [NSGraphicsContext currentContext].imageInterpolation = [[NSUserDefaults standardUserDefaults] integerForKey:@"ImageInterpolationLevel"]; // NSImageInterpolationNone FIXME: user prefs
-   [NSGraphicsContext currentContext].shouldAntialias = [[NSUserDefaults standardUserDefaults] boolForKey:@"ShouldAntialiasDrawing"]; // FIXME: user prefs
+   [NSGraphicsContext currentContext].imageInterpolation = [[NSUserDefaults standardUserDefaults] integerForKey:ImageInterpolationKey]; // NSImageInterpolationNone FIXME: user prefs
+   [NSGraphicsContext currentContext].shouldAntialias = [[NSUserDefaults standardUserDefaults] boolForKey:AntialiasDrawingKey]; // FIXME: user prefs
 #ifdef DEBUG_BOUNDS
    [[NSColor redColor] set];
    NSFrameRect(dirtyRect);

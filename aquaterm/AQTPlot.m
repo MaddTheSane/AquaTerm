@@ -17,6 +17,7 @@
 #import "AQTController.h"
 
 #import "AQTEventProtocol.h"
+#import "PreferenceKeys.h"
 
 #define TITLEBAR_HEIGHT 22.0
 #define WINDOW_MIN_WIDTH 200.0
@@ -35,6 +36,7 @@ static inline void NOOP_(id x, ...) {;}
 @implementation AQTPlot
 @synthesize model = model;
 @synthesize client = _client;
+@synthesize acceptingEvents = _acceptingEvents;
 -(instancetype)init
 {
    if (self = [super init])
@@ -63,8 +65,8 @@ static inline void NOOP_(id x, ...) {;}
    [canvas setFrameOrigin:NSMakePoint(0.0, 0.0)];
    if (_clientPID != -1)
    {
-      NSString *nameString = [preferences integerForKey:@"ShowProcessName"]?[NSString stringWithFormat:@"%@ ", _clientName]:@"";
-      NSString *pidString = [preferences integerForKey:@"ShowProcessId"]?[NSString stringWithFormat:@"(%d) ", _clientPID]:@"";
+      NSString *nameString = [preferences boolForKey:ShowProcessNameKey]?[NSString stringWithFormat:@"%@ ", _clientName]:@"";
+      NSString *pidString = [preferences boolForKey:ShowProcessIDKey]?[NSString stringWithFormat:@"(%d) ", _clientPID]:@"";
       canvas.window.title = [NSString stringWithFormat:@"%@%@%@", nameString, pidString, model.title];
    }
    else
@@ -240,8 +242,8 @@ static inline void NOOP_(id x, ...) {;}
 -(void)close
 {
    // Check defaults and maybe throw up a modal sheet asking for confirmation
-   if ([[NSUserDefaults standardUserDefaults] boolForKey:@"CloseWindowWhenClosingPlot"] == YES) {
-      if ([[NSUserDefaults standardUserDefaults] boolForKey:@"ConfirmCloseWindowWhenClosingPlot"] == YES) {
+   if ([[NSUserDefaults standardUserDefaults] boolForKey:CloseWindowWithPlotKey] == YES) {
+      if ([[NSUserDefaults standardUserDefaults] boolForKey:ConfirmCloseWindowWithPlotKey] == YES) {
       NSBeginAlertSheet(@"Close window?", 
                         @"Keep", @"Close", 
                         nil, canvas.window, self, 
@@ -407,9 +409,9 @@ static inline void NOOP_(id x, ...) {;}
       NSLog(@"Failed to load ExtendSavePanel.nib");
       return;
    }
-   [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:@"CurrentSaveFormat"]];
+   [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:SaveFormatKey]];
    savePanel.accessoryView = extendSavePanelView;
-   savePanel.directoryURL = [NSURL fileURLWithPath:[preferences objectForKey:@"CurrentSaveFolder"]];
+   savePanel.directoryURL = [preferences URLForKey:SaveFolderKey];
    savePanel.nameFieldLabel = model.title;
    [savePanel beginSheetModalForWindow:canvas.window completionHandler:^(NSInteger result) {
       NSData *data;
@@ -426,8 +428,8 @@ static inline void NOOP_(id x, ...) {;}
             data = [printView dataWithEPSInsideRect: printView.bounds];
             [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
          }
-         [preferences setObject:filename.stringByDeletingLastPathComponent forKey:@"CurrentSaveFolder"];
-         [preferences setObject:saveFormatPopUp.titleOfSelectedItem forKey:@"CurrentSaveFormat"];
+         [preferences setURL:savePanel.URL.URLByDeletingLastPathComponent forKey:SaveFolderKey];
+         [preferences setObject:saveFormatPopUp.titleOfSelectedItem forKey:SaveFormatKey];
       }
    }];
 }

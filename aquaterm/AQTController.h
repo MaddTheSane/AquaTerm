@@ -10,9 +10,11 @@
 #import <AquaTerm/AQTConnectionProtocol.h>
 
 @class AQTAdapter;
+@class AQTPlot;
+
 @interface AQTController : NSObject <NSApplicationDelegate, NSWindowDelegate, AQTConnectionProtocol>
 {
-  NSMutableArray	*handlerList;		/*" Array of client handlers "*/
+  NSMutableArray<AQTPlot*>*handlerList;		/*" Array of client handlers "*/
   NSPopUpButton		*saveFormatPopup;
   NSBox			*extendSavePanelView;
   NSPoint cascadingPoint;

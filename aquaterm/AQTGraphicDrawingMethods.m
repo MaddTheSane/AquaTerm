@@ -13,6 +13,7 @@
 #import <AquaTerm/AQTImage.h>
 #import <AquaTerm/AQTFunctions.h>
 #import "AQTStringDrawingAdditions.h"
+#import "PreferenceKeys.h"
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,
 this is ugly, but I can't see a simple way to do it without affecting performance. */
@@ -63,7 +64,7 @@ static float _aqtMinimumLinewidth;
    AQTGraphic *graphic;
    NSEnumerator *enumerator = [modelObjects objectEnumerator];
    
-   _aqtMinimumLinewidth = [[NSUserDefaults standardUserDefaults] floatForKey:@"MinimumLinewidth"];
+   _aqtMinimumLinewidth = [[NSUserDefaults standardUserDefaults] floatForKey:MinimumLineWidthKey];
    
    while ((graphic = [enumerator nextObject]))
    {
@@ -84,16 +85,13 @@ static float _aqtMinimumLinewidth;
 
 -(void)renderInRect:(NSRect)aRect
 {
-   AQTGraphic *graphic;
-   NSEnumerator *enumerator = [modelObjects objectEnumerator];
-   
    // Model object is responsible for background...
    [self setAQTColor];
    // FIXME: needed to synchronize colors
    [[NSColor colorWithCalibratedRed:_color.red green:_color.green blue:_color.blue alpha:1.0] set];
    NSRectFill(aRect);
    
-   while ((graphic = [enumerator nextObject])) {
+   for (AQTGraphic *graphic in modelObjects) {
       [graphic renderInRect:aRect];
    }
 }

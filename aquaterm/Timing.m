@@ -45,6 +45,7 @@ void aqtStringDrawingTest(id sender)
 {
 #ifndef AQT_STANDALONE
   AQTAdapter *adapter = [sender sharedAdapter];
+  [adapter class];
 #endif  
 }
 

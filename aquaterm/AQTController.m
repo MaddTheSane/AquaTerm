@@ -38,7 +38,7 @@ extern void aqtLineDrawingTest(id sender);
 
 + (void)initialize{
    NSUserDefaults *defaults = preferences;
-   NSDictionary *appDefaults = @{SaveFolderKey: [NSURL fileURLWithPath:NSHomeDirectory()],
+   NSDictionary *appDefaults = @{SaveFolderKey: NSHomeDirectory(),
          SaveFormatKey: @"PDF", 
          ShowProcessNameKey: @NO,
          ShowProcessIDKey: @NO,
@@ -53,7 +53,7 @@ extern void aqtLineDrawingTest(id sender);
   
    //Make sure that SaveFolderKey is an NSURL
    if (![defaults URLForKey:SaveFolderKey]) {
-      [defaults removeObjectForKey:SaveFolderKey];
+      [defaults setURL:[NSURL fileURLWithPath:NSHomeDirectory()] forKey:SaveFolderKey];
    }
    
    // Make landscape printing the default

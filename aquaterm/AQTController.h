@@ -15,8 +15,8 @@
 @interface AQTController : NSObject <NSApplicationDelegate, NSWindowDelegate, AQTConnectionProtocol>
 {
   NSMutableArray<AQTPlot*>*handlerList;		/*" Array of client handlers "*/
-  NSPopUpButton		*saveFormatPopup;
-  NSBox			*extendSavePanelView;
+  NSPopUpButton   *saveFormatPopup;
+  NSBox           *extendSavePanelView;
   NSPoint cascadingPoint;
 }
 

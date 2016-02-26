@@ -85,7 +85,7 @@ static inline void NOOP_(id x, ...) {;}
    }
    canvas.window.maxSize = maxSize;   // FIXME: take screen size into account
    canvas.window.minSize = minSize;
-   canvas.isProcessingEvents = _acceptingEvents;
+   canvas.processingEvents = _acceptingEvents;
 }
 
 -(void)awakeFromNib
@@ -227,7 +227,7 @@ static inline void NOOP_(id x, ...) {;}
    _acceptingEvents = flag; // && (_client != nil);
    if (_isWindowLoaded)
    {
-      canvas.isProcessingEvents = _acceptingEvents;
+      canvas.processingEvents = _acceptingEvents;
    }
 }
 

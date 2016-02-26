@@ -19,7 +19,7 @@
 }
 @property (unsafe_unretained) AQTModel *model;
 @property (readonly, getter=isPrinting) BOOL printing;
-@property (nonatomic) BOOL isProcessingEvents;
+@property (nonatomic, getter=isProcessingEvents) BOOL processingEvents;
 
 /*" Utility methods "*/
 - (NSPoint)convertPointToCanvasCoordinates:(NSPoint)viewPoint;

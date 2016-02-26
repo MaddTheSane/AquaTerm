@@ -17,8 +17,7 @@ extension NSPoint {
 	}
 }
 
-let adap = AQTAdapter()
-func aqtTestview(adapter: AQTAdapter) {
+let adapter = AQTAdapter()
 	var points = [NSPoint](count: 128, repeatedValue: NSPoint())
 	var pos = NSPoint()
 	//var i = 0
@@ -365,6 +364,3 @@ func aqtTestview(adapter: AQTAdapter) {
 	// [NSException raise:@"AQTFatalException" format:@"Testing"];
 	
 	adapter.closePlot()
-}
-
-aqtTestview(adap)

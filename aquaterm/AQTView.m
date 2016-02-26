@@ -15,7 +15,7 @@
 
 @implementation AQTView
 @synthesize model;
-@synthesize isProcessingEvents = _isProcessingEvents;
+@synthesize processingEvents = _isProcessingEvents;
 
 -(void)setCrosshairCursorColor
 {

@@ -18,7 +18,7 @@
   AQTModel	*model;		/*" Holds the model for the view "*/
   BOOL _isWindowLoaded;
   BOOL _acceptingEvents;
-  id <NSObject, AQTEventProtocol> _client;
+  id <AQTEventProtocol> _client;
   pid_t _clientPID;
   NSString *_clientName;
   // interface additions

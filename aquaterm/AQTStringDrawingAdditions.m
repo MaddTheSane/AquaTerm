@@ -24,9 +24,9 @@ static NSImage *_aqtSharedScratchPad(void)
 }
 
 /* Utility function to map Adobe Symbol encoding to unicode */ 
-unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
+static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 {
-   unichar map[256] = {
+   static const unichar map[256] = {
       0x0000, 0x0001, 0x0002, 0x0003, 0x0004, 0x0005, 0x0006, 0x0007, 0x0008, 0x0009, 0x000A, 0x000B, 0x000C, 0x000D, 0x000E, 0x000F,
       0x0010, 0x0011, 0x0012, 0x0013, 0x0014, 0x0015, 0x0016, 0x0017, 0x0018, 0x0019, 0x001A, 0x001B, 0x001C, 0x001D, 0x001E, 0x001F,
       0x0020, 0x0021, 0x2200, 0x0023, 0x2203, 0x0025, 0x0026, 0x220D, 0x0028, 0x0029, 0x2217, 0x002B, 0x002C, 0x2212, 0x002E, 0x002F,
@@ -148,7 +148,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
       attributedSublevel = (attributes[NSSuperscriptAttributeName] != nil)?
          [attributes[NSSuperscriptAttributeName] integerValue]:
          0;
-      float baselineAdjust = (attributes[@"AQTBaselineAdjust"] != nil)?
+      CGFloat baselineAdjust = (attributes[@"AQTBaselineAdjust"] != nil)?
          [attributes[@"AQTBaselineAdjust"] doubleValue]:
          0.0;
       BOOL isVisible = (attributes[@"AQTNonPrintingChar"] == nil 

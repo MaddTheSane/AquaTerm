@@ -1127,7 +1127,6 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1147,7 +1146,6 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1523,6 +1521,7 @@
 				550857ED1C80F6FD005ACF4A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		55D31EF61C3C8DFB0060FF56 /* Build configuration list for PBXNativeTarget "AquaTermDemo" */ = {
 			isa = XCConfigurationList;

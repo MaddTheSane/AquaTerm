@@ -58,7 +58,7 @@ AQTAdapter *adapter = [sender sharedAdapter];
 
 [adapter openPlotWithIndex:1];
 adapter.plotSize = NSMakeSize(620,420);
-adapter.plotTitle = @"Testview";
+adapter.plotTitle = @"Testview (ARC)";
 [adapter setAcceptingEvents:YES];
 // Set colormap
 [adapter setColormapEntry:0 red:1.0 green:1.0 blue:1.0]; // white

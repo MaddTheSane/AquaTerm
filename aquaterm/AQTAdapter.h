@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)openPlotWithIndex:(int32_t)refNum; 
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
 @property NSSize plotSize;
-@property (copy) NSString *plotTitle;
+@property (copy, null_resettable) NSString *plotTitle;
 - (void)renderPlot;
 - (void)clearPlot;
 - (void)closePlot;

@@ -31,7 +31,7 @@ let adapter = AQTAdapter()!
 		0, 0, 0
 	];
 	adapter.openPlotWithIndex(1)
-	adapter.plotSize =  NSMakeSize(620,420)
+	adapter.plotSize =  NSSize(width: 620, height: 420)
 	adapter.plotTitle = "TestView"
 	adapter.setAcceptingEvents(true)
 	
@@ -51,13 +51,13 @@ let adapter = AQTAdapter()!
 	adapter.addLabel("Testview 620x420 pt", atPoint: NSPoint(x: 4, y: 412), angle: 0.0, align: .Left)
 	// MARK: Frame plot
 	adapter.moveToPoint(NSPoint(x: 20,y: 20))
-	adapter.addLineToPoint(NSPoint(x: 600,y: 20))
-	adapter.addLineToPoint(NSPoint(x: 600,y: 400))
-	adapter.addLineToPoint(NSPoint(x: 20,y: 400))
-	adapter.addLineToPoint(NSPoint(x: 20,y: 20))
-	adapter.addLabel("Frame 600x400 pt", atPoint: NSPoint(x: 24,y: 30), angle:0.0, align:.Left)
+	adapter.addLineToPoint(NSPoint(x: 600, y: 20))
+	adapter.addLineToPoint(NSPoint(x: 600, y: 400))
+	adapter.addLineToPoint(NSPoint(x: 20, y: 400))
+	adapter.addLineToPoint(NSPoint(x: 20, y: 20))
+	adapter.addLabel("Frame 600x400 pt", atPoint: NSPoint(x: 24, y: 30), angle: 0.0, align: .Left)
 	// MARK: Colormap
-	adapter.addLabel("Custom colormap (8 out of 256)", atPoint:NSPoint(x: 30, y: 385), angle:0.0, align:.Left)
+	adapter.addLabel("Custom colormap (8 out of 256)", atPoint:NSPoint(x: 30, y: 385), angle: 0.0, align: .Left)
 	// Display the colormap, but first create a background for the white box...
 	adapter.setColorRed(0.8, green:0.8, blue:0.8)
 	adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))

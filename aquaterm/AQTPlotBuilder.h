@@ -13,6 +13,8 @@
 #import "AQTClientProtocol.h"
 #include "aquaterm.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 // This is the default colormap size
 #define AQT_COLORMAP_SIZE 256
 
@@ -101,3 +103,5 @@
    /*" Misc. "*/
 - (void)removeAllParts;
 @end
+
+NS_ASSUME_NONNULL_END

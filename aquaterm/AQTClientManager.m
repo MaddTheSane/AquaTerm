@@ -103,7 +103,7 @@
 
 - (BOOL)connectToServerWithName:(NSString *)registeredName
 {
-[self logMessage:@"Trying to connect..." logLevel:2];
+   [self logMessage:@"Trying to connect..." logLevel:2];
    // FIXME: Check to see if _server exists.
    BOOL didConnect = NO;
    _server = [NSConnection rootProxyForConnectionWithRegisteredName:registeredName host:nil];
@@ -158,6 +158,9 @@
       // Look for AquaTerm at default location
       status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
       if (status != noErr) {
+         status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:[@"~/Applications/AquaTerm.app" stringByExpandingTildeInPath]], NULL);
+      }
+      if (status != noErr) {
          // No, search for it based on creator code, choose latest version
          CFURLRef tmpURL;
          status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);//LSCopyApplicationURLsForBundleIdentifier
@@ -187,6 +190,8 @@
 }
 
 #pragma mark ==== Accessors ====
+
+@synthesize activePlotKey = _activePlotKey;
 
 - (void)setActivePlotKey:(id)newActivePlotKey
 {

@@ -72,32 +72,17 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if (coder.allowsKeyedCoding) {
     [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
     [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
     [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
     [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
     [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
-  } else {
-    AQTRect r;
-    AQTSize s;
-    
-    [coder encodeObject:bitmap];
-    // 64bit compatibility
-    s.width = bitmapSize.width; s.height = bitmapSize.height;
-    [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
-    r.origin.x = _bounds.origin.x; r.origin.y = _bounds.origin.y;
-    r.size.width = _bounds.size.width; r.size.height = _bounds.size.height;
-    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-    [coder encodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
-    [coder encodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
-  }
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTImageBitmapKey]) {
       bitmap = RETAINOBJ([coder decodeObjectForKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];

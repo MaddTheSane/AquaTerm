@@ -1,50 +1,59 @@
-framework module AquaTerm {
+framework module AquaTerm [extern_c] {
 	umbrella header "aquaterm.h"
 	
 	module AQTAdapter {
 		requires objc
 		header "AQTAdapter.h"
+		export *
 	}
 	
 	explicit module AQTModel {
 		requires objc
 		header "AQTModel.h"
-		
+		export *
 		
 		module AQTGraphic {
 			header "AQTGraphic.h"
+			export *
 		}
 		
 		module AQTColorMap {
 			header "AQTColorMap.h"
+			export *
 		}
 		
 		module AQTLabel {
 			header "AQTLabel.h"
+			export *
 		}
 		
 		module AQTImage {
 			header "AQTImage.h"
+			export *
 		}
 		
 		module AQTPath {
 			header "AQTPath.h"
+			export *
 		}
 	}
 	
 	explicit module AQTFunctions {
 		requires objc
 		header "AQTFunctions.h"
+		export *
 	}
 	
 	explicit module AQTClientManager {
 		requires objc
 		header "AQTClientManager.h"
+		export *
 	}
 	
 	explicit module AQTPlotBuilder {
 		requires objc
 		header "AQTPlotBuilder.h"
+		export *
 	}
 	
 	explicit module AQTProtocols {
@@ -52,12 +61,17 @@ framework module AquaTerm {
 		
 		module AQTClientProtocol {
 			header "AQTClientProtocol.h"
+			export *
 		}
+		
 		module AQTEventProtocol {
 			header "AQTEventProtocol.h"
+			export *
 		}
+		
 		module AQTConnectionProtocol {
 			header "AQTConnectionProtocol.h"
+			export *
 		}
 	}
 	

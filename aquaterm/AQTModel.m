@@ -66,32 +66,17 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if (coder.allowsKeyedCoding) {
     [coder encodeObject:modelObjects forKey:AQTModelModelsKey];
     [coder encodeObject:title forKey:AQTModelTitleKey];
     [coder encodeSize:canvasSize forKey:AQTModelCanvasSizeKey];
     [coder encodeRect:dirtyRect forKey:AQTModelDirtyRectKey];
     [coder encodeBool:isDirty forKey:AQTModelIsDirtyKey];
-  } else {
-    AQTSize s;
-    AQTRect r;
-    
-    [coder encodeObject:modelObjects];
-    [coder encodeObject:title];
-    // 64bit compatibility
-    s.width = canvasSize.width; s.height = canvasSize.height;
-    [coder encodeValueOfObjCType:@encode(AQTSize) at:&s];
-    r.origin.x = dirtyRect.origin.x; r.origin.x = dirtyRect.origin.y;
-    r.size.width = dirtyRect.size.width; r.size.height = dirtyRect.size.height;
-    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-    [coder encodeValueOfObjCType:@encode(BOOL) at:&isDirty];
-  }
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTModelModelsKey]) {
       modelObjects = RETAINOBJ([coder decodeObjectForKey:AQTModelModelsKey]);
       title = RETAINOBJ([coder decodeObjectForKey:AQTModelTitleKey]);
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];

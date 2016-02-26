@@ -10,6 +10,8 @@
 #import <Foundation/NSGeometry.h>
 #include "aquaterm.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @class AQTPlotBuilder, AQTClientManager;
 @interface AQTAdapter : NSObject
 {
@@ -21,12 +23,12 @@
 }
 
 /*" Class initialization etc."*/
-- (instancetype)init;
-- (instancetype)initWithServer:(id)localServer NS_DESIGNATED_INITIALIZER;
-@property (copy) void (^errorBlock)(NSString *msg);
-@property (copy) void (^eventBlock)(int index, NSString *event);
-- (void)setErrorHandler:(void (*)(NSString *msg))fPtr;
-- (void)setEventHandler:(void (*)(int index, NSString *event))fPtr;
+- (nullable instancetype)init;
+- (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
+@property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
+@property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
+- (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
+- (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
   /*" Control operations "*/
 - (void)openPlotWithIndex:(int32_t)refNum; 
@@ -107,3 +109,5 @@
   /*"Private methods"*/
 - (void)timingTestWithTag:(uint32_t)tag;
 @end
+
+NS_ASSUME_NONNULL_END

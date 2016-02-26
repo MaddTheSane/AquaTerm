@@ -68,29 +68,17 @@ typedef struct _AQTColor_v100 {
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-  if (coder.allowsKeyedCoding) {
     [coder encodeObject:[NSValue value:&_color withObjCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
     [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
     [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
     [coder encodeBool:_isClipped forKey:AQTGraphicIsClippedKey];
-  } else {
-    AQTRect r;
-    [coder encodeValueOfObjCType:@encode(AQTColor) at:&_color];
-    r.origin.x = _bounds.origin.x; r.origin.y = _bounds.origin.y;
-    r.size.width = _bounds.size.width; r.size.height = _bounds.size.height;
-    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-    r.origin.x = _clipRect.origin.x; r.origin.y = _clipRect.origin.y;
-    r.size.width = _clipRect.size.width; r.size.height = _clipRect.size.height;
-    [coder encodeValueOfObjCType:@encode(AQTRect) at:&r];
-    [coder encodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
-  }
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   AQTRect r;
   if (self = [super init]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTGraphicColorKey]) {
       NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
       [tmpColor getValue:&_color];
       _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];

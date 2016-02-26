@@ -94,7 +94,6 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-  if (coder.allowsKeyedCoding) {
     [coder encodeObject:string forKey:AQTLabelStringKey];
     [coder encodeObject:fontName forKey:AQTLabelFontNameKey];
     [coder encodeDouble:fontSize forKey:AQTLabelFontSizeKey];
@@ -102,28 +101,12 @@
     [coder encodeDouble:angle forKey:AQTLabelAngleKey];
     [coder encodeInt32:justification forKey:AQTLabelJustificationKey];
     [coder encodeDouble:shearAngle forKey:AQTLabelShearAngleKey];
-  } else {
-    AQTPoint p;
-    float tmpFloat;
-    [coder encodeObject:string];
-    [coder encodeObject:fontName];
-    tmpFloat = fontSize;
-    [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
-    // 64bit safe
-    p.x = position.x; p.y = position.y;
-    [coder encodeValueOfObjCType:@encode(AQTPoint) at:&p];
-    tmpFloat = angle;
-    [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
-    [coder encodeValueOfObjCType:@encode(int32_t) at:&justification];
-    tmpFloat = shearAngle;
-    [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
-  }
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTLabelStringKey]) {
       string = RETAINOBJ([coder decodeObjectForKey:AQTLabelStringKey]);
       fontName = RETAINOBJ([coder decodeObjectForKey:AQTLabelFontNameKey]);
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];

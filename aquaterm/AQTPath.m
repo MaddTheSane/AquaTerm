@@ -99,7 +99,6 @@
 {
   NSInteger i;
   [super encodeWithCoder:coder];
-  if (coder.allowsKeyedCoding) {
     [coder encodeBool:isFilled forKey:AQTPathIsFilledKey];
     [coder encodeInt32:lineCapStyle forKey:AQTPathLineCapStyleKey];
     [coder encodeDouble:linewidth forKey:AQTPathLineWidthKey];
@@ -119,34 +118,13 @@
     }
     [coder encodeDouble:patternPhase forKey:AQTPathPatternPhaseKey];
     [coder encodeBool:hasPattern forKey:AQTPathHasPatternKey];
-  } else {
-    AQTPoint p;
-    float tmpFloat;
-    
-    [coder encodeValueOfObjCType:@encode(BOOL) at:&isFilled];
-    [coder encodeValueOfObjCType:@encode(int32_t) at:&lineCapStyle];
-    tmpFloat = linewidth;
-    [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
-    [coder encodeValueOfObjCType:@encode(int32_t) at:&pointCount];
-    // Fix for 64bit interoperability: NSPoint is of type GCFloat which is double on 64 bit and float on 32
-    for( i = 0; i < pointCount; i++ )
-    {
-      p.x = path[i].x; p.y = path[i].y;
-      [coder encodeValueOfObjCType:@encode(AQTPoint) at:&p];
-    }
-    [coder encodeValueOfObjCType:@encode(int32_t) at:&patternCount];
-    [coder encodeArrayOfObjCType:@encode(float) count:patternCount at:pattern];
-    tmpFloat = patternPhase;
-    [coder encodeValueOfObjCType:@encode(float) at:&tmpFloat];
-    [coder encodeValueOfObjCType:@encode(BOOL) at:&hasPattern];
-  }
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   NSInteger i;
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTPathIsFilledKey]) {
       isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
       lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
       linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];

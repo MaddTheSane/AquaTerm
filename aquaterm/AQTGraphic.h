@@ -42,7 +42,7 @@ typedef struct _AQTRect {
     @protected
        id _cache;   
 }
--(instancetype)init NS_DESIGNATED_INITIALIZER;
+-(nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
 
 /*" accessor methods "*/
 @property NSRect bounds;

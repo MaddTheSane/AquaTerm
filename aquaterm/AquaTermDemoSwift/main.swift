@@ -17,7 +17,7 @@ extension NSPoint {
 	}
 }
 
-let adapter = AQTAdapter()
+let adapter = AQTAdapter()!
 	var points = [NSPoint](count: 128, repeatedValue: NSPoint())
 	var pos = NSPoint()
 	//var i = 0

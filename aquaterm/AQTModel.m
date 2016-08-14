@@ -76,9 +76,9 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTModelModelsKey]) {
+    if (coder.allowsKeyedCoding) {
       modelObjects = RETAINOBJ([coder decodeObjectForKey:AQTModelModelsKey]);
-      title = RETAINOBJ([coder decodeObjectForKey:AQTModelTitleKey]);
+      title = [[coder decodeObjectForKey:AQTModelTitleKey] copy];
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];
       dirtyRect = [coder decodeRectForKey:AQTModelDirtyRectKey];
       isDirty = [coder decodeBoolForKey:AQTModelIsDirtyKey];
@@ -87,7 +87,7 @@
       AQTRect r;
       
       modelObjects = RETAINOBJ([coder decodeObject]);
-      title = RETAINOBJ([coder decodeObject]);
+      title = [[coder decodeObject] copy];
       [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
       canvasSize.width = s.width; canvasSize.height = s.height;
       [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];

@@ -61,26 +61,26 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;
 
   /*" Color handling "*/
-- (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a;
-- (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a;
-- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
-- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
-- (void)setColorRed:(float)r green:(float)g blue:(float)b;
-- (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b;
-- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b;
-- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b;
+- (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a NS_SWIFT_NAME(setColor(red:green:blue:alpha:));
+- (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a  NS_SWIFT_NAME(setBackgroundColor(red:green:blue:alpha:));
+- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getColor(red:green:blue:alpha:));
+- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getBackgroundColor(red:green:blue:alpha:));
+- (void)setColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setColor(red:green:blue:));
+- (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setBackgroundColor(red:green:blue:));
+- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getColor(red:green:blue:));
+- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
 
   /*" Text handling "*/
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
-- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE;
-- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE;
+- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the fontName setter");
+- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the fontSize setter");
 - (void)addLabel:(id)text atPoint:(NSPoint)pos;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the lineWidth setter");
 @property CGFloat lineWidth;
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;

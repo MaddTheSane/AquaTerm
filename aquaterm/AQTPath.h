@@ -31,7 +31,7 @@
    CGFloat patternPhase;
 }
 - (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
-- (void)setLinewidth:(float)lw DEPRECATED_ATTRIBUTE;
+- (void)setLinewidth:(float)lw DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use lineWidth setter");
 @property CGFloat lineWidth;
 @property AQTLineCapStyle lineCapStyle;
 @property BOOL isFilled;

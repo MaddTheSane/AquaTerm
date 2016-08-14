@@ -45,7 +45,7 @@ let adapter = AQTAdapter()!
 	adapter.setColormapEntry(6, red:1.0, green:1.0, blue:0.5) // yellow
 	adapter.setColormapEntry(7, red:0.0, green:0.5, blue:0.5) // dark green
 	// Set color directly
-	adapter.setColorRed(0, green: 0, blue: 0)
+	adapter.setColor(red: 0, green: 0, blue: 0)
 	adapter.fontName = "Helvetica"
 	adapter.fontSize = 12.0
 	adapter.addLabel("Testview 620x420 pt", atPoint: NSPoint(x: 4, y: 412), angle: 0.0, align: .Left)
@@ -59,13 +59,13 @@ let adapter = AQTAdapter()!
 	// MARK: Colormap
 	adapter.addLabel("Custom colormap (8 out of 256)", atPoint:NSPoint(x: 30, y: 385), angle: 0.0, align: .Left)
 	// Display the colormap, but first create a background for the white box...
-	adapter.setColorRed(0.8, green:0.8, blue:0.8)
+	adapter.setColor(red: 0.8, green:0.8, blue:0.8)
 	adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
 	for i in 0..<8 {
 		adapter.takeColorFromColormapEntry(Int32(i))
 		adapter.addFilledRect(NSRect(x: 30+i*30, y: 350, width: 20, height: 20))
 		// Print the color index
-		adapter.setColorRed(0.5, green:0.5, blue:0.5)
+		adapter.setColor(red: 0.5, green:0.5, blue:0.5)
 		adapter.addLabel("\(i)" as NSString,
 			atPoint: NSPoint(x: 40+i*30, y: 360),
 			angle: 0,
@@ -77,11 +77,11 @@ let adapter = AQTAdapter()!
 	adapter.lineWidth = 1.0
 	for i in 0..<256 {
 		f = Float(i)/255.0;
-		adapter.setColorRed(1.0, green:f, blue:f/2.0)
+		adapter.setColor(red: 1.0, green:f, blue:f/2.0)
 		adapter.addFilledRect(NSRect(x: 320+i, y: 350, width: 1, height: 20))
-		adapter.setColorRed(0.0, green: f, blue: (1.0-f))
+		adapter.setColor(red: 0.0, green: f, blue: (1.0-f))
 		adapter.addFilledRect(NSRect(x: 320+i, y: 328, width: 1, height: 20))
-		adapter.setColorRed((1.0-f), green:(1.0-f), blue:(1.0-f))
+		adapter.setColor(red: (1.0-f), green:(1.0-f), blue:(1.0-f))
 		adapter.addFilledRect(NSRect(x: 320+i, y: 306, width: 1, height: 20))
 	}
 	
@@ -103,9 +103,9 @@ let adapter = AQTAdapter()!
 	autoreleasepool() {
 		let r = NSMakeRect(200, 200, 60, 120);
 		adapter.addLabel("Clip rects", atPoint:NSPoint(x: 200, y: 325))
-		adapter.setColorRed(0.9, green:0.9, blue:0.9)
+		adapter.setColor(red: 0.9, green:0.9, blue:0.9)
 		adapter.addFilledRect(r)
-		adapter.setColorRed(0, green:0, blue:0)
+		adapter.setColor(red: 0, green:0, blue:0)
 		adapter.clipRect = r
 		adapter.addLabel("Clipped text. Clipped text. Clipped text.", atPoint:NSMakePoint(180, 230), angle:30.0, align:[.Center, .Middle])
 		adapter.lineWidth = 1.0
@@ -242,8 +242,8 @@ let adapter = AQTAdapter()!
 				let radians = Double(i)*M_PI/16.0, r = 20.0;
 				points[i] = NSPoint(x: x+r*cos(radians), y: y+r*sin(radians));
 			}
-			adapter.setColorRed(red, green:green, blue:blue, alpha:0.5)
-			adapter.addPolygonWithVertexPoints(points, pointCount:32)
+			adapter.setColor(red: red, green:green, blue:blue, alpha:0.5)
+			adapter.addPolygonWithVertexPoints(points, pointCount: 32)
 		}
 	}
 	// MARK: Images

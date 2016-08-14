@@ -321,7 +321,7 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
       }
       if (fitBounds == YES) {
          [_cache drawInRect:_bounds
-                   fromRect:NSMakeRect(0,0,[_cache size].width,[_cache size].height)
+                   fromRect:NSMakeRect(0,0,[(NSImage*)_cache size].width,[(NSImage*)_cache size].height)
                   operation:NSCompositeSourceOver
                    fraction:1.0];
       } else {
@@ -335,7 +335,7 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
          transf.transformStruct = AQTConvertTransformStructToNS(transform);
          [transf concat];
          [_cache drawAtPoint:NSMakePoint(0,0)
-                    fromRect:NSMakeRect(0,0,[_cache size].width,[_cache size].height)
+                    fromRect:NSMakeRect(0,0,[(NSImage*)_cache size].width,[(NSImage*)_cache size].height)
                    operation:NSCompositeSourceOver
                     fraction:1.0];
          if (!_isClipped)

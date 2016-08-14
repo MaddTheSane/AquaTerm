@@ -15,7 +15,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// This is the default colormap size
+/// This is the default colormap size
 #define AQT_COLORMAP_SIZE 256
 
 // This is the maximum practically useable path length due to the way Quartz renders a path
@@ -26,24 +26,24 @@ NS_ASSUME_NONNULL_BEGIN
 @class AQTModel, AQTColorMap;
 @interface AQTPlotBuilder : NSObject
 {
-  AQTModel *_model;	/*" The graph currently being built "*/
-  AQTColor _color;	/*" Currently selected color "*/
-  NSString *_fontName;	/*" Currently selected font "*/
-  CGFloat _fontSize;	/*" Currently selected fontsize [pt]"*/
-  CGFloat _linewidth;	/*" Currently selected linewidth [pt] "*/
-  AQTLineCapStyle _capStyle; /*" Currently selected linecap style "*/
-  NSPoint _polylinePoints[MAX_POLYLINE_POINTS];	/*" A cache for coalescing connected line segments into a single path "*/
-  int32_t _polylinePointCount;	/*" The current number of points in _polylinePoints"*/
-  NSPoint _polygonPoints[MAX_POLYGON_POINTS];	/*" A cache for coalescing connected line segments into a single path "*/
-  int32_t _polygonPointCount;	/*" The current number of points in _polylinePoints"*/
-  BOOL _hasSize; /*" A flag to indicate that size has been set at least once "*/
-  BOOL _modelIsDirty;	/*" A flag indicating that AquaTerm has not been updated with the latest info "*/
+  AQTModel *_model;	/**< The graph currently being built */
+  AQTColor _color;	/**< Currently selected color */
+  NSString *_fontName;	/**< Currently selected font */
+  CGFloat _fontSize;	/**< Currently selected fontsize [pt] */
+  CGFloat _linewidth;	/**< Currently selected linewidth [pt] */
+  AQTLineCapStyle _capStyle; /**< Currently selected linecap style */
+  NSPoint _polylinePoints[MAX_POLYLINE_POINTS];	/**< A cache for coalescing connected line segments into a single path */
+  int32_t _polylinePointCount;	/**< The current number of points in \c _polylinePoints */
+  NSPoint _polygonPoints[MAX_POLYGON_POINTS];	/**< A cache for coalescing connected line segments into a single path */
+  int32_t _polygonPointCount;	/**< The current number of points in \c _polylinePoints */
+  BOOL _hasSize; /**< A flag to indicate that size has been set at least once */
+  BOOL _modelIsDirty;	/**< A flag indicating that AquaTerm has not been updated with the latest info */
   AQTAffineTransformStruct _transform;
   AQTColorMap *_colormap;
-  BOOL _hasPattern; /*" Current pattern state "*/
-  float _pattern[MAX_PATTERN_COUNT]; /*" Currently selected dash pattern "*/
-  int32_t _patternCount;   /*" Currently selected dash count "*/
-  CGFloat _patternPhase; /*" Currently selected dash phase "*/
+  BOOL _hasPattern; /**< Current pattern state */
+  float _pattern[MAX_PATTERN_COUNT]; /**< Currently selected dash pattern */
+  int32_t _patternCount;   /**< Currently selected dash count */
+  CGFloat _patternPhase; /**< Currently selected dash phase */
   NSRect _clipRect;
   BOOL _isClipped;
 }
@@ -71,14 +71,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
   /*" Text handling "*/
-- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE;
-- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE;
+- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use fontName setter");
+- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use fontSize setter");
 @property (copy) NSString* fontName;
 @property CGFloat fontSize;
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE;
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use lineWidth setter");
 @property (nonatomic) CGFloat lineWidth;
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;

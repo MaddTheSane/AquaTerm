@@ -11,18 +11,19 @@
 
 @interface AQTModel : AQTGraphic <NSFastEnumeration> /*" NSObject "*/
 {
-   NSMutableArray<AQTGraphic*> *modelObjects; /*" An array of AQTGraphic objects (leaf or collection) "*/
-   NSString       *title; /*" Associate a title with the model. Default is 'Figure n'. "*/
+   NSMutableArray<AQTGraphic*> *modelObjects; /**< An array of \c AQTGraphic objects (leaf or collection) */
+   NSString       *title; /**< Associate a title with the model. Default is 'Figure n'. */
    NSSize         canvasSize;
    NSRect         dirtyRect;
    BOOL           isDirty;
 }
-- (instancetype)init;
+-(instancetype)init;
 -(instancetype)initWithCanvasSize:(NSSize)canvasSize NS_DESIGNATED_INITIALIZER;
 @property NSSize canvasSize;
 @property (readonly) NSRect dirtyRect;
 @property (readonly, getter=isDirty) BOOL dirty;
 @property (readonly) NSInteger count;
+/// Add any subclass of AQTGraphic to the collection of objects
 -(void)addObject:(AQTGraphic *)graphic;
 -(void)addObjectsFromArray:(NSArray<AQTGraphic*> *)graphics;
 @property (readonly, copy) NSArray<AQTGraphic*> *modelObjects;

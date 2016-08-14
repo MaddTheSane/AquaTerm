@@ -21,7 +21,11 @@
 typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleButt = 0,
    AQTLineCapStyleRound = 1,
-   AQTLineCapStyleSquare = 2
+   AQTLineCapStyleSquare = 2,
+
+   AQTButtLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleButt instead") CF_SWIFT_UNAVAILABLE("Use .Butt instead") = AQTLineCapStyleButt,
+   AQTRoundLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleRound instead") CF_SWIFT_UNAVAILABLE("Use .Round instead") = AQTLineCapStyleRound,
+   AQTSquareLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleSquare instead") CF_SWIFT_UNAVAILABLE("Use .Square instead") = AQTLineCapStyleSquare
 };
 
 /*" Constants that specify horizontal and vertical alignment for labels. See #addLabel:atPoint:angle:align: for definitions and use."*/
@@ -40,11 +44,25 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
 /*" Class initialization etc."*/
 bool aqtInit(void);
 void aqtTerminate(void);
-/* The event handler callback functionality should be used with caution, it may 
+/** The event handler callback functionality should be used with caution, it may
    not be safe to use in all circumstances. It is certainly _not_ threadsafe. 
    If in doubt, use aqtWaitNextEvent() instead. */
+/*!
+ * @function aqtSetEventHandler
+ * @discussion
+ * The event handler callback functionality should be used with caution, it may
+ * not be safe to use in all circumstances. It is certainly _not_ threadsafe.
+ * If in doubt, use aqtWaitNextEvent() instead.
+ */
 void aqtSetEventHandler(void (*func)(int ref, const char *event));
 
+/*!
+ * @function aqtSetEventBlock
+ * @discussion
+ * The event handler callback functionality should be used with caution, it may
+ * not be safe to use in all circumstances. It is certainly _not_ threadsafe.
+ * If in doubt, use aqtWaitNextEvent() instead.
+ */
 void aqtSetEventBlock(void (^func)(int ref, const char *event));
 
 /*" Control operations "*/
@@ -67,7 +85,7 @@ int32_t aqtWaitNextEvent(char *buffer);
 void aqtSetClipRect(float originX, float originY, float width, float height);
 void aqtSetDefaultClipRect(void);
 
-/*" Colormap (utility  "*/
+/*" Colormap (utility)  "*/
 int32_t aqtColormapSize(void);
 void aqtSetColormapEntryRGBA(int32_t entryIndex, float r, float g, float b, float a);
 void aqtGetColormapEntryRGBA(int32_t entryIndex, float *r, float *g, float *b, float *a);
@@ -113,10 +131,5 @@ void aqtSetImageTransform(float m11, float m12, float m21, float m22, float tX, 
 void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
-
-/*" Deprecated constants "*/
-#define AQTButtLineCapStyle AQTLineCapStyleButt
-#define AQTRoundLineCapStyle AQTLineCapStyleRound
-#define AQTSquareLineCapStyle AQTLineCapStyleSquare
 
 #endif

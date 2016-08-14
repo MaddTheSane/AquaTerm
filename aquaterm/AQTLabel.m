@@ -9,7 +9,6 @@
 #import "AQTLabel.h"
 #import "ARCBridge.h"
 
-
 @interface AQTLabel ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @end
@@ -104,7 +103,7 @@
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding) {
       string = RETAINOBJ([coder decodeObjectForKey:AQTLabelStringKey]);
-      fontName = RETAINOBJ([coder decodeObjectForKey:AQTLabelFontNameKey]);
+      fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] copy];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];
       position = [coder decodePointForKey:AQTLabelPositionKey];
       angle = [coder decodeDoubleForKey:AQTLabelAngleKey];
@@ -114,7 +113,7 @@
       AQTPoint p;
       float tmpFloat = 0;
       string = RETAINOBJ([coder decodeObject]);
-      fontName = RETAINOBJ([coder decodeObject]);
+      fontName = [[coder decodeObject] copy];
       [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
       fontSize = tmpFloat;
       [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];

@@ -17,10 +17,7 @@ typedef struct _AQTColor_v100 {
 @implementation AQTGraphic
 @synthesize clipped = _isClipped;
 @synthesize clipRect = _clipRect;
-    /**"
-    *** An abstract class to derive model objects from
-    *** (Overkill at present but could come in handy if the app grows)
-    "**/
+
 - (id)replacementObjectForPortCoder:(NSPortCoder *)portCoder
 {
   if ([portCoder isBycopy])

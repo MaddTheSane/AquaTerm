@@ -32,6 +32,8 @@ typedef struct _AQTRect {
   AQTSize size;
 } AQTRect;
 
+/// An abstract class to derive model objects from
+/// (Overkill at present but could come in handy if the app grows)
 @interface AQTGraphic : NSObject <NSSecureCoding>
 {
     AQTColor _color;

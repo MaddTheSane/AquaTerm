@@ -5,14 +5,13 @@
 //  Created by Per Persson on Tue Feb 05 2002.
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
+
 #import "AQTImage.h"
 #import "ARCBridge.h"
-
 
 @interface AQTImage ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @end
-
 
 @implementation AQTImage
 @synthesize transform;

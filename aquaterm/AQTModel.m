@@ -9,23 +9,15 @@
 #import "AQTModel.h"
 #import "ARCBridge.h"
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 @interface AQTModel ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @end
-
 
 @implementation AQTModel
 @synthesize title;
 @synthesize canvasSize;
 @synthesize dirtyRect;
 @synthesize dirty = isDirty;
-/**"
-*** A class representing a collection of objects making up the plot.
-"**/
 
 -(instancetype)initWithCanvasSize:(NSSize)size
 {
@@ -110,9 +102,6 @@
   return modelObjects.count;
 }
 
-/**"
-*** Add any subclass of AQTGraphic to the collection of objects.
-"**/
 -(void)addObject:(AQTGraphic *)graphic
 {
   [modelObjects addObject:graphic];

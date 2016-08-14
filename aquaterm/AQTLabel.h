@@ -22,6 +22,7 @@
 }
 - (instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)justify NS_DESIGNATED_INITIALIZER;
 - (instancetype)initWithString:(NSString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)justify NS_DESIGNATED_INITIALIZER;
+
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
 @end

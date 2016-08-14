@@ -78,10 +78,10 @@ NSRect AQTUnionRect(NSRect aRect, NSRect bRect)
       return AQTIsZeroRect(aRect)?bRect:aRect;
    else
    {
-      float x = MIN(NSMinX(aRect), NSMinX(bRect));
-      float y = MIN(NSMinY(aRect), NSMinY(bRect));
-      float w = MAX(NSMaxX(aRect), NSMaxX(bRect)) - x;
-      float h = MAX(NSMaxY(aRect), NSMaxY(bRect)) - y;
+      CGFloat x = MIN(NSMinX(aRect), NSMinX(bRect));
+      CGFloat y = MIN(NSMinY(aRect), NSMinY(bRect));
+      CGFloat w = MAX(NSMaxX(aRect), NSMaxX(bRect)) - x;
+      CGFloat h = MAX(NSMaxY(aRect), NSMaxY(bRect)) - y;
 
       return NSMakeRect(x, y, w, h);
    }

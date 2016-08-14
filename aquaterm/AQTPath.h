@@ -30,13 +30,15 @@
    int32_t patternCount;
    CGFloat patternPhase;
 }
+
 - (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
-- (void)setLinewidth:(float)lw DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+
 @property CGFloat lineWidth;
 @property AQTLineCapStyle lineCapStyle;
 @property (getter=isFilled) BOOL filled;
 @property (readonly) BOOL hasPattern;
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
+- (void)setLinewidth:(float)lw DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 - (void)setIsFilled:(BOOL)newFill DEPRECATED_MSG_ATTRIBUTE("Use the filled property") NS_SWIFT_UNAVAILABLE("Use the .filled property");
 @end

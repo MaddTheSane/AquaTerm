@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
   /*" Event handling "*/
 - (void)setAcceptingEvents:(BOOL)flag;
 @property (readonly, copy) NSString *lastEvent;
-@property (readonly, copy) NSString *waitNextEvent; 
+- (NSString *)waitNextEvent;
 
 /*" Plotting related commands "*/
 

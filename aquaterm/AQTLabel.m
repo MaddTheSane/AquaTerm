@@ -9,10 +9,6 @@
 #import "AQTLabel.h"
 #import "ARCBridge.h"
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 
 @interface AQTLabel ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -106,7 +102,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTLabelStringKey]) {
+    if (coder.allowsKeyedCoding) {
       string = RETAINOBJ([coder decodeObjectForKey:AQTLabelStringKey]);
       fontName = RETAINOBJ([coder decodeObjectForKey:AQTLabelFontNameKey]);
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];

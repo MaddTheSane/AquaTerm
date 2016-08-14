@@ -8,10 +8,6 @@
 #import "AQTImage.h"
 #import "ARCBridge.h"
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 
 @interface AQTImage ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
@@ -82,7 +78,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTImageBitmapKey]) {
+    if (coder.allowsKeyedCoding) {
       bitmap = RETAINOBJ([coder decodeObjectForKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];
@@ -110,6 +106,11 @@
 {
   transform = newTransform;
   fitBounds = NO;
+}
+
+- (void)setIsClipped:(BOOL)newClip
+{
+  self.clipped = newClip;
 }
 
 @end

@@ -9,10 +9,6 @@
 #import "AQTPath.h"
 #import "ARCBridge.h"
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 @interface AQTPath ()
 -(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @end
@@ -20,7 +16,7 @@
 @implementation AQTPath
 @synthesize lineWidth = linewidth;
 @synthesize lineCapStyle;
-@synthesize isFilled;
+@synthesize filled = isFilled;
 @synthesize hasPattern;
 
 /*" A private method to provide storage for an NSPointArray "*/
@@ -124,7 +120,7 @@
 {
   NSInteger i;
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTPathIsFilledKey]) {
+    if (coder.allowsKeyedCoding) {
       isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
       lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
       linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];
@@ -199,6 +195,11 @@
    patternCount = newCount;
    patternPhase = newPhase;
    hasPattern = YES;
+}
+
+- (void)setIsFilled:(BOOL)newFill
+{
+  self.filled = newFill;
 }
 
 @end

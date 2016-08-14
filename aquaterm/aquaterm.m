@@ -58,6 +58,10 @@ void aqtSetEventBlock(void (^func)(int ref, const char *event))
    if (func2) {
       Block_release(func2);
    }
+   if (!func) {
+      _adapter.eventBlock = nil;
+      return;
+   }
    func2 = Block_copy(func);
    _adapter.eventBlock = ^(int ref, NSString *event){
       _mayCleanPool = NO;
@@ -68,11 +72,15 @@ void aqtSetEventBlock(void (^func)(int ref, const char *event))
 
 void aqtSetEventHandler(void (*func)(int ref, const char *event))
 {
-   _adapter.eventBlock = ^(int ref, NSString *event){
-      _mayCleanPool = NO;
-      func(ref, event.UTF8String);
-      _mayCleanPool = YES;
-   };
+   if (!func) {
+      _adapter.eventBlock = nil;
+   } else {
+      _adapter.eventBlock = ^(int ref, NSString *event){
+         _mayCleanPool = NO;
+         func(ref, event.UTF8String);
+         _mayCleanPool = YES;
+      };
+   }
 }
 
 /*" Control operations "*/

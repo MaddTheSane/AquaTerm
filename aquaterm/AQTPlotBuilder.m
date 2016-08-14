@@ -299,7 +299,7 @@
          NSLog(@"Error, not a string.");
       }
    }
-   lb.isClipped = _isClipped;
+   lb.clipped = _isClipped;
    lb.clipRect = _clipRect;
    lb.color = _color;
    lb.fontName = _fontName;
@@ -357,7 +357,7 @@
    tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
    // Copy current properties to path
    tmpPath.clipRect = _clipRect;
-   tmpPath.isClipped = _isClipped;
+   tmpPath.clipped = _isClipped;
    tmpPath.color = _color;
    tmpPath.lineWidth = _linewidth;
    tmpPath.lineCapStyle = _capStyle;
@@ -410,11 +410,11 @@
    AQTPath *tmpPath;
    tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
    tmpPath.clipRect = _clipRect;
-   tmpPath.isClipped = _isClipped;
+   tmpPath.clipped = _isClipped;
    tmpPath.color = _color;
    tmpPath.lineWidth = 0.25; // FIXME: What to do about the see-through edges?
    //[tmpPath setLineCapStyle:_capStyle];
-   [tmpPath setIsFilled:YES];
+   [tmpPath setFilled:YES];
    [_model addObject:tmpPath];
    RELEASEOBJ(tmpPath);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
@@ -444,7 +444,7 @@
 {
    AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:destBounds];
    tmpImage.clipRect = _clipRect;
-   tmpImage.isClipped = _isClipped;
+   tmpImage.clipped = _isClipped;
    [_model addObject:tmpImage];
    RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
@@ -457,7 +457,7 @@
    AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:NSZeroRect];
    tmpImage.transform = _transform;
    tmpImage.clipRect = destBounds; // Override _clipRect to restore old behaviour
-   [tmpImage setIsClipped:YES];
+   [tmpImage setClipped:YES];
    [_model addObject:tmpImage];
    RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];

@@ -14,12 +14,8 @@ typedef struct _AQTColor_v100 {
    float blue;
 } AQTColor_v100;
 
-@interface AQTGraphic ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 @implementation AQTGraphic
-@synthesize isClipped = _isClipped;
+@synthesize clipped = _isClipped;
 @synthesize clipRect = _clipRect;
     /**"
     *** An abstract class to derive model objects from
@@ -51,6 +47,7 @@ typedef struct _AQTColor_v100 {
    [super dealloc];
 }
 #endif
+
 -(NSString *)description
 {
   return NSStringFromRect(_bounds);
@@ -78,7 +75,7 @@ typedef struct _AQTColor_v100 {
 {
   AQTRect r;
   if (self = [super init]) {
-    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTGraphicColorKey]) {
+    if (coder.allowsKeyedCoding) {
       NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
       [tmpColor getValue:&_color];
       _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];
@@ -112,5 +109,10 @@ typedef struct _AQTColor_v100 {
 //
 @synthesize bounds = _bounds;
 @synthesize color = _color;
+
+- (void)setIsClipped:(BOOL)newClip
+{
+	self.clipped = newClip;
+}
 
 @end

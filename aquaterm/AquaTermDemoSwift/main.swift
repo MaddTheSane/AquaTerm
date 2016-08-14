@@ -59,15 +59,15 @@ let adapter = AQTAdapter()!
 	// MARK: Colormap
 	adapter.addLabel("Custom colormap (8 out of 256)", atPoint:NSPoint(x: 30, y: 385), angle: 0.0, align: .Left)
 	// Display the colormap, but first create a background for the white box...
-	adapter.setColor(red: 0.8, green:0.8, blue:0.8)
+	adapter.setColor(red: 0.8, green: 0.8, blue: 0.8)
 	adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
 	for i in 0..<8 {
 		adapter.takeColorFromColormapEntry(Int32(i))
 		adapter.addFilledRect(NSRect(x: 30+i*30, y: 350, width: 20, height: 20))
 		// Print the color index
-		adapter.setColor(red: 0.5, green:0.5, blue:0.5)
+		adapter.setColor(red: 0.5, green: 0.5, blue: 0.5)
 		adapter.addLabel("\(i)" as NSString,
-			atPoint: NSPoint(x: 40+i*30, y: 360),
+			atPoint: NSPoint(x: 40 + i * 30, y: 360),
 			angle: 0,
 			align: .Center)
 	}
@@ -77,11 +77,11 @@ let adapter = AQTAdapter()!
 	adapter.lineWidth = 1.0
 	for i in 0..<256 {
 		f = Float(i)/255.0;
-		adapter.setColor(red: 1.0, green:f, blue:f/2.0)
+		adapter.setColor(red: 1.0, green: f, blue: f / 2.0)
 		adapter.addFilledRect(NSRect(x: 320+i, y: 350, width: 1, height: 20))
-		adapter.setColor(red: 0.0, green: f, blue: (1.0-f))
+		adapter.setColor(red: 0.0, green: f, blue: 1.0 - f)
 		adapter.addFilledRect(NSRect(x: 320+i, y: 328, width: 1, height: 20))
-		adapter.setColor(red: (1.0-f), green:(1.0-f), blue:(1.0-f))
+		adapter.setColor(red: 1.0 - f, green:1.0 - f, blue: 1.0 - f)
 		adapter.addFilledRect(NSRect(x: 320+i, y: 306, width: 1, height: 20))
 	}
 	
@@ -90,12 +90,13 @@ let adapter = AQTAdapter()!
 	
 	adapter.takeColorFromColormapEntry(1)
 	adapter.addLabel("Specify linewidth and pattern", atPoint:NSPoint(x: 30, y: 325))
-	for f=1.0; f<13.0; f+=2.0 {
+	for f2 in 1.stride(to: 13, by: 2) {
+		f = Float(f2)
 		let lw = f/2.0;
 		adapter.lineWidth = CGFloat(round(lw - 0.5))
-		adapter.setLinestylePattern(pat[(Int(f)) % 3], count:4, phase:0.0)
-		adapter.moveToPoint(NSPoint(x: 30, y: 200.5+f*10))
-		adapter.addLineToPoint(NSPoint(x: 180, y: 200.5+f*10))
+		adapter.setLinestylePattern(pat[f2 % 3], count: 4, phase: 0.0)
+		adapter.moveToPoint(NSPoint(x: 30, y: 200.5 + f * 10))
+		adapter.addLineToPoint(NSPoint(x: 180, y: 200.5 + f * 10))
 	}
 	adapter.setLinestyleSolid()
 	
@@ -107,19 +108,19 @@ let adapter = AQTAdapter()!
 		adapter.addFilledRect(r)
 		adapter.setColor(red: 0, green:0, blue:0)
 		adapter.clipRect = r
-		adapter.addLabel("Clipped text. Clipped text. Clipped text.", atPoint:NSMakePoint(180, 230), angle:30.0, align:[.Center, .Middle])
+		adapter.addLabel("Clipped text. Clipped text. Clipped text.", atPoint: NSMakePoint(180, 230), angle: 30.0, align: [.Center, .Middle])
 		adapter.lineWidth = 1.0
 		for i in 0..<5 {
-			let radians=Double(i)*M_PI*0.8
-			let r=30.0
-			points[i]=NSPoint(x: 240.0+r*cos(radians), y: 215.0+r*sin(radians));
+			let radians = Double(i) * M_PI * 0.8
+			let r = 30.0
+			points[i] = NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians));
 		}
 		adapter.takeColorFromColormapEntry(3)
 		adapter.addPolygonWithVertexPoints(points, pointCount: 5)
 		adapter.takeColorFromColormapEntry(1)
 		points[5] = points[0];
 		adapter.addPolylineWithPoints(points, pointCount:6)
-		adapter.addImageWithBitmap(rgbImage, size:NSMakeSize(2,2), bounds:NSMakeRect(190, 280, 50, 50)) // ClipRect demo
+		adapter.addImageWithBitmap(rgbImage, size:NSMakeSize(2, 2), bounds:NSMakeRect(190, 280, 50, 50)) // ClipRect demo
 		adapter.setDefaultClipRect()
 		
 		// ***** Reset clip rect! *****
@@ -132,7 +133,7 @@ let adapter = AQTAdapter()!
 	adapter.lineCapStyle = .Butt
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 170.5))
 	adapter.addLineToPoint(NSPoint(x: 150.5, y: 170.5))
-	adapter.addLabel("AQTLineCapStyle.Butt", atPoint:NSMakePoint(160.5, 170.5), angle:0.0, align:.Left)
+	adapter.addLabel("AQTLineCapStyle.Butt", atPoint: NSMakePoint(160.5, 170.5), angle: 0.0, align: .Left)
 	adapter.lineWidth = 1.0
 	adapter.takeColorFromColormapEntry(6)
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 170.5))
@@ -143,7 +144,7 @@ let adapter = AQTAdapter()!
 	adapter.lineCapStyle = .Round
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 150.5))
 	adapter.addLineToPoint(NSPoint(x: 150.5, y: 150.5))
-	adapter.addLabel("AQTLineCapStyle.Round", atPoint: NSPoint(x: 160.5, y: 150.5), angle:0.0, align:.Left)
+	adapter.addLabel("AQTLineCapStyle.Round", atPoint: NSPoint(x: 160.5, y: 150.5), angle: 0.0, align: .Left)
 	adapter.lineWidth = 1.0
 	adapter.takeColorFromColormapEntry(6)
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 150.5))
@@ -154,7 +155,7 @@ let adapter = AQTAdapter()!
 	adapter.lineCapStyle = .Square
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
 	adapter.addLineToPoint(NSPoint(x: 150.5, y: 130.5))
-	adapter.addLabel("AQTLineCapStyle.Square", atPoint: NSPoint(x: 160.5, y: 130.5), angle:0.0, align:.Left)
+	adapter.addLabel("AQTLineCapStyle.Square", atPoint: NSPoint(x: 160.5, y: 130.5), angle: 0.0, align: .Left)
 	adapter.lineWidth = 1.0
 	adapter.takeColorFromColormapEntry(6)
 	adapter.moveToPoint(NSPoint(x: 40.5, y: 130.5))
@@ -210,8 +211,8 @@ let adapter = AQTAdapter()!
 	adapter.takeColorFromColormapEntry(2)
 	adapter.addPolygonWithVertexPoints(points, pointCount:4)
 	for i in 0..<5 {
-		let radians=Double(i)*M_PI*0.8
-		let r=20.0;
+		let radians = Double(i) * M_PI * 0.8
+		let r = 20.0
 		points[i] = NSPoint(x: 400.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColorFromColormapEntry(3)
@@ -221,9 +222,9 @@ let adapter = AQTAdapter()!
 	adapter.addPolygonWithVertexPoints(points, pointCount:6)
 	
 	for i in 0..<8 {
-		let radians = Double(i)*M_PI/4.0
+		let radians = Double(i) * M_PI / 4.0
 		let r = 20.0;
-		points[i] = NSPoint(x: 460.0+r*cos(radians), y: 255.0+r*sin(radians));
+		points[i] = NSPoint(x: 460.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColorFromColormapEntry(4)
 	adapter.addPolygonWithVertexPoints(points, pointCount:8)
@@ -239,10 +240,10 @@ let adapter = AQTAdapter()!
 		
 		for (x, y, red, green, blue) in circleInfo {
 			for i in 0..<32 {
-				let radians = Double(i)*M_PI/16.0, r = 20.0;
-				points[i] = NSPoint(x: x+r*cos(radians), y: y+r*sin(radians));
+				let radians = Double(i) * M_PI / 16.0, r = 20.0;
+				points[i] = NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 			}
-			adapter.setColor(red: red, green:green, blue:blue, alpha:0.5)
+			adapter.setColor(red: red, green: green, blue: blue, alpha: 0.5)
 			adapter.addPolygonWithVertexPoints(points, pointCount: 32)
 		}
 	}

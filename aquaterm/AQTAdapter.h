@@ -73,14 +73,14 @@ NS_ASSUME_NONNULL_BEGIN
   /*" Text handling "*/
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
-- (void)setFontname:(NSString *)newFontname DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the fontName setter");
-- (void)setFontsize:(float)newFontsize DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the fontSize setter");
+- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
+- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the f.ontSize property");
 - (void)addLabel:(id)text atPoint:(NSPoint)pos;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just;
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_ATTRIBUTE NS_SWIFT_UNAVAILABLE("Use the lineWidth setter");
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 @property CGFloat lineWidth;
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;

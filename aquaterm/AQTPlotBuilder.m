@@ -350,11 +350,11 @@
 }
 
    // This is where all line-drawing  ends up eventually. 
-- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
    // Create a path
-   tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
+   tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
    // Copy current properties to path
    tmpPath.clipRect = _clipRect;
    tmpPath.clipped = _isClipped;
@@ -405,10 +405,10 @@
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 
-- (void)addPolygonWithPoints:(const NSPoint *)points pointCount:(int32_t)pc
+- (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
-   tmpPath = [[AQTPath alloc] initWithPoints:(NSPointArray)points pointCount:pc];
+   tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];
    tmpPath.clipRect = _clipRect;
    tmpPath.clipped = _isClipped;
    tmpPath.color = _color;
@@ -435,10 +435,8 @@
 //
 // AQTImage
 //
-- (void)setImageTransform:(AQTAffineTransformStruct)trans
-{
-   _transform = trans;
-}
+
+@synthesize imageTransform = _transform;
 
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
 {

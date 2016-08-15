@@ -36,14 +36,14 @@ let adapter = AQTAdapter()!
 	adapter.setAcceptingEvents(true)
 	
 	// Set colormap
-	adapter.setColormapEntry(0, red:1.0, green:1.0, blue:1.0) // white
-	adapter.setColormapEntry(1, red:0.0, green:0.0, blue:0.0) //black
-	adapter.setColormapEntry(2, red:1.0, green:0.0, blue:0.0) // red
-	adapter.setColormapEntry(3, red:0.0, green:1.0, blue:0.0) // green
-	adapter.setColormapEntry(4, red:0.0, green:0.0, blue:1.0) // blue
-	adapter.setColormapEntry(5, red:1.0, green:0.0, blue:1.0) // purple
-	adapter.setColormapEntry(6, red:1.0, green:1.0, blue:0.5) // yellow
-	adapter.setColormapEntry(7, red:0.0, green:0.5, blue:0.5) // dark green
+	adapter.setColormapEntry(0, red: 1.0, green: 1.0, blue: 1.0) // white
+	adapter.setColormapEntry(1, red: 0.0, green: 0.0, blue: 0.0) //black
+	adapter.setColormapEntry(2, red: 1.0, green: 0.0, blue: 0.0) // red
+	adapter.setColormapEntry(3, red: 0.0, green: 1.0, blue: 0.0) // green
+	adapter.setColormapEntry(4, red: 0.0, green: 0.0, blue: 1.0) // blue
+	adapter.setColormapEntry(5, red: 1.0, green: 0.0, blue: 1.0) // purple
+	adapter.setColormapEntry(6, red: 1.0, green: 1.0, blue: 0.5) // yellow
+	adapter.setColormapEntry(7, red: 0.0, green: 0.5, blue: 0.5) // dark green
 	// Set color directly
 	adapter.setColor(red: 0, green: 0, blue: 0)
 	adapter.fontName = "Helvetica"
@@ -57,13 +57,13 @@ let adapter = AQTAdapter()!
 	adapter.addLineToPoint(NSPoint(x: 20, y: 20))
 	adapter.addLabel("Frame 600x400 pt", atPoint: NSPoint(x: 24, y: 30), angle: 0.0, align: .Left)
 	// MARK: Colormap
-	adapter.addLabel("Custom colormap (8 out of 256)", atPoint:NSPoint(x: 30, y: 385), angle: 0.0, align: .Left)
+	adapter.addLabel("Custom colormap (8 out of 256)", atPoint: NSPoint(x: 30, y: 385), angle: 0.0, align: .Left)
 	// Display the colormap, but first create a background for the white box...
 	adapter.setColor(red: 0.8, green: 0.8, blue: 0.8)
 	adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
 	for i in 0..<8 {
 		adapter.takeColorFromColormapEntry(Int32(i))
-		adapter.addFilledRect(NSRect(x: 30+i*30, y: 350, width: 20, height: 20))
+		adapter.addFilledRect(NSRect(x: 30 + i * 30, y: 350, width: 20, height: 20))
 		// Print the color index
 		adapter.setColor(red: 0.5, green: 0.5, blue: 0.5)
 		adapter.addLabel("\(i)" as NSString,
@@ -73,23 +73,23 @@ let adapter = AQTAdapter()!
 	}
 	// MARK: Contiouos colors
 	adapter.takeColorFromColormapEntry(1)
-	adapter.addLabel("\"Any color you like\"", atPoint:NSMakePoint(320, 385), angle:0.0, align:.Left)
+	adapter.addLabel("\"Any color you like\"", atPoint: NSPoint(x: 320, y: 385), angle: 0.0, align: .Left)
 	adapter.lineWidth = 1.0
 	for i in 0..<256 {
-		f = Float(i)/255.0;
+		f = Float(i) / 255.0
 		adapter.setColor(red: 1.0, green: f, blue: f / 2.0)
-		adapter.addFilledRect(NSRect(x: 320+i, y: 350, width: 1, height: 20))
+		adapter.addFilledRect(NSRect(x: 320 + i, y: 350, width: 1, height: 20))
 		adapter.setColor(red: 0.0, green: f, blue: 1.0 - f)
-		adapter.addFilledRect(NSRect(x: 320+i, y: 328, width: 1, height: 20))
+		adapter.addFilledRect(NSRect(x: 320 + i, y: 328, width: 1, height: 20))
 		adapter.setColor(red: 1.0 - f, green:1.0 - f, blue: 1.0 - f)
-		adapter.addFilledRect(NSRect(x: 320+i, y: 306, width: 1, height: 20))
+		adapter.addFilledRect(NSRect(x: 320 + i, y: 306, width: 1, height: 20))
 	}
 	
 	// MARK: Lines
 	let pat: [[Float]] = [[4,2,4,2],[4,2,2,2],[8,4,8,4],[2,2,2,2]]
 	
 	adapter.takeColorFromColormapEntry(1)
-	adapter.addLabel("Specify linewidth and pattern", atPoint:NSPoint(x: 30, y: 325))
+	adapter.addLabel("Specify linewidth and pattern", atPoint: NSPoint(x: 30, y: 325))
 	for f2 in 1.stride(to: 13, by: 2) {
 		f = Float(f2)
 		let lw = f/2.0;
@@ -120,7 +120,7 @@ let adapter = AQTAdapter()!
 		adapter.takeColorFromColormapEntry(1)
 		points[5] = points[0];
 		adapter.addPolylineWithPoints(points, pointCount:6)
-		adapter.addImageWithBitmap(rgbImage, size:NSMakeSize(2, 2), bounds:NSMakeRect(190, 280, 50, 50)) // ClipRect demo
+		adapter.addImageWithBitmap(rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 190, y: 280, width: 50, height: 50)) // ClipRect demo
 		adapter.setDefaultClipRect()
 		
 		// ***** Reset clip rect! *****
@@ -231,7 +231,7 @@ let adapter = AQTAdapter()!
 	
 	// Circles with alpha transparency
 	adapter.takeColorFromColormapEntry(1)
-	adapter.addLabel("Alpha channel", atPoint:NSMakePoint(530, 290), angle:0.0, align: .Center)
+	adapter.addLabel("Alpha channel", atPoint: NSPoint(x: 530, y: 290), angle: 0.0, align: .Center)
 	do {
 		let circleInfo: [(x: Double, y: Double, red: Float, green: Float, blue: Float)] = [
 			(520, 255, 1, 0, 0),
@@ -249,14 +249,14 @@ let adapter = AQTAdapter()!
 	}
 	// MARK: Images
 	adapter.takeColorFromColormapEntry(1)
-	adapter.addLabel("Images", atPoint:NSMakePoint(320, 220), angle:0.0, align: .Left)
-	adapter.addImageWithBitmap(rgbImage, size:NSMakeSize(2,2), bounds:NSMakeRect(328, 200, 4, 4))
-	adapter.addLabel("bits", atPoint: NSMakePoint(330, 180), angle:0.0, align: .Center)
-	adapter.addImageWithBitmap(rgbImage, size:NSMakeSize(2,2), bounds:NSMakeRect(360, 190, 40, 15))
-	adapter.addLabel("fit bounds", atPoint:NSMakePoint(380, 180), angle:0.0, align: .Center)
-	adapter.setImageTransformM11(9.23880, m12:3.82683, m21:-3.82683, m22:9.23880, tX:494.6, tY:186.9)
-	adapter.addTransformedImageWithBitmap(rgbImage, size: NSMakeSize(2,2), clipRect:NSMakeRect(0, 0, 600, 400))
-	adapter.addLabel("scale, rotate & translate", atPoint:NSMakePoint(500, 180), angle:0.0, align: .Center)
+	adapter.addLabel("Images", atPoint: NSPoint(x: 320, y: 220), angle: 0.0, align: .Left)
+	adapter.addImageWithBitmap(rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 328, y: 200, width: 4, height: 4))
+	adapter.addLabel("bits", atPoint: NSPoint(x: 330, y: 180), angle: 0.0, align: .Center)
+	adapter.addImageWithBitmap(rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 360, y: 190, width: 40, height: 15))
+	adapter.addLabel("fit bounds", atPoint: NSPoint(x: 380, y: 180), angle: 0.0, align: .Center)
+	adapter.setImageTransformM11(9.23880, m12: 3.82683, m21: -3.82683, m22: 9.23880, tX: 494.6, tY: 186.9)
+	adapter.addTransformedImageWithBitmap(rgbImage, size: NSSize(width: 2, height: 2), clipRect: NSRect(x: 0, y: 0, width: 600, height: 400))
+	adapter.addLabel("scale, rotate & translate", atPoint: NSPoint(x: 500, y: 180), angle: 0.0, align: .Center)
 	adapter.resetImageTransform() // clean up
 	
 	// MARK: Text
@@ -266,7 +266,7 @@ let adapter = AQTAdapter()!
 		let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}";
 		let attrStr = NSMutableAttributedString(string: s)
 		attrStr.setAttributes(["AQTFontname": "AppleSymbols"], range: NSMakeRange(9,11))
-		attrStr.setAttributes(["AQTFontname": "STSong"], range:NSMakeRange(13,1))
+		attrStr.setAttributes(["AQTFontname": "STSong"], range: NSMakeRange(13,1))
 		
 		adapter.takeColorFromColormapEntry(1)
 		adapter.fontName = "Times-Roman"
@@ -287,28 +287,28 @@ let adapter = AQTAdapter()!
 		adapter.moveToPoint(NSPoint(x: 510.5, y: 160))
 		adapter.addLineToPoint(NSPoint(x: 510.5, y: 100))
 		pos = NSPoint(x: 540.5, y: 75.5);
-		adapter.moveToPoint(NSPoint(x: pos.x+5, y: pos.y))
-		adapter.addLineToPoint(NSPoint(x: pos.x-5, y: pos.y))
-		adapter.moveToPoint(NSPoint(x: pos.x, y: pos.y+5))
-		adapter.addLineToPoint(NSPoint(x: pos.x, y: pos.y-5))
+		adapter.moveToPoint(NSPoint(x: pos.x + 5, y: pos.y))
+		adapter.addLineToPoint(NSPoint(x: pos.x - 5, y: pos.y))
+		adapter.moveToPoint(NSPoint(x: pos.x, y: pos.y + 5))
+		adapter.addLineToPoint(NSPoint(x: pos.x, y: pos.y - 5))
 		
 		adapter.takeColorFromColormapEntry(1)
 		adapter.fontName = "Verdana"
 		adapter.fontSize = 10.0
 		adapter.addLabel("left align", atPoint: NSPoint(x: 510.5, y: 150), angle: 0.0, align: .Left)
-		adapter.addLabel("centered", atPoint: NSPoint(x: 510.5, y: 130), angle:0.0, align: .Center)
-		adapter.addLabel("right align", atPoint: NSPoint(x: 510.5, y: 110), angle:0.0, align: .Right)
+		adapter.addLabel("centered", atPoint: NSPoint(x: 510.5, y: 130), angle: 0.0, align: .Center)
+		adapter.addLabel("right align", atPoint: NSPoint(x: 510.5, y: 110), angle: 0.0, align: .Right)
 		adapter.fontName = "Times-Roman"
 		adapter.fontSize = 14.0
-		adapter.addLabel("-rotate", atPoint:pos, angle:90.0, align: .Left)
-		adapter.addLabel("-rotate", atPoint:pos, angle:45.0, align: .Left)
-		adapter.addLabel("-rotate", atPoint:pos, angle:-30.0, align: .Left)
-		adapter.addLabel("-rotate", atPoint:pos, angle:-60.0, align: .Left)
-		adapter.addLabel("-rotate", atPoint:pos, angle:-90.0, align: .Left)
+		adapter.addLabel("-rotate", atPoint: pos, angle: 90.0, align: .Left)
+		adapter.addLabel("-rotate", atPoint: pos, angle: 45.0, align: .Left)
+		adapter.addLabel("-rotate", atPoint: pos, angle: -30.0, align: .Left)
+		adapter.addLabel("-rotate", atPoint: pos, angle: -60.0, align: .Left)
+		adapter.addLabel("-rotate", atPoint: pos, angle: -90.0, align: .Left)
 		// Shear
 		adapter.fontName = "Arial"
 		adapter.fontSize = 12.0
-		adapter.addLabel("Rotate & shear", atPoint: NSPoint(x: 430, y: 105), angle:45.0, shearAngle:45.0, align: .Left)
+		adapter.addLabel("Rotate & shear", atPoint: NSPoint(x: 430, y: 105), angle:45.0, shearAngle: 45.0, align: .Left)
 	}
 	
 	// MARK: Some styling is possible
@@ -341,24 +341,24 @@ let adapter = AQTAdapter()!
 		adapter.fontSize = 14
 		
 		var attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
-		attrStr.addAttribute("AQTFontname", value: "Symbol", range:NSMakeRange(3, 1)) // Greek
-		attrStr.addAttribute("NSSuperScript", value:1, range:NSMakeRange(1,3)) // eponent
-		attrStr.addAttribute("AQTFontsize", value:6.0, range:NSMakeRange(7,1)) // extra spacing
+		attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(3, 1)) // Greek
+		attrStr.addAttribute("NSSuperScript", value: 1, range: NSMakeRange(1,3)) // exponent
+		attrStr.addAttribute("AQTFontsize", value: 6.0, range: NSMakeRange(7,1)) // extra spacing
 		
 		adapter.addLabel(attrStr, atPoint: NSMakePoint(260, 75), angle: 0.0, align: .Center)
 		
 		attrStr = NSMutableAttributedString(string: "mSke-wk2")
 		attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(0,2))
-		attrStr.addAttribute("AQTFontsize", value:20.0, range: NSMakeRange(1,1))
-		attrStr.addAttribute("AQTBaselineAdjust", value:-0.25, range: NSMakeRange(1,1)) // Lower symbol 25%
-		attrStr.addAttribute("NSSuperScript", value:-1, range: NSMakeRange(2,1))
+		attrStr.addAttribute("AQTFontsize", value: 20.0, range: NSMakeRange(1,1))
+		attrStr.addAttribute("AQTBaselineAdjust", value: -0.25, range: NSMakeRange(1,1)) // Lower symbol 25%
+		attrStr.addAttribute("NSSuperScript", value: -1, range: NSMakeRange(2,1))
 		attrStr.addAttribute("AQTFontname", value: "Times-Roman", range: NSMakeRange(3,1))
-		attrStr.addAttribute("NSSuperScript", value:1, range: NSMakeRange(4,2))
+		attrStr.addAttribute("NSSuperScript", value: 1, range: NSMakeRange(4,2))
 		attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(5,1))
-		attrStr.addAttribute("NSSuperScript", value:-2, range:NSMakeRange(6,1))
+		attrStr.addAttribute("NSSuperScript", value: -2, range: NSMakeRange(6,1))
 		attrStr.addAttribute("NSSuperScript", value: 2, range: NSMakeRange(7,1))
 		
-		adapter.addLabel(attrStr, atPoint: NSMakePoint(260, 45), angle:0.0, align: .Center)
+		adapter.addLabel(attrStr, atPoint: NSPoint(x: 260, y: 45), angle: 0.0, align: .Center)
 	}
 	
 	adapter.renderPlot()

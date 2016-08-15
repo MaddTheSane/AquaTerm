@@ -71,14 +71,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
   /*" Text handling "*/
-- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
-- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize setter") NS_SWIFT_UNAVAILABLE("Use the .fontSize setter");
 @property (copy) NSString* fontName;
 @property CGFloat fontSize;
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 @property (nonatomic) CGFloat lineWidth;
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
@@ -86,22 +83,28 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
-- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(int32_t)pc;
+- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
 
   /*" Filled areas"*/
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToPoint:(NSPoint)point; 
-- (void)addPolygonWithPoints:(const NSPoint *)points pointCount:(int32_t)pc; // AQTPatch
+- (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc; // AQTPatch
 - (void)addFilledRect:(NSRect)aRect;
 
   /*" Image handling "*/
-- (void)setImageTransform:(AQTAffineTransformStruct)trans;
+@property AQTAffineTransformStruct imageTransform;
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; // AQTImage
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds;
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
    /*" Misc. "*/
 - (void)removeAllParts;
+
+   /*" Deprecated "*/
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
+- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize setter") NS_SWIFT_UNAVAILABLE("Use the .fontSize setter");
+
 @end
 
 NS_ASSUME_NONNULL_END

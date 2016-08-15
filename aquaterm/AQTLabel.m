@@ -97,7 +97,7 @@
 {
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding) {
-      string = RETAINOBJ([coder decodeObjectForKey:AQTLabelStringKey]);
+      string = [[coder decodeObjectForKey:AQTLabelStringKey] copy];
       fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] copy];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];
       position = [coder decodePointForKey:AQTLabelPositionKey];
@@ -107,7 +107,7 @@
     } else {
       AQTPoint p;
       float tmpFloat = 0;
-      string = RETAINOBJ([coder decodeObject]);
+      string = [[coder decodeObject] copy];
       fontName = [[coder decodeObject] copy];
       [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
       fontSize = tmpFloat;

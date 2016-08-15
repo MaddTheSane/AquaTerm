@@ -48,7 +48,7 @@ static inline void NOOP_(id x, ...) {;}
       NSArray *intNibArr = nil;
       [self setClientInfoName:@"No connection" pid:-1];
       [self setAcceptingEvents:NO];
-      [[NSBundle mainBundle] loadNibNamed:@"AQTWindow.nib" owner:self topLevelObjects:&intNibArr];
+      [[NSBundle mainBundle] loadNibNamed:@"AQTWindow" owner:self topLevelObjects:&intNibArr];
       if (intNibArr) {
          [nibObjects addObjectsFromArray:intNibArr];
       }

@@ -508,7 +508,7 @@ Default is RoundLineCapStyle. "*/
 }
 
 /*" Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points. Parameter pc is number of line segments + 1."*/
-- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(NSInteger)pc
+- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolylineWithPoints:points pointCount:(int32_t)pc];
 }
@@ -524,7 +524,7 @@ Default is RoundLineCapStyle. "*/
 }
 
 /*" Add a polygon specified by a list of corner points. Number of corners is passed in pc."*/
-- (void)addPolygonWithVertexPoints:(const NSPoint *)points pointCount:(NSInteger)pc
+- (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolygonWithPoints:points pointCount:(int32_t)pc];
 }
@@ -564,7 +564,7 @@ Default is RoundLineCapStyle. "*/
 /*" Set transformation matrix to unity, i.e. no transform. "*/
 - (void)resetImageTransform
 {
-   AQTAffineTransformStruct trans;
+   AQTAffineTransformStruct trans = {0};
    trans.m11 = 1.0;
    trans.m22 = 1.0;
    [_selectedBuilder setImageTransform:trans];

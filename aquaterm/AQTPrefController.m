@@ -18,8 +18,8 @@
    if (self = [super init])
    {
       NSArray *tmpNibArr;
-      [[NSBundle mainBundle] loadNibNamed:@"Preferences.nib" owner:self topLevelObjects:&tmpNibArr];
-      nibObjects = tmpNibArr;
+      [[NSBundle mainBundle] loadNibNamed:@"Preferences" owner:self topLevelObjects:&tmpNibArr];
+      nibObjects = [tmpNibArr copy];
    }
    return self;
 }

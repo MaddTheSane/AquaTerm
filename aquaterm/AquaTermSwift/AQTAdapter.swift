@@ -36,4 +36,14 @@ extension AQTAdapter {
 			setBackgroundColor(red: newValue.red, green: newValue.green, blue: newValue.blue, alpha: newValue.alpha)
 		}
 	}
+	
+	public func addPolyline(points points: [NSPoint]) {
+		var points1 = points
+		addPolylineWithPoints(&points1, pointCount: points.count)
+	}
+	
+	public func addPolygon(vertexPoints vp: [NSPoint]) {
+		var points1 = vp
+		addPolygonWithVertexPoints(&points1, pointCount: vp.count)
+	}
 }

@@ -26,6 +26,7 @@
 		550857F01C80F719005ACF4A /* AQTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550857EF1C80F719005ACF4A /* AQTHelpers.swift */; };
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
@@ -206,6 +207,7 @@
 		551A59BE1C3F775D00DED042 /* ARCBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCBridge.h; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
+		55602F421D624D5700FC75A5 /* AQTPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTPath.swift; sourceTree = "<group>"; };
 		5575FDE41C403A4900B7D002 /* PreferenceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceKeys.m; sourceTree = "<group>"; };
 		5575FDE61C403A5800B7D002 /* PreferenceKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceKeys.h; sourceTree = "<group>"; };
 		558DB8391D60D38C007E54ED /* AQTAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTAdapter.swift; sourceTree = "<group>"; };
@@ -430,9 +432,12 @@
 				550857EB1C80F6FD005ACF4A /* Info.plist */,
 				550857EF1C80F719005ACF4A /* AQTHelpers.swift */,
 				558DB8391D60D38C007E54ED /* AQTAdapter.swift */,
+				55602F421D624D5700FC75A5 /* AQTPath.swift */,
 			);
+			indentWidth = 4;
 			path = AquaTermSwift;
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		55D31EEA1C3C42840060FF56 /* Framework */ = {
 			isa = PBXGroup;
@@ -883,6 +888,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */,
+				55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */,
 				550857F01C80F719005ACF4A /* AQTHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

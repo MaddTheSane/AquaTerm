@@ -88,21 +88,27 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  
 - (void)addLineToPoint:(NSPoint)point; 
-- (void)addPolylineWithPoints:(const NSPoint *)points pointCount:(NSInteger)pc;
+- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc;
 
   /*" Rect and polygon handling"*/
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToVertexPoint:(NSPoint)point; 
-- (void)addPolygonWithVertexPoints:(const NSPoint *)points pointCount:(NSInteger)pc;
+/// Add a polygon specified by a list of corner points.<br>
+/// Number of corners is passed in <code>pc</code>.
+- (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc;
 - (void)addFilledRect:(NSRect)aRect;
 - (void)eraseRect:(NSRect)aRect;
 
   /*" Image handling "*/
+/// Set a transformation matrix.<br>
+/// For images added by <code>addTransformedImageWithBitmap:size:clipRect:</code>,
+/// see \c NSImage documentation for details.
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY;
+///Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
-/// Add a bitmap image of size bitmapSize scaled to fit destBounds, does <i>not</i> apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+/// Add a bitmap image of size bitmapSize scaled to fit destBounds, does <b>not</b> apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; 
-/// Deprecated, use \c addTransformedImageWithBitmap:size: instead. Add a bitmap image of size bitmapSize <i>honoring</i> transform, transformed image is clipped to destBounds. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color.
+/// Deprecated, use \c addTransformedImageWithBitmap:size: instead. Add a bitmap image of size bitmapSize <b>honoring</b> transform, transformed image is clipped to destBounds. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color.
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 

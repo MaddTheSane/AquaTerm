@@ -9,7 +9,7 @@
 import Foundation
 import AquaTerm
 import AquaTerm.AQTAdapter
-import AquaTermSwift
+//import AquaTermSwift
 
 extension NSPoint {
 	private init(x: Float, y: Float) {

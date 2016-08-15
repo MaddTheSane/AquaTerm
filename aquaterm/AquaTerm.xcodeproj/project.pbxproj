@@ -27,7 +27,10 @@
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
-		55602F461D6265C600FC75A5 /* AquaTermSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; };
+		55602F471D626CFB00FC75A5 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
+		55602F481D626D4200FC75A5 /* AQTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550857EF1C80F719005ACF4A /* AQTHelpers.swift */; };
+		55602F491D626D4200FC75A5 /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
+		55602F4A1D626D4200FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
@@ -304,6 +307,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55602F471D626CFB00FC75A5 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,7 +329,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				55602F461D6265C600FC75A5 /* AquaTermSwift.framework in Frameworks */,
 				55D31F1F1C3D0FF00060FF56 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -923,7 +926,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55602F491D626D4200FC75A5 /* AQTAdapter.swift in Sources */,
+				55602F481D626D4200FC75A5 /* AQTHelpers.swift in Sources */,
 				55D31F171C3D0F8D0060FF56 /* main.swift in Sources */,
+				55602F4A1D626D4200FC75A5 /* AQTPath.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1229,10 +1235,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1246,8 +1249,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";

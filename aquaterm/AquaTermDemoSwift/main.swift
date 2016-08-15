@@ -9,6 +9,7 @@
 import Foundation
 import AquaTerm
 import AquaTerm.AQTAdapter
+import AquaTermSwift
 
 extension NSPoint {
 	init(x: Float, y: Float) {
@@ -18,7 +19,6 @@ extension NSPoint {
 }
 
 let adapter = AQTAdapter()!
-	var points = [NSPoint](count: 128, repeatedValue: NSPoint())
 	var pos = NSPoint()
 	//var i = 0
 	var f: Float = 0
@@ -110,16 +110,16 @@ let adapter = AQTAdapter()!
 		adapter.clipRect = r
 		adapter.addLabel("Clipped text. Clipped text. Clipped text.", atPoint: NSMakePoint(180, 230), angle: 30.0, align: [.Center, .Middle])
 		adapter.lineWidth = 1.0
-		for i in 0..<5 {
+		var points = Array<Int>(0..<5).map { (i) -> NSPoint in
 			let radians = Double(i) * M_PI * 0.8
 			let r = 30.0
-			points[i] = NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians));
+			return NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians));
 		}
 		adapter.takeColorFromColormapEntry(3)
-		adapter.addPolygonWithVertexPoints(points, pointCount: 5)
+		adapter.addPolygon(vertexPoints: points)
 		adapter.takeColorFromColormapEntry(1)
-		points[5] = points[0];
-		adapter.addPolylineWithPoints(points, pointCount:6)
+		points.append(points.first!)
+		adapter.addPolyline(points: points)
 		adapter.addImageWithBitmap(rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 190, y: 280, width: 50, height: 50)) // ClipRect demo
 		adapter.setDefaultClipRect()
 		
@@ -201,33 +201,33 @@ let adapter = AQTAdapter()!
 	adapter.addLineToPoint(NSPoint(x: 210, y: 50))
 	
 	// MARK: Polygons
+do {
 	adapter.takeColorFromColormapEntry(1)
 	adapter.addLabel("Polygons", atPoint: NSPoint(x: 320, y: 290), angle: 0.0, align:. Left)
-	for i in 0..<4 {
+	var points = Array<Int>(0..<4).map { (i) -> NSPoint in
 		let radians=Double(i)*M_PI/2.0
 		let r=20.0;
-		points[i]=NSPoint(x: 340.0 + r * cos(radians), y: 255.0 + r * sin(radians))
+		return NSPoint(x: 340.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColorFromColormapEntry(2)
-	adapter.addPolygonWithVertexPoints(points, pointCount:4)
-	for i in 0..<5 {
+	adapter.addPolygon(vertexPoints: Array(points[0..<4]))
+	points = Array<Int>(0..<5).map { (i) -> NSPoint in
 		let radians = Double(i) * M_PI * 0.8
 		let r = 20.0
-		points[i] = NSPoint(x: 400.0 + r * cos(radians), y: 255.0 + r * sin(radians))
+		return NSPoint(x: 400.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColorFromColormapEntry(3)
-	adapter.addPolygonWithVertexPoints(points, pointCount:5)
+	adapter.addPolygon(vertexPoints: points)
 	adapter.takeColorFromColormapEntry(1)
-	points[5] = points[0];
-	adapter.addPolygonWithVertexPoints(points, pointCount:6)
-	
-	for i in 0..<8 {
+	points.append(points[0])
+	adapter.addPolygon(vertexPoints: points)
+	points = Array<Int>(0..<8).map { (i) -> NSPoint in
 		let radians = Double(i) * M_PI / 4.0
 		let r = 20.0;
-		points[i] = NSPoint(x: 460.0 + r * cos(radians), y: 255.0 + r * sin(radians))
+		return NSPoint(x: 460.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColorFromColormapEntry(4)
-	adapter.addPolygonWithVertexPoints(points, pointCount:8)
+	adapter.addPolygon(vertexPoints: points)
 	
 	// Circles with alpha transparency
 	adapter.takeColorFromColormapEntry(1)
@@ -239,14 +239,15 @@ let adapter = AQTAdapter()!
 			(540, 265, 0, 0, 1)]
 		
 		for (x, y, red, green, blue) in circleInfo {
-			for i in 0..<32 {
+			let points = Array<Int>(0..<32).map { (i) -> NSPoint in
 				let radians = Double(i) * M_PI / 16.0, r = 20.0;
-				points[i] = NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
+				return NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 			}
 			adapter.setColor(red: red, green: green, blue: blue, alpha: 0.5)
-			adapter.addPolygonWithVertexPoints(points, pointCount: 32)
+			adapter.addPolygon(vertexPoints: points)
 		}
 	}
+}
 	// MARK: Images
 	adapter.takeColorFromColormapEntry(1)
 	adapter.addLabel("Images", atPoint: NSPoint(x: 320, y: 220), angle: 0.0, align: .Left)

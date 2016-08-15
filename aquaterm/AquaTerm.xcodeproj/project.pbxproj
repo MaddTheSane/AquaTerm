@@ -27,6 +27,7 @@
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
+		55602F461D6265C600FC75A5 /* AquaTermSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
@@ -95,6 +96,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CB91251207CB3BDE001D5EAF;
 			remoteInfo = AQTFwk;
+		};
+		55602F441D6265C100FC75A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 550857E61C80F6FC005ACF4A;
+			remoteInfo = AquaTermSwift;
 		};
 		55D31EFA1C3C8E230060FF56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -317,6 +325,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55602F461D6265C600FC75A5 /* AquaTermSwift.framework in Frameworks */,
 				55D31F1F1C3D0FF00060FF56 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -735,6 +744,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				55602F451D6265C100FC75A5 /* PBXTargetDependency */,
 				55D31F1C1C3D0FE90060FF56 /* PBXTargetDependency */,
 				55D31F1E1C3D0FE90060FF56 /* PBXTargetDependency */,
 			);
@@ -963,6 +973,11 @@
 			isa = PBXTargetDependency;
 			target = CB91251207CB3BDE001D5EAF /* AQTFwk */;
 			targetProxy = 550857F11C80F73B005ACF4A /* PBXContainerItemProxy */;
+		};
+		55602F451D6265C100FC75A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 550857E61C80F6FC005ACF4A /* AquaTermSwift */;
+			targetProxy = 55602F441D6265C100FC75A5 /* PBXContainerItemProxy */;
 		};
 		55D31EFB1C3C8E230060FF56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

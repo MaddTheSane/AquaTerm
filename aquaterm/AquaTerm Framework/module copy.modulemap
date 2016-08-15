@@ -11,11 +11,12 @@ framework module AquaTerm [extern_c] {
 		requires objc
 		header "AQTModel.h"
 		export *
-		
-		module AQTGraphic {
-			header "AQTGraphic.h"
-			export *
-		}
+	}
+	
+	explicit module AQTGraphic {
+		requires objc
+		header "AQTGraphic.h"
+		export *
 		
 		module AQTColorMap {
 			header "AQTColorMap.h"

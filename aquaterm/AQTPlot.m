@@ -33,7 +33,10 @@ static inline void NOOP_(id x, ...) {;}
 #endif	/* LOGGING */
 
 
-@implementation AQTPlot
+@implementation AQTPlot {
+   NSMutableArray *nibObjects;
+}
+
 @synthesize model = model;
 @synthesize client = _client;
 @synthesize acceptingEvents = _acceptingEvents;
@@ -41,9 +44,14 @@ static inline void NOOP_(id x, ...) {;}
 {
    if (self = [super init])
    {
+      nibObjects = [[NSMutableArray alloc] init];
+      NSArray *intNibArr = nil;
       [self setClientInfoName:@"No connection" pid:-1];
       [self setAcceptingEvents:NO];
-      [NSBundle loadNibNamed:@"AQTWindow.nib" owner:self];
+      [[NSBundle mainBundle] loadNibNamed:@"AQTWindow.nib" owner:self topLevelObjects:&intNibArr];
+      if (intNibArr) {
+         [nibObjects addObjectsFromArray:intNibArr];
+      }
    }
    return self;
 }
@@ -403,11 +411,15 @@ static inline void NOOP_(id x, ...) {;}
 - (IBAction)saveDocumentAs:(id)sender
 {
    NSSavePanel *savePanel = [NSSavePanel savePanel];
+   NSArray *tmpNibArr = nil;
    
-   if (![NSBundle loadNibNamed:@"ExtendSavePanel" owner:self])
+   if (![[NSBundle mainBundle] loadNibNamed:@"ExtendSavePanel" owner:self topLevelObjects:&tmpNibArr])
    {
       NSLog(@"Failed to load ExtendSavePanel.nib");
       return;
+   }
+   if (tmpNibArr) {
+      [nibObjects addObjectsFromArray:tmpNibArr];
    }
    [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:SaveFormatKey]];
    savePanel.accessoryView = extendSavePanelView;

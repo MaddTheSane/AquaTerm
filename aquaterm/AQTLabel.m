@@ -16,11 +16,6 @@
 @implementation AQTLabel
 @synthesize fontName;
 @synthesize fontSize;
-    /**"
-    *** A leaf object class representing an actual item in the plot. 
-    *** Since the app is a viewer we do three things with the object:
-    *** create (once), draw (any number of times) and (eventually) dispose of it.
-    "**/
 
 -(instancetype)init
 {
@@ -127,4 +122,5 @@
   }
   return self;
 }
+
 @end

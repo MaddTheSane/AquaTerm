@@ -1,20 +1,25 @@
 #import "AQTPrefController.h"
 #import "PreferenceKeys.h"
 
-@implementation AQTPrefController
+@implementation AQTPrefController {
+   NSArray *nibObjects;
+}
 + (AQTPrefController *)sharedPrefController
 {
    static AQTPrefController *sharedPrefController = nil;
    if (sharedPrefController == nil) {
       sharedPrefController = [[self alloc] init];
-   }   return sharedPrefController;
+   }
+   return sharedPrefController;
 }
 
 -(instancetype)init
 {
    if (self = [super init])
    {
-      [NSBundle loadNibNamed:@"Preferences.nib" owner:self];
+      NSArray *tmpNibArr;
+      [[NSBundle mainBundle] loadNibNamed:@"Preferences.nib" owner:self topLevelObjects:&tmpNibArr];
+      nibObjects = tmpNibArr;
    }
    return self;
 }

@@ -49,7 +49,7 @@
 #ifdef DEBUG
    if (_modelIsDirty && NSEqualSizes(NSZeroSize, _model.canvasSize))
    {
-#warning 64BIT: Check formatting arguments
+//#warning 64BIT: Check formatting arguments
       [NSException raise:@"AQTDebugException" format:@"%@", NSStringFromSelector(_cmd)];
    }
 #endif

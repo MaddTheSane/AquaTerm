@@ -10,14 +10,17 @@
 #import "AQTGraphic.h"
 #import "aquaterm.h"
 
-@interface AQTLabel : AQTGraphic /*" NSObject "*/
+/// A leaf object class representing an actual item in the plot.<br>
+/// Since the app is a viewer we do three things with the object:
+/// create (once), draw (any number of times) and (eventually) dispose of it.
+@interface AQTLabel : AQTGraphic
 {
-   id string;		/*" The text (label, legend etc.) "*/
+   id string;		/**< The text (label, legend etc.) */
    NSString *fontName;
    CGFloat fontSize;
-   NSPoint position;		/*" The position of the text "*/
+   NSPoint position;		/**< The position of the text */
    CGFloat angle;
-   AQTAlign justification;		/*" Justification with respect to the position of the text "*/
+   AQTAlign justification;		/**< Justification with respect to the position of the text */
    CGFloat shearAngle;
 }
 - (instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)justify NS_DESIGNATED_INITIALIZER;

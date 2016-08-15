@@ -80,12 +80,21 @@
 - (void)dealloc
 {
    [NSException raise:@"AQTException" format:@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__];
+   
 #if !__has_feature(objc_arc)
-
    [_activePlotKey release];
    [_eventBuffer release];
    [_builders release];
    [_plots release];
+   if (_eventBlock) {
+      Block_release(_eventBlock);
+      _eventBlock = NULL;
+   }
+   
+   if (_errorBlock) {
+      Block_release(_errorBlock);
+      _errorBlock = NULL;
+   }
    [super dealloc];
 #endif
 }
@@ -151,8 +160,8 @@
    NSURL *appURL;
    OSStatus status;
    
-    if (getenv("AQUATERM_PATH") != (char *)NULL) {
-       appURL = [NSURL fileURLWithPath:@(getenv("AQUATERM_PATH"))];
+   if (getenv("AQUATERM_PATH") != (char *)NULL) {
+      appURL = [NSURL fileURLWithPath:@(getenv("AQUATERM_PATH"))];
       status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
    } else {
       // Look for AquaTerm at default location
@@ -165,8 +174,10 @@
          CFURLRef tmpURL;
          status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);//LSCopyApplicationURLsForBundleIdentifier
          [self logMessage:[NSString stringWithFormat:@"LSFindApplicationForInfo = %ld", (long)status] logLevel:2];
-         appURL = (NSURL*)CFBridgingRelease((status == noErr)?tmpURL:NULL);
-         status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
+         appURL = (status == noErr) ? (NSURL*)CFBridgingRelease(tmpURL) : NULL;
+         if (appURL) {
+            status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
+         }
       }
    }
    [self logMessage:[NSString stringWithFormat:@"LSOpenCFURLRef = %ld", (long)status] logLevel:2];
@@ -204,13 +215,21 @@
 
 - (void)setErrorHandler:(void (*)(NSString *errMsg))fPtr
 {
-   self.errorBlock = ^(NSString *errnsg){
+   if (!fPtr) {
+      self.errorBlock = nil;
+      return;
+   }
+   self.errorBlock = ^(NSString *errnsg) {
       (*fPtr)(errnsg);
    };
 }
 
 - (void)setEventHandler:(void (*)(int index, NSString *event))fPtr
 {
+   if (!fPtr) {
+      self.eventBlock = nil;
+      return;
+   }
    self.eventBlock = ^(int index, NSString *event) {
       (*fPtr)(index, event);
    };

@@ -51,6 +51,7 @@
 
 -(void)awakeFromNib
 {
+   [super awakeFromNib];
    [self setCrosshairCursorColor];
    [self setIsProcessingEvents:NO];   
 }
@@ -208,6 +209,5 @@
    NSLog(@"dirtyCanvasRect: %@", NSStringFromRect(dirtyCanvasRect));
 #endif
 }
+
 @end
-
-

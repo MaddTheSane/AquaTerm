@@ -31,6 +31,7 @@
    CGFloat patternPhase;
 }
 
+- (instancetype)init;
 - (instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
 @property CGFloat lineWidth;

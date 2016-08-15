@@ -432,13 +432,13 @@ _{Attribute value}
 _{@"NSSuperScript" raise-level}
 _{@"NSUnderline" 0or1}
 "*/
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just
 {
    [_selectedBuilder addLabel:text position:pos angle:angle shearAngle:shearAngle justification:just];
 }
 
 /*" Same as #addLabel:atPoint:angle:shearAngle:align: except that shearAngle defaults to 0."*/
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just
 {
    [_selectedBuilder addLabel:text position:pos angle:angle shearAngle:0.0 justification:just];
 }

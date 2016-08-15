@@ -6,6 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#include <math.h>
+#include <tgmath.h>
+
 #import "AQTGraphicDrawingMethods.h"
 
 #import <AquaTerm/AQTLabel.h>
@@ -17,7 +20,7 @@
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,
 this is ugly, but I can't see a simple way to do it without affecting performance. */
-static float _aqtMinimumLinewidth; 
+static CGFloat _aqtMinimumLinewidth;
 
 @implementation AQTGraphic (AQTGraphicDrawingMethods)
 - (void)setAQTColor
@@ -114,7 +117,7 @@ static float _aqtMinimumLinewidth;
    tmpPath = [string aqtBezierPathInFont:normalFont]; // Implemented in AQTStringDrawingAdditions
    tmpSize = tmpPath.bounds.size;
    // Place the path according to position, angle and align  
-   adjust.x = -(float)(justification & 0x03)*0.5*tmpSize.width; // hAlign:
+   adjust.x = -(CGFloat)(justification & 0x03)*0.5*tmpSize.width; // hAlign:
    switch (justification & 0x1C) { // vAlign:
       case 0x00:// AQTAlignMiddle: // align middle wrt *font size*
          adjust.y = -(normalFont.descender + normalFont.capHeight)*0.5; 
@@ -131,7 +134,7 @@ static float _aqtMinimumLinewidth;
          break;
    }
    // Avoid multiples of 90 degrees (pi/2) since tan(k*pi/2)=inf, set beta to 0.0 instead. 
-   float beta = (fabs(shearAngle - 90.0*roundf(shearAngle/90.0))<0.1)?0.0:-shearAngle;
+   CGFloat beta = (fabs(shearAngle - 90.0*round(shearAngle/90.0))<0.1)?0.0:-shearAngle;
    // shearTransform is an identity transform so we can just stuff the shearing into m21...
    ts = shearTransform.transformStruct;
    ts.m21 = -tan(beta*atan(1.0)/45.0); // =-tan(beta*pi/180.0)
@@ -193,7 +196,7 @@ static float _aqtMinimumLinewidth;
 -(void)_aqtPathUpdateCache
 {
    int32_t i;
-   float lw = self.filled?1.0:linewidth; // FIXME: this is a hack to avoid tiny gaps between filled patches
+   CGFloat lw = self.filled?1.0:linewidth; // FIXME: this is a hack to avoid tiny gaps between filled patches
    NSBezierPath *scratch = [NSBezierPath bezierPath];
    [scratch appendBezierPathWithPoints:path count:pointCount];
    scratch.lineJoinStyle = NSRoundLineJoinStyle; //CM FIXME - This looks like a bug. This explains why join styles don't work in the TestView... //CM

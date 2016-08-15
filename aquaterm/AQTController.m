@@ -10,6 +10,7 @@
 #import "AQTController.h"
 #import "AQTPrefController.h"
 #import "AQTAdapter.h"
+#import "AQTView.h"
 
 #import "AQTPlot.h"
 

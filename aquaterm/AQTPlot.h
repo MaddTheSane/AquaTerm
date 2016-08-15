@@ -14,8 +14,7 @@
 @protocol AQTEventProtocol;
 @interface AQTPlot : NSObject <AQTClientProtocol>
 {
-  IBOutlet AQTView *canvas;	/*" Points to the rendering view "*/
-  AQTModel	*model;		/*" Holds the model for the view "*/
+  AQTModel	*model;		/**< Holds the model for the view "*/
   BOOL _isWindowLoaded;
   BOOL _acceptingEvents;
   id <AQTEventProtocol> _client;
@@ -25,14 +24,18 @@
   IBOutlet NSBox *extendSavePanelView;
   IBOutlet NSPopUpButton *saveFormatPopUp;
 }
+@property (nonatomic, readwrite, retain) id<AQTEventProtocol> client;
+/// Holds the model for the view
+@property (nonatomic, readwrite, retain) AQTModel *model;
 - (void)cascadeWindowOrderFront:(BOOL)orderFront;
 - (void)constrainWindowToFrame:(NSRect)tileFrame;
-@property (readonly, strong) id canvas;
-- (void)setClient:(id<AQTEventProtocol>)client;
+/// Points to the rendering view
+@property (weak) IBOutlet AQTView *canvas;
+- (void)setClient:(byref id<AQTEventProtocol>)client;
 - (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
 @property (readonly) BOOL clientValidAndResponding;
 - (BOOL)invalidateClient;
-@property (readwrite) BOOL acceptingEvents;
+@property (readwrite, nonatomic) BOOL acceptingEvents;
 
 - (void)processEvent:(NSString *)theEvent;
 

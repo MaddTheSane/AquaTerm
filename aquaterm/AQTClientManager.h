@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class AQTPlotBuilder;
 @protocol AQTEventProtocol;
 @protocol AQTClientProtocol;
+
 @interface AQTClientManager : NSObject <AQTEventProtocol>
 {
    id _server; /**< The viewer app's (AquaTerm) default connection */

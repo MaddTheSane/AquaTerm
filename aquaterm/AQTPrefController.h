@@ -20,6 +20,9 @@
    IBOutlet NSTextField *linewidthDisplay;
 }
 + (AQTPrefController *)sharedPrefController;
+#if __has_feature(objc_class_property)
+@property (class, readonly, strong) AQTPrefController *sharedPrefController;
+#endif
 - (void)showPrefs;
 - (IBAction)windowClosingChanged:(id)sender;
 - (IBAction)updateTitleExample:(id)sender;

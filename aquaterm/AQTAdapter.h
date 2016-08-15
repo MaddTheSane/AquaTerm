@@ -73,14 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
   /*" Text handling "*/
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
-- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
-- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the f.ontSize property");
 - (void)addLabel:(id)text atPoint:(NSPoint)pos;
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle align:(AQTAlign)just;
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(float)angle shearAngle:(float)shearAngle align:(AQTAlign)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just;
 
   /*" Line handling "*/
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 @property CGFloat lineWidth;
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
@@ -108,12 +105,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)resetImageTransform;
 /// Add a bitmap image of size bitmapSize scaled to fit destBounds, does <b>not</b> apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; 
-/// Deprecated, use \c addTransformedImageWithBitmap:size: instead. Add a bitmap image of size bitmapSize <b>honoring</b> transform, transformed image is clipped to destBounds. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color.
-- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
   /*"Private methods"*/
 - (void)timingTestWithTag:(uint32_t)tag;
+
+   /*"Deprecated"*/
+- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
+- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the f.ontSize property");
+
+/// Deprecated, use \c addTransformedImageWithBitmap:size: instead.
+/// Add a bitmap image of size bitmapSize <b>honoring</b> transform,
+/// transformed image is clipped to destBounds. Bitmap format is 24bits
+/// per pixel in sequence RGBRGB...  with 8 bits per color.
+- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
+
 @end
 
 NS_ASSUME_NONNULL_END

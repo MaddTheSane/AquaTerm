@@ -33,6 +33,7 @@ int32_t main(void)
   AQTAdapter *adapter = [[AQTAdapter alloc] init];
   aqtStringDrawingTest(adapter);
   aqtLineDrawingTest(adapter);
+  [pool drain];
   return 0;
 }
 #endif

@@ -294,7 +294,7 @@
 		F59F5FC9021011D301A18598 /* AQTImage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTImage.h; sourceTree = "<group>"; };
 		F59F5FCA021011D301A18598 /* AQTImage.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTImage.m; sourceTree = "<group>"; };
 		F5E3AFA9026D80D2012F88DF /* AQTView.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTView.h; sourceTree = "<group>"; };
-		F5E3AFAA026D80D2012F88DF /* AQTView.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AQTView.m; sourceTree = "<group>"; };
+		F5E3AFAA026D80D2012F88DF /* AQTView.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTView.m; sourceTree = "<group>"; };
 		FE8252ACC5B321F400CFA73B /* Demo.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = Demo.m; sourceTree = SOURCE_ROOT; };
 		FEBB59CE055CF10B00EEC8EA /* Bugs.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = Bugs.m; sourceTree = "<group>"; };
 		FEBB59D0055CF40600EEC8EA /* Timing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Timing.m; sourceTree = "<group>"; };

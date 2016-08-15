@@ -40,6 +40,8 @@ static inline void NOOP_(id x, ...) {;}
 @synthesize model = model;
 @synthesize client = _client;
 @synthesize acceptingEvents = _acceptingEvents;
+@synthesize canvas;
+
 -(instancetype)init
 {
    if (self = [super init])
@@ -126,8 +128,8 @@ static inline void NOOP_(id x, ...) {;}
 -(void)constrainWindowToFrame:(NSRect)tileFrame
 {
    NSRect tmpFrame;
-   float tileContentHWRatio = (tileFrame.size.height - TITLEBAR_HEIGHT)/tileFrame.size.width;
-   float canvasHWRatio = model.canvasSize.height/model.canvasSize.width;
+   CGFloat tileContentHWRatio = (tileFrame.size.height - TITLEBAR_HEIGHT)/tileFrame.size.width;
+   CGFloat canvasHWRatio = model.canvasSize.height/model.canvasSize.width;
    
    if (canvasHWRatio < tileContentHWRatio) {
       // limited by width
@@ -145,16 +147,6 @@ static inline void NOOP_(id x, ...) {;}
 
 
 /*" Accessor methods for the AQTView instance "*/
--(id)canvas
-{
-   return canvas;
-}
-
--(AQTModel *)model
-{
-   return model;
-}
-
 - (BOOL)clientValidAndResponding
 {
    BOOL validAndResponding = NO;
@@ -168,11 +160,6 @@ static inline void NOOP_(id x, ...) {;}
       }
    }      
    return validAndResponding;
-}
-
-- (BOOL)acceptingEvents;
-{
-   return _acceptingEvents;
 }
 
 #pragma mark === AQTClientProtocol methods ===
@@ -264,7 +251,7 @@ static inline void NOOP_(id x, ...) {;}
    }
 }
 
--(void)setClient:(id)client
+-(void)setClient:(byref id)client
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
    if ([client isProxy]) {
@@ -461,8 +448,8 @@ static inline void NOOP_(id x, ...) {;}
 #pragma mark ==== Testing methods ====
 - (void)timingTestWithTag:(uint32_t)tag
 {
-   static float totalTime = 0.0;
-   float thisTime;
+   static NSTimeInterval totalTime = 0.0;
+   NSTimeInterval thisTime;
    NSDate *startTime;
    NSRect viewRect = NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height);
    AQTView *testView = [self canvas];

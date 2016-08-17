@@ -17,7 +17,7 @@
 
 #define AQT_EVENTBUF_SIZE 128
 
-/*" Constants that specify linecap styles. "*/
+/** Constants that specify linecap styles. */
 typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleButt = 0,
    AQTLineCapStyleRound = 1,

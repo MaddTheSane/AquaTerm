@@ -15,6 +15,7 @@
 #import "AQTImage.h"
 #import "AQTColorMap.h"
 #import "ARCBridge.h"
+#import "AQTFunctions.h"
 
 
 @implementation AQTPlotBuilder
@@ -160,7 +161,7 @@
 - (void)setColor:(AQTColor)newColor
 {
    // FIXME: Use AQTEqualColor instead
-   if ((newColor.red != _color.red) || (newColor.green != _color.green) || (newColor.blue != _color.blue) || (newColor.alpha != _color.alpha))
+   if (!AQTEqualColors(newColor, _color))
    {
       [self _flushBuffers];
       _color = newColor;
@@ -171,7 +172,7 @@
 {
    AQTColor oldColor = _model.color;
    // FIXME: Use AQTEqualColor instead
-   if ((newColor.red != oldColor.red) || (newColor.green != oldColor.green) || (newColor.blue != oldColor.blue) || (newColor.alpha != oldColor.alpha))
+   if (!AQTEqualColors(newColor, oldColor))
    {
       _model.color = newColor;
       [self _aqtPlotBuilderSetModelIsDirty:YES];

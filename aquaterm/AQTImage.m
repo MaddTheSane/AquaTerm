@@ -67,11 +67,11 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-    [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
-    [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
-    [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
-    [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
-    [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
+  [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
+  [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
+  [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
+  [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
+  [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder

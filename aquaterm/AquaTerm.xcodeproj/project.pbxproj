@@ -282,13 +282,13 @@
 		F50F0B540205D23401AA2E68 /* AQTColorMap.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTColorMap.h; sourceTree = "<group>"; };
 		F50F0B550205D23401AA2E68 /* AQTColorMap.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = AQTColorMap.m; sourceTree = "<group>"; };
 		F55D241701C0F0F501A80104 /* AQTGraphic.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTGraphic.h; sourceTree = "<group>"; };
-		F55D241801C0F0F501A80104 /* AQTGraphic.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTGraphic.m; sourceTree = "<group>"; };
+		F55D241801C0F0F501A80104 /* AQTGraphic.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTGraphic.m; sourceTree = "<group>"; };
 		F55D241901C0F0F501A80104 /* AQTLabel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTLabel.h; sourceTree = "<group>"; };
 		F55D241A01C0F0F501A80104 /* AQTLabel.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTLabel.m; sourceTree = "<group>"; tabWidth = 4; usesTabs = 0; };
 		F55D241B01C0F0F501A80104 /* AQTModel.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTModel.h; sourceTree = "<group>"; };
 		F55D241C01C0F0F501A80104 /* AQTModel.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTModel.m; sourceTree = "<group>"; };
 		F5653B8001C4B8F201A80104 /* AQTPath.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTPath.h; sourceTree = "<group>"; };
-		F5653B8101C4B8F201A80104 /* AQTPath.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTPath.m; sourceTree = "<group>"; };
+		F5653B8101C4B8F201A80104 /* AQTPath.m */ = {isa = PBXFileReference; fileEncoding = 30; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTPath.m; sourceTree = "<group>"; };
 		F57C16A202506DE3010D3DE4 /* ReadMe */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ReadMe; sourceTree = "<group>"; };
 		F57C16A302506DE3010D3DE4 /* ToDo */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = ToDo; sourceTree = "<group>"; };
 		F59F5FC9021011D301A18598 /* AQTImage.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; path = AQTImage.h; sourceTree = "<group>"; };

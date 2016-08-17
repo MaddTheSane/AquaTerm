@@ -31,16 +31,16 @@
 - (void)clearErrorState
 {
    BOOL serverDidDie = NO;
-
+   
    [self logMessage:@"Trying to recover from error." logLevel:3];
-
+   
    @try {
       [_server ping];
    } @catch (NSException *localException) {
       [self logMessage:@"Server not responding." logLevel:1];
       serverDidDie = YES;
    }
-
+   
    if (serverDidDie) {
       [self terminateConnection];
    } else {
@@ -145,10 +145,10 @@
             [self logMessage:@"server is too old info" logLevel:1];
             _server = nil;
          }
-         } @catch (NSException *localException) {
-            // [localException raise];
-            [self logMessage:@"An error occurred while talking to the server" logLevel:1];
-         }
+      } @catch (NSException *localException) {
+         // [localException raise];
+         [self logMessage:@"An error occurred while talking to the server" logLevel:1];
+      }
    }
    [self logMessage:didConnect?@"Connected!":@"Could not connect" logLevel:1];
    return didConnect;
@@ -253,7 +253,7 @@
    AQTPlotBuilder *newBuilder = nil;
    NSNumber *key = @(refNum);;
    id <AQTClientProtocol> newPlot;
-
+   
    if (errorState == YES) {
       [self clearErrorState];
       if (_server == nil) {
@@ -265,8 +265,8 @@
       newBuilder = [self clearPlot];
       _eventBuffer[key] = @"0";
       return newBuilder;
-   }   
-
+   }
+   
    @try {
       newPlot = [_server addAQTClient:key
                                  name:[NSProcessInfo processInfo].processName
@@ -295,12 +295,12 @@
 {
    NSNumber *key;
    AQTPlotBuilder *aBuilder;
- 
+   
    if (errorState == YES) return nil; // FIXME: Clear error state here too???
-
+   
    key = @(refNum);
    aBuilder = _builders[key];
-
+   
    if(aBuilder != nil) {
       [self setActivePlotKey:key];
    }
@@ -310,9 +310,9 @@
 - (void)renderPlot 
 {
    AQTPlotBuilder *pb;
-
+   
    if (errorState == YES || _activePlotKey == nil) return;
-
+   
    pb = _builders[_activePlotKey];
    if (pb.modelIsDirty) {
       id <NSObject, AQTClientProtocol> thePlot = _plots[_activePlotKey];
@@ -337,11 +337,11 @@
    id <NSObject, AQTClientProtocol> thePlot;
    
    if (errorState == YES || _activePlotKey == nil) return nil;
-
+   
    newBuilder = [[AQTPlotBuilder alloc] init];
    oldBuilder = _builders[_activePlotKey];
    thePlot = _plots[_activePlotKey];
-  
+   
    newBuilder.size = oldBuilder.model.canvasSize;
    newBuilder.title = oldBuilder.model.title;
    newBuilder.backgroundColor = oldBuilder.backgroundColor;
@@ -363,12 +363,12 @@
    AQTPlotBuilder *pb;
    AQTRect aqtRect;
    id <NSObject, AQTClientProtocol> thePlot;
-
+   
    if (errorState == YES || _activePlotKey == nil) return;
-
+   
    pb = _builders[_activePlotKey];
    thePlot = _plots[_activePlotKey];
-
+   
    @try {
       if (pb.modelIsDirty) {
          if ([thePlot isProxy]) {
@@ -377,7 +377,7 @@
          } else {
             [thePlot setModel:pb.model];
          }
-            
+         
       }
       // FIXME make sure in server that this combo doesn't draw unnecessarily
       // 64 bit compatibility
@@ -396,7 +396,7 @@
 - (void)closePlot
 {
    if (_activePlotKey == nil) return;
-
+   
    @try {
       [_plots[_activePlotKey] setClient:nil];
       [_plots[_activePlotKey] close];
@@ -423,7 +423,7 @@
 - (NSString *)lastEvent  
 {
    NSString *event;
-
+   
    if (errorState == YES) return @"42:Server error";
    if (_activePlotKey == nil) return @"43:No plot selected";
    
@@ -445,7 +445,7 @@
    NSArray *keys = [_plots allKeysForObject:sender];
    if (keys.count == 0) return;
    key = keys[0];
-
+   
    if (_eventBlock != nil) {
       _eventBlock(key.intValue, event);
    }
@@ -476,4 +476,5 @@
       }
    }
 }
+
 @end

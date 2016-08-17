@@ -18,23 +18,20 @@
 
 -(instancetype)initWithColormapSize:(int32_t)mapsize
 {
-  if (self = [super init])
-  {
-     size = (mapsize < 1)?1:mapsize;
-     colormap = malloc(size*sizeof(AQTColor));
-     if(!colormap)
-     {
-        AUTORELEASEOBJNORETURN(self);
-        return nil;
-     }
-  }
-  return self;
+   if (self = [super init]) {
+      size = (mapsize < 1)?1:mapsize;
+      colormap = malloc(size*sizeof(AQTColor));
+      if(!colormap) {
+         AUTORELEASEOBJNORETURN(self);
+         return nil;
+      }
+   }
+   return self;
 }
 
 -(void)dealloc
 {
-   if (colormap)
-   {
+   if (colormap) {
       free(colormap);
    }
    SUPERDEALLOC;
@@ -42,21 +39,28 @@
 
 -(void)setColor:(AQTColor)newColor forIndex:(int32_t)index
 {
-   if (index >= 0 && index < size)
-   {
+   if (index >= 0 && index < size) {
       colormap[index] = newColor;
    }
 }
 
 -(AQTColor)colorForIndex:(int32_t)index
 {
-  if (index < 0 || index >= size)
-  {
-    return colormap[0];
-  }
-  else
-  {
-    return colormap[index];
-  }
+   if (index < 0 || index >= size) {
+      return colormap[0];
+   } else {
+      return colormap[index];
+   }
 }
+
+- (AQTColor)objectAtIndexedSubscript:(int32_t)index
+{
+   return [self colorForIndex:index];
+}
+
+- (void)setObject:(AQTColor)newValue atIndexedSubscript:(int32_t)index
+{
+   [self setColor:newValue forIndex:index];
+}
+
 @end

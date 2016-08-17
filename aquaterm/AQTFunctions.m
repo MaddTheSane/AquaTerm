@@ -11,7 +11,7 @@
 BOOL AQTContainsRect(NSRect containerRect, NSRect testRect)
 {
    BOOL contains = NO;
-
+   
    if (NSIsEmptyRect(testRect) == NO)
    {
       contains = NSContainsRect(containerRect, testRect);
@@ -35,14 +35,14 @@ BOOL AQTIntersectsRect(NSRect aRect, NSRect bRect)
    BOOL intersects = NO;
    BOOL aRectIsEmpty = NSIsEmptyRect(aRect);
    BOOL bRectIsEmpty = NSIsEmptyRect(bRect);
-
-   if (!aRectIsEmpty && !bRectIsEmpty) 
+   
+   if (!aRectIsEmpty && !bRectIsEmpty)
       return NSIntersectsRect(aRect, bRect);
-
+   
    if (aRectIsEmpty && bRectIsEmpty)
       return NO;
-
-   // Either aRect _or_ bRect is empty 
+   
+   // Either aRect _or_ bRect is empty
    if(aRectIsEmpty)
    {
       // Swizzle aRect and bRect
@@ -82,7 +82,7 @@ NSRect AQTUnionRect(NSRect aRect, NSRect bRect)
       CGFloat y = MIN(NSMinY(aRect), NSMinY(bRect));
       CGFloat w = MAX(NSMaxX(aRect), NSMaxX(bRect)) - x;
       CGFloat h = MAX(NSMaxY(aRect), NSMaxY(bRect)) - y;
-
+      
       return NSMakeRect(x, y, w, h);
    }
 }

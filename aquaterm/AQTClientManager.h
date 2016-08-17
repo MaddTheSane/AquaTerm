@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AQTClientManager : NSObject <AQTEventProtocol>
 {
-   id _server; /**< The viewer app's (AquaTerm) default connection */
+   __unsafe_unretained id _server; /**< The viewer app's (AquaTerm) default connection */
    NSMutableDictionary *_builders; /**< The objects responsible for assembling a model object from client's calls. */
    NSMutableDictionary<id, id<AQTClientProtocol>> *_plots; /**< The objects responsible for assembling a model object from client's calls. */
    id _activePlotKey;

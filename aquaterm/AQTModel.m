@@ -22,8 +22,7 @@
 -(instancetype)initWithCanvasSize:(NSSize)size
 {
   self = [super init];
-  if (self)
-  {
+  if (self) {
     modelObjects = [[NSMutableArray alloc] initWithCapacity:1024];
     self.title = @"Untitled";
     canvasSize = size;
@@ -39,13 +38,13 @@
 -(void)dealloc
 {
 #ifdef MEM_DEBUG
-   NSLog(@"[%@(0x%x) %@] %s:%d", NSStringFromClass([self class]), self, NSStringFromSelector(_cmd), __FILE__, __LINE__);
+  NSLog(@"[%@(0x%x) %@] %s:%d", NSStringFromClass([self class]), self, NSStringFromSelector(_cmd), __FILE__, __LINE__);
 #endif
   
 #if !__has_feature(objc_arc)
-   [title release];
-   [modelObjects release];
-   [super dealloc];
+  [title release];
+  [modelObjects release];
+  [super dealloc];
 #endif
 }
 
@@ -58,11 +57,11 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-    [coder encodeObject:modelObjects forKey:AQTModelModelsKey];
-    [coder encodeObject:title forKey:AQTModelTitleKey];
-    [coder encodeSize:canvasSize forKey:AQTModelCanvasSizeKey];
-    [coder encodeRect:dirtyRect forKey:AQTModelDirtyRectKey];
-    [coder encodeBool:isDirty forKey:AQTModelIsDirtyKey];
+  [coder encodeObject:modelObjects forKey:AQTModelModelsKey];
+  [coder encodeObject:title forKey:AQTModelTitleKey];
+  [coder encodeSize:canvasSize forKey:AQTModelCanvasSizeKey];
+  [coder encodeRect:dirtyRect forKey:AQTModelDirtyRectKey];
+  [coder encodeBool:isDirty forKey:AQTModelIsDirtyKey];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
@@ -94,7 +93,7 @@
 
 -(NSString *)description
 {
-   return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)modelObjects.count,  NSStringFromRect(_bounds)];
+  return [NSString stringWithFormat:@"[AQTModel description] =\nTitle %@\nCanvasSize %@\nCount %lu\nBounds %@", title, NSStringFromSize(canvasSize), (unsigned long)modelObjects.count,  NSStringFromRect(_bounds)];
 }
 
 -(NSInteger)count
@@ -109,27 +108,27 @@
 
 -(void)addObjectsFromArray:(NSArray *)graphics
 {
-   [modelObjects addObjectsFromArray:graphics];   
+  [modelObjects addObjectsFromArray:graphics];
 }
 
 -(NSArray *)modelObjects
 {
-   return AUTORELEASEOBJ([modelObjects copy]);
+  return AUTORELEASEOBJ([modelObjects copy]);
 }
 
 -(void)removeAllObjects
 {
-   [modelObjects removeAllObjects];
+  [modelObjects removeAllObjects];
 }
 
 -(void)removeObjectAtIndex:(NSInteger)i
 {
-   [modelObjects removeObjectAtIndex:i];
+  [modelObjects removeObjectAtIndex:i];
 }
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(__unsafe_unretained id  _Nonnull *)buffer count:(NSUInteger)len
 {
-   return [modelObjects countByEnumeratingWithState:state objects:buffer count:len];
+  return [modelObjects countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

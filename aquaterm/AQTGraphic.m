@@ -20,21 +20,20 @@ typedef struct _AQTColor_v100 {
 
 - (id)replacementObjectForPortCoder:(NSPortCoder *)portCoder
 {
-  if ([portCoder isBycopy])
-    return self;
-  return [super replacementObjectForPortCoder:portCoder];
-}  
+   if ([portCoder isBycopy])
+      return self;
+   return [super replacementObjectForPortCoder:portCoder];
+}
 
 -(instancetype)init
 {
-    if (self = [super init])
-    {
-       _color.red = 1.;
-       _color.green = 1.;
-       _color.blue = 1.;
-       _color.alpha = 1.;
-    }
-    return self; 
+   if (self = [super init]) {
+      _color.red = 1.;
+      _color.green = 1.;
+      _color.blue = 1.;
+      _color.alpha = 1.;
+   }
+   return self;
 }
 
 #if !__has_feature(objc_arc)
@@ -47,7 +46,7 @@ typedef struct _AQTColor_v100 {
 
 -(NSString *)description
 {
-  return NSStringFromRect(_bounds);
+   return NSStringFromRect(_bounds);
 }
 
 #define AQTGraphicColorKey @"ColorKey"
@@ -57,39 +56,39 @@ typedef struct _AQTColor_v100 {
 
 + (BOOL)supportsSecureCoding;
 {
-  return YES;
+   return YES;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-    [coder encodeObject:[NSValue value:&_color withObjCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
-    [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
-    [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
-    [coder encodeBool:_isClipped forKey:AQTGraphicIsClippedKey];
+   [coder encodeObject:[NSValue value:&_color withObjCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
+   [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
+   [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
+   [coder encodeBool:_isClipped forKey:AQTGraphicIsClippedKey];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
-  AQTRect r;
-  if (self = [super init]) {
-    if (coder.allowsKeyedCoding) {
-      NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
-      [tmpColor getValue:&_color];
-      _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];
-      _clipRect = [coder decodeRectForKey:AQTGraphicClipRectKey];
-      _isClipped = [coder decodeBoolForKey:AQTGraphicIsClippedKey];
-    } else {
-      [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
-      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-      _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
-      _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-      _clipRect.origin.x = r.origin.x; _clipRect.origin.y = r.origin.y;
-      _clipRect.size.width = r.size.width; _clipRect.size.height = r.size.height;
-      [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
-    }
-  }
-  return self;
+   AQTRect r;
+   if (self = [super init]) {
+      if (coder.allowsKeyedCoding) {
+         NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
+         [tmpColor getValue:&_color];
+         _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];
+         _clipRect = [coder decodeRectForKey:AQTGraphicClipRectKey];
+         _isClipped = [coder decodeBoolForKey:AQTGraphicIsClippedKey];
+      } else {
+         [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
+         [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+         _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
+         _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
+         [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+         _clipRect.origin.x = r.origin.x; _clipRect.origin.y = r.origin.y;
+         _clipRect.size.width = r.size.width; _clipRect.size.height = r.size.height;
+         [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
+      }
+   }
+   return self;
 }
 
 - (BOOL)shouldShowBounds
@@ -109,7 +108,7 @@ typedef struct _AQTColor_v100 {
 
 - (void)setIsClipped:(BOOL)newClip
 {
-	self.clipped = newClip;
+   self.clipped = newClip;
 }
 
 @end

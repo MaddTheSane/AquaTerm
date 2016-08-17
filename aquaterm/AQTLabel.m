@@ -24,8 +24,7 @@
 
 -(instancetype)initWithAttributedString:(NSAttributedString *)aString position:(NSPoint)aPoint angle:(CGFloat)textAngle shearAngle:(CGFloat)beta justification:(AQTAlign)justify  
 {
-  if (self=[super init])
-  {
+  if (self=[super init]) {
     string = [aString copy]; // [[NSAttributedString alloc] initWithAttributedString:aString];
     fontName = @"Times-Roman";
     fontSize = 14.0;
@@ -45,8 +44,7 @@
                                   angle:textAngle
                           justification:justify];
 */
-  if (self=[super init])
-  {
+  if (self=[super init]) {
     string = [aString copy]; // [[NSAttributedString alloc] initWithAttributedString:aString];
     fontName = @"Times-Roman";
     fontSize = 14.0;
@@ -55,8 +53,7 @@
     shearAngle = beta;
     justification = justify;
   }
-  return self; 
-
+  return self;
 }
 
 #if !__has_feature(objc_arc)
@@ -84,13 +81,13 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];
-    [coder encodeObject:string forKey:AQTLabelStringKey];
-    [coder encodeObject:fontName forKey:AQTLabelFontNameKey];
-    [coder encodeDouble:fontSize forKey:AQTLabelFontSizeKey];
-    [coder encodePoint:position forKey:AQTLabelPositionKey];
-    [coder encodeDouble:angle forKey:AQTLabelAngleKey];
-    [coder encodeInt32:justification forKey:AQTLabelJustificationKey];
-    [coder encodeDouble:shearAngle forKey:AQTLabelShearAngleKey];
+  [coder encodeObject:string forKey:AQTLabelStringKey];
+  [coder encodeObject:fontName forKey:AQTLabelFontNameKey];
+  [coder encodeDouble:fontSize forKey:AQTLabelFontSizeKey];
+  [coder encodePoint:position forKey:AQTLabelPositionKey];
+  [coder encodeDouble:angle forKey:AQTLabelAngleKey];
+  [coder encodeInt32:justification forKey:AQTLabelJustificationKey];
+  [coder encodeDouble:shearAngle forKey:AQTLabelShearAngleKey];
 }
 
 -(instancetype)initWithCoder:(NSCoder *)coder

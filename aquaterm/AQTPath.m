@@ -19,7 +19,7 @@
 @synthesize filled = isFilled;
 @synthesize hasPattern;
 
-/*" A private method to provide storage for an NSPointArray "*/
+/** A private method to provide storage for an NSPointArray */
 - (int32_t)_aqtSetupPathStoreForPointCount:(int32_t)pc
 {
    // Use static store as default (efficient for small paths)

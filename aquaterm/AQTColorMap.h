@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AQTColorMap : NSObject	
 {
-   AQTColorPtr colormap; // NB. Not an object but a pointer to a struct
+   AQTColorPtr colormap; ///< NB. Not an object but a pointer to a struct
    int32_t size; 
 }
 /// Creates an `AQTColorMap with a size of 1.

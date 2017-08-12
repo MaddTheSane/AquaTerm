@@ -28,7 +28,7 @@ typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTSquareLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleSquare instead") CF_SWIFT_UNAVAILABLE("Use .Square instead") = AQTLineCapStyleSquare
 };
 
-/*" Constants that specify horizontal and vertical alignment for labels. See #addLabel:atPoint:angle:align: for definitions and use."*/
+/*! Constants that specify horizontal and vertical alignment for labels. See \c addLabel:atPoint:angle:align: for definitions and use. */
 typedef CF_OPTIONS(int32_t, AQTAlign) {
    /*" Constants that specify horizontal alignment for labels. "*/
    AQTAlignLeft = 0x00,

@@ -239,12 +239,22 @@ static inline void NOOP_(id x, ...) {;}
    // Check defaults and maybe throw up a modal sheet asking for confirmation
    if ([[NSUserDefaults standardUserDefaults] boolForKey:CloseWindowWithPlotKey] == YES) {
       if ([[NSUserDefaults standardUserDefaults] boolForKey:ConfirmCloseWindowWithPlotKey] == YES) {
-      NSBeginAlertSheet(@"Close window?", 
-                        @"Keep", @"Close", 
-                        nil, canvas.window, self, 
-                        @selector(aqtClosePanelDidEnd:returnCode:contextInfo:), 
-                        NULL, nil, 
-                        @"The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?");
+         // If the window's not visible, just "close" it to prevent a floating sheet modal.
+         if (canvas.window == nil || canvas.window.visible == NO) {
+            [canvas.window close];
+            return;
+         }
+         NSAlert *alert = [[NSAlert alloc] init];
+         alert.messageText = @"Close window?";
+         alert.informativeText = @"The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?";
+         [alert addButtonWithTitle:@"Keep"];
+         [alert addButtonWithTitle:@"Close"];
+         
+         [alert beginSheetModalForWindow:canvas.window completionHandler:^(NSModalResponse returnCode) {
+            if (returnCode == NSAlertSecondButtonReturn) {
+               [canvas.window close];
+            }
+         }];
       } else {
          [canvas.window close];
       }

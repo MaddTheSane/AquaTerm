@@ -18,6 +18,8 @@ extension NSPoint {
 	}
 }
 
+func internalMain() {
+
 let adapter = AQTAdapter()!
 var pos = NSPoint()
 //var i = 0
@@ -37,7 +39,7 @@ adapter.setAcceptingEvents(true)
 
 // Set colormap
 adapter.setColormapEntry(0, red: 1.0, green: 1.0, blue: 1.0) // white
-adapter.setColormapEntry(1, red: 0.0, green: 0.0, blue: 0.0) //black
+adapter.setColormapEntry(1, red: 0.0, green: 0.0, blue: 0.0) // black
 adapter.setColormapEntry(2, red: 1.0, green: 0.0, blue: 0.0) // red
 adapter.setColormapEntry(3, red: 0.0, green: 1.0, blue: 0.0) // green
 adapter.setColormapEntry(4, red: 0.0, green: 0.0, blue: 1.0) // blue
@@ -59,7 +61,7 @@ adapter.addLabel("Frame 600x400 pt", at: NSPoint(x: 24, y: 30), angle: 0.0, alig
 	// MARK: Colormap
 adapter.addLabel("Custom colormap (8 out of 256)", at: NSPoint(x: 30, y: 385), angle: 0.0, align: [])
 // Display the colormap, but first create a background for the white box...
-adapter.setColor(red: 0.8, green: 0.8, blue: 0.8)
+adapter.color = (red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
 for i in 0..<8 {
 	adapter.takeColor(fromColormapEntry: Int32(i))
@@ -111,8 +113,8 @@ autoreleasepool() {
 	adapter.addLabel("Clipped text. Clipped text. Clipped text.", at: NSMakePoint(180, 230), angle: 30.0, align: [.center])
 	adapter.lineWidth = 1.0
 	var points = Array<Int>(0..<5).map { (i) -> NSPoint in
-		let radians = Double(i) * .pi * 0.8
-		let r = 30.0
+		let radians = CGFloat(i) * .pi * 0.8
+		let r: CGFloat = 30.0
 		return NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians));
 	}
 	adapter.takeColor(fromColormapEntry: 3)
@@ -133,7 +135,7 @@ do {
 	adapter.lineCapStyle = .butt
 	adapter.move(to: NSPoint(x: 40.5, y: 170.5))
 	adapter.addLine(to: NSPoint(x: 150.5, y: 170.5))
-	adapter.addLabel("AQTLineCapStyle.Butt", at: NSMakePoint(160.5, 170.5), angle: 0.0, align: [])
+	adapter.addLabel("AQTLineCapStyle.butt", at: NSMakePoint(160.5, 170.5), angle: 0.0, align: [])
 	adapter.lineWidth = 1.0
 	adapter.takeColor(fromColormapEntry: 6)
 	adapter.move(to: NSPoint(x: 40.5, y: 170.5))
@@ -144,7 +146,7 @@ do {
 	adapter.lineCapStyle = .round
 	adapter.move(to: NSPoint(x: 40.5, y: 150.5))
 	adapter.addLine(to: NSPoint(x: 150.5, y: 150.5))
-	adapter.addLabel("AQTLineCapStyle.Round", at: NSPoint(x: 160.5, y: 150.5), angle: 0.0, align: [])
+	adapter.addLabel("AQTLineCapStyle.round", at: NSPoint(x: 160.5, y: 150.5), angle: 0.0, align: [])
 	adapter.lineWidth = 1.0
 	adapter.takeColor(fromColormapEntry: 6)
 	adapter.move(to: NSPoint(x: 40.5, y: 150.5))
@@ -155,7 +157,7 @@ do {
 	adapter.lineCapStyle = .square
 	adapter.move(to: NSPoint(x: 40.5, y: 130.5))
 	adapter.addLine(to: NSPoint(x: 150.5, y: 130.5))
-	adapter.addLabel("AQTLineCapStyle.Square", at: NSPoint(x: 160.5, y: 130.5), angle: 0.0, align: [])
+	adapter.addLabel("AQTLineCapStyle.square", at: NSPoint(x: 160.5, y: 130.5), angle: 0.0, align: [])
 	adapter.lineWidth = 1.0
 	adapter.takeColor(fromColormapEntry: 6)
 	adapter.move(to: NSPoint(x: 40.5, y: 130.5))
@@ -367,3 +369,6 @@ adapter.renderPlot()
 // [NSException raise:@"AQTFatalException" format:@"Testing"];
 
 adapter.closePlot()
+}
+
+internalMain()

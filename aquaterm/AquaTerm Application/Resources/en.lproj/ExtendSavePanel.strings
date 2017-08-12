@@ -1,0 +1,15 @@
+
+/* Class = "NSMenuItem"; title = "EPS"; ObjectID = "17"; */
+"17.title" = "EPS";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "18"; */
+"18.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "PDF"; ObjectID = "20"; */
+"20.title" = "PDF";
+
+/* Class = "NSBox"; title = "Format"; ObjectID = "22"; */
+"22.title" = "Format";
+
+/* Class = "NSTextFieldCell"; title = "Save figure as:"; ObjectID = "30"; */
+"30.title" = "Save figure as:";

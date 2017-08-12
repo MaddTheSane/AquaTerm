@@ -31,6 +31,7 @@
 		55602F481D626D4200FC75A5 /* AQTHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 550857EF1C80F719005ACF4A /* AQTHelpers.swift */; };
 		55602F491D626D4200FC75A5 /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
 		55602F4A1D626D4200FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
+		556C56341F3F94180080A38F /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556C56331F3F90E50080A38F /* AQTWindow.xib */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
@@ -41,7 +42,6 @@
 		55D74C611C3DB4890013C8EC /* MainMenu1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C631C3DB4890013C8EC /* MainMenu1.xib */; };
 		55D74C661C3DB4AD0013C8EC /* ColorInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C681C3DB4AD0013C8EC /* ColorInspector.xib */; };
 		55D74C6B1C3DB4CD0013C8EC /* ExtendSavePanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C6D1C3DB4CD0013C8EC /* ExtendSavePanel.xib */; };
-		55D74C701C3DB4F80013C8EC /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C721C3DB4F80013C8EC /* AQTWindow.xib */; };
 		55D74C751C3DB5160013C8EC /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C771C3DB5160013C8EC /* Preferences.xib */; };
 		55D74C881C3DB8830013C8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554387C11C3B95AA006FBFB4 /* Assets.xcassets */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
@@ -219,6 +219,15 @@
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
 		55602F421D624D5700FC75A5 /* AQTPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTPath.swift; sourceTree = "<group>"; };
+		556C562B1F3F90640080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu1.xib; sourceTree = "<group>"; };
+		556C562C1F3F906F0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu1.strings; sourceTree = "<group>"; };
+		556C562D1F3F907F0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExtendSavePanel.xib; sourceTree = "<group>"; };
+		556C562E1F3F90850080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ExtendSavePanel.strings; sourceTree = "<group>"; };
+		556C562F1F3F90AB0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
+		556C56301F3F90AF0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
+		556C56311F3F90BA0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ColorInspector.xib; sourceTree = "<group>"; };
+		556C56321F3F90BF0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ColorInspector.strings; sourceTree = "<group>"; };
+		556C56331F3F90E50080A38F /* AQTWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AQTWindow.xib; sourceTree = "<group>"; };
 		5575FDE41C403A4900B7D002 /* PreferenceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceKeys.m; sourceTree = "<group>"; };
 		5575FDE61C403A5800B7D002 /* PreferenceKeys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreferenceKeys.h; sourceTree = "<group>"; };
 		558DB8391D60D38C007E54ED /* AQTAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTAdapter.swift; sourceTree = "<group>"; };
@@ -227,11 +236,6 @@
 		55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = "Demo-ARC.m"; sourceTree = "<group>"; };
 		55D31F141C3D0F8D0060FF56 /* AquaTermDemoSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermDemoSwift; sourceTree = BUILT_PRODUCTS_DIR; };
 		55D31F161C3D0F8D0060FF56 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
-		55D74C621C3DB4890013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu1.xib; sourceTree = "<group>"; };
-		55D74C671C3DB4AD0013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ColorInspector.xib; sourceTree = "<group>"; };
-		55D74C6C1C3DB4CD0013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ExtendSavePanel.xib; sourceTree = "<group>"; };
-		55D74C711C3DB4F80013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/AQTWindow.xib; sourceTree = "<group>"; };
-		55D74C761C3DB5160013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
 		55D74C871C3DB6F70013C8EC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -422,7 +426,7 @@
 				55D74C631C3DB4890013C8EC /* MainMenu1.xib */,
 				55D74C681C3DB4AD0013C8EC /* ColorInspector.xib */,
 				55D74C6D1C3DB4CD0013C8EC /* ExtendSavePanel.xib */,
-				55D74C721C3DB4F80013C8EC /* AQTWindow.xib */,
+				556C56331F3F90E50080A38F /* AQTWindow.xib */,
 				55D74C771C3DB5160013C8EC /* Preferences.xib */,
 			);
 			path = Resources;
@@ -866,7 +870,6 @@
 				CBC4B43405E4C784001BE8D7 /* Credits.rtf in Resources */,
 				55D74C661C3DB4AD0013C8EC /* ColorInspector.xib in Resources */,
 				CB72184906072CF6008DCEAD /* ReleaseNotes in Resources */,
-				55D74C701C3DB4F80013C8EC /* AQTWindow.xib in Resources */,
 				CB58A20006F9A60900AF8A5E /* AQTAdapter.html in Resources */,
 				CB58A20106F9A60900AF8A5E /* help.html in Resources */,
 				CB58A23B06FA0FB600AF8A5E /* ReadMe.rtf in Resources */,
@@ -874,6 +877,7 @@
 				55D74C611C3DB4890013C8EC /* MainMenu1.xib in Resources */,
 				55D74C751C3DB5160013C8EC /* Preferences.xib in Resources */,
 				55D74C881C3DB8830013C8EC /* Assets.xcassets in Resources */,
+				556C56341F3F94180080A38F /* AQTWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,7 +1035,8 @@
 		55D74C631C3DB4890013C8EC /* MainMenu1.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55D74C621C3DB4890013C8EC /* en */,
+				556C562B1F3F90640080A38F /* Base */,
+				556C562C1F3F906F0080A38F /* en */,
 			);
 			name = MainMenu1.xib;
 			sourceTree = "<group>";
@@ -1039,7 +1044,8 @@
 		55D74C681C3DB4AD0013C8EC /* ColorInspector.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55D74C671C3DB4AD0013C8EC /* en */,
+				556C56311F3F90BA0080A38F /* Base */,
+				556C56321F3F90BF0080A38F /* en */,
 			);
 			name = ColorInspector.xib;
 			sourceTree = "<group>";
@@ -1047,23 +1053,17 @@
 		55D74C6D1C3DB4CD0013C8EC /* ExtendSavePanel.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55D74C6C1C3DB4CD0013C8EC /* en */,
+				556C562D1F3F907F0080A38F /* Base */,
+				556C562E1F3F90850080A38F /* en */,
 			);
 			name = ExtendSavePanel.xib;
-			sourceTree = "<group>";
-		};
-		55D74C721C3DB4F80013C8EC /* AQTWindow.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				55D74C711C3DB4F80013C8EC /* en */,
-			);
-			name = AQTWindow.xib;
 			sourceTree = "<group>";
 		};
 		55D74C771C3DB5160013C8EC /* Preferences.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				55D74C761C3DB5160013C8EC /* en */,
+				556C562F1F3F90AB0080A38F /* Base */,
+				556C56301F3F90AF0080A38F /* en */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
@@ -1340,6 +1340,7 @@
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				MODULEMAP_FILE = "AquaTerm Framework/module copy.modulemap";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 			};

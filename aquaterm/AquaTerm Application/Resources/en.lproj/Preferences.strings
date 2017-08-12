@@ -1,0 +1,99 @@
+
+/* Class = "NSWindow"; title = "Preferences"; ObjectID = "5"; */
+"5.title" = "Preferences";
+
+/* Class = "NSMenuItem"; title = "Default"; ObjectID = "13"; */
+"13.title" = "Default";
+
+/* Class = "NSMenuItem"; title = "High"; ObjectID = "14"; */
+"14.title" = "High";
+
+/* Class = "NSMenuItem"; title = "Low"; ObjectID = "16"; */
+"16.title" = "Low";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "17"; */
+"17.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "None"; ObjectID = "38"; */
+"38.title" = "None";
+
+/* Class = "NSBox"; title = "Plotting"; ObjectID = "49"; */
+"49.title" = "Plotting";
+
+/* Class = "NSBox"; title = "Window title displays…"; ObjectID = "51"; */
+"51.title" = "Window title displays…";
+
+/* Class = "NSBox"; title = "Window closing"; ObjectID = "63"; */
+"63.title" = "Window closing";
+
+/* Class = "NSBox"; title = "Font encoding"; ObjectID = "70"; */
+"70.title" = "Font encoding";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "83"; */
+"83.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Red"; ObjectID = "84"; */
+"84.title" = "Red";
+
+/* Class = "NSMenuItem"; title = "Yellow"; ObjectID = "85"; */
+"85.title" = "Yellow";
+
+/* Class = "NSMenuItem"; title = "Green"; ObjectID = "86"; */
+"86.title" = "Green";
+
+/* Class = "NSMenuItem"; title = "Blue"; ObjectID = "87"; */
+"87.title" = "Blue";
+
+/* Class = "NSMenuItem"; title = "Black"; ObjectID = "89"; */
+"89.title" = "Black";
+
+/* Class = "NSMenuItem"; title = "White"; ObjectID = "90"; */
+"90.title" = "White";
+
+/* Class = "NSButtonCell"; title = "Anti-alias drawing"; ObjectID = "93"; */
+"93.title" = "Anti-alias drawing";
+
+/* Class = "NSTextFieldCell"; title = "Image interpolation level"; ObjectID = "95"; */
+"95.title" = "Image interpolation level";
+
+/* Class = "NSButtonCell"; title = "OK"; ObjectID = "96"; */
+"96.title" = "OK";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "97"; */
+"97.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Client process name"; ObjectID = "98"; */
+"98.title" = "Client process name";
+
+/* Class = "NSButtonCell"; title = "Client process id"; ObjectID = "99"; */
+"99.title" = "Client process id";
+
+/* Class = "NSTextFieldCell"; title = "Example:"; ObjectID = "100"; */
+"100.title" = "Example:";
+
+/* Class = "NSTextFieldCell"; title = "gnuplot (1151) Figure 1"; ObjectID = "101"; */
+"101.title" = "gnuplot (1151) Figure 1";
+
+/* Class = "NSTextFieldCell"; title = "0"; ObjectID = "102"; */
+"102.title" = "0";
+
+/* Class = "NSTextFieldCell"; title = "1"; ObjectID = "103"; */
+"103.title" = "1";
+
+/* Class = "NSTextFieldCell"; title = "0.25"; ObjectID = "104"; */
+"104.title" = "0.25";
+
+/* Class = "NSTextFieldCell"; title = "Crosshair cursor color"; ObjectID = "106"; */
+"106.title" = "Crosshair cursor color";
+
+/* Class = "NSTextFieldCell"; title = "Minimum linewidth:0.25pt"; ObjectID = "108"; */
+"108.title" = "Minimum linewidth:0.25pt";
+
+/* Class = "NSButtonCell"; title = "User confirmation"; ObjectID = "109"; */
+"109.title" = "User confirmation";
+
+/* Class = "NSButtonCell"; title = "Client controlled"; ObjectID = "110"; */
+"110.title" = "Client controlled";
+
+/* Class = "NSButtonCell"; title = "Convert Symbol Font"; ObjectID = "111"; */
+"111.title" = "Convert Symbol Font";

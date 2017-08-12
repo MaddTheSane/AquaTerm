@@ -1,0 +1,63 @@
+
+/* Class = "NSWindow"; title = "Inspector"; ObjectID = "3"; */
+"3.title" = "Inspector";
+
+/* Class = "NSBox"; title = "Special colors"; ObjectID = "39"; */
+"39.title" = "Special colors";
+
+/* Class = "NSBox"; title = "Indexed colors"; ObjectID = "41"; */
+"41.title" = "Indexed colors";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "73"; */
+"73.title" = "Item3";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "74"; */
+"74.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "75"; */
+"75.title" = "Item2";
+
+/* Class = "NSMenuItem"; title = "Item1"; ObjectID = "77"; */
+"77.title" = "Item1";
+
+/* Class = "NSButtonCell"; title = "Apply"; ObjectID = "93"; */
+"93.title" = "Apply";
+
+/* Class = "NSTextFieldCell"; title = "Statistics:\n"; ObjectID = "94"; */
+"94.title" = "Statistics:\n";
+
+/* Class = "NSTextFieldCell"; title = "Background"; ObjectID = "95"; */
+"95.title" = "Background";
+
+/* Class = "NSTextFieldCell"; title = "Text Color"; ObjectID = "96"; */
+"96.title" = "Text Color";
+
+/* Class = "NSTextFieldCell"; title = "Grid Color"; ObjectID = "97"; */
+"97.title" = "Grid Color";
+
+/* Class = "NSTextFieldCell"; title = "Axis Color"; ObjectID = "98"; */
+"98.title" = "Axis Color";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 1"; ObjectID = "99"; */
+"99.title" = "Line Color 1";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 2"; ObjectID = "100"; */
+"100.title" = "Line Color 2";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 3"; ObjectID = "101"; */
+"101.title" = "Line Color 3";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 4"; ObjectID = "102"; */
+"102.title" = "Line Color 4";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 5"; ObjectID = "103"; */
+"103.title" = "Line Color 5";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 6"; ObjectID = "104"; */
+"104.title" = "Line Color 6";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 7"; ObjectID = "105"; */
+"105.title" = "Line Color 7";
+
+/* Class = "NSTextFieldCell"; title = "Line Color 8"; ObjectID = "106"; */
+"106.title" = "Line Color 8";

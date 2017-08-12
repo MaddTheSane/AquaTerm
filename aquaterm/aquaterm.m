@@ -101,7 +101,7 @@ void aqtSetPlotSize(float width, float height)
 
 void aqtSetPlotTitle(const char *title)
 {
-   NSString *titleStr = @(title);
+   NSString *titleStr = title ? @(title) : nil;
    if (!titleStr) {
       titleStr = [NSString stringWithCString:title encoding: NSISOLatin1StringEncoding];
    }

@@ -7,7 +7,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleGetInfoString</key>
-	<string>AquaTerm v1.1.1</string>
+	<string>AquaTerm v1.1.2</string>
 	<key>CFBundleIconFile</key>
 	<string>AquaTerm</string>
 	<key>CFBundleIdentifier</key>

@@ -166,7 +166,7 @@ static inline void NOOP_(id x, ...) {;}
 -(void)setModel:(bycopy AQTModel *)newModel
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__); 
-   LOG(newModel.description);
+   LOG(@"%@", newModel.description);
    BOOL viewNeedResize = YES;
    if (model) {
       // Respect the windowsize set by user
@@ -189,7 +189,7 @@ static inline void NOOP_(id x, ...) {;}
       LOG(@"No model, passing to setModel:");
       [self setModel:newModel];
    } else {
-      LOG(newModel.description);
+      LOG(@"%@", newModel.description);
       BOOL viewNeedResize = !AQTProportionalSizes(model.canvasSize, newModel.canvasSize);
       [model appendModel:newModel];
       if (_isWindowLoaded)
@@ -228,7 +228,7 @@ static inline void NOOP_(id x, ...) {;}
 
 -(void)aqtClosePanelDidEnd:(id)sheet returnCode:(int32_t)retCode contextInfo:(id)contextInfo
 {
-   LOG(@"", NSStringFromSelector(_cmd));
+   LOG(@"%@", NSStringFromSelector(_cmd));
    if (retCode == NSAlertAlternateReturn) {
       [canvas.window close];
    }

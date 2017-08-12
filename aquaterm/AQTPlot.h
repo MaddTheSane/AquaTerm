@@ -12,7 +12,7 @@
 
 @class AQTModel, AQTView;
 @protocol AQTEventProtocol;
-@interface AQTPlot : NSObject <AQTClientProtocol>
+@interface AQTPlot : NSObject <AQTClientProtocol, NSWindowDelegate>
 {
   AQTModel	*model;		/**< Holds the model for the view "*/
   BOOL _isWindowLoaded;

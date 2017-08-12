@@ -69,6 +69,7 @@ void aqtDebug(id sender)
   //[adapter setFontname:@"Song Regular"];
   //[adapter addLabel:[NSString stringWithFormat:@"%C", 0x5925] atPoint:NSMakePoint(100,120)];
   [adapter renderPlot];
+  [as autorelease];
   
   float a;
   float a1=40.;

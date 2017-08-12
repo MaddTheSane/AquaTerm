@@ -182,7 +182,7 @@ extern void aqtLineDrawingTest(id sender);
 
 - (void)getServerVersionMajor:(out int32_t *)major minor:(out int32_t *)minor rev:(out int32_t *)rev
 {
-   // 1.1.1
+   // 1.1.2
    *major = 1;
    *minor = 1;
    *rev   = 2;

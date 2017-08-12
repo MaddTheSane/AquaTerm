@@ -53,7 +53,9 @@
 {
    [super awakeFromNib];
    [self setCrosshairCursorColor];
-   [self setIsProcessingEvents:NO];   
+   [self setIsProcessingEvents:NO];
+   //FIXME: Put in a better spot?
+   [self.window setReleasedWhenClosed:NO];
 }
 
 -(BOOL)acceptsFirstResponder

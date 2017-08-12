@@ -113,7 +113,7 @@ NS_ASSUME_NONNULL_BEGIN
    /*"Deprecated"*/
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 - (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
-- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the f.ontSize property");
+- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
 
 /// Deprecated, use \c addTransformedImageWithBitmap:size: instead.
 /// Add a bitmap image of size bitmapSize <b>honoring</b> transform,

@@ -45,7 +45,7 @@ adapter.setColormapEntry(5, red: 1.0, green: 0.0, blue: 1.0) // purple
 adapter.setColormapEntry(6, red: 1.0, green: 1.0, blue: 0.5) // yellow
 adapter.setColormapEntry(7, red: 0.0, green: 0.5, blue: 0.5) // dark green
 // Set color directly
-adapter.setColor(red: 0, green: 0, blue: 0)
+adapter.color = (0,0,0,1) //setColor(red: 0, green: 0, blue: 0)
 adapter.fontName = "Helvetica"
 adapter.fontSize = 12.0
 adapter.addLabel("Testview 620x420 pt", at: NSPoint(x: 4, y: 412), angle: 0.0, align: [])
@@ -222,8 +222,8 @@ do {
 	points.append(points[0])
 	adapter.addPolygon(vertexPoints: points)
 	points = Array<Int>(0..<8).map { (i) -> NSPoint in
-		let radians = Double(i) * Double.pi / 4.0
-		let r = 20.0;
+		let radians = CGFloat(i) * CGFloat.pi / 4.0
+		let r: CGFloat = 20.0;
 		return NSPoint(x: 460.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColor(fromColormapEntry: 4)
@@ -233,14 +233,15 @@ do {
 	adapter.takeColor(fromColormapEntry: 1)
 	adapter.addLabel("Alpha channel", at: NSPoint(x: 530, y: 290), angle: 0.0, align: .center)
 	do {
-		let circleInfo: [(x: Double, y: Double, red: Float, green: Float, blue: Float)] = [
+		let circleInfo: [(x: CGFloat, y: CGFloat, red: Float, green: Float, blue: Float)] = [
 			(520, 255, 1, 0, 0),
 			(540, 245, 0, 1, 0),
 			(540, 265, 0, 0, 1)]
 		
 		for (x, y, red, green, blue) in circleInfo {
 			let points = Array<Int>(0..<32).map { (i) -> NSPoint in
-				let radians = Double(i) * Double.pi / 16.0, r = 20.0;
+				let radians = CGFloat(i) * CGFloat.pi / 16.0;
+				let r: CGFloat = 20.0;
 				return NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 			}
 			adapter.setColor(red: red, green: green, blue: blue, alpha: 0.5)

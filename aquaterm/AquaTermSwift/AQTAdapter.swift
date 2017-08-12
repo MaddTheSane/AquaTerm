@@ -37,13 +37,13 @@ extension AQTAdapter {
 		}
 	}
 	
-	public func addPolyline(points: [NSPoint]) {
+	@nonobjc public func addPolyline(points: [NSPoint]) {
 		var points1 = points
-		addPolyline(with: &points1, pointCount: points.count)
+		__addPolyline(with: &points1, pointCount: points.count)
 	}
 	
-	public func addPolygon(vertexPoints vp: [NSPoint]) {
+	@nonobjc public func addPolygon(vertexPoints vp: [NSPoint]) {
 		var points1 = vp
-		addPolygon(withVertexPoints: &points1, pointCount: vp.count)
+		__addPolygon(withVertexPoints: &points1, pointCount: vp.count)
 	}
 }

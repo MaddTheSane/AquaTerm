@@ -359,8 +359,8 @@ static inline void NOOP_(id x, ...) {;}
    printView.model = model;
    
    [pasteboard declareTypes:@[NSPDFPboardType, NSPostScriptPboardType] owner:nil];
-   [pasteboard setData:[printView dataWithPDFInsideRect:printView.bounds] forType:NSPDFPboardType];
-   [pasteboard setData:[printView dataWithEPSInsideRect:printView.bounds] forType:NSPostScriptPboardType];
+   [printView writeEPSInsideRect:printView.bounds toPasteboard:pasteboard];
+   [printView writePDFInsideRect:printView.bounds toPasteboard:pasteboard];
 }
 
 - (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success  contextInfo:(AQTView *)printView

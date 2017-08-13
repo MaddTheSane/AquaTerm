@@ -73,11 +73,11 @@ extension AQTAdapter {
 	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels. 
 	/// Default is `0`.
 	/// - parameter just: Alignment of the text. Default is `[.baseline]`.
-	open func addLabel(_ text: Any, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+	@nonobjc open func addLabel(_ text: Any, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 
-	open func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
+	@nonobjc open func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
 		var newFPattern = newPattern.map { (val1) -> Float in
 			return Float(val1)
 		}
@@ -85,4 +85,9 @@ extension AQTAdapter {
 		setLinestylePattern(&newFPattern, count: newFPattern.count, phase: Float(newPhase))
 	}
 
+	@nonobjc open func setLinestylePattern(_ newPattern: [Float], phase newPhase: Float) {
+		var newFPattern = newPattern
+		
+		setLinestylePattern(&newFPattern, count: newFPattern.count, phase: newPhase)
+	}
 }

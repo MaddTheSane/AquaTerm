@@ -96,7 +96,7 @@ for f2 in stride(from: 1, to: 13, by: 2) {
 	f = Float(f2)
 	let lw = f/2.0;
 	adapter.lineWidth = CGFloat(round(lw - 0.5))
-	adapter.setLinestylePattern(pat[f2 % 3], count: 4, phase: 0.0)
+	adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
 	adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
 	adapter.addLine(to: NSPoint(x: 180, y: 200.5 + f * 10))
 }
@@ -207,15 +207,15 @@ do {
 	adapter.takeColor(fromColormapEntry: 1)
 	adapter.addLabel("Polygons", at: NSPoint(x: 320, y: 290), angle: 0.0, align: [])
 	var points = Array<Int>(0..<4).map { (i) -> NSPoint in
-		let radians=Double(i)*Double.pi/2.0
-		let r=20.0;
+		let radians = CGFloat(i) * .pi / 2.0
+		let r: CGFloat = 20.0;
 		return NSPoint(x: 340.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColor(fromColormapEntry: 2)
 	adapter.addPolygon(vertexPoints: Array(points[0..<4]))
 	points = Array<Int>(0..<5).map { (i) -> NSPoint in
-		let radians = Double(i) * Double.pi * 0.8
-		let r = 20.0
+		let radians = CGFloat(i) * .pi * 0.8
+		let r: CGFloat = 20.0
 		return NSPoint(x: 400.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 	}
 	adapter.takeColor(fromColormapEntry: 3)
@@ -242,7 +242,7 @@ do {
 		
 		for (x, y, red, green, blue) in circleInfo {
 			let points = Array<Int>(0..<32).map { (i) -> NSPoint in
-				let radians = CGFloat(i) * CGFloat.pi / 16.0;
+				let radians = CGFloat(i) * .pi / 16.0;
 				let r: CGFloat = 20.0;
 				return NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 			}

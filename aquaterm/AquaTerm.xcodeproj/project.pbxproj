@@ -217,7 +217,7 @@
 		550857EF1C80F719005ACF4A /* AQTHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTHelpers.swift; sourceTree = "<group>"; };
 		551A59BE1C3F775D00DED042 /* ARCBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCBridge.h; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		554387CF1C3B96B1006FBFB4 /* module copy.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = "module copy.modulemap"; sourceTree = "<group>"; usesTabs = 1; };
+		554387CF1C3B96B1006FBFB4 /* AquaTerm.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = AquaTerm.modulemap; sourceTree = "<group>"; usesTabs = 1; };
 		55602F421D624D5700FC75A5 /* AQTPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTPath.swift; sourceTree = "<group>"; };
 		556C562B1F3F90640080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu1.xib; sourceTree = "<group>"; };
 		556C562C1F3F906F0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu1.strings; sourceTree = "<group>"; };
@@ -459,7 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				551A59BE1C3F775D00DED042 /* ARCBridge.h */,
-				554387CF1C3B96B1006FBFB4 /* module copy.modulemap */,
+				554387CF1C3B96B1006FBFB4 /* AquaTerm.modulemap */,
 				CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */,
 				CB91251407CB3BDE001D5EAF /* AquaTerm.framework-Info.plist */,
 				CB138D3E05722C2E00D208BA /* ClientController */,
@@ -1083,7 +1083,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1108,7 +1107,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -1118,7 +1116,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1321,7 +1318,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CLANG_ENABLE_OBJC_ARC[arch=i386]" = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1339,7 +1335,7 @@
 				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MODULEMAP_FILE = "AquaTerm Framework/module copy.modulemap";
+				MODULEMAP_FILE = "AquaTerm Framework/AquaTerm.modulemap";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
@@ -1350,7 +1346,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
-				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CLANG_ENABLE_OBJC_ARC[arch=i386]" = NO;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1365,7 +1360,7 @@
 				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				MODULEMAP_FILE = "AquaTerm Framework/module copy.modulemap";
+				MODULEMAP_FILE = "AquaTerm Framework/AquaTerm.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 			};

@@ -49,8 +49,8 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /*" Acessors "*/
-@property (readonly) BOOL modelIsDirty;
-@property (readonly, retain) AQTModel *model;
+@property (readonly) BOOL modelIsDirty; /**< A flag indicating that AquaTerm has not been updated with the latest info */
+@property (readonly, retain) AQTModel *model; /**< The graph currently being built */
 @property NSSize size;
 @property (copy) NSString *title;
 
@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setDefaultClipRect;
 
   /*" Color handling "*/
-@property AQTColor color;
+@property AQTColor color; /**< Currently selected color */
 @property AQTColor backgroundColor;
 
 - (void)takeColorFromColormapEntry:(int32_t)index;
@@ -71,15 +71,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
   /*" Text handling "*/
-@property (copy) NSString* fontName;
-@property CGFloat fontSize;
+@property (copy) NSString* fontName; /**< Currently selected font */
+@property CGFloat fontSize; /**< Currently selected fontsize [pt] */
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
   /*" Line handling "*/
-@property (nonatomic) CGFloat lineWidth;
+@property (nonatomic) CGFloat lineWidth; /**< Currently selected linewidth [pt] */
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
-@property (nonatomic) AQTLineCapStyle lineCapStyle;
+@property (nonatomic) AQTLineCapStyle lineCapStyle; /**< Currently selected linecap style */
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath

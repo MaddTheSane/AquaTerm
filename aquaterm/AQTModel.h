@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) NSInteger count;
 /// Add any subclass of \c AQTGraphic to the collection of objects.
 -(void)addObject:(AQTGraphic *)graphic;
-/// Add any subclass of \c AQTGraphic to the collection of objects
+/// Add any subclass of \c AQTGraphic to the collection of objects.
 -(void)addObjectsFromArray:(NSArray<AQTGraphic*> *)graphics;
 /** An array of \c AQTGraphic objects (leaf or collection) */
 @property (readonly, copy) NSArray<AQTGraphic*> *modelObjects;

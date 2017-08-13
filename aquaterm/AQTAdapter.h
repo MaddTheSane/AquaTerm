@@ -104,9 +104,9 @@ NS_ASSUME_NONNULL_BEGIN
 /*! The font size in points. Applies to all future operations. Default is 14pt. */
 @property CGFloat fontSize;
 /*! Convenience form of \c addLabel:atPoint:angle:shearAngle:align: for horizontal, left and baseline aligned text. */
-- (void)addLabel:(id)text atPoint:(NSPoint)pos;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos NS_REFINED_FOR_SWIFT;
 /*! Same as \c addLabel:atPoint:angle:shearAngle:align: except that \c shearAngle defaults to <code>0</code>.*/
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 /*! Add \c text at coordinate given by <code>pos</code>, rotated by \c angle degrees and aligned vertically and horisontally (with respect to pos and rotation) according to <code>align</code>. Horizontal and vertical align may be combined by an OR operation, e.g. <code>(AQTAlignCenter | AQTAlignMiddle)</code>.
  \li {HorizontalAlign Description}
  \li {AQTAlignLeft LeftAligned}
@@ -123,11 +123,12 @@ NS_ASSUME_NONNULL_BEGIN
  \li {@"NSSuperScript" raise-level}
  \li {@"NSUnderline" 0or1}
  */
-- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just;
+- (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
   /*" Line handling "*/
 /*! The current \c linewidth (in points), used for all subsequent lines. Any line currently being built by \cmoveToPoint:/\caddLineToPoint will be considered finished since any coalesced sequence of line segments must share the same linewidth.  Default \c linewidth is 1pt.*/
 @property CGFloat lineWidth;
+/*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}. */
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
 @property AQTLineCapStyle lineCapStyle;

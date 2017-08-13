@@ -482,7 +482,7 @@
 				F57C16A102506DE3010D3DE4 /* Dist */,
 				CBC4B44A05E4C784001BE8D7 /* AquaTerm.app-Info.plist */,
 			);
-			indentWidth = 2;
+			indentWidth = 3;
 			name = Application;
 			path = "AquaTerm Application";
 			sourceTree = "<group>";

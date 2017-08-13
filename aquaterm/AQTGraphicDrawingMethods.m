@@ -203,8 +203,8 @@ static CGFloat _aqtMinimumLinewidth;
    scratch.lineCapStyle = (NSLineCapStyle)lineCapStyle;
    scratch.lineWidth = (lw<_aqtMinimumLinewidth)?_aqtMinimumLinewidth:lw;
    if(self.hasPattern) {
-       CGFloat temppat[patternCount];
-       for( i = 0; i < patternCount; i++) temppat[i] = pattern[i];
+      CGFloat temppat[patternCount > 0 ? patternCount : 1];
+      for( i = 0; i < patternCount; i++) temppat[i] = pattern[i];
       [scratch setLineDash:temppat count:patternCount phase:patternPhase];
    }
    if(self.filled) {

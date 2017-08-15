@@ -392,7 +392,7 @@ Configuration (please do not edit this section):\n\
 
 -(NSString *)_aqtMailMsg
 {
-    return @"Feedback report for AquaTerm 1.1.1\n\n\
+    return @"Feedback report for AquaTerm 1.1.2\n\n\
 Feedback:\n-----------------------\n\n\
 *\tPlease replace this item with suggestions or general comments.\n\n";
 }
@@ -403,7 +403,7 @@ Feedback:\n-----------------------\n\n\
   NSString *address = @"persquare@users.sourceforge.net";
   NSString *subject = @"AquaTerm feedback";
   NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
-  [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding]]];
+   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet]]];
 }
 
 #pragma mark === Debug Actions ===

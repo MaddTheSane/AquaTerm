@@ -14,10 +14,10 @@
 
 @interface AQTController : NSObject <NSApplicationDelegate, NSWindowDelegate, AQTConnectionProtocol>
 {
-  NSMutableArray<AQTPlot*>*handlerList;		/*" Array of client handlers "*/
+  NSMutableArray<AQTPlot*>*handlerList;		/*!< Array of client handlers */
   NSPopUpButton   *saveFormatPopup;
   NSBox           *extendSavePanelView;
-  NSPoint cascadingPoint;
+  NSPoint         cascadingPoint;
 }
 
 - (AQTAdapter *)sharedAdapter;

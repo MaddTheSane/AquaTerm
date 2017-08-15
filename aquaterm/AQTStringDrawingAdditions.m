@@ -8,6 +8,7 @@
 
 #include <tgmath.h>
 
+#import <AquaTerm/AQTAdapter.h>
 #import "AQTStringDrawingAdditions.h"
 #import "PreferenceKeys.h"
 
@@ -139,22 +140,22 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    while (*i < strLen) {
       // Read attributes
       NSDictionary *attributes = [attrString attributesAtIndex:*i effectiveRange:nil];
-      NSString *attributedFontname = (attributes[@"AQTFontname"] != nil)?
-         attributes[@"AQTFontname"]:
+      NSString *attributedFontname = (attributes[AQTFontNameKey] != nil)?
+         attributes[AQTFontNameKey]:
          defaultFontName; 
-      float attributedFontsize = (attributes[@"AQTFontsize"] != nil)?
-         [attributes[@"AQTFontsize"] integerValue]:
+      float attributedFontsize = (attributes[AQTFontSizeKey] != nil)?
+         [attributes[AQTFontSizeKey] integerValue]:
          defaultFontSize;
       attributedSublevel = (attributes[NSSuperscriptAttributeName] != nil)?
          [attributes[NSSuperscriptAttributeName] integerValue]:
          0;
-      CGFloat baselineAdjust = (attributes[@"AQTBaselineAdjust"] != nil)?
-         [attributes[@"AQTBaselineAdjust"] doubleValue]:
+      CGFloat baselineAdjust = (attributes[AQTBaselineAdjustKey] != nil)?
+         [attributes[AQTBaselineAdjustKey] doubleValue]:
          0.0;
-      BOOL isVisible = (attributes[@"AQTNonPrintingChar"] == nil 
-         || [attributes[@"AQTNonPrintingChar"] integerValue] == 0);
-      BOOL newUnderlining = (attributes[@"NSUnderline"] != nil 
-                        && [attributes[@"NSUnderline"] integerValue] == 1);
+      BOOL isVisible = (attributes[AQTNonPrintingCharKey] == nil
+         || [attributes[AQTNonPrintingCharKey] integerValue] == 0);
+      BOOL newUnderlining = (attributes[NSUnderlineStyleAttributeName] != nil
+                        && [attributes[NSUnderlineStyleAttributeName] integerValue] == 1);
       if (attributedSublevel == sublevel) {
          NSFont *aFont;
          unichar theChar;

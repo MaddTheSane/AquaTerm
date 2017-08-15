@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import AppKit.NSAttributedString
 import AquaTerm
 import AquaTerm.AQTAdapter
 //import AquaTermSwift
@@ -269,8 +270,8 @@ do {
 	//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
 	let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}";
 	let attrStr = NSMutableAttributedString(string: s)
-	attrStr.setAttributes(["AQTFontname": "AppleSymbols"], range: NSMakeRange(9,11))
-	attrStr.setAttributes(["AQTFontname": "STSong"], range: NSMakeRange(13,1))
+	attrStr.setAttributes([.AQTFontNameKey: "AppleSymbols"], range: NSMakeRange(9,11))
+	attrStr.setAttributes([.AQTFontNameKey: "STSong"], range: NSMakeRange(13,1))
 	
 	adapter.takeColor(fromColormapEntry: 1)
 	adapter.fontName = "Times-Roman"
@@ -318,9 +319,9 @@ do {
 	// MARK: Some styling is possible
 autoreleasepool() {
 	let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
-	attrStr.addAttribute("NSUnderline", value:1, range: NSMakeRange(0,9))
-	attrStr.addAttribute("NSSuperScript", value:-1, range: NSMakeRange(31,1))
-	attrStr.addAttribute("NSSuperScript", value:1, range:NSMakeRange(32,2))
+	attrStr.addAttribute(.underlineStyle, value:1, range: NSMakeRange(0,9))
+	attrStr.addAttribute(.superscript, value:-1, range: NSMakeRange(31,1))
+	attrStr.addAttribute(.superscript, value:1, range:NSMakeRange(32,2))
 	adapter.addLabel(attrStr, at:NSMakePoint(320, 75), angle:0.0, align: [])
 }
 adapter.takeColor(fromColormapEntry: 2)
@@ -345,22 +346,22 @@ autoreleasepool() {
 	adapter.fontSize = 14
 	
 	var attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
-	attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(3, 1)) // Greek
-	attrStr.addAttribute("NSSuperScript", value: 1, range: NSMakeRange(1,3)) // exponent
-	attrStr.addAttribute("AQTFontsize", value: 6.0, range: NSMakeRange(7,1)) // extra spacing
+	attrStr.addAttribute(.AQTFontNameKey, value: "Symbol", range: NSMakeRange(3, 1)) // Greek
+	attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(1,3)) // exponent
+	attrStr.addAttribute(NSAttributedStringKey(rawValue: "AQTFontsize"), value: 6.0, range: NSMakeRange(7,1)) // extra spacing
 	
 	adapter.addLabel(attrStr, at: NSMakePoint(260, 75), angle: 0.0, align: .center)
 	
 	attrStr = NSMutableAttributedString(string: "mSke-wk2")
-	attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(0,2))
-	attrStr.addAttribute("AQTFontsize", value: 20.0, range: NSMakeRange(1,1))
-	attrStr.addAttribute("AQTBaselineAdjust", value: -0.25, range: NSMakeRange(1,1)) // Lower symbol 25%
-	attrStr.addAttribute("NSSuperScript", value: -1, range: NSMakeRange(2,1))
-	attrStr.addAttribute("AQTFontname", value: "Times-Roman", range: NSMakeRange(3,1))
-	attrStr.addAttribute("NSSuperScript", value: 1, range: NSMakeRange(4,2))
-	attrStr.addAttribute("AQTFontname", value: "Symbol", range: NSMakeRange(5,1))
-	attrStr.addAttribute("NSSuperScript", value: -2, range: NSMakeRange(6,1))
-	attrStr.addAttribute("NSSuperScript", value: 2, range: NSMakeRange(7,1))
+	attrStr.addAttribute(NSAttributedStringKey(rawValue: "AQTFontname"), value: "Symbol", range: NSMakeRange(0,2))
+	attrStr.addAttribute(NSAttributedStringKey(rawValue: "AQTFontsize"), value: 20.0, range: NSMakeRange(1,1))
+	attrStr.addAttribute(.AQTBaselineAdjustKey, value: -0.25, range: NSMakeRange(1,1)) // Lower symbol 25%
+	attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(2,1))
+	attrStr.addAttribute(.AQTFontNameKey, value: "Times-Roman", range: NSMakeRange(3,1))
+	attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(4,2))
+	attrStr.addAttribute(.AQTFontNameKey, value: "Symbol", range: NSMakeRange(5,1))
+	attrStr.addAttribute(.superscript, value: -2, range: NSMakeRange(6,1))
+	attrStr.addAttribute(.superscript, value: 2, range: NSMakeRange(7,1))
 	
 	adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 45), angle: 0.0, align: .center)
 }

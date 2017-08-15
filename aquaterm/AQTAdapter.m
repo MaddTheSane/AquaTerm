@@ -11,6 +11,11 @@
 #import "AQTPlotBuilder.h"
 #import "ARCBridge.h"
 
+NSAttributedStringKey const AQTFontNameKey = @"AQTFontname";
+NSAttributedStringKey const AQTFontSizeKey = @"AQTFontsize";
+NSAttributedStringKey const AQTBaselineAdjustKey = @"AQTBaselineAdjust";
+NSAttributedStringKey const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
+
 @implementation AQTAdapter
 /*" AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
 As such, it bridges the gap between client's procedural calls requesting operations

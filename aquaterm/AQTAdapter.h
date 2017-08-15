@@ -8,6 +8,7 @@
 
 #import <Foundation/NSString.h>
 #import <Foundation/NSGeometry.h>
+#import <Foundation/NSAttributedString.h>
 #include "aquaterm.h"
 
 NS_ASSUME_NONNULL_BEGIN
@@ -179,5 +180,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 
 @end
+
+extern NSAttributedStringKey const AQTFontNameKey;
+extern NSAttributedStringKey const AQTFontSizeKey;
+extern NSAttributedStringKey const AQTBaselineAdjustKey;
+extern NSAttributedStringKey const AQTNonPrintingCharKey;
 
 NS_ASSUME_NONNULL_END

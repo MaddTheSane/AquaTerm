@@ -181,9 +181,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+#ifdef __MAC_10_13
 extern NSAttributedStringKey const AQTFontNameKey;
 extern NSAttributedStringKey const AQTFontSizeKey;
 extern NSAttributedStringKey const AQTBaselineAdjustKey;
 extern NSAttributedStringKey const AQTNonPrintingCharKey;
+#else
+extern NSString *const AQTFontNameKey;
+extern NSString *const AQTFontSizeKey;
+extern NSString *const AQTBaselineAdjustKey;
+extern NSString *const AQTNonPrintingCharKey;
+#endif
 
 NS_ASSUME_NONNULL_END

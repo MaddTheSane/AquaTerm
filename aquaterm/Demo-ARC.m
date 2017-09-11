@@ -16,6 +16,7 @@
 // executed from inside AquaTerm using menu Debug -> Testview. 
 
 #import <Foundation/Foundation.h>
+#import <AppKit/NSAttributedString.h>
 #ifndef AQT_STANDALONE
 #import <AppKit/AppKit.h>
 #import "AQTController.h"

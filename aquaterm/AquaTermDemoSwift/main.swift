@@ -107,7 +107,7 @@ autoreleasepool() {
 	adapter.addFilledRect(r)
 	adapter.setColor(red: 0, green:0, blue:0)
 	adapter.clipRect = r
-	adapter.addLabel("Clipped text. Clipped text. Clipped text.", at: NSMakePoint(180, 230), angle: 30.0, align: [.center])
+	adapter.addLabel("Clipped text. Clipped text. Clipped text.", at: NSPoint(x: 180, y: 230), angle: 30.0, align: [.center])
 	adapter.lineWidth = 1.0
 	var points = Array<Int>(0..<5).map { (i) -> NSPoint in
 		let radians = CGFloat(i) * .pi * 0.8
@@ -132,7 +132,7 @@ do {
 	adapter.lineCapStyle = .butt
 	adapter.move(to: NSPoint(x: 40.5, y: 170.5))
 	adapter.addLine(to: NSPoint(x: 150.5, y: 170.5))
-	adapter.addLabel("AQTLineCapStyle.butt", at: NSMakePoint(160.5, 170.5), align: [])
+	adapter.addLabel("AQTLineCapStyle.butt", at: NSPoint(x: 160.5, y: 170.5), align: [])
 	adapter.lineWidth = 1.0
 	adapter.takeColor(fromColormapEntry: 6)
 	adapter.move(to: NSPoint(x: 40.5, y: 170.5))
@@ -273,7 +273,7 @@ do {
 	adapter.fontName = "Times-Roman"
 	adapter.fontSize = 12.0
 	adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
-	//[adapter addLabel:@"Times-Roman 16pt" atPoint:NSMakePoint(320, 150) angle:0.0 align:AQTAlignLeft];
+	//[adapter addLabel:@"Times-Roman 16pt" atPoint:NSPoint(x: 320, 150) angle:0.0 align:AQTAlignLeft];
 	adapter.takeColor(fromColormapEntry: 2)
 	adapter.fontName = "Times-Italic"
 	adapter.fontSize = 16.0
@@ -318,25 +318,25 @@ autoreleasepool() {
 	attrStr.addAttribute(.underlineStyle, value:1, range: NSMakeRange(0,9))
 	attrStr.addAttribute(.superscript, value:-1, range: NSMakeRange(31,1))
 	attrStr.addAttribute(.superscript, value:1, range:NSMakeRange(32,2))
-	adapter.addLabel(attrStr, at:NSMakePoint(320, 75), align: [])
+	adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 }
 adapter.takeColor(fromColormapEntry: 2)
 adapter.lineWidth = 0.5
-adapter.move(to: NSMakePoint(320, 45.5))
-adapter.addLine(to: NSMakePoint(520, 45.5))
+adapter.move(to: NSPoint(x: 320, y: 45.5))
+adapter.addLine(to: NSPoint(x: 520, y: 45.5))
 adapter.takeColor(fromColormapEntry: 1)
 adapter.fontName = "Times-Italic"
 adapter.fontSize = 14.0
-adapter.addLabel("Top", at: NSMakePoint(330, 45.5), align: [.top])
-adapter.addLabel("Bottom", at: NSMakePoint(360, 45.5), align: [.bottom])
-adapter.addLabel("Middle", at: NSMakePoint(410, 45.5), align: [])
-adapter.addLabel("Baseline", at: NSMakePoint(460, 45.5), align: [.baseline])
+adapter.addLabel("Top", at: NSPoint(x: 330, y: 45.5), align: [.top])
+adapter.addLabel("Bottom", at: NSPoint(x: 360, y: 45.5), align: [.bottom])
+adapter.addLabel("Middle", at: NSPoint(x: 410, y: 45.5), align: [])
+adapter.addLabel("Baseline", at: NSPoint(x: 460, y: 45.5), align: [.baseline])
 
 	// MARK: Equations
 autoreleasepool() {
 	adapter.fontName = "Helvetica"
 	adapter.fontSize = 12
-	adapter.addLabel("Equation style", at: NSMakePoint(260, 95), align: .center)
+	adapter.addLabel("Equation style", at: NSPoint(x: 260, y: 95), align: .center)
 	
 	adapter.fontName = "Times-Roman"
 	adapter.fontSize = 14
@@ -346,7 +346,7 @@ autoreleasepool() {
 	attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(1,3)) // exponent
 	attrStr.addAttribute(.AQTFontSize, value: 6.0, range: NSMakeRange(7,1)) // extra spacing
 	
-	adapter.addLabel(attrStr, at: NSMakePoint(260, 75), align: .center)
+	adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 	
 	attrStr = NSMutableAttributedString(string: "mSke-wk2")
 	attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(0,2))

@@ -16,6 +16,7 @@
 // _or_
 // executed from AquaTerm using menu Debug -> Exercise bugs.
 
+#include <tgmath.h>
 #import <Foundation/Foundation.h>
 #ifndef AQT_STANDALONE
 #import <AppKit/AppKit.h>

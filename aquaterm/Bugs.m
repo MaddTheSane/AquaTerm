@@ -59,8 +59,8 @@ void aqtDebug(id sender)
   //NSString *s = [NSString stringWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", 0x2124, 0x2133, 0x5925, 0x2654, 0x2655, 0x2656, 0x2657, 0x2658];
   NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
   NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
-  [as setAttributes:@{@"AQTFontname": @"AppleSymbols"} range:NSMakeRange(9,11)];
-  [as setAttributes:@{@"AQTFontname": @"Song Regular"} range:NSMakeRange(13,1)];
+  [as setAttributes:@{AQTFontNameKey: @"AppleSymbols"} range:NSMakeRange(9,11)];
+  [as setAttributes:@{AQTFontNameKey: @"Song Regular"} range:NSMakeRange(13,1)];
   [adapter openPlotWithIndex:1];
   adapter.plotSize = NSMakeSize(620,420);
   adapter.plotTitle = @"Unicode";

@@ -292,8 +292,8 @@ adapter.fontName = @"Times-Roman";
 NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
 //NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
 NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
-[as setAttributes:@{@"AQTFontname": @"AppleSymbols"} range:NSMakeRange(9,11)];
-[as setAttributes:@{@"AQTFontname": @"STSong"} range:NSMakeRange(13,1)];
+[as setAttributes:@{AQTFontNameKey: @"AppleSymbols"} range:NSMakeRange(9,11)];
+[as setAttributes:@{AQTFontNameKey: @"STSong"} range:NSMakeRange(13,1)];
 
 
 [adapter takeColorFromColormapEntry:1];
@@ -342,9 +342,9 @@ adapter.fontSize = 12.0;
 // Some styling is possible
 {
   NSMutableAttributedString *attrStr = [[NSMutableAttributedString alloc] initWithString:@"Underline, super- and subscript123"];
-  [attrStr addAttribute:@"NSUnderline" value:@1 range:NSMakeRange(0,9)];
-  [attrStr addAttribute:@"NSSuperScript" value:@-1 range:NSMakeRange(31,1)];
-  [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(32,2)];
+  [attrStr addAttribute:NSUnderlineStyleAttributeName value:@1 range:NSMakeRange(0,9)];
+  [attrStr addAttribute:NSSuperscriptAttributeName value:@-1 range:NSMakeRange(31,1)];
+  [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(32,2)];
   [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];  
 }
 [adapter takeColorFromColormapEntry:2];
@@ -370,22 +370,22 @@ adapter.fontSize = 14.0;
    adapter.fontSize = 14.0;
 
    attrStr = [[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"];
-   [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
-   [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(1,3)]; // eponent
-   [attrStr addAttribute:@"AQTFontsize" value:@6.0 range:NSMakeRange(7,1)]; // extra spacing
+   [attrStr addAttribute:AQTFontNameKey value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // eponent
+   [attrStr addAttribute:AQTFontSizeKey value:@6.0 range:NSMakeRange(7,1)]; // extra spacing
    
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 75) angle:0.0 align:AQTAlignCenter];
 
    attrStr = [[NSMutableAttributedString alloc] initWithString:@"mSke-wk2"];
-   [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(0,2)];
-   [attrStr addAttribute:@"AQTFontsize" value:@20.0 range:NSMakeRange(1,1)];
-   [attrStr addAttribute:@"AQTBaselineAdjust" value:@-0.25 range:NSMakeRange(1,1)]; // Lower symbol 25%
-   [attrStr addAttribute:@"NSSuperScript" value:@-1 range:NSMakeRange(2,1)];
-   [attrStr addAttribute:@"AQTFontname" value:@"Times-Roman" range:NSMakeRange(3,1)];
-   [attrStr addAttribute:@"NSSuperScript" value:@1 range:NSMakeRange(4,2)];
-   [attrStr addAttribute:@"AQTFontname" value:@"Symbol" range:NSMakeRange(5,1)];
-   [attrStr addAttribute:@"NSSuperScript" value:@-2 range:NSMakeRange(6,1)];
-   [attrStr addAttribute:@"NSSuperScript" value:@2 range:NSMakeRange(7,1)];
+   [attrStr addAttribute:AQTFontNameKey value:@"Symbol" range:NSMakeRange(0,2)];
+   [attrStr addAttribute:AQTFontSizeKey value:@20.0 range:NSMakeRange(1,1)];
+   [attrStr addAttribute:AQTBaselineAdjustKey value:@-0.25 range:NSMakeRange(1,1)]; // Lower symbol 25%
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@-1 range:NSMakeRange(2,1)];
+   [attrStr addAttribute:AQTFontNameKey value:@"Times-Roman" range:NSMakeRange(3,1)];
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(4,2)];
+   [attrStr addAttribute:AQTFontNameKey value:@"Symbol" range:NSMakeRange(5,1)];
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@-2 range:NSMakeRange(6,1)];
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@2 range:NSMakeRange(7,1)];
 
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 45) angle:0.0 align:AQTAlignCenter];
 

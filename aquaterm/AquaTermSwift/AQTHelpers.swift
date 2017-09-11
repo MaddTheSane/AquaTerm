@@ -9,8 +9,6 @@
 import AquaTerm
 import AquaTerm.AQTFunctions
 
-//public func AQTEqualColors(c1: AQTColor, _ c2: AQTColor) -> Bool
-
 public func ==(lhs: AQTColor, rhs: AQTColor) -> Bool {
    return AQTEqualColors(lhs, rhs)
 }

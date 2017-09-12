@@ -64,12 +64,10 @@ static CGFloat _aqtMinimumLinewidth;
 -(NSRect)updateBounds
 {
    NSRect tmpRect = NSZeroRect;
-   AQTGraphic *graphic;
-   NSEnumerator *enumerator = [modelObjects objectEnumerator];
    
    _aqtMinimumLinewidth = [[NSUserDefaults standardUserDefaults] floatForKey:MinimumLineWidthKey];
    
-   while ((graphic = [enumerator nextObject]))
+   for (AQTGraphic *graphic in modelObjects)
    {
       /*       NSRect graphRect = [graphic updateBounds];
       
@@ -113,7 +111,7 @@ static CGFloat _aqtMinimumLinewidth;
    // Make sure we get a valid font....
    if ((normalFont = [NSFont fontWithName:fontName size:fontSize]) == nil)
       normalFont = [NSFont systemFontOfSize:fontSize]; // Fall back to a system font 
-                                                       // Convert (attributed) string into a path
+                                                      // Convert (attributed) string into a path
    tmpPath = [string aqtBezierPathInFont:normalFont]; // Implemented in AQTStringDrawingAdditions
    tmpSize = tmpPath.bounds.size;
    // Place the path according to position, angle and align  
@@ -173,7 +171,7 @@ static CGFloat _aqtMinimumLinewidth;
          [_cache  fill];
          [context restoreGraphicsState];
       } else {
-      [_cache  fill];
+         [_cache  fill];
       }
    }
 #ifdef DEBUG_BOUNDS
@@ -243,8 +241,9 @@ static CGFloat _aqtMinimumLinewidth;
       if (self.filled) {
          [_cache fill];
       }
-      if (_isClipped)
+      if (_isClipped) {
          [context restoreGraphicsState];
+      }
    }
 #ifdef DEBUG_BOUNDS
    if (_shouldShowBounds) {

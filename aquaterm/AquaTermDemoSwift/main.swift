@@ -44,7 +44,7 @@ func internalMain() {
 	adapter.setColormapEntry(6, red: 1.0, green: 1.0, blue: 0.5) // yellow
 	adapter.setColormapEntry(7, red: 0.0, green: 0.5, blue: 0.5) // dark green
 	// Set color directly
-	adapter.color = (0,0,0,1) //setColor(red: 0, green: 0, blue: 0)
+	adapter.color = AQTColor(red: 0, green: 0, blue: 0, alpha: 1)
 	adapter.fontName = "Helvetica"
 	adapter.fontSize = 12.0
 	adapter.addLabel("Testview 620x420 pt", at: NSPoint(x: 4, y: 412), align: [])
@@ -58,13 +58,13 @@ func internalMain() {
 	// MARK: Colormap
 	adapter.addLabel("Custom colormap (8 out of 256)", at: NSPoint(x: 30, y: 385), align: [])
 	// Display the colormap, but first create a background for the white box...
-	adapter.color = (red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
+	adapter.color = AQTColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 	adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
 	for i in 0..<8 {
 		adapter.takeColor(fromColormapEntry: Int32(i))
 		adapter.addFilledRect(NSRect(x: 30 + i * 30, y: 350, width: 20, height: 20))
 		// Print the color index
-		adapter.color = (red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
+		adapter.color = AQTColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
 		adapter.addLabel("\(i)",
 			at: NSPoint(x: 40 + i * 30, y: 360),
 			align: .center)
@@ -227,22 +227,22 @@ func internalMain() {
 		adapter.takeColor(fromColormapEntry: 4)
 		adapter.addPolygon(vertexPoints: points)
 		
-		// Circles with alpha transparency
+		// MARK: Circles with alpha transparency
 		adapter.takeColor(fromColormapEntry: 1)
 		adapter.addLabel("Alpha channel", at: NSPoint(x: 530, y: 290), align: .center)
 		do {
-			let circleInfo: [(x: CGFloat, y: CGFloat, red: Float, green: Float, blue: Float)] = [
-				(520, 255, 1, 0, 0),
-				(540, 245, 0, 1, 0),
-				(540, 265, 0, 0, 1)]
+			let circleInfo: [(x: CGFloat, y: CGFloat, color: AQTColor)] = [
+				(520, 255, AQTColor(red: 1, green: 0, blue: 0, alpha: 0.5)),
+				(540, 245, AQTColor(red: 0, green: 1, blue: 0, alpha: 0.5)),
+				(540, 265, AQTColor(red: 0, green: 0, blue: 1, alpha: 0.5))]
 			
-			for (x, y, red, green, blue) in circleInfo {
+			for (x, y, color) in circleInfo {
 				let points = Array<Int>(0..<32).map { (i) -> NSPoint in
 					let radians = CGFloat(i) * .pi / 16.0;
 					let r: CGFloat = 20.0;
 					return NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 				}
-				adapter.setColor(red: red, green: green, blue: blue, alpha: 0.5)
+				adapter.color = color
 				adapter.addPolygon(vertexPoints: points)
 			}
 		}
@@ -308,15 +308,15 @@ func internalMain() {
 		// Shear
 		adapter.fontName = "Arial"
 		adapter.fontSize = 12.0
-		adapter.addLabel("Rotate & shear", at: NSPoint(x: 430, y: 105), angle:45.0, shearAngle: 45.0, align: [])
+		adapter.addLabel("Rotate & shear", at: NSPoint(x: 430, y: 105), angle: 45.0, shearAngle: 45.0, align: [])
 	}
 	
 	// MARK: Some styling is possible
 	autoreleasepool() {
 		let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
-		attrStr.addAttribute(.underlineStyle, value:1, range: NSMakeRange(0,9))
-		attrStr.addAttribute(.superscript, value:-1, range: NSMakeRange(31,1))
-		attrStr.addAttribute(.superscript, value:1, range:NSMakeRange(32,2))
+		attrStr.addAttribute(.underlineStyle, value: 1, range: NSMakeRange(0,9))
+		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(31,1))
+		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(32,2))
 		adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 	}
 	adapter.takeColor(fromColormapEntry: 2)

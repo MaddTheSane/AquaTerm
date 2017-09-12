@@ -11,27 +11,27 @@ import AquaTerm
 import AquaTerm.AQTAdapter
 
 extension AQTAdapter {
-	open var color: (red: Float, green: Float, blue: Float, alpha: Float) {
+	open var color: AQTColor {
 		get {
 			var r: Float = 0
 			var g: Float = 0
 			var b: Float = 0
 			var a: Float = 0
 			getColor(red: &r, green: &g, blue: &b, alpha: &a)
-			return (r, g, b, a)
+			return AQTColor(red: r, green: g, blue: b, alpha: a)
 		} set {
 			setColor(red: newValue.red, green: newValue.green, blue: newValue.blue, alpha: newValue.alpha)
 		}
 	}
 	
-	open var backgroundColor: (red: Float, green: Float, blue: Float, alpha: Float) {
+	open var backgroundColor: AQTColor {
 		get {
 			var r: Float = 0
 			var g: Float = 0
 			var b: Float = 0
 			var a: Float = 0
 			getBackgroundColor(red: &r, green: &g, blue: &b, alpha: &a)
-			return (r, g, b, a)
+			return AQTColor(red: r, green: g, blue: b, alpha: a)
 		} set {
 			setBackgroundColor(red: newValue.red, green: newValue.green, blue: newValue.blue, alpha: newValue.alpha)
 		}

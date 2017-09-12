@@ -157,6 +157,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
       BOOL newUnderlining = (attributes[NSUnderlineStyleAttributeName] != nil
                         && [attributes[NSUnderlineStyleAttributeName] integerValue] == 1);
       if (attributedSublevel == sublevel) {
+         //TODO: migrate to NSLayoutManager?
          NSFont *aFont;
          unichar theChar;
          NSGlyph theGlyph;

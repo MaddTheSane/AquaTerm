@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// A class representing a collection of objects making up the plot
 @interface AQTModel : AQTGraphic <NSFastEnumeration> /*" NSObject "*/
 {
-   NSMutableArray<AQTGraphic*> *modelObjects; /**< An array of \c AQTGraphic objects (leaf or collection) */
+   NSMutableArray<__kindof AQTGraphic*> *modelObjects; /**< An array of \c AQTGraphic objects (leaf or collection) */
    NSString       *title; /**< Associate a title with the model. Default is 'Figure n'. */
    NSSize         canvasSize;
    NSRect         dirtyRect;
@@ -32,7 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Add any subclass of \c AQTGraphic to the collection of objects.
 -(void)addObjectsFromArray:(NSArray<AQTGraphic*> *)graphics;
 /** An array of \c AQTGraphic objects (leaf or collection) */
-@property (readonly, copy) NSArray<AQTGraphic*> *modelObjects;
+@property (readonly, copy) NSArray<__kindof AQTGraphic*> *modelObjects;
 -(void)removeAllObjects;
 -(void)removeObjectAtIndex:(NSInteger)i;
 /// Associate a title with the model. Default is 'Figure n'.

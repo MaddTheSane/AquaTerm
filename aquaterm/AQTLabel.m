@@ -93,7 +93,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTLabelStringKey]) {
       string = [[coder decodeObjectForKey:AQTLabelStringKey] copy];
       fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] copy];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];

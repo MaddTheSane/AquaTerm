@@ -77,7 +77,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTImageTransformKey]) {
       bitmap = RETAINOBJ([coder decodeObjectForKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];

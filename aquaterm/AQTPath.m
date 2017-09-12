@@ -114,7 +114,7 @@
 {
    NSInteger i;
    if (self = [super initWithCoder:coder]) {
-      if (coder.allowsKeyedCoding) {
+      if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTPathPathKey]) {
          isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
          lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
          linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];

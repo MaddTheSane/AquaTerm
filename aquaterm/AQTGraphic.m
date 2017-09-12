@@ -71,7 +71,7 @@ typedef struct _AQTColor_v100 {
 {
    AQTRect r;
    if (self = [super init]) {
-      if (coder.allowsKeyedCoding) {
+      if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTGraphicColorKey]) {
          NSValue *tmpColor = [coder decodeObjectForKey:AQTGraphicColorKey];
          [tmpColor getValue:&_color];
          _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];

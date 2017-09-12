@@ -67,7 +67,7 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding) {
+    if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTModelModelsKey]) {
       modelObjects = [[coder decodeObjectForKey:AQTModelModelsKey] mutableCopy];
       title = [[coder decodeObjectForKey:AQTModelTitleKey] copy];
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];

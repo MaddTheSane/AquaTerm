@@ -9,6 +9,7 @@
 #include <tgmath.h>
 
 #import <AquaTerm/AQTAdapter.h>
+#include <CoreText/CoreText.h>
 #import "AQTStringDrawingAdditions.h"
 #import "PreferenceKeys.h"
 
@@ -169,10 +170,19 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          if ([aFont.fontName isEqualToString:@"Symbol"] && convertSymbolFontToUnicode) {
             theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
          }
-         // Get the glyph
-         theGlyph = [aFont _defaultGlyphForChar:theChar];
-         // Adjust glyph position
-         glyphHeight = [aFont boundingRectForGlyph:theGlyph].size.height;
+         if (@available(macOS 10.13, *)) {
+            // Get the glyph
+            CGGlyph aGlyph;
+            CTFontGetGlyphsForCharacters((CTFontRef)aFont, &theChar, &aGlyph, 1);
+            // Adjust glyph position
+            glyphHeight = [aFont boundingRectForCGGlyph:0].size.height;
+            theGlyph = aGlyph;
+         } else {
+            // Get the glyph
+            theGlyph = [aFont _defaultGlyphForChar:theChar];
+            // Adjust glyph position
+            glyphHeight = [aFont boundingRectForGlyph:theGlyph].size.height;
+         }
          if (extendsRight)
             pos.x = maxRight;         
          baselineOffset = glyphHeight*baselineAdjust;
@@ -189,11 +199,20 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          }
          underlining = newUnderlining;
          [path moveToPoint:NSMakePoint(pos.x, pos.y+baselineOffset)];
-         // render glyph
-         if (isVisible)
-            [path appendBezierPathWithGlyph:theGlyph inFont:aFont];
-         // advance position
-         pos.x += [aFont advancementForGlyph:theGlyph].width;
+         if (@available(macOS 10.13, *)) {
+            // render glyph
+            if (isVisible) {
+               [path appendBezierPathWithCGGlyph:theGlyph inFont:aFont];
+            }
+            // advance position
+            pos.x += [aFont advancementForCGGlyph:theGlyph].width;
+         } else {
+            // render glyph
+            if (isVisible)
+               [path appendBezierPathWithGlyph:theGlyph inFont:aFont];
+            // advance position
+            pos.x += [aFont advancementForGlyph:theGlyph].width;
+         }
          [path moveToPoint:pos];
          maxRight = MAX(pos.x, maxRight);
          extendsRight = NO; 

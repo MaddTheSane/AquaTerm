@@ -57,6 +57,7 @@ void aqtSetEventBlock(void (^func)(int ref, const char *event))
    static void (^func2)(int ref, const char *event);
    if (func2) {
       Block_release(func2);
+      func2 = NULL;
    }
    if (!func) {
       _adapter.eventBlock = nil;

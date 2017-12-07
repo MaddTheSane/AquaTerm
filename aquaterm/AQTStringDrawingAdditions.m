@@ -53,6 +53,7 @@ static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 @implementation NSString (AQTStringDrawingAdditions)
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)aFont
 {
+   //TODO: move to CoreText
    NSInteger i;
    NSInteger firstChar = 0;
    NSInteger strLen = self.length;
@@ -77,7 +78,13 @@ static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
       unichar theChar = [self characterAtIndex:i];
       if (convertSymbolFontToUnicode)
          theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
-      theGlyph = [aFont _defaultGlyphForChar:theChar];
+      {
+         // Get the glyph
+         CGGlyph aGlyph;
+         CTFontGetGlyphsForCharacters((CTFontRef)aFont, &theChar, &aGlyph, 1);
+         // Adjust glyph position
+         theGlyph = aGlyph;
+      }
       offset = [aFont advancementForGlyph:theGlyph];
       [tmpPath appendBezierPathWithGlyph:theGlyph inFont:aFont];
       pos.x += offset.width;

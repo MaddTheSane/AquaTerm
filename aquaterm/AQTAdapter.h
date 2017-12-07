@@ -136,7 +136,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 /*! Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments.*/
 - (void)moveToPoint:(NSPoint)point;
-/* Add a line segment from the current point (given by a previous \c moveToPoint: or <code>addLineToPoint</code>).*/
+/*! Add a line segment from the current point (given by a previous \c moveToPoint: or <code>addLineToPoint</code>).*/
 - (void)addLineToPoint:(NSPoint)point;
 //! Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points. Parameter \c pc is number of line segments + 1.
 - (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;

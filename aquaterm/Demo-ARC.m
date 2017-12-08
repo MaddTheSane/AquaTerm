@@ -28,7 +28,7 @@
 #ifdef AQT_STANDALONE
 void aqtTestview(AQTAdapter *adapter);
 
-int32_t main(void)
+int main(void)
 {
   @autoreleasepool {
     AQTAdapter *adapter = [[AQTAdapter alloc] init];
@@ -45,7 +45,7 @@ NSPoint points[128];
   NSPoint pos;
 int32_t i;
 float f;
-double pi = 4.0*atan(1.0);
+const double pi = 4.0*atan(1.0);
 unsigned char rgbImage[12]={
   255, 0, 0,
   0, 255, 0,

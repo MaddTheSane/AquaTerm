@@ -28,7 +28,7 @@
 #ifdef AQT_STANDALONE
 void aqtTestview(AQTAdapter *adapter);
 
-int32_t main(void)
+int main(void)
 {
   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
   AQTAdapter *adapter = [[AQTAdapter alloc] init];

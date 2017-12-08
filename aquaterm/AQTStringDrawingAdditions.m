@@ -72,7 +72,7 @@ static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    [tmpPath moveToPoint:pos];
    
    if (@available(macOS 10.13, *)) {
-      UniChar * chars = calloc(strLen - firstChar + 1, sizeof(unichar));
+      unichar * chars = calloc(strLen - firstChar + 1, sizeof(unichar));
       CGGlyph * glyphs = calloc(strLen - firstChar + 1, sizeof(CGGlyph));
       for (NSInteger i = firstChar; i < strLen; i++) {
          unichar theChar = [self characterAtIndex:i];

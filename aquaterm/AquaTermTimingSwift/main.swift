@@ -9,8 +9,6 @@
 import Foundation
 import AquaTerm
 
-print("Hello, World!")
-
 func aqtLineDrawingTest(_ adapter: AQTAdapter) {
 	let maxLineLength: Int32 = 64
 	var index: UInt32 = 0

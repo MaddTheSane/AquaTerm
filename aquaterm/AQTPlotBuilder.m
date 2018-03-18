@@ -153,11 +153,6 @@
    _isClipped = NO;
 }
 
-- (AQTColor)color
-{
-   return _color;
-}
-
 - (void)setColor:(AQTColor)newColor
 {
    // FIXME: Use AQTEqualColor instead

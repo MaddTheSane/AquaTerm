@@ -60,7 +60,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setDefaultClipRect;
 
   /*" Color handling "*/
-@property AQTColor color; /**< Currently selected color */
+@property (nonatomic) AQTColor color; /**< Currently selected color */
 @property AQTColor backgroundColor;
 
 - (void)takeColorFromColormapEntry:(int32_t)index;

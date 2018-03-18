@@ -89,7 +89,7 @@ func internalMain() {
 	adapter.takeColor(fromColormapEntry: 1)
 	adapter.addLabel("Specify linewidth and pattern", at: NSPoint(x: 30, y: 325))
 	for f2 in stride(from: 1, to: 13, by: 2) {
-		f = Float(f2)
+		let f = CGFloat(f2)
 		let lw = f/2.0;
 		adapter.lineWidth = CGFloat(round(lw - 0.5))
 		adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)

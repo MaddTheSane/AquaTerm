@@ -484,12 +484,6 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder setLinestyleSolid];
 }
 
-/*" Set the current line cap style (in points), used for all subsequent lines. Any line currently being built by #moveToPoint:/#addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same cap style.
-_{capStyle Description}
-_{AQTLineCapStyleButt ButtLineCapStyle}
-_{AQTLineCapStyleRound RoundLineCapStyle}
-_{AQTLineCapStyleSquare SquareLineCapStyle}
-Default is RoundLineCapStyle. "*/
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle
 {
    _selectedBuilder.lineCapStyle = capStyle;

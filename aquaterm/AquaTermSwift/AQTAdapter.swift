@@ -60,22 +60,41 @@ extension AQTAdapter {
 	/// By specifying `shearAngle` the text may be sheared in order to appear correctly 
 	/// in e.g. 3D plot labels.
 	///
-	/// The `text` can be either an `NSString` or an `NSAttributedString`. By using
+	/// By using
 	/// `NSAttributedString` a subset of the attributes defined in AppKit may be 
 	/// used to format the string beyond the fontface ans size. The currently supported 
 	/// attributes are:
 	/// * {Attribute value}
 	/// * {@"NSSuperScript" raise-level}
-	/// * {@"NSUnderline" 0or1}
-	/// - parameter text: The text to show. May be either `NSString` or `NSAttributedString`.
+	/// * {@"NSUnderline" `0` or `1`}
+	/// - parameter text: The text to show.
 	/// - parameter pos: The location to show the text.
-	/// - parameter angle: The angle, in degrees, to rotate the text. Default is `0`.
-	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels. 
+	/// - parameter angle: The angle, in degrees, to rotate the text.<br> Default is `0`.
+	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
 	/// Default is `0`.
-	/// - parameter just: Alignment of the text. Default is `[.baseline]`.
-	@nonobjc open func addLabel(_ text: Any, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
+	@nonobjc open func addLabel(_ text: NSAttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
+	
+	/// Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned
+	/// vertically and horisontally (with respect to pos and rotation) according to
+	/// `align`. Horizontal and vertical `align` may be combined, e.g.
+	/// `[.center, .middle]`.
+	///
+	/// By specifying `shearAngle` the text may be sheared in order to appear correctly
+	/// in e.g. 3D plot labels.
+	///
+	/// - parameter text: The text to show..
+	/// - parameter pos: The location to show the text.
+	/// - parameter angle: The angle, in degrees, to rotate the text.<br> Default is `0`.
+	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
+	/// Default is `0`.
+	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
+	@nonobjc open func addLabel(_ text: String, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
+	}
+
 
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc open func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {

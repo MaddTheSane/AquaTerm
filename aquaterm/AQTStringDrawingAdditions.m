@@ -193,7 +193,7 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
          // Get the glyph
          CTFontGetGlyphsForCharacters((CTFontRef)aFont, &theChar, &theGlyph, 1);
          // Adjust glyph position
-         glyphHeight = [aFont boundingRectForCGGlyph:0].size.height;
+         glyphHeight = [aFont boundingRectForCGGlyph:theGlyph].size.height;
          if (extendsRight) {
             pos.x = maxRight;
          }

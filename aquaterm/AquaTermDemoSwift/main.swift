@@ -28,7 +28,7 @@ func internalMain() {
 		0, 255, 0,
 		0, 0, 255,
 		0, 0, 0
-	];
+	]
 	adapter.openPlot(with: 1)
 	adapter.plotSize = NSSize(width: 620, height: 420)
 	adapter.plotTitle = "TestView"
@@ -90,7 +90,7 @@ func internalMain() {
 	adapter.addLabel("Specify linewidth and pattern", at: NSPoint(x: 30, y: 325))
 	for f2 in stride(from: 1, to: 13, by: 2) {
 		let f = CGFloat(f2)
-		let lw = f/2.0;
+		let lw = f/2.0
 		adapter.lineWidth = CGFloat(round(lw - 0.5))
 		adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
 		adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
@@ -100,7 +100,7 @@ func internalMain() {
 	
 	// MARK: Clip rect
 	autoreleasepool() {
-		let r = NSMakeRect(200, 200, 60, 120);
+		let r = NSRect(x: 200, y: 200, width: 60, height: 120)
 		adapter.addLabel("Clip rects", at: NSPoint(x: 200, y: 325))
 		adapter.setColor(red: 0.9, green:0.9, blue:0.9)
 		adapter.addFilledRect(r)
@@ -111,7 +111,7 @@ func internalMain() {
 		var points = Array<Int>(0..<5).map { (i) -> NSPoint in
 			let radians = CGFloat(i) * .pi * 0.8
 			let r: CGFloat = 30.0
-			return NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians));
+			return NSPoint(x: 240.0 + r * cos(radians), y: 215.0 + r * sin(radians))
 		}
 		adapter.takeColor(fromColormapEntry: 3)
 		adapter.addPolygon(vertexPoints: points)
@@ -204,7 +204,7 @@ func internalMain() {
 		adapter.addLabel("Polygons", at: NSPoint(x: 320, y: 290), align: [])
 		var points = Array<Int>(0..<4).map { (i) -> NSPoint in
 			let radians = CGFloat(i) * .pi / 2.0
-			let r: CGFloat = 20.0;
+			let r: CGFloat = 20.0
 			return NSPoint(x: 340.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 		}
 		adapter.takeColor(fromColormapEntry: 2)
@@ -221,7 +221,7 @@ func internalMain() {
 		adapter.addPolygon(vertexPoints: points)
 		points = Array<Int>(0..<8).map { (i) -> NSPoint in
 			let radians = CGFloat(i) * CGFloat.pi / 4.0
-			let r: CGFloat = 20.0;
+			let r: CGFloat = 20.0
 			return NSPoint(x: 460.0 + r * cos(radians), y: 255.0 + r * sin(radians))
 		}
 		adapter.takeColor(fromColormapEntry: 4)
@@ -238,8 +238,8 @@ func internalMain() {
 			
 			for (x, y, color) in circleInfo {
 				let points = Array<Int>(0..<32).map { (i) -> NSPoint in
-					let radians = CGFloat(i) * .pi / 16.0;
-					let r: CGFloat = 20.0;
+					let radians = CGFloat(i) * .pi / 16.0
+					let r: CGFloat = 20.0
 					return NSPoint(x: x + r * cos(radians), y: y + r * sin(radians))
 				}
 				adapter.color = color
@@ -263,10 +263,10 @@ func internalMain() {
 	do {
 		adapter.fontName = "Times-Roman"
 		//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
-		let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}";
+		let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}"
 		let attrStr = NSMutableAttributedString(string: s)
-		attrStr.setAttributes([.AQTFontName: "AppleSymbols"], range: NSMakeRange(9,11))
-		attrStr.setAttributes([.AQTFontName: "STSong"], range: NSMakeRange(13,1))
+		attrStr.setAttributes([.AQTFontName: "AppleSymbols"], range: NSMakeRange(9, 11))
+		attrStr.setAttributes([.AQTFontName: "STSong"], range: NSMakeRange(13, 1))
 		
 		adapter.takeColor(fromColormapEntry: 1)
 		adapter.fontName = "Times-Roman"
@@ -286,7 +286,7 @@ func internalMain() {
 		adapter.lineWidth = 0.5
 		adapter.move(to: NSPoint(x: 510.5, y: 160))
 		adapter.addLine(to: NSPoint(x: 510.5, y: 100))
-		pos = NSPoint(x: 540.5, y: 75.5);
+		pos = NSPoint(x: 540.5, y: 75.5)
 		adapter.move(to: NSPoint(x: pos.x + 5, y: pos.y))
 		adapter.addLine(to: NSPoint(x: pos.x - 5, y: pos.y))
 		adapter.move(to: NSPoint(x: pos.x, y: pos.y + 5))
@@ -314,9 +314,9 @@ func internalMain() {
 	// MARK: Some styling is possible
 	autoreleasepool() {
 		let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
-		attrStr.addAttribute(.underlineStyle, value: 1, range: NSMakeRange(0,9))
-		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(31,1))
-		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(32,2))
+		attrStr.addAttribute(.underlineStyle, value: 1, range: NSMakeRange(0, 9))
+		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(31, 1))
+		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(32, 2))
 		adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 	}
 	adapter.takeColor(fromColormapEntry: 2)
@@ -342,21 +342,21 @@ func internalMain() {
 		
 		var attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
 		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(3, 1)) // Greek
-		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(1,3)) // exponent
-		attrStr.addAttribute(.AQTFontSize, value: 6.0, range: NSMakeRange(7,1)) // extra spacing
+		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(1, 3)) // exponent
+		attrStr.addAttribute(.AQTFontSize, value: 6.0, range: NSMakeRange(7, 1)) // extra spacing
 		
 		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 		
 		attrStr = NSMutableAttributedString(string: "mSke-wk2")
-		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(0,2))
-		attrStr.addAttribute(.AQTFontSize, value: 20.0, range: NSMakeRange(1,1))
-		attrStr.addAttribute(.AQTBaselineAdjust, value: -0.25, range: NSMakeRange(1,1)) // Lower symbol 25%
-		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(2,1))
-		attrStr.addAttribute(.AQTFontName, value: "Times-Roman", range: NSMakeRange(3,1))
-		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(4,2))
-		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(5,1))
-		attrStr.addAttribute(.superscript, value: -2, range: NSMakeRange(6,1))
-		attrStr.addAttribute(.superscript, value: 2, range: NSMakeRange(7,1))
+		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(0, 2))
+		attrStr.addAttribute(.AQTFontSize, value: 20.0, range: NSMakeRange(1, 1))
+		attrStr.addAttribute(.AQTBaselineAdjust, value: -0.25, range: NSMakeRange(1, 1)) // Lower symbol 25%
+		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(2, 1))
+		attrStr.addAttribute(.AQTFontName, value: "Times-Roman", range: NSMakeRange(3, 1))
+		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(4, 2))
+		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(5, 1))
+		attrStr.addAttribute(.superscript, value: -2, range: NSMakeRange(6, 1))
+		attrStr.addAttribute(.superscript, value: 2, range: NSMakeRange(7, 1))
 		
 		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 45), align: .center)
 	}

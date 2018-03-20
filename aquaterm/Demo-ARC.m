@@ -11,21 +11,14 @@
 //
 // This code can be build as a stand-alone executable (tool)
 // from the command line:
-// gcc -DAQT_STANDALONE -o demo Demo.m -framework AquaTerm -framework Foundation
-// _or_
-// executed from inside AquaTerm using menu Debug -> Testview. 
+// gcc -DAQT_STANDALONE -o demo-arc Demo-ARC.m -framework AquaTerm -framework Foundation -fobjc-arc
 
 #import <Foundation/Foundation.h>
 #import <AppKit/NSAttributedString.h>
-#ifndef AQT_STANDALONE
-#import <AppKit/AppKit.h>
-#import "AQTController.h"
-#endif
 #import <AquaTerm/aquaterm.h>
 #import <AquaTerm/AQTAdapter.h>
 #include <tgmath.h>
 
-#ifdef AQT_STANDALONE
 void aqtTestview(AQTAdapter *adapter);
 
 int main(void)
@@ -37,9 +30,6 @@ int main(void)
   return 0;
 }
 void aqtTestview(AQTAdapter *adapter)
-#else
-void aqtTestview(id sender)
-#endif
 {
 NSPoint points[128];
   NSPoint pos;
@@ -52,10 +42,6 @@ unsigned char rgbImage[12]={
   0, 0, 255,
   0, 0, 0
 };
-
-#ifndef AQT_STANDALONE
-AQTAdapter *adapter = [sender sharedAdapter];
-#endif
 
 [adapter openPlotWithIndex:1];
 adapter.plotSize = NSMakeSize(620,420);

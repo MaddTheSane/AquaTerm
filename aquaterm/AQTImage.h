@@ -29,5 +29,4 @@ typedef struct _AQTAffineTransformStruct {
 @property (readonly) BOOL fitBounds;
 @property (readonly) NSSize bitmapSize;
 
-- (void)setIsClipped:(BOOL)newClip DEPRECATED_MSG_ATTRIBUTE("Use the clipped property") NS_SWIFT_UNAVAILABLE("Use the .clipped property");
 @end

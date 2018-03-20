@@ -17,10 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AQTAdapter : NSObject
 {
    /*" All instance variables are private. "*/
+@private
    AQTClientManager *_clientManager;
    AQTPlotBuilder *_selectedBuilder;
+#if __i386__
    id _aqtReserved1;
    id _aqtReserved2;
+#endif
 }
 
 /** @name Class initialization etc. @{ */
@@ -189,7 +192,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Set a transformation matrix.<br>
 /// For images added by <code>addTransformedImageWithBitmap:size:clipRect:</code>,
 /// see \c NSImage documentation for details.
-- (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY;
+- (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY NS_SWIFT_NAME(setImageTransform(m11:m12:m21:m22:tX:tY:));
 ///Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
 /// Add a bitmap image of size bitmapSize scaled to fit destBounds, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.

@@ -107,9 +107,4 @@
   fitBounds = NO;
 }
 
-- (void)setIsClipped:(BOOL)newClip
-{
-  self.clipped = newClip;
-}
-
 @end

@@ -19,7 +19,7 @@ extension NSPoint {
 	}
 }
 
-func internalMain() {
+private func internalMain() {
 	let adapter = AQTAdapter()!
 	var pos = NSPoint()
 	var f: Float = 0
@@ -102,9 +102,9 @@ func internalMain() {
 	autoreleasepool() {
 		let r = NSRect(x: 200, y: 200, width: 60, height: 120)
 		adapter.addLabel("Clip rects", at: NSPoint(x: 200, y: 325))
-		adapter.setColor(red: 0.9, green:0.9, blue:0.9)
+		adapter.setColor(red: 0.9, green: 0.9, blue: 0.9)
 		adapter.addFilledRect(r)
-		adapter.setColor(red: 0, green:0, blue:0)
+		adapter.setColor(red: 0, green: 0, blue: 0)
 		adapter.clipRect = r
 		adapter.addLabel("Clipped text. Clipped text. Clipped text.", at: NSPoint(x: 180, y: 230), angle: 30.0, align: [.center])
 		adapter.lineWidth = 1.0
@@ -254,7 +254,7 @@ func internalMain() {
 	adapter.addLabel("bits", at: NSPoint(x: 330, y: 180), align: .center)
 	adapter.addImage(withBitmap: rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 360, y: 190, width: 40, height: 15))
 	adapter.addLabel("fit bounds", at: NSPoint(x: 380, y: 180), align: .center)
-	adapter.setImageTransformM11(9.23880, m12: 3.82683, m21: -3.82683, m22: 9.23880, tX: 494.6, tY: 186.9)
+	adapter.setImageTransform(m11: 9.23880, m12: 3.82683, m21: -3.82683, m22: 9.23880, tX: 494.6, tY: 186.9)
 	adapter.addTransformedImage(withBitmap: rgbImage, size: NSSize(width: 2, height: 2), clipRect: NSRect(x: 0, y: 0, width: 600, height: 400))
 	adapter.addLabel("scale, rotate & translate", at: NSPoint(x: 500, y: 180), align: .center)
 	adapter.resetImageTransform() // clean up

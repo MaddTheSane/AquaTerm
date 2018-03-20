@@ -451,7 +451,7 @@
    AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:NSZeroRect];
    tmpImage.transform = _transform;
    tmpImage.clipRect = destBounds; // Override _clipRect to restore old behaviour
-   [tmpImage setClipped:YES];
+   tmpImage.clipped = YES;
    [_model addObject:tmpImage];
    RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];

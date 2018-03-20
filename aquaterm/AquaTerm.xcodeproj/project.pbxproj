@@ -450,7 +450,6 @@
 				CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */,
 			);
 			name = Protocols;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
@@ -605,7 +604,6 @@
 				FEDD21D304EE7C22008D3E17 /* AQTPlotBuilder.m */,
 			);
 			name = ClientController;
-			path = ..;
 			sourceTree = "<group>";
 		};
 		CB9E42E00586855A00D208BA /* C API */ = {
@@ -615,7 +613,6 @@
 				CB6785D205867B7300D208BA /* aquaterm.m */,
 			);
 			name = "C API";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		CBB06FE305740E0E00D208BA /* Functions and constants */ = {
@@ -626,7 +623,6 @@
 				CBB06FE905740EB900D208BA /* AQTFunctions.m */,
 			);
 			name = "Functions and constants";
-			path = ..;
 			sourceTree = "<group>";
 		};
 		CBDC2B2906F06E98000F0A8D /* Installer */ = {
@@ -712,7 +708,6 @@
 				F59F5FCA021011D301A18598 /* AQTImage.m */,
 			);
 			name = Model;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

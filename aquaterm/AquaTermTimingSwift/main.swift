@@ -8,6 +8,7 @@
 
 import Foundation
 import AquaTerm
+import AquaTerm.AQTAdapter
 
 private func aqtLineDrawingTest(_ adapter: AQTAdapter) {
 	let maxLineLength: Int32 = 64

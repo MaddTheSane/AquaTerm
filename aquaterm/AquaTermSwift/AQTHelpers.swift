@@ -9,10 +9,8 @@
 import AquaTerm
 import AquaTerm.AQTFunctions
 
-public func ==(lhs: AQTColor, rhs: AQTColor) -> Bool {
-   return AQTEqualColors(lhs, rhs)
-}
-
 extension AQTColor: Equatable {
-   
+	static public func ==(lhs: AQTColor, rhs: AQTColor) -> Bool {
+		return AQTEqualColors(lhs, rhs)
+	}
 }

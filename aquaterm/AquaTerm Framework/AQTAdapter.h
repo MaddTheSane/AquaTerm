@@ -240,13 +240,27 @@ NS_ASSUME_NONNULL_BEGIN
  \name Deprecated
  @{ */
 
+/*! \brief Deprecated method to set the line width.
+ \deprecated Use the lineWidth property.
+ \param newLinewidth The new line width.
+ */
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+
+/*! \brief Deprecated method to set the font name.
+ \deprecated Use the fontName property.
+ \param newFontname The new font name.
+ */
 - (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
-- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
+
+/*! \brief Deprecated method to set the font size.
+ \deprecated Use the fontSize property.
+ \param newFontsize The new font size.
+ */
+- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
 
 /** Deprecated, use \c addTransformedImageWithBitmap:size: instead.
- Add a bitmap image of size bitmapSize \b honoring transform,
- transformed image is clipped to destBounds. Bitmap format is 24bits
+ Add a bitmap image of size \c bitmapSize \b honoring transform,
+ transformed image is clipped to <code>destBounds</code>. Bitmap format is 24bits
  per pixel in sequence RGBRGB...  with 8 bits per color.
  \deprecated Use \c addTransformedImageWithBitmap:size: instead.
  */

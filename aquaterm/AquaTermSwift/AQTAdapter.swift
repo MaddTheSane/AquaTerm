@@ -11,7 +11,7 @@ import AquaTerm
 import AquaTerm.AQTAdapter
 
 extension AQTAdapter {
-	open var color: AQTColor {
+	@objc open var color: AQTColor {
 		get {
 			var r: Float = 0
 			var g: Float = 0
@@ -24,7 +24,7 @@ extension AQTAdapter {
 		}
 	}
 	
-	open var backgroundColor: AQTColor {
+	@objc open var backgroundColor: AQTColor {
 		get {
 			var r: Float = 0
 			var g: Float = 0

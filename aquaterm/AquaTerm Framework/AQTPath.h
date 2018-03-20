@@ -42,7 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL hasPattern;
 - (void)setLinestylePattern:(nullable const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
+/** \deprecated Use the lineWidth property.
+ */
 - (void)setLinewidth:(float)lw DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+
+/** \deprecated Use the filled property.
+ */
 - (void)setIsFilled:(BOOL)newFill DEPRECATED_MSG_ATTRIBUTE("Use the filled property") NS_SWIFT_UNAVAILABLE("Use the .filled property");
 @end
 

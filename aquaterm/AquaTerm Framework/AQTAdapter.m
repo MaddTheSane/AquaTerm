@@ -17,41 +17,7 @@ NSString *const AQTBaselineAdjustKey = @"AQTBaselineAdjust";
 NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 
 @implementation AQTAdapter
-/*" AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
-As such, it bridges the gap between client's procedural calls requesting operations
-such as drawing a line or placing a label and the object-oriented graph being built.
-The actual assembling of the graph is performed by an instance of class AQTPlotBuilder.
 
-It seemlessly provides a connection to the viewer (AquaTerm.app) without any work on behalf of the client.
-
-It also provides some utility functionality such an indexed colormap, and an optional
-error handling callback function for the client.
-
-Event handling of user input is provided through an optional callback function.
-
-#Example: HelloAquaTerm.c
-!{
-#import <Foundation/Foundation.h>
-#import <AquaTerm/AQTAdapter.h>
-
-   int main(void)
-   {
-      NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-      AQTAdapter *adapter = [[AQTAdapter alloc] init];
-      [adapter openPlotWithIndex:1];
-      [adapter setPlotSize:NSMakeSize(600,400)];
-      [adapter addLabel:@"HelloAquaTerm!" atPoint:NSMakePoint(300, 200) angle:0.0 align:1];
-      [adapter renderPlot];
-      [adapter release];
-      [pool release];
-      return 0;
-   }
-}
-!{gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation}
-!{gcc main.m -o aqtex -framework AquaTerm -framework Foundation}
-"*/
-
-/*" This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases #init should be used, which calls #initWithHandler: with a nil argument."*/
 -(instancetype)initWithServer:(id)localServer
 {
    if(self = [super init]) {
@@ -74,7 +40,6 @@ Event handling of user input is provided through an optional callback function.
    return self;
 }
 
-/*" Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary. "*/
 - (instancetype)init
 {
    return [self initWithServer:nil];
@@ -116,22 +81,11 @@ Event handling of user input is provided through an optional callback function.
    return _clientManager.eventBlock;
 }
 
-/*" Optionally set an error handling routine of the form #customErrorHandler(NSString *errMsg) to override default behaviour. "*/
 - (void)setErrorHandler:(void (*)(NSString *errMsg))fPtr
 {
    [_clientManager setErrorHandler:fPtr];
 }
 
-/*" Optionally set an event handling routine of the form #customEventHandler(int index, NSString *event).
-The reference number of the plot that generated the event is passed in index and
-the structure of the string event is @"type:data1:data2:..."
-Currently supported events are:
-_{event description}
-_{0 NoEvent }
-_{1:%{x,y}:%button MouseDownEvent }
-_{2:%{x,y}:%key KeyDownEvent } 
-_{42:%{x,y}:%key ServerError }
-_{43:%{x,y}:%key Error } "*/
 - (void)setEventHandler:(void (*)(int index, NSString *event))fPtr
 {
    [_clientManager setEventHandler:fPtr];
@@ -478,7 +432,6 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder setLinestylePattern:newPattern count:(int32_t)newCount phase:newPhase];
 }
 
-/*" Set the current line style to solid, used for all subsequent lines. This is the default."*/
 - (void)setLinestyleSolid
 {
    [_selectedBuilder setLinestyleSolid];
@@ -494,19 +447,16 @@ _{@"NSUnderline" 0or1}
    return _selectedBuilder.lineCapStyle;
 }
 
-/*" Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments. "*/
 - (void)moveToPoint:(NSPoint)point
 {
    [_selectedBuilder moveToPoint:point];
 }
 
-/*" Add a line segment from the current point (given by a previous #moveToPoint: or #addLineToPoint). "*/
 - (void)addLineToPoint:(NSPoint)point
 {
    [_selectedBuilder addLineToPoint:point];
 }
 
-/*" Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points. Parameter pc is number of line segments + 1."*/
 - (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolylineWithPoints:points pointCount:(int32_t)pc];
@@ -522,7 +472,6 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addEdgeToPoint:point];
 }
 
-/*" Add a polygon specified by a list of corner points. Number of corners is passed in pc."*/
 - (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolygonWithPoints:points pointCount:(int32_t)pc];
@@ -540,14 +489,12 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addFilledRect:aRect];
 }
 
-/*" Remove any objects %completely inside aRect. Does %not force a redraw of the plot."*/
 - (void)eraseRect:(NSRect)aRect
 {
    // FIXME: Possibly keep a list of rects to be erased and pass them before any append command??
    [_clientManager clearPlotRect:aRect];
 }
 
-/*" Set a transformation matrix for images added by #addTransformedImageWithBitmap:size:clipRect:, see NSImage documentation for details. "*/
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY
 {
    AQTAffineTransformStruct trans;
@@ -560,7 +507,6 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder setImageTransform:trans];
 }
 
-/*" Set transformation matrix to unity, i.e. no transform. "*/
 - (void)resetImageTransform
 {
    AQTAffineTransformStruct trans = {0};

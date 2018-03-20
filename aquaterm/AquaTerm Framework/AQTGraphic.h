@@ -47,14 +47,22 @@ typedef struct _AQTRect {
 -(nonnull instancetype)init NS_DESIGNATED_INITIALIZER;
 -(nullable instancetype)initWithCoder:(nonnull NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 
-/*" accessor methods "*/
+/** \name accessor methods
+ @{ */
+
 @property NSRect bounds;
 @property NSRect clipRect;
 @property (getter=isClipped) BOOL clipped;
 
-/*" color handling "*/
+/** color handling */
 @property AQTColor color;
 
+/** @}
+ \name Deprecated
+ @{ */
+
 - (void)setIsClipped:(BOOL)newClip DEPRECATED_MSG_ATTRIBUTE("Use the clipped property") NS_SWIFT_UNAVAILABLE("Use the .clipped property");
+
+/** @} */
 
 @end

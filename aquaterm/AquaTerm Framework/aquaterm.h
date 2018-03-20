@@ -30,18 +30,23 @@ typedef CF_ENUM(int32_t, AQTLineCapStyle) {
 
 /*! Constants that specify horizontal and vertical alignment for labels. See \c addLabel:atPoint:angle:align: for definitions and use. */
 typedef CF_OPTIONS(int32_t, AQTAlign) {
-   /*" Constants that specify horizontal alignment for labels. "*/
+   /** @name Constants that specify horizontal alignment for labels.
+    @{ */
    AQTAlignLeft = 0x00,
    AQTAlignCenter = 0x01,
    AQTAlignRight = 0x02,
-   /* Constants that specify vertical alignment for labels. */
+   /** @}
+    Constants that specify vertical alignment for labels.
+    @{ */
    AQTAlignMiddle = 0x00,
    AQTAlignBaseline = 0x04,
    AQTAlignBottom = 0x08,
    AQTAlignTop = 0x10
+   /** @} */
 };
 
-/*" Class initialization etc."*/
+/** \name Class initialization etc.
+ @{ */
 bool aqtInit(void);
 void aqtTerminate(void);
 /** The event handler callback functionality should be used with caution, it may
@@ -51,8 +56,8 @@ void aqtTerminate(void);
  * @function aqtSetEventHandler
  * @discussion
  * The event handler callback functionality should be used with caution, it may
- * not be safe to use in all circumstances. It is certainly _not_ threadsafe.
- * If in doubt, use aqtWaitNextEvent() instead.
+ * not be safe to use in all circumstances. It is certainly \b not threadsafe.
+ * If in doubt, use \c aqtWaitNextEvent() instead.
  */
 void aqtSetEventHandler(void (*func)(int ref, const char *event));
 
@@ -60,12 +65,14 @@ void aqtSetEventHandler(void (*func)(int ref, const char *event));
  * @function aqtSetEventBlock
  * @discussion
  * The event handler callback functionality should be used with caution, it may
- * not be safe to use in all circumstances. It is certainly _not_ threadsafe.
- * If in doubt, use aqtWaitNextEvent() instead.
+ * not be safe to use in all circumstances. It is certainly \b not threadsafe.
+ * If in doubt, use \c aqtWaitNextEvent() instead.
  */
 void aqtSetEventBlock(void (^func)(int ref, const char *event));
 
-/*" Control operations "*/
+/** @}
+ \name Control operations
+ @{ */
 void aqtOpenPlot(int32_t refNum);
 int32_t aqtSelectPlot(int32_t refNum);
 void aqtSetPlotSize(float width, float height);
@@ -74,18 +81,24 @@ void aqtRenderPlot(void);
 void aqtClearPlot(void);
 void aqtClosePlot(void);
 
-/*" Event handling "*/
+/** @}
+ \name Event handling
+ @{ */
 void aqtSetAcceptingEvents(bool flag);
 int32_t aqtGetLastEvent(char *buffer);
 int32_t aqtWaitNextEvent(char *buffer);
 
 /*" Plotting related commands "*/
 
-/*" Clip rect, applies to all objects "*/
+/** @}
+ \name Clip rect, applies to all objects
+ @{ */
 void aqtSetClipRect(float originX, float originY, float width, float height);
 void aqtSetDefaultClipRect(void);
 
-/*" Colormap (utility)  "*/
+/** @}
+ \name Colormap (utility)
+ @{ */
 int32_t aqtColormapSize(void);
 void aqtSetColormapEntryRGBA(int32_t entryIndex, float r, float g, float b, float a);
 void aqtGetColormapEntryRGBA(int32_t entryIndex, float *r, float *g, float *b, float *a);
@@ -94,7 +107,9 @@ void aqtGetColormapEntry(int32_t entryIndex, float *r, float *g, float *b);
 void aqtTakeColorFromColormapEntry(int32_t index);
 void aqtTakeBackgroundColorFromColormapEntry(int32_t index);
 
-/*" Color handling "*/
+/** @}
+ \name Color handling
+ @{ */
 void aqtSetColorRGBA(float r, float g, float b, float a);
 void aqtSetBackgroundColorRGBA(float r, float g, float b, float a);
 void aqtGetColorRGBA(float *r, float *g, float *b, float *a);
@@ -104,13 +119,17 @@ void aqtSetBackgroundColor(float r, float g, float b);
 void aqtGetColor(float *r, float *g, float *b);
 void aqtGetBackgroundColor(float *r, float *g, float *b);
 
-/*" Text handling "*/
+/** @}
+ \name Text handling
+ @{ */
 void aqtSetFontname(const char *newFontname);
 void aqtSetFontsize(float newFontsize);
 void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align);
 void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, AQTAlign align);
 
-/*" Line handling "*/
+/** @}
+ \name Line handling
+ @{ */
 void aqtSetLinewidth(float newLinewidth);
 void aqtSetLinestylePattern(float *newPattern, int32_t newCount, float newPhase);
 void aqtSetLinestyleSolid(void);
@@ -119,17 +138,23 @@ void aqtMoveTo(float x, float y);
 void aqtAddLineTo(float x, float y);
 void aqtAddPolyline(float *x, float *y, int32_t pointCount);
 
-/*" Rect and polygon handling"*/
+/** @}
+ \name Rect and polygon handling
+ @{ */
 void aqtMoveToVertex(float x, float y);
 void aqtAddEdgeToVertex(float x, float y);
 void aqtAddPolygon(float *x, float *y, int32_t pointCount);
 void aqtAddFilledRect(float originX, float originY, float width, float height);
 void aqtEraseRect(float originX, float originY, float width, float height);
 
-/*" Image handling "*/
+/** @}
+ \name Image handling
+ @{ */
 void aqtSetImageTransform(float m11, float m12, float m21, float m22, float tX, float tY);
 void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
+
+/** @} */
 
 #endif

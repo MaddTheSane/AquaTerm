@@ -14,6 +14,43 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class AQTPlotBuilder, AQTClientManager;
+
+/** \brief Class that provides an interface to the functionality of AquaTerm.
+ 
+ AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
+ As such, it bridges the gap between client's procedural calls requesting operations
+ such as drawing a line or placing a label and the object-oriented graph being built.
+ The actual assembling of the graph is performed by an instance of class <code>AQTPlotBuilder</code>.
+
+ It seemlessly provides a connection to the viewer (AquaTerm.app) without any work on behalf of the client.
+
+ It also provides some utility functionality such an indexed colormap, and an optional
+ error handling callback function for the client.
+
+ Event handling of user input is provided through an optional callback function.
+
+\code{.m}
+   //example: HelloAquaTerm.m
+   //
+   // gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation
+   // gcc main.m -o aqtex -framework AquaTerm -framework Foundation
+   #import <Foundation/Foundation.h>
+   #import <AquaTerm/AQTAdapter.h>
+
+      int main(void)
+      {
+         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+         AQTAdapter *adapter = [[AQTAdapter alloc] init];
+         [adapter openPlotWithIndex:1];
+         [adapter setPlotSize:NSMakeSize(600,400)];
+         [adapter addLabel:@"HelloAquaTerm!" atPoint:NSMakePoint(300, 200) angle:0.0 align:1];
+         [adapter renderPlot];
+         [adapter release];
+         [pool release];
+         return 0;
+      }
+\endcode
+*/
 @interface AQTAdapter : NSObject
 {
    /*" All instance variables are private. "*/
@@ -26,7 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
 #endif
 }
 
-/** @name Class initialization etc. @{ */
+/** @name Class initialization etc.
+  @{ */
 
 //! Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary.
 - (nullable instancetype)init;
@@ -34,9 +72,28 @@ NS_ASSUME_NONNULL_BEGIN
 //! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c -init should be used, which calls \c -initWithHandler: with a \c nil argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
+/** @}
+ \name callbacks
+ @{ */
+
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
+
+/*! @brief Optionally set an error handling routine of the form <code>customErrorHandler(NSString *errMsg)</code>
+ to override default behaviour. */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
+
+/*" Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+ The reference number of the plot that generated the event is passed in index and
+ the structure of the string event is @"type:data1:data2:..."
+ 
+ Currently supported events are:
+ _{event description}
+ _{0 NoEvent }
+ _{1:%{x,y}:%button MouseDownEvent }
+ _{2:%{x,y}:%key KeyDownEvent }
+ _{42:%{x,y}:%key ServerError }
+ _{43:%{x,y}:%key Error } "*/
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
 /** @}
@@ -45,19 +102,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! Open up a new plot with internal reference number \c refNum and make it the target for subsequent commands. If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot. */
 - (void)openPlotWithIndex:(int32_t)refNum;
+
 /*! Get the plot referenced by \c refNum and make it the target for subsequent commands.
  If no plot exists for refNum, the currently targeted plot remain unchanged. Disables
  event handling for previously targeted plot.
  \return \c YES on success, \c NO otherwise.
  */
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
+
 @property NSSize plotSize;
+
 //! Title to appear in window titlebar, also default name when saving.
 @property (copy, null_resettable) NSString *plotTitle;
+
 //! Render the current plot in the viewer.
 - (void)renderPlot;
+
 //! Clears the current plot and resets default values. To keep plot settings, use \c eraseRect: instead.
 - (void)clearPlot;
+
 //! Closes the current plot but leaves viewer window on screen. Disables event handling.
 - (void)closePlot;
 
@@ -71,6 +134,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! Reads the last event logged by the viewer. Will always return \c NoEvent unless \c setAcceptingEvents: is called with a \c YES argument. */
 @property (readonly, copy) NSString *lastEvent;
+
 - (NSString *)waitNextEvent;
 
 /** @}
@@ -80,7 +144,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** \name Clip rect, applies to all objects
  @{ */
 
-/*! When setting a clipping region (rectangular) to apply to all subsequent operations, until changed again by \c setClipRect: or <code>setDefaultClipRect.</code> */
+/*! When setting a clipping region (rectangular) to apply to all subsequent operations,
+ until changed again by \c setClipRect: or <code>setDefaultClipRect</code>. */
 @property NSRect clipRect;
 
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
@@ -92,14 +157,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 //! Return the number of color entries available in the currently active colormap.
 @property (readonly) int32_t colormapSize;
+
 //! Set an RGB entry in the colormap, at the position given by <code>entryIndex</code>.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b alpha:(float)a;
+
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
+
 //! Set an RGB entry in the colormap, at the position given by <code>entryIndex</code>.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b;
+
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b;
+
 //! Set the current color, used for all subsequent items, using the color stored at the position given by \c index in the colormap.
 - (void)takeColorFromColormapEntry:(int32_t)index;
+
 //! Set the background color, overriding any previous color, using the color stored at the position given by \c index in the colormap.
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;
 
@@ -109,18 +180,25 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! Set the current color, used for all subsequent items, using explicit RGB components. */
 - (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a NS_SWIFT_NAME(setColor(red:green:blue:alpha:));
+
 /*! Set the background color, overriding any previous color, using explicit RGB components. */
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a  NS_SWIFT_NAME(setBackgroundColor(red:green:blue:alpha:));
+
 /*! Get current RGB color components by reference. */
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getColor(red:green:blue:alpha:));
+
 /*! Get background color components by reference. */
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getBackgroundColor(red:green:blue:alpha:));
+
 /*! Set the current color, used for all subsequent items, using explicit RGB components. */
 - (void)setColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setColor(red:green:blue:));
+
 /*! Set the background color, overriding any previous color, using explicit RGB components. */
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setBackgroundColor(red:green:blue:));
+
 /*! Get current RGB color components by reference. */
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getColor(red:green:blue:));
+
 /*! Get background color components by reference. */
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
 
@@ -156,7 +234,7 @@ NS_ASSUME_NONNULL_BEGIN
  The text can be either an \c NSString or an NSAttributedString. By using \c NSAttributedString a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
  \li {Attribute value}
  \li {@"NSSuperScript" raise-level}
- \li {@"NSUnderline" 0or1}
+ \li {@"NSUnderline" 0 or 1}
  */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
@@ -172,9 +250,10 @@ NS_ASSUME_NONNULL_BEGIN
  correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}. */
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 
+/*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
 - (void)setLinestyleSolid;
 
-/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by \c moveToPoint: / \c addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same cap style.
+/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by \c moveToPoint: / \c addLineToPoint: will be considered finished since any coalesced sequence of line segments must share the same cap style.
 
  \li {AQTLineCapStyleButt ButtLineCapStyle}
  \li {AQTLineCapStyleRound RoundLineCapStyle}
@@ -200,7 +279,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addEdgeToVertexPoint:(NSPoint)point;
 
 /*! Add a polygon specified by a list of corner points.<br>
- *  Number of corners is passed in <code>pc</code>.
+ Number of corners is passed in <code>pc</code>.
  */
 - (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 

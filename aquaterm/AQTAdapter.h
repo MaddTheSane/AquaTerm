@@ -27,10 +27,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 /** @name Class initialization etc. @{ */
+
 //! Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary.
 - (nullable instancetype)init;
-//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c init should be used, which calls \c initWithHandler: with a \c nil argument.
+
+//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c -init should be used, which calls \c -initWithHandler: with a \c nil argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
+
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
@@ -39,6 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Control operations
  @{ */
+
 /*! Open up a new plot with internal reference number \c refNum and make it the target for subsequent commands. If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot. */
 - (void)openPlotWithIndex:(int32_t)refNum;
 /*! Get the plot referenced by \c refNum and make it the target for subsequent commands.
@@ -60,8 +64,11 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Event handling
   @{ */
-/*! Inform AquaTerm whether or not events should be passed from the currently selected plot. Deactivates event passing from any plot previously set to pass events. */
+
+/*! Inform AquaTerm whether or not events should be passed from the currently selected plot. Deactivates
+ event passing from any plot previously set to pass events. */
 - (void)setAcceptingEvents:(BOOL)flag;
+
 /*! Reads the last event logged by the viewer. Will always return \c NoEvent unless \c setAcceptingEvents: is called with a \c YES argument. */
 @property (readonly, copy) NSString *lastEvent;
 - (NSString *)waitNextEvent;
@@ -72,14 +79,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** \name Clip rect, applies to all objects
  @{ */
+
+/*! When setting a clipping region (rectangular) to apply to all subsequent operations, until changed again by \c setClipRect: or <code>setDefaultClipRect.</code> */
 @property NSRect clipRect;
-- (void)setClipRect:(NSRect)clip;
+
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
 - (void)setDefaultClipRect;
 
 /** @}
  \name Colormap (utility)
  @{ */
+
 //! Return the number of color entries available in the currently active colormap.
 @property (readonly) int32_t colormapSize;
 //! Set an RGB entry in the colormap, at the position given by <code>entryIndex</code>.
@@ -96,6 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Color handling
  @{ */
+
 /*! Set the current color, used for all subsequent items, using explicit RGB components. */
 - (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a NS_SWIFT_NAME(setColor(red:green:blue:alpha:));
 /*! Set the background color, overriding any previous color, using explicit RGB components. */
@@ -116,14 +127,19 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Text handling
  @{ */
+
 /*! The font to be used. Applies to all future operations. Default is Times-Roman.*/
 @property (copy) NSString *fontName;
+
 /*! The font size in points. Applies to all future operations. Default is 14pt. */
 @property CGFloat fontSize;
+
 /*! Convenience form of \c addLabel:atPoint:angle:shearAngle:align: for horizontal, left and baseline aligned text. */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos NS_REFINED_FOR_SWIFT;
+
 /*! Same as \c addLabel:atPoint:angle:shearAngle:align: except that \c shearAngle defaults to <code>0</code>.*/
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
+
 /*! Add \c text at coordinate given by <code>pos</code>, rotated by \c angle degrees and aligned vertically and horisontally (with respect to pos and rotation) according to <code>align</code>. Horizontal and vertical align may be combined by an OR operation, e.g. <code>(AQTAlignCenter | AQTAlignMiddle)</code>.
  
  \li {HorizontalAlign Description}
@@ -147,13 +163,17 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Line handling
  @{ */
-/*! The current \c linewidth (in points), used for all subsequent lines. Any line currently being built by \cmoveToPoint:/\caddLineToPoint will be considered finished since any coalesced sequence of line segments must share the same linewidth.  Default \c linewidth is 1pt.*/
+
+/*! The current \c linewidth (in points), used for all subsequent lines. Any line currently being built by \c -moveToPoint:/\c -addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default \c lineWidth is 1pt.*/
 @property CGFloat lineWidth;
 
-/*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}. */
+/*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified
+ as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
+ correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}. */
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase;
 
 - (void)setLinestyleSolid;
+
 /** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by \c moveToPoint: / \c addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same cap style.
 
  \li {AQTLineCapStyleButt ButtLineCapStyle}
@@ -175,28 +195,37 @@ NS_ASSUME_NONNULL_BEGIN
 /** @}
  \name Rect and polygon handling
  @{ */
+
 - (void)moveToVertexPoint:(NSPoint)point;
-- (void)addEdgeToVertexPoint:(NSPoint)point; 
+- (void)addEdgeToVertexPoint:(NSPoint)point;
+
 /*! Add a polygon specified by a list of corner points.<br>
  *  Number of corners is passed in <code>pc</code>.
  */
 - (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
+
 //! Add a filled rectangle. Will attempt to remove any objects that will be covered by <code>aRect</code>.
 - (void)addFilledRect:(NSRect)aRect;
+
 //! Remove any objects \a completely inside <code>aRect</code>. Does \a not force a redraw of the plot.
 - (void)eraseRect:(NSRect)aRect;
 
 /** @}
  \name Image handling
  @{*/
-/// Set a transformation matrix.<br>
+
+/// \brief Set a transformation matrix.
+///
 /// For images added by <code>addTransformedImageWithBitmap:size:clipRect:</code>,
 /// see \c NSImage documentation for details.
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY NS_SWIFT_NAME(setImageTransform(m11:m12:m21:m22:tX:tY:));
+
 ///Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
+
 /// Add a bitmap image of size bitmapSize scaled to fit destBounds, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
+
 /*! Add a bitmap image of size \c bitmapSize \b honoring transform, transformed image is clipped to current <code>clipRect</code>. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
@@ -204,19 +233,23 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Private methods
  @{ */
+
 - (void)timingTestWithTag:(uint32_t)tag;
 
 /** @}
  \name Deprecated
  @{ */
+
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 - (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
 - (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
 
-/// Deprecated, use \c addTransformedImageWithBitmap:size: instead.
-/// Add a bitmap image of size bitmapSize \b honoring transform,
-/// transformed image is clipped to destBounds. Bitmap format is 24bits
-/// per pixel in sequence RGBRGB...  with 8 bits per color.
+/** Deprecated, use \c addTransformedImageWithBitmap:size: instead.
+ Add a bitmap image of size bitmapSize \b honoring transform,
+ transformed image is clipped to destBounds. Bitmap format is 24bits
+ per pixel in sequence RGBRGB...  with 8 bits per color.
+ \deprecated Use \c addTransformedImageWithBitmap:size: instead.
+ */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 /** @} */
 @end

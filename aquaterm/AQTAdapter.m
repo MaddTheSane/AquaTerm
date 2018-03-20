@@ -576,7 +576,6 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addImageWithBitmap:bitmap size:bitmapSize bounds:destBounds];
 }
 
-/*" Deprecated, use #addTransformedImageWithBitmap:size: instead. Add a bitmap image of size bitmapSize %honoring transform, transformed image is clipped to destBounds. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color."*/
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds
 {
    [_selectedBuilder addTransformedImageWithBitmap:bitmap size:bitmapSize clipRect:destBounds];

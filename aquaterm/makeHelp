@@ -60,7 +60,7 @@ sub gen_page_heading {
 <!-- Header -->
 <div id="hdr">
 <h1>AquaTerm.app, your friendly plotting front-end</h1>
-This is the help file for AquaTerm 1.1.1. It is simply a collection of info files from the release.<br>
+This is the help file for AquaTerm 1.1.2. It is simply a collection of info files from the release.<br>
 For questions, please use the mailing lists at <a href="http://aquaterm.sf.net">the AquaTerm website</a>.
 <br>
 </div>

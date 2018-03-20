@@ -54,6 +54,11 @@
 #define AQTModelDirtyRectKey @"DirtyRect"
 #define AQTModelIsDirtyKey @"IsDirty"
 
++ (BOOL)supportsSecureCoding
+{
+  return YES;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];

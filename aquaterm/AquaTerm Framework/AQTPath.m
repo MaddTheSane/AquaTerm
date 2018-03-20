@@ -110,6 +110,11 @@
    [coder encodeBool:hasPattern forKey:AQTPathHasPatternKey];
 }
 
++ (BOOL)supportsSecureCoding
+{
+   return YES;
+}
+
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
    NSInteger i;

@@ -18,18 +18,54 @@ NS_ASSUME_NONNULL_BEGIN
    AQTColorPtr colormap; ///< NB. Not an object but a pointer to a struct
    int32_t size; 
 }
-/// Creates an `AQTColorMap with a size of 1.
+/** \brief Creates an \c AQTColorMap with a size of 1.
+ */
 -(instancetype)init;
 
+/** \brief Creates an \c AQTColorMap with the indicated size.
+ \param size The amount of colors to store in the object.
+ If zero or negative, defaults to 1.
+ */
 -(instancetype)initWithColormapSize:(int32_t)size NS_DESIGNATED_INITIALIZER;
 
+/** @brief The number of colors that this object can hold.
+ */
 @property (readonly) int32_t size;
 
+/** @brief Sets the color at the specified index.
+ 
+ If \c index is outside the range of size, does nothing.
+ \param index The index of the color to set.
+ \param newColor The color to replace at the specified index.
+ */
 -(void)setColor:(AQTColor)newColor forIndex:(int32_t)index;
 
+/** @brief Returns the color at the specified index.
+ 
+ If \c index is outside the range of size, the first color is returned instead.
+ \param index The index of the color to get.
+ \return The color at the specified index.
+ */
 -(AQTColor)colorForIndex:(int32_t)index;
 
+/** @brief Returns the color at the specified index.
+ 
+ If \c index is outside the range of size, the first color is returned instead.
+ 
+ This is used for Objective-C subscripting.
+ \param index The index of the color to get.
+ \return The color at the specified index.
+ */
 - (AQTColor)objectAtIndexedSubscript:(int32_t)index;
+
+/** @brief Sets the color at the specified index.
+ 
+ If \c index is outside the range of size, does nothing.
+ 
+ This is used for Objective-C subscripting.
+ \param index The index of the color to set.
+ \param newValue The color to replace at the specified index.
+ */
 - (void)setObject:(AQTColor)newValue atIndexedSubscript:(int32_t)index;
 
 @end

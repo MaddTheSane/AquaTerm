@@ -10,23 +10,38 @@
 
 @class AQTModel;
 
+/** \brief Color struct used by AquaTerm.
+ */
 typedef struct _AQTColor {
+   //! The red component.
    float red;
+   
+   //! The green component.
    float green;
+   
+   //! The blue component.
    float blue;
+   
+   //! The alpha component.
    float alpha;
 } AQTColor;
 
+/** \brief Architecture-independant NSPoint.
+ */
 typedef struct _AQTPoint {
   float x;
   float y;
 } AQTPoint;
 
+/** \brief Architecture-independant size.
+ */
 typedef struct _AQTSize {
   float width;
   float height;
 } AQTSize;
 
+/** \brief Architecture-independant rect.
+ */
 typedef struct _AQTRect {
   AQTPoint origin;
   AQTSize size;
@@ -61,6 +76,9 @@ typedef struct _AQTRect {
  \name Deprecated
  @{ */
 
+/*! \brief Set the \c clipped property.
+ \deprecated Use the \c clipped property or \c setClipped: instead.
+ */
 - (void)setIsClipped:(BOOL)newClip DEPRECATED_MSG_ATTRIBUTE("Use the clipped property") NS_SWIFT_UNAVAILABLE("Use the .clipped property");
 
 /** @} */

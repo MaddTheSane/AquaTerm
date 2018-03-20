@@ -10,7 +10,8 @@
 #import "AQTGraphic.h"
 #import "aquaterm.h"
 
-/// A leaf object class representing an actual item in the plot.<br>
+/// @brief A leaf object class representing an actual item in the plot.
+///
 /// Since the app is a viewer we do three things with the object:
 /// create (once), draw (any number of times) and (eventually) dispose of it.
 @interface AQTLabel : AQTGraphic

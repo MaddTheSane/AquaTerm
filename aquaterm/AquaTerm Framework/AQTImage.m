@@ -64,6 +64,11 @@
 #define AQTImageTransformKey @"Transform"
 #define AQTImageFitBoundsKey @"FitBounds"
 
++ (BOOL)supportsSecureCoding
+{
+  return YES;
+}
+
 - (void)encodeWithCoder:(NSCoder *)coder
 {
   [super encodeWithCoder:coder];

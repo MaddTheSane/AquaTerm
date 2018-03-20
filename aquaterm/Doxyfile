@@ -980,7 +980,7 @@ VERBATIM_HEADERS       = NO
 # compiled with the --with-libclang option.
 # The default value is: NO.
 
-CLANG_ASSISTED_PARSING = YES
+CLANG_ASSISTED_PARSING = NO
 
 # If clang assisted parsing is enabled you can provide the compiler with command
 # line options that you would normally use when invoking the compiler. Note that
@@ -1962,7 +1962,10 @@ PREDEFINED             = NS_SWIFT_UNAVAILABLE(x)= \
                          NS_DESIGNATED_INITIALIZER \
                          NS_SWIFT_NAME(x)= \
                          DEPRECATED_ATTRIBUTE \
-                         DEPRECATED_MSG_ATTRIBUTE(x)=
+                         DEPRECATED_MSG_ATTRIBUTE(x)= \
+                         "CF_ENUM(x,y)=enum y y; enum y" \
+                         CF_SWIFT_UNAVAILABLE(x)= \
+                         "CF_OPTIONS(x,y)=enum y y; enum y"
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

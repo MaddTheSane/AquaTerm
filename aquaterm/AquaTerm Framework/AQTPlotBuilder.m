@@ -280,20 +280,17 @@
                                  shearAngle:shearAngle
                               justification:just];
    }
+   else if ([text isKindOfClass:[NSAttributedString class]])
+   {
+      lb = [[AQTLabel alloc] initWithAttributedString:text
+                                             position:pos
+                                                angle:angle
+                                           shearAngle:shearAngle
+                                        justification:just];
+   }
    else
    {
-      if ([text isKindOfClass:[NSAttributedString class]])
-      {
-         lb = [[AQTLabel alloc] initWithAttributedString:text
-                                                position:pos
-                                                   angle:angle
-                                              shearAngle:shearAngle
-                                           justification:just];
-      }
-      else
-      {
-         NSLog(@"Error, not a string.");
-      }
+      NSLog(@"Error, not a string.");
    }
    lb.clipped = _isClipped;
    lb.clipRect = _clipRect;

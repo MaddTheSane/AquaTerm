@@ -26,7 +26,7 @@
 {
   if (self=[super init]) {
     string = [aString copy]; // [[NSAttributedString alloc] initWithAttributedString:aString];
-    fontName = @"Times-Roman";
+    self.fontName = @"Times-Roman";
     fontSize = 14.0;
     position=aPoint;
     angle = textAngle;
@@ -46,7 +46,7 @@
 */
   if (self=[super init]) {
     string = [aString copy]; // [[NSAttributedString alloc] initWithAttributedString:aString];
-    fontName = @"Times-Roman";
+    self.fontName = @"Times-Roman";
     fontSize = 14.0;
     position=aPoint;
     angle = textAngle;

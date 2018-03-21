@@ -7,9 +7,10 @@
 + (AQTPrefController *)sharedPrefController
 {
    static AQTPrefController *sharedPrefController = nil;
-   if (sharedPrefController == nil) {
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
       sharedPrefController = [[self alloc] init];
-   }
+   });
    return sharedPrefController;
 }
 

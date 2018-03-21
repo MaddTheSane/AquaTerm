@@ -13,12 +13,13 @@
 @interface AQTView : NSView
 {
   __weak AQTModel *model;
-  BOOL _isProcessingEvents; /*" Holds state of mouse input."*/
-  NSCursor *crosshairCursor;  /*" Holds an alternate cursor for use with mouse input."*/
+  BOOL _isProcessingEvents; /*!< Holds state of mouse input. */
+  NSCursor *crosshairCursor;  /*!< Holds an alternate cursor for use with mouse input. */
   BOOL _enableTiming;
 }
 @property (weak) AQTModel *model;
 @property (readonly, getter=isPrinting) BOOL printing;
+/*! @brief Holds state of mouse input. */
 @property (nonatomic, getter=isProcessingEvents) BOOL processingEvents;
 
 /*" Utility methods "*/

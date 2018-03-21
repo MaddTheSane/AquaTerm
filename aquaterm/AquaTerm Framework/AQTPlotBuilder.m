@@ -25,17 +25,22 @@
 @synthesize fontName = _fontName;
 @synthesize fontSize = _fontSize;
 @synthesize lineWidth = _linewidth;
+
 - (void)_aqtPlotBuilderSetDefaultValues
 {
    _color.red = 0.0;
    _color.green = 0.0;
    _color.blue = 0.0;
    _color.alpha = 1.0;
-   _fontName = @"Times-Roman";
+   self.fontName = @"Times-Roman";
    _fontSize = 14.0;
    _linewidth = 1.0;
+   _transform.m12 = 0.0;
+   _transform.m21 = 0.0;
    _transform.m11 = 1.0;
    _transform.m22 = 1.0;
+   _transform.tX = 0.0;
+   _transform.tY = 0.0;
    _hasPattern = NO;
    _patternCount = 0;
    _patternPhase = 0.0;

@@ -81,6 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Text handling
  @{ */
+
 @property (copy) NSString* fontName; /**< Currently selected font */
 @property CGFloat fontSize; /**< Currently selected fontsize [pt] */
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;

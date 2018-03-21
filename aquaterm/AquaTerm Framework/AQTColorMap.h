@@ -35,8 +35,8 @@ NS_ASSUME_NONNULL_BEGIN
 /** @brief Sets the color at the specified index.
  
  If \c index is outside the range of size, does nothing.
- \param index The index of the color to set.
  \param newColor The color to replace at the specified index.
+ \param index The index of the color to set.
  */
 -(void)setColor:(AQTColor)newColor forIndex:(int32_t)index;
 
@@ -63,8 +63,8 @@ NS_ASSUME_NONNULL_BEGIN
  If \c index is outside the range of size, does nothing.
  
  This is used for Objective-C subscripting.
- \param index The index of the color to set.
  \param newValue The color to replace at the specified index.
+ \param index The index of the color to set.
  */
 - (void)setObject:(AQTColor)newValue atIndexedSubscript:(int32_t)index;
 

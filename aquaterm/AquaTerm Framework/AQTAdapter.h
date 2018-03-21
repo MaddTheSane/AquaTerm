@@ -72,10 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
 //! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c -init should be used, which calls \c -initWithHandler: with a \c nil argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
-/** @}
- \name callbacks
- @{ */
-
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 
@@ -96,7 +92,8 @@ NS_ASSUME_NONNULL_BEGIN
  _{43:%{x,y}:%key Error } "*/
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
-/** @}
+/**
+ @}
  \name Control operations
  @{ */
 
@@ -124,7 +121,8 @@ NS_ASSUME_NONNULL_BEGIN
 //! Closes the current plot but leaves viewer window on screen. Disables event handling.
 - (void)closePlot;
 
-/** @}
+/**
+ @}
  \name Event handling
   @{ */
 
@@ -137,7 +135,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSString *)waitNextEvent;
 
-/** @}
+/**
+ @}
  \name Plotting related commands
  @{ */
 
@@ -151,7 +150,8 @@ NS_ASSUME_NONNULL_BEGIN
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
 - (void)setDefaultClipRect;
 
-/** @}
+/**
+ @}
  \name Colormap (utility)
  @{ */
 
@@ -174,7 +174,8 @@ NS_ASSUME_NONNULL_BEGIN
 //! Set the background color, overriding any previous color, using the color stored at the position given by \c index in the colormap.
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;
 
-/** @}
+/**
+ @}
  \name Color handling
  @{ */
 
@@ -202,7 +203,8 @@ NS_ASSUME_NONNULL_BEGIN
 /*! Get background color components by reference. */
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
 
-/** @}
+/**
+ @}
  \name Text handling
  @{ */
 
@@ -238,7 +240,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
-/** @}
+/**
+ @}
  \name Line handling
  @{ */
 
@@ -268,10 +271,12 @@ NS_ASSUME_NONNULL_BEGIN
 /*! Add a line segment from the current point (given by a previous \c moveToPoint: or <code>addLineToPoint</code>).*/
 - (void)addLineToPoint:(NSPoint)point;
 
-//! Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points. Parameter \c pc is number of line segments + 1.
+/** Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points.
+ \param pc Number of line segments + 1. */
 - (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
-/** @}
+/**
+ @}
  \name Rect and polygon handling
  @{ */
 
@@ -289,7 +294,8 @@ NS_ASSUME_NONNULL_BEGIN
 //! Remove any objects \a completely inside <code>aRect</code>. Does \a not force a redraw of the plot.
 - (void)eraseRect:(NSRect)aRect;
 
-/** @}
+/**
+ @}
  \name Image handling
  @{*/
 
@@ -308,31 +314,33 @@ NS_ASSUME_NONNULL_BEGIN
 /*! Add a bitmap image of size \c bitmapSize \b honoring transform, transformed image is clipped to current <code>clipRect</code>. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
-/** @}
+/**
+ @}
  @}
  \name Private methods
  @{ */
 
 - (void)timingTestWithTag:(uint32_t)tag;
 
-/** @}
+/**
+ @}
  \name Deprecated
  @{ */
 
 /*! \brief Deprecated method to set the line width.
- \deprecated Use the lineWidth property.
+ \deprecated Use the \c lineWidth property or \c -setLineWidth: instead.
  \param newLinewidth The new line width.
  */
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 
 /*! \brief Deprecated method to set the font name.
- \deprecated Use the fontName property.
+ \deprecated Use the \c fontName property or \c -setFontName: instead.
  \param newFontname The new font name.
  */
 - (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
 
 /*! \brief Deprecated method to set the font size.
- \deprecated Use the fontSize property.
+ \deprecated Use the \c fontSize property or \c -setFontSize: instead.
  \param newFontsize The new font size.
  */
 - (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
@@ -344,7 +352,9 @@ NS_ASSUME_NONNULL_BEGIN
  \deprecated Use \c addTransformedImageWithBitmap:size: instead.
  */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
-/** @} */
+/**
+ @}
+ */
 @end
 
 #ifdef __MAC_10_13

@@ -55,14 +55,16 @@ NS_ASSUME_NONNULL_BEGIN
 @property NSSize size;
 @property (copy) NSString *title;
 
-/** @}
+/**
+ @}
  \name Clip rect, applies to all objects
  @{ */
 @property (nonatomic) NSRect clipRect;
 - (void)setClipRect:(NSRect)clip;
 - (void)setDefaultClipRect;
 
-/** @}
+/**
+ @}
  Color handling
  @{ */
 @property (nonatomic) AQTColor color; /**< Currently selected color */
@@ -75,14 +77,16 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setColor:(AQTColor)newColor forColormapEntry:(int32_t)entryIndex;
 - (AQTColor)colorForColormapEntry:(int32_t)entryIndex;
 
-/** @}
+/**
+ @}
  \name Text handling
  @{ */
 @property (copy) NSString* fontName; /**< Currently selected font */
 @property CGFloat fontSize; /**< Currently selected fontsize [pt] */
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
-/** @}
+/**
+ @}
  \name Line handling
  @{ */
 @property (nonatomic) CGFloat lineWidth; /**< Currently selected linewidth [pt] */
@@ -94,7 +98,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
 - (void)addPolylineWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
 
-/** @}
+/**
+ @}
  \name Filled areas
  @{ */
 - (void)moveToVertexPoint:(NSPoint)point;
@@ -102,7 +107,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc; // AQTPatch
 - (void)addFilledRect:(NSRect)aRect;
 
-/** @}
+/**
+ @}
  \name Image handling
  @{ */
 @property AQTAffineTransformStruct imageTransform;
@@ -110,19 +116,22 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds;
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
-/** @}
+/**
+ @}
  \name Misc.
  @{ */
 - (void)removeAllParts;
 
-/** @}
+/**
+ @}
  \name Deprecated
  @{ */
 - (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
 - (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
 - (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize setter") NS_SWIFT_UNAVAILABLE("Use the .fontSize setter");
 
-/** @} */
+/**
+ @} */
 @end
 
 NS_ASSUME_NONNULL_END

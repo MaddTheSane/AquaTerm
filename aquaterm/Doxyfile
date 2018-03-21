@@ -1964,7 +1964,8 @@ PREDEFINED             = NS_SWIFT_UNAVAILABLE(x)= \
                          DEPRECATED_MSG_ATTRIBUTE(x)= \
                          "CF_ENUM(x,y)=enum y y; enum y" \
                          CF_SWIFT_UNAVAILABLE(x)= \
-                         "CF_OPTIONS(x,y)=enum y y; enum y"
+                         "CF_OPTIONS(x,y)=enum y y; enum y" \
+                         NS_REFINED_FOR_SWIFT
 
 # If the MACRO_EXPANSION and EXPAND_ONLY_PREDEF tags are set to YES then this
 # tag can be used to specify a list of macro names that should be expanded. The

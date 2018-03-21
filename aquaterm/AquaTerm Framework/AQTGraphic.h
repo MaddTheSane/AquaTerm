@@ -69,15 +69,19 @@ typedef struct _AQTRect {
 @property NSRect clipRect;
 @property (getter=isClipped) BOOL clipped;
 
-/** color handling */
+/**
+ @}
+ \name color handling
+ @{ */
 @property AQTColor color;
 
-/** @}
+/**
+ @}
  \name Deprecated
  @{ */
 
 /*! \brief Set the \c clipped property.
- \deprecated Use the \c clipped property or \c setClipped: instead.
+ \deprecated Use the \c clipped property or \c -setClipped: instead.
  */
 - (void)setIsClipped:(BOOL)newClip DEPRECATED_MSG_ATTRIBUTE("Use the clipped property") NS_SWIFT_UNAVAILABLE("Use the .clipped property");
 

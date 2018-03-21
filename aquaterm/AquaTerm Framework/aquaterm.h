@@ -100,7 +100,8 @@ void aqtSetEventHandler(void (*func)(int ref, const char *event));
  */
 void aqtSetEventBlock(void (^func)(int ref, const char *event));
 
-/** @}
+/**
+ @}
  \name Control operations
  @{ */
 
@@ -112,7 +113,8 @@ void aqtRenderPlot(void);
 void aqtClearPlot(void);
 void aqtClosePlot(void);
 
-/** @}
+/**
+ @}
  \name Event handling
  @{ */
 
@@ -122,14 +124,16 @@ int32_t aqtWaitNextEvent(char *buffer);
 
 /*" Plotting related commands "*/
 
-/** @}
+/**
+ @}
  \name Clip rect, applies to all objects
  @{ */
 
 void aqtSetClipRect(float originX, float originY, float width, float height);
 void aqtSetDefaultClipRect(void);
 
-/** @}
+/**
+ @}
  \name Colormap (utility)
  @{ */
 
@@ -141,7 +145,8 @@ void aqtGetColormapEntry(int32_t entryIndex, float *r, float *g, float *b);
 void aqtTakeColorFromColormapEntry(int32_t index);
 void aqtTakeBackgroundColorFromColormapEntry(int32_t index);
 
-/** @}
+/**
+ @}
  \name Color handling
  @{ */
 
@@ -154,7 +159,8 @@ void aqtSetBackgroundColor(float r, float g, float b);
 void aqtGetColor(float *r, float *g, float *b);
 void aqtGetBackgroundColor(float *r, float *g, float *b);
 
-/** @}
+/**
+ @}
  \name Text handling
  @{ */
 
@@ -163,7 +169,8 @@ void aqtSetFontsize(float newFontsize);
 void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align);
 void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, AQTAlign align);
 
-/** @}
+/**
+ @}
  \name Line handling
  @{ */
 
@@ -175,7 +182,8 @@ void aqtMoveTo(float x, float y);
 void aqtAddLineTo(float x, float y);
 void aqtAddPolyline(float *x, float *y, int32_t pointCount);
 
-/** @}
+/**
+ @}
  \name Rect and polygon handling
  @{ */
 
@@ -185,7 +193,8 @@ void aqtAddPolygon(float *x, float *y, int32_t pointCount);
 void aqtAddFilledRect(float originX, float originY, float width, float height);
 void aqtEraseRect(float originX, float originY, float width, float height);
 
-/** @}
+/**
+ @}
  \name Image handling
  @{ */
 
@@ -194,6 +203,8 @@ void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
 
-/** @} */
+/**
+ @}
+ */
 
 #endif

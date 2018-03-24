@@ -1,21 +1,69 @@
 <?xml version='1.0'?>
 <!DOCTYPE signatures SYSTEM "file://localhost/System/Library/DTDs/BridgeSupport.dtd">
-<signatures version='0.9'>
+<signatures version='1.0'>
 <depends_on path='/System/Library/Frameworks/Foundation.framework'/>
 <depends_on path='/System/Library/Frameworks/AppKit.framework'/>
 <depends_on path='/System/Library/Frameworks/CoreServices.framework'/>
 <depends_on path='/System/Library/Frameworks/CoreFoundation.framework'/>
 <depends_on path='/System/Library/Frameworks/ApplicationServices.framework'/>
-<constant name='AQTAlignBaseline' type='i'/>
-<constant name='AQTAlignBottom' type='i'/>
-<constant name='AQTAlignCenter' type='i'/>
-<constant name='AQTAlignLeft' type='i'/>
-<constant name='AQTAlignMiddle' type='i'/>
-<constant name='AQTAlignRight' type='i'/>
-<constant name='AQTAlignTop' type='i'/>
-<constant name='AQTLineCapStyleButt' type='i'/>
-<constant name='AQTLineCapStyleRound' type='i'/>
-<constant name='AQTLineCapStyleSquare' type='i'/>
+<struct name='AQTColor' type='{_AQTColor=&quot;red&quot;f&quot;green&quot;f&quot;blue&quot;f&quot;alpha&quot;f}'/>
+<struct name='AQTColorPtr' type='{_AQTColor=&quot;red&quot;f&quot;green&quot;f&quot;blue&quot;f&quot;alpha&quot;f}'/>
+<constant name='AQTBaselineAdjustKey' type='@'/>
+<constant name='AQTFontNameKey' type='@'/>
+<constant name='AQTFontSizeKey' type='@'/>
+<constant name='AQTNonPrintingCharKey' type='@'/>
+<enum name='AQTAlignBaseline' value='4'/>
+<enum name='AQTAlignBottom' value='8'/>
+<enum name='AQTAlignCenter' value='1'/>
+<enum name='AQTAlignLeft' value='0'/>
+<enum name='AQTAlignMiddle' value='0'/>
+<enum name='AQTAlignRight' value='2'/>
+<enum name='AQTAlignTop' value='16'/>
+<enum name='AQTButtLineCapStyle' value='0'/>
+<enum name='AQTLineCapStyleButt' value='0'/>
+<enum name='AQTLineCapStyleRound' value='1'/>
+<enum name='AQTLineCapStyleSquare' value='2'/>
+<enum name='AQTRoundLineCapStyle' value='1'/>
+<enum name='AQTSquareLineCapStyle' value='2'/>
+<function name='AQTContainsRect'>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<retval type='B'/>
+</function>
+<function inline='true' name='AQTEqualColors'>
+<arg type='{_AQTColor=ffff}'/>
+<arg type='{_AQTColor=ffff}'/>
+<retval type='B'/>
+</function>
+<function name='AQTIntersectsRect'>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<retval type='B'/>
+</function>
+<function inline='true' name='AQTIntervalContainsFloat'>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+<retval type='B'/>
+</function>
+<function inline='true' name='AQTIsZeroRect'>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<retval type='B'/>
+</function>
+<function inline='true' name='AQTProportionalSizes'>
+<arg type='{_NSSize=ff}' type64='{CGSize=dd}'/>
+<arg type='{_NSSize=ff}' type64='{CGSize=dd}'/>
+<retval type='B'/>
+</function>
+<function inline='true' name='AQTRectFromSize'>
+<arg type='{_NSSize=ff}' type64='{CGSize=dd}'/>
+<retval type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+</function>
+<function name='AQTUnionRect'>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+<retval type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
+</function>
 <enum name='AQT_EVENTBUF_SIZE' value='128'/>
 <function name='aqtAddEdgeToVertex'>
 <arg type='f'/>
@@ -90,7 +138,19 @@
 <arg type='^f'/>
 <arg type='^f'/>
 </function>
+<function name='aqtGetBackgroundColorRGBA'>
+<arg type='^f'/>
+<arg type='^f'/>
+<arg type='^f'/>
+<arg type='^f'/>
+</function>
 <function name='aqtGetColor'>
+<arg type='^f'/>
+<arg type='^f'/>
+<arg type='^f'/>
+</function>
+<function name='aqtGetColorRGBA'>
+<arg type='^f'/>
 <arg type='^f'/>
 <arg type='^f'/>
 <arg type='^f'/>
@@ -101,12 +161,19 @@
 <arg type='^f'/>
 <arg type='^f'/>
 </function>
+<function name='aqtGetColormapEntryRGBA'>
+<arg type='i'/>
+<arg type='^f'/>
+<arg type='^f'/>
+<arg type='^f'/>
+<arg type='^f'/>
+</function>
 <function name='aqtGetLastEvent'>
 <arg type='*'/>
 <retval type='i'/>
 </function>
 <function name='aqtInit'>
-<retval type='i'/>
+<retval type='B'/>
 </function>
 <function name='aqtMoveTo'>
 <arg type='f'/>
@@ -126,9 +193,15 @@
 <retval type='i'/>
 </function>
 <function name='aqtSetAcceptingEvents'>
-<arg type='i'/>
+<arg type='B'/>
 </function>
 <function name='aqtSetBackgroundColor'>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+</function>
+<function name='aqtSetBackgroundColorRGBA'>
+<arg type='f'/>
 <arg type='f'/>
 <arg type='f'/>
 <arg type='f'/>
@@ -144,13 +217,40 @@
 <arg type='f'/>
 <arg type='f'/>
 </function>
+<function name='aqtSetColorRGBA'>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+</function>
 <function name='aqtSetColormapEntry'>
 <arg type='i'/>
 <arg type='f'/>
 <arg type='f'/>
 <arg type='f'/>
 </function>
+<function name='aqtSetColormapEntryRGBA'>
+<arg type='i'/>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+</function>
 <function name='aqtSetDefaultClipRect'/>
+<function name='aqtSetEventBlock'>
+<arg function_pointer='true' type='@?'>
+<arg type='i'/>
+<arg type='*'/>
+<retval type='v'/>
+</arg>
+</function>
+<function name='aqtSetEventHandler'>
+<arg function_pointer='true' type='^?'>
+<arg type='i'/>
+<arg type='*'/>
+<retval type='v'/>
+</arg>
+</function>
 <function name='aqtSetFontname'>
 <arg type='*'/>
 </function>
@@ -236,12 +336,17 @@
 <arg type='B' index='0'/>
 </method>
 <method selector='setErrorHandler:'>
-<arg function_pointer='true' type='^?' index='0'/>
+<arg function_pointer='true' index='0' type='^?'>
+<arg type='@'/>
 <retval type='v'/>
+</arg>
 </method>
 <method selector='setEventHandler:'>
-<arg function_pointer='true' type='^?' index='0'/>
+<arg function_pointer='true' index='0' type='^?'>
+<arg type='i'/>
+<arg type='@'/>
 <retval type='v'/>
+</arg>
 </method>
 </class>
 </signatures>

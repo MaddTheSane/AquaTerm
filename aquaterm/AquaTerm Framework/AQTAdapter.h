@@ -358,10 +358,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 #ifdef __MAC_10_13
-extern NSAttributedStringKey const AQTFontNameKey NS_SWIFT_NAME(AQTFontName);
-extern NSAttributedStringKey const AQTFontSizeKey NS_SWIFT_NAME(AQTFontSize);
-extern NSAttributedStringKey const AQTBaselineAdjustKey NS_SWIFT_NAME(AQTBaselineAdjust);
-extern NSAttributedStringKey const AQTNonPrintingCharKey NS_SWIFT_NAME(AQTNonPrintingChar);
+extern NSAttributedStringKey const AQTFontNameKey NS_SWIFT_NAME(aqtFontName);
+extern NSAttributedStringKey const AQTFontSizeKey NS_SWIFT_NAME(aqtFontSize);
+extern NSAttributedStringKey const AQTBaselineAdjustKey NS_SWIFT_NAME(aqtBaselineAdjust);
+extern NSAttributedStringKey const AQTNonPrintingCharKey NS_SWIFT_NAME(aqtNonPrintingChar);
 #else
 extern NSString *const AQTFontNameKey;
 extern NSString *const AQTFontSizeKey;

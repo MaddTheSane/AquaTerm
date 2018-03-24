@@ -20,7 +20,10 @@ extension NSPoint {
 }
 
 private func internalMain() {
-	let adapter = AQTAdapter()!
+	guard let adapter = AQTAdapter() else {
+		print("Unable to connect to AquaTerm, exiting.")
+		exit(EXIT_FAILURE)
+	}
 	var pos = NSPoint()
 	var f: Float = 0
 	let rgbImage: [UInt8] = [
@@ -265,8 +268,8 @@ private func internalMain() {
 		//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
 		let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}"
 		let attrStr = NSMutableAttributedString(string: s)
-		attrStr.setAttributes([.AQTFontName: "AppleSymbols"], range: NSMakeRange(9, 11))
-		attrStr.setAttributes([.AQTFontName: "STSong"], range: NSMakeRange(13, 1))
+		attrStr.setAttributes([.aqtFontName: "AppleSymbols"], range: NSMakeRange(9, 11))
+		attrStr.setAttributes([.aqtFontName: "STSong"], range: NSMakeRange(13, 1))
 		
 		adapter.takeColor(fromColormapEntry: 1)
 		adapter.fontName = "Times-Roman"
@@ -341,20 +344,20 @@ private func internalMain() {
 		adapter.fontSize = 14
 		
 		var attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
-		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(3, 1)) // Greek
+		attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSMakeRange(3, 1)) // Greek
 		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(1, 3)) // exponent
-		attrStr.addAttribute(.AQTFontSize, value: 6.0, range: NSMakeRange(7, 1)) // extra spacing
+		attrStr.addAttribute(.aqtFontSize, value: 6.0, range: NSMakeRange(7, 1)) // extra spacing
 		
 		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 		
 		attrStr = NSMutableAttributedString(string: "mSke-wk2")
-		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(0, 2))
-		attrStr.addAttribute(.AQTFontSize, value: 20.0, range: NSMakeRange(1, 1))
-		attrStr.addAttribute(.AQTBaselineAdjust, value: -0.25, range: NSMakeRange(1, 1)) // Lower symbol 25%
+		attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSMakeRange(0, 2))
+		attrStr.addAttribute(.aqtFontSize, value: 20.0, range: NSMakeRange(1, 1))
+		attrStr.addAttribute(.aqtBaselineAdjust, value: -0.25, range: NSMakeRange(1, 1)) // Lower symbol 25%
 		attrStr.addAttribute(.superscript, value: -1, range: NSMakeRange(2, 1))
-		attrStr.addAttribute(.AQTFontName, value: "Times-Roman", range: NSMakeRange(3, 1))
+		attrStr.addAttribute(.aqtFontName, value: "Times-Roman", range: NSMakeRange(3, 1))
 		attrStr.addAttribute(.superscript, value: 1, range: NSMakeRange(4, 2))
-		attrStr.addAttribute(.AQTFontName, value: "Symbol", range: NSMakeRange(5, 1))
+		attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSMakeRange(5, 1))
 		attrStr.addAttribute(.superscript, value: -2, range: NSMakeRange(6, 1))
 		attrStr.addAttribute(.superscript, value: 2, range: NSMakeRange(7, 1))
 		

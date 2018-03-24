@@ -950,6 +950,7 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = AQT;
 				LastSwiftUpdateCheck = 0900;
 				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "AquaTerm Team";

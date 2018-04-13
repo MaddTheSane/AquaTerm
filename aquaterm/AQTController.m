@@ -24,7 +24,7 @@ extern void aqtLineDrawingTest(id sender);
 @implementation NSString (AQTRFC2396Support)
 - (NSString *)stringByAddingPercentEscapes
 {
-  return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, kCFStringEncodingASCII));
+   return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, kCFStringEncodingASCII));
 }
 @end
 
@@ -190,7 +190,7 @@ extern void aqtLineDrawingTest(id sender);
 
 -(id)addAQTClient:(bycopy id)client name:(bycopy NSString *)name pid:(pid_t)procId
 {
-  id newPlot;
+   id newPlot;
    newPlot = [[AQTPlot alloc] init];
    // [newPlot setPlotKey:client];
    [newPlot setClientInfoName:name pid:procId];
@@ -231,8 +231,8 @@ extern void aqtLineDrawingTest(id sender);
 
  -(IBAction)tileWindows:(id)sender;
 {
-   /* FIXME: This algorithm just divides the screen into N equally size tiles and fits the 
-      windows into the tiles trying to maximize screen usage. Could be improved... */ 
+   /* FIXME: This algorithm just divides the screen into N equally size tiles and fits the
+      windows into the tiles trying to maximize screen usage. Could be improved... */
    NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
    NSSize tileSize;
    NSPoint tileOrigin;
@@ -327,8 +327,7 @@ extern void aqtLineDrawingTest(id sender);
       }
    }
    [adapter renderPlot];
-   [adapter closePlot];   
-
+   [adapter closePlot];
 }
 
 #define NSAppKitVersionNumber10_0 577
@@ -383,11 +382,11 @@ Configuration (please do not edit this section):\n\
 
 -(IBAction)mailBug:(id)sender;
 {
-  NSString *msg = [self _aqtBugMsg];
-  NSString *address = @"persquare@users.sourceforge.net";
-  NSString *subject = @"AquaTerm bugreport";
-  NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg]; 
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding]]];
+   NSString *msg = [self _aqtBugMsg];
+   NSString *address = @"persquare@users.sourceforge.net";
+   NSString *subject = @"AquaTerm bugreport";
+   NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
+   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding]]];
 }
 
 -(NSString *)_aqtMailMsg
@@ -399,10 +398,10 @@ Feedback:\n-----------------------\n\n\
 
 -(IBAction)mailFeedback:(id)sender;
 {
-  NSString *msg = [self _aqtMailMsg];
-  NSString *address = @"persquare@users.sourceforge.net";
-  NSString *subject = @"AquaTerm feedback";
-  NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
+   NSString *msg = [self _aqtMailMsg];
+   NSString *address = @"persquare@users.sourceforge.net";
+   NSString *subject = @"AquaTerm feedback";
+   NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet]]];
 }
 
@@ -410,18 +409,18 @@ Feedback:\n-----------------------\n\n\
 
 -(IBAction)debug:(id)sender
 {
-  aqtDebug(self);
+   aqtDebug(self);
 }
 -(IBAction)testview:(id)sender;
 {
-  aqtTestview(self);
+   aqtTestview(self);
 }
 -(IBAction)stringDrawingTest:(id)sender;
 {
-  aqtStringDrawingTest(self);
+   aqtStringDrawingTest(self);
 }
 -(IBAction)lineDrawingTest:(id)sender;
 {
-  aqtLineDrawingTest(self);
+   aqtLineDrawingTest(self);
 }
 @end

@@ -14,8 +14,7 @@ import AquaTerm.AQTAdapter
 
 extension NSPoint {
 	fileprivate init(x: Float, y: Float) {
-		self.x = CGFloat(x)
-		self.y = CGFloat(y)
+		self.init(x: CGFloat(x), y: CGFloat(y))
 	}
 }
 

@@ -356,7 +356,7 @@ extern void aqtLineDrawingTest(id sender);
       version = @"10.3";
    } else {
       /* 10.4 or later system */
-      version = @"10.4";
+      version = [[NSProcessInfo processInfo] operatingSystemVersionString];
    }
    
    return [NSString stringWithFormat:@"Mac OS X %@\nInstall location: %@", version, location];
@@ -364,7 +364,7 @@ extern void aqtLineDrawingTest(id sender);
 
 -(NSString *)_aqtBugMsg
 {
-    NSString *bugString = @"Bug report for AquaTerm 1.1.1\n\n\
+    NSString *bugString = @"Bug report for AquaTerm 1.1.2\n\n\
 Description:\n-----------------------\n\n\
 *\tPlease replace this item with a detailed description of the \n\
 \tproblem.  Suggestions or general comments are also welcome.\n\n\

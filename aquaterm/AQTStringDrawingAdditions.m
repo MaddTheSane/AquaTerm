@@ -137,7 +137,7 @@ static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 }
 @end
 
-/* This function appends the attributed string to a <code>bezierPath</code>. The following string attributes are honored:
+/** This function appends the attributed string to a <code>bezierPath</code>. The following string attributes are honored:
  * \c AQTFontname - overrides defaultFontName (NSString)
  * \c AQTFontsize - overrides defaultFontSize (float)
  * \c NSSuperscript - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript

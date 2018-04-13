@@ -308,7 +308,7 @@
 		CB58A1FF06F9A60900AF8A5E /* help.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = help.html; path = Help/help.html; sourceTree = SOURCE_ROOT; };
 		CB58A23A06FA0FB600AF8A5E /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = SOURCE_ROOT; };
 		CB5B187104A9A49E00EBD329 /* AQTController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = AQTController.h; sourceTree = "<group>"; };
-		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
+		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
 		CB5B1BEE04A9C2E900EBD329 /* AQTClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTClientProtocol.h; sourceTree = "<group>"; };
 		CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTConnectionProtocol.h; sourceTree = "<group>"; };
 		CB6785CE05866FCE00D208BA /* aquaterm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aquaterm.h; sourceTree = "<group>"; };

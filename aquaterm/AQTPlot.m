@@ -252,7 +252,7 @@ static inline void NOOP_(id x, ...) {;}
          
          [alert beginSheetModalForWindow:canvas.window completionHandler:^(NSModalResponse returnCode) {
             if (returnCode == NSAlertSecondButtonReturn) {
-               [canvas.window close];
+               [self->canvas.window close];
             }
          }];
       } else {
@@ -427,10 +427,10 @@ static inline void NOOP_(id x, ...) {;}
       NSString *filename;
       AQTView *printView;
       if (NSFileHandlingPanelOKButton == result) {
-         printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height)];
-         printView.model = model;
+         printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, self->model.canvasSize.width, self->model.canvasSize.height)];
+         printView.model = self->model;
          filename = savePanel.URL.path.stringByDeletingPathExtension;
-         if ([saveFormatPopUp.titleOfSelectedItem isEqualToString:@"PDF"]) {
+         if ([self->saveFormatPopUp.titleOfSelectedItem isEqualToString:@"PDF"]) {
             data = [printView dataWithPDFInsideRect: printView.bounds];
             [data writeToFile:[filename stringByAppendingPathExtension:@"pdf"] atomically: NO];
          } else {
@@ -438,7 +438,7 @@ static inline void NOOP_(id x, ...) {;}
             [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
          }
          [preferences setURL:savePanel.URL.URLByDeletingLastPathComponent forKey:SaveFolderKey];
-         [preferences setObject:saveFormatPopUp.titleOfSelectedItem forKey:SaveFormatKey];
+         [preferences setObject:self->saveFormatPopUp.titleOfSelectedItem forKey:SaveFormatKey];
       }
    }];
 }

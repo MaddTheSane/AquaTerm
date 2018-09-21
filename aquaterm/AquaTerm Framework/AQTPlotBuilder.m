@@ -160,7 +160,6 @@
 
 - (void)setColor:(AQTColor)newColor
 {
-   // FIXME: Use AQTEqualColor instead
    if (!AQTEqualColors(newColor, _color))
    {
       [self _flushBuffers];
@@ -171,7 +170,6 @@
 - (void)setBackgroundColor:(AQTColor)newColor
 {
    AQTColor oldColor = _model.color;
-   // FIXME: Use AQTEqualColor instead
    if (!AQTEqualColors(newColor, oldColor))
    {
       _model.color = newColor;

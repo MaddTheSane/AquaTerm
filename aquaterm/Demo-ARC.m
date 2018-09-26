@@ -276,8 +276,7 @@ for (i=0; i<8; i++)
 
 // Text
 adapter.fontName = @"Times-Roman";
-NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
-//NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
+NSString *s = @"Unicode: \u2124 \u2133 \u5925 \u2654\u2655\u2656\u2657\u2658";
 NSMutableAttributedString *as = [[NSMutableAttributedString alloc] initWithString:s];
 [as setAttributes:@{AQTFontNameKey: @"AppleSymbols"} range:NSMakeRange(9,11)];
 [as setAttributes:@{AQTFontNameKey: @"STSong"} range:NSMakeRange(13,1)];

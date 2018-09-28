@@ -292,14 +292,10 @@ extern void aqtLineDrawingTest(id sender);
 
    // Collect all fontnames
    NSArray *allFontFamilies = fontManager.availableFontFamilies;
-   NSEnumerator *fontFamilyEnumerator = [allFontFamilies objectEnumerator];
-   NSString *familyName;
    
-   while (familyName = [fontFamilyEnumerator nextObject]) {
-      NSArray *allFonts = [fontManager availableMembersOfFontFamily:familyName];
-      NSEnumerator *fontEnumerator = [allFonts objectEnumerator];
-      NSArray *variation;
-      while (variation = [fontEnumerator nextObject]) {
+   for (NSString *familyName in allFontFamilies) {
+      NSArray<NSArray *> *allFonts = [fontManager availableMembersOfFontFamily:familyName];
+      for (NSArray *variation in allFonts) {
          [allFontnames addObject:variation[0]];
       }
    }
@@ -308,6 +304,7 @@ extern void aqtLineDrawingTest(id sender);
    [allFontnames sortUsingSelector:@selector(caseInsensitiveCompare:)];
    
    for (NSString *fontname in allFontnames) {
+      //TODO: If there's a lot of fonts, open a new window!
       adapter.fontName = systemFont;
       [adapter setColorRed:0.0 green:0.0 blue:0.0];
       [adapter addLabel:fontname

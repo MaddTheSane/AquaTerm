@@ -82,11 +82,11 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTImageTransformKey]) {
-      bitmap = RETAINOBJ([coder decodeObjectForKey:AQTImageBitmapKey]);
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTImageTransformKey]) {
+      bitmap = RETAINOBJ([coder decodeObjectOfClass:[NSData class] forKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       _bounds = [coder decodeRectForKey:AQTImageBoundsKey];
-      NSValue * tmpVal = [coder decodeObjectForKey:AQTImageTransformKey];
+      NSValue * tmpVal = [coder decodeObjectOfClass:[NSValue class] forKey:AQTImageTransformKey];
       [tmpVal getValue:&transform];
       fitBounds = [coder decodeBoolForKey:AQTImageFitBoundsKey];
     } else {

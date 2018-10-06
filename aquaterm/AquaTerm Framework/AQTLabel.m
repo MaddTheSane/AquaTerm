@@ -98,9 +98,9 @@
 -(instancetype)initWithCoder:(NSCoder *)coder
 {
   if (self = [super initWithCoder:coder]) {
-    if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTLabelStringKey]) {
-      string = [[coder decodeObjectForKey:AQTLabelStringKey] copy];
-      fontName = [[coder decodeObjectForKey:AQTLabelFontNameKey] copy];
+    if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTLabelStringKey]) {
+      string = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSString class], [NSAttributedString class], nil] forKey:AQTLabelStringKey] copy];
+      fontName = [[coder decodeObjectOfClass:[NSString class] forKey:AQTLabelFontNameKey] copy];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];
       position = [coder decodePointForKey:AQTLabelPositionKey];
       angle = [coder decodeDoubleForKey:AQTLabelAngleKey];

@@ -119,11 +119,11 @@
 {
    NSInteger i;
    if (self = [super initWithCoder:coder]) {
-      if (coder.allowsKeyedCoding && [coder decodeObjectForKey:AQTPathPathKey]) {
+      if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTPathPathKey]) {
          isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
          lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
          linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];
-         NSArray *tmpArr = [coder decodeObjectForKey:AQTPathPathKey];
+         NSArray *tmpArr = [coder decodeObjectOfClass:[NSValue class] forKey:AQTPathPathKey];
          pointCount = (int)tmpArr.count;
          pointCount = [self _aqtSetupPathStoreForPointCount:pointCount];
          
@@ -137,7 +137,7 @@
             i++;
          }
          
-         tmpArr = [coder decodeObjectForKey:AQTPathPatternKey];
+         tmpArr = [coder decodeObjectOfClass:[NSNumber class] forKey:AQTPathPatternKey];
          
          i = 0;
          for (NSNumber *val in tmpArr) {

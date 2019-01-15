@@ -10,6 +10,8 @@
 
 #import "AQTGraphic.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef struct _AQTAffineTransformStruct {
   float m11, m12, m21, m22;
   float tX, tY;
@@ -30,3 +32,5 @@ typedef struct _AQTAffineTransformStruct {
 @property (readonly) NSSize bitmapSize;
 
 @end
+
+NS_ASSUME_NONNULL_END

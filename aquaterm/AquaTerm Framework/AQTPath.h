@@ -34,6 +34,13 @@ NS_ASSUME_NONNULL_BEGIN
 }
 
 - (instancetype)init;
+
+/*!
+ \brief A leaf object class representing an actual item in the plot.
+ 
+ Since the app is a viewer we do three things with the object:
+ create (once), draw (any number of times) and (eventually) dispose of it.
+ */
 - (instancetype)initWithPoints:(nullable NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
 @property CGFloat lineWidth;
@@ -48,7 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** \deprecated Use the \c filled property or \c -setFilled: instead.
  */
-- (void)setIsFilled:(BOOL)newFill DEPRECATED_MSG_ATTRIBUTE("Use the filled property") NS_SWIFT_UNAVAILABLE("Use the .filled property");
+- (void)setIsFilled:(BOOL)newFill DEPRECATED_MSG_ATTRIBUTE("Use the filled property") NS_SWIFT_UNAVAILABLE("Use the .isFilled property");
 @end
 
 NS_ASSUME_NONNULL_END

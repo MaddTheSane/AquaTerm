@@ -73,7 +73,7 @@
 {
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTModelModelsKey]) {
-      modelObjects = [[coder decodeObjectOfClass:[AQTGraphic class] forKey:AQTModelModelsKey] mutableCopy];
+      modelObjects = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[AQTGraphic class], [NSArray class], nil] forKey:AQTModelModelsKey] mutableCopy];
       title = [[coder decodeObjectOfClass:[NSString class] forKey:AQTModelTitleKey] copy];
       canvasSize = [coder decodeSizeForKey:AQTModelCanvasSizeKey];
       dirtyRect = [coder decodeRectForKey:AQTModelDirtyRectKey];

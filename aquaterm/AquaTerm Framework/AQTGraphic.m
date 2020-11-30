@@ -61,7 +61,7 @@ typedef struct _AQTColor_v100 {
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-   [coder encodeObject:[NSValue value:&_color withObjCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
+   [coder encodeObject:[NSValue valueWithBytes:&_color objCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
    [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
    [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
    [coder encodeBool:_isClipped forKey:AQTGraphicIsClippedKey];
@@ -73,7 +73,11 @@ typedef struct _AQTColor_v100 {
    if (self = [super init]) {
       if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTGraphicColorKey]) {
          NSValue *tmpColor = [coder decodeObjectOfClass:[NSValue class] forKey:AQTGraphicColorKey];
-         [tmpColor getValue:&_color];
+         if (@available(macOS 10.13, *)) {
+            [tmpColor getValue:&_color size:sizeof(_color)];
+         } else {
+            [tmpColor getValue:&_color];
+         }
          _bounds = [coder decodeRectForKey:AQTGraphicBoundsKey];
          _clipRect = [coder decodeRectForKey:AQTGraphicClipRectKey];
          _isClipped = [coder decodeBoolForKey:AQTGraphicIsClippedKey];

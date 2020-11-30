@@ -331,19 +331,19 @@ NS_ASSUME_NONNULL_BEGIN
  \deprecated Use the \c lineWidth property or \c -setLineWidth: instead.
  \param newLinewidth The new line width.
  */
-- (void)setLinewidth:(float)newLinewidth DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+- (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
 /*! \brief Deprecated method to set the font name.
  \deprecated Use the \c fontName property or \c -setFontName: instead.
  \param newFontname The new font name.
  */
-- (void)setFontname:(NSString *)newFontname DEPRECATED_MSG_ATTRIBUTE("Use the fontName property") NS_SWIFT_UNAVAILABLE("Use the .fontName property");
+- (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
 
 /*! \brief Deprecated method to set the font size.
  \deprecated Use the \c fontSize property or \c -setFontSize: instead.
  \param newFontsize The new font size.
  */
-- (void)setFontsize:(float)newFontsize DEPRECATED_MSG_ATTRIBUTE("Use the fontSize property") NS_SWIFT_UNAVAILABLE("Use the .fontSize property");
+- (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
 /** Deprecated, use \c addTransformedImageWithBitmap:size: instead.
  Add a bitmap image of size \c bitmapSize \b honoring transform,
@@ -357,16 +357,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @end
 
-#ifdef __MAC_10_13
 extern NSAttributedStringKey const AQTFontNameKey NS_SWIFT_NAME(aqtFontName);
 extern NSAttributedStringKey const AQTFontSizeKey NS_SWIFT_NAME(aqtFontSize);
 extern NSAttributedStringKey const AQTBaselineAdjustKey NS_SWIFT_NAME(aqtBaselineAdjust);
 extern NSAttributedStringKey const AQTNonPrintingCharKey NS_SWIFT_NAME(aqtNonPrintingChar);
-#else
-extern NSString *const AQTFontNameKey;
-extern NSString *const AQTFontSizeKey;
-extern NSString *const AQTBaselineAdjustKey;
-extern NSString *const AQTNonPrintingCharKey;
-#endif
 
 NS_ASSUME_NONNULL_END

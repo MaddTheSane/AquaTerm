@@ -13,10 +13,10 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.2</string>
+	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleSignature</key>
 	<string>AqTS</string>
 	<key>CFBundleVersion</key>
-	<string>1.1.2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 </dict>
 </plist>

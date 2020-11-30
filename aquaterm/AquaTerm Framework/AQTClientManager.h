@@ -28,11 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
    int32_t _logLimit;
    BOOL errorState;
 }
-#if __has_feature(objc_class_property)
 @property (class, readonly, retain) AQTClientManager *sharedManager;
-#else
-+ (AQTClientManager *)sharedManager;
-#endif
 - (void)setServer:(id)server;
 - (BOOL)connectToServerWithName:(NSString *)registeredName;
 - (BOOL)connectToServer;

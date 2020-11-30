@@ -24,13 +24,13 @@ typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleSquare = 2,
 
    /*! \deprecated Use \c AQTLineCapStyleButt instead.*/
-   AQTButtLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleButt instead") CF_SWIFT_UNAVAILABLE("Use .butt instead") = AQTLineCapStyleButt,
+   AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt,
    
    /*! \deprecated Use \c AQTLineCapStyleRound instead.*/
-   AQTRoundLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleRound instead") CF_SWIFT_UNAVAILABLE("Use .round instead") = AQTLineCapStyleRound,
+   AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound,
    
    /*! \deprecated Use \c AQTLineCapStyleSquare instead.*/
-   AQTSquareLineCapStyle DEPRECATED_MSG_ATTRIBUTE("Use AQTLineCapStyleSquare instead") CF_SWIFT_UNAVAILABLE("Use .square instead") = AQTLineCapStyleSquare
+   AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare
 };
 
 /*! Constants that specify horizontal and vertical alignment for labels. See \c addLabel:atPoint:angle:align: for definitions and use. */

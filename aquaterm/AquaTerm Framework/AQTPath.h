@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "aquaterm.h"
-#import "AQTGraphic.h"
+#import <AquaTerm/aquaterm.h>
+#import <AquaTerm/AQTGraphic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

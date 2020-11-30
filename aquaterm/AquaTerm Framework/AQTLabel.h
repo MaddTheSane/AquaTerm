@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AQTGraphic.h"
-#import "aquaterm.h"
+#import <AquaTerm/AQTGraphic.h>
+#import <AquaTerm/aquaterm.h>
 
 /// @brief A leaf object class representing an actual item in the plot.
 ///

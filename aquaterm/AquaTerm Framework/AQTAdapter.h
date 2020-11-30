@@ -9,7 +9,7 @@
 #import <Foundation/NSString.h>
 #import <Foundation/NSGeometry.h>
 #import <Foundation/NSAttributedString.h>
-#include "aquaterm.h"
+#include <AquaTerm/aquaterm.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

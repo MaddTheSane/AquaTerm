@@ -25,7 +25,7 @@
 #import <AquaTerm/AQTAdapter.h>
 
 // Testing the use of a callback function to handle errors in the server
-static void customEventHandler(int32_t index, NSString *event)
+__unused static void customEventHandler(int32_t index, NSString *event)
 {
   NSLog(@"Custom event handler --- %@ from %d", event, index);
 }

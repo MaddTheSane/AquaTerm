@@ -24,7 +24,7 @@
 #define WINDOW_MAX_WIDTH 4096.0
 
 /* Debugging extras */
-static inline void NOOP_(id x, ...) {;}
+__unused static inline void NOOP_(id x, ...) {;}
 
 #ifdef DEBUG
 #define LOG  NSLog

@@ -1,4 +1,4 @@
-#import "AQTGraphic.h"
+#import <AquaTerm/AQTGraphic.h>
 
 @class AQTModel;
 @protocol AQTEventProtocol;

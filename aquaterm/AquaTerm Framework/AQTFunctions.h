@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/NSGeometry.h>
-#import "AQTGraphic.h"
+#import <AquaTerm/AQTGraphic.h>
 
 #define COMP_EPS 0.001
 

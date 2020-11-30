@@ -8,7 +8,7 @@
 
 #import <stdint.h>
 #import <Foundation/Foundation.h>
-#import "AQTEventProtocol.h"
+#import <AquaTerm/AQTEventProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

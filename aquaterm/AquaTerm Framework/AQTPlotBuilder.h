@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AQTGraphic.h"
-#import "AQTImage.h"
-#import "AQTPath.h"
-#import "AQTClientProtocol.h"
-#include "aquaterm.h"
+#import <AquaTerm/AQTGraphic.h>
+#import <AquaTerm/AQTImage.h>
+#import <AquaTerm/AQTPath.h>
+#import <AquaTerm/AQTClientProtocol.h>
+#include <AquaTerm/aquaterm.h>
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -157,7 +157,7 @@
 // This is still troublesome... Needs to figure out if user is running from remote machine. NSTask
 - (BOOL)launchServer
 {
-   NSURL *appURL;
+   NSURL *appURL=nil;
    OSStatus status;
    
    if (getenv("AQUATERM_PATH") != (char *)NULL) {
@@ -171,10 +171,20 @@
       }
       if (status != noErr) {
          // No, search for it based on creator code, choose latest version
-         CFURLRef tmpURL;
-         status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);//LSCopyApplicationURLsForBundleIdentifier
-         [self logMessage:[NSString stringWithFormat:@"LSFindApplicationForInfo = %ld", (long)status] logLevel:2];
-         appURL = (status == noErr) ? (NSURL*)CFBridgingRelease(tmpURL) : NULL;
+         if (@available(macOS 10.10, *)) {
+            NSArray *aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
+            if (aquaTermURLs) {
+               //TODO: iterate through the URLs, select latest version.
+               appURL = aquaTermURLs.firstObject;
+            }
+         }
+         // No, search for it based on creator code, choose latest version
+         if (!appURL) {
+            CFURLRef tmpURL;
+            status = LSFindApplicationForInfo('AqTS', NULL, NULL, NULL, &tmpURL);
+            [self logMessage:[NSString stringWithFormat:@"LSFindApplicationForInfo = %ld", (long)status] logLevel:2];
+            appURL = (status == noErr) ? (NSURL*)CFBridgingRelease(tmpURL) : NULL;
+         }
          if (appURL) {
             status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
          }

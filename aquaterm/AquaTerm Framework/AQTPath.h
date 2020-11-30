@@ -51,11 +51,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** \deprecated Use the \c lineWidth property or \c -setLineWidth: instead.
  */
-- (void)setLinewidth:(float)lw DEPRECATED_MSG_ATTRIBUTE("Use the lineWidth property") NS_SWIFT_UNAVAILABLE("Use the .lineWidth property");
+- (void)setLinewidth:(float)lw __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
 /** \deprecated Use the \c filled property or \c -setFilled: instead.
  */
-- (void)setIsFilled:(BOOL)newFill DEPRECATED_MSG_ATTRIBUTE("Use the filled property") NS_SWIFT_UNAVAILABLE("Use the .isFilled property");
+- (void)setIsFilled:(BOOL)newFill __API_DEPRECATED_WITH_REPLACEMENT("-setFilled:", macos(10.4, 10.9));
 @end
 
 NS_ASSUME_NONNULL_END

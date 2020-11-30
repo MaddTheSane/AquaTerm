@@ -83,7 +83,7 @@ typedef struct _AQTRect {
 /*! \brief Set the \c clipped property.
  \deprecated Use the \c clipped property or \c -setClipped: instead.
  */
-- (void)setIsClipped:(BOOL)newClip DEPRECATED_MSG_ATTRIBUTE("Use the clipped property") NS_SWIFT_UNAVAILABLE("Use the .isClipped property");
+- (void)setIsClipped:(BOOL)newClip __API_DEPRECATED_WITH_REPLACEMENT("-setClipped:", macos(10.4, 10.9));
 
 /** @} */
 

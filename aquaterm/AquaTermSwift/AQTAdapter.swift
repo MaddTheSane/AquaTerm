@@ -11,6 +11,7 @@ import AquaTerm
 import AquaTerm.AQTAdapter
 
 extension AQTAdapter {
+	/// The current RGB color components.
 	@objc open var color: AQTColor {
 		get {
 			var r: Float = 0
@@ -24,6 +25,7 @@ extension AQTAdapter {
 		}
 	}
 	
+	/// The background color components.
 	@objc open var backgroundColor: AQTColor {
 		get {
 			var r: Float = 0
@@ -96,12 +98,16 @@ extension AQTAdapter {
 	}
 
 
-	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
+	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
+	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
+	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc open func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
 		setLinestylePattern(newPattern.map({Float($0)}), phase: Float(newPhase))
 	}
 
-	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
+	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
+	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
+	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc open func setLinestylePattern(_ newPattern: [Float], phase newPhase: Float) {
 		var newFPattern = newPattern
 		

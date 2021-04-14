@@ -41,7 +41,7 @@ NS_ASSUME_NONNULL_BEGIN
  Since the app is a viewer we do three things with the object:
  create (once), draw (any number of times) and (eventually) dispose of it.
  */
-- (instancetype)initWithPoints:(nullable NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPoints:(nullable const NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
 @property CGFloat lineWidth;
 @property AQTLineCapStyle lineCapStyle;

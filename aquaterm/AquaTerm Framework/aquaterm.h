@@ -22,16 +22,16 @@ typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleButt = 0,
    AQTLineCapStyleRound = 1,
    AQTLineCapStyleSquare = 2,
-
-   /*! \deprecated Use \c AQTLineCapStyleButt instead.*/
-   AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt,
-   
-   /*! \deprecated Use \c AQTLineCapStyleRound instead.*/
-   AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound,
-   
-   /*! \deprecated Use \c AQTLineCapStyleSquare instead.*/
-   AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare
 };
+
+/*! \deprecated Use \c AQTLineCapStyleButt instead.*/
+static const AQTLineCapStyle AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt;
+
+/*! \deprecated Use \c AQTLineCapStyleRound instead.*/
+static const AQTLineCapStyle AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound;
+
+/*! \deprecated Use \c AQTLineCapStyleSquare instead.*/
+static const AQTLineCapStyle AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare;
 
 /*! Constants that specify horizontal and vertical alignment for labels. See \c addLabel:atPoint:angle:align: for definitions and use. */
 typedef CF_OPTIONS(int32_t, AQTAlign) {

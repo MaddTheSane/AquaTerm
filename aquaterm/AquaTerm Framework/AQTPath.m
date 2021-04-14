@@ -41,7 +41,7 @@
    return pc;
 }
 
--(instancetype)initWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
+-(instancetype)initWithPoints:(const NSPointArray)points pointCount:(int32_t)pc;
 {
   int32_t i;
   if (self = [super init])

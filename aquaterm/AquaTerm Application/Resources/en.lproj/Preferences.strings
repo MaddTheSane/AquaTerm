@@ -87,7 +87,7 @@
 "106.title" = "Crosshair cursor color";
 
 /* Class = "NSTextFieldCell"; title = "Minimum linewidth:0.25pt"; ObjectID = "108"; */
-"108.title" = "Minimum linewidth:0.25pt";
+"108.title" = "Minimum linewidth:";
 
 /* Class = "NSButtonCell"; title = "User confirmation"; ObjectID = "109"; */
 "109.title" = "User confirmation";

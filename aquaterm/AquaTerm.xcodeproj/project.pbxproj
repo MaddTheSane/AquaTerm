@@ -93,7 +93,6 @@
 		CBC4B44105E4C784001BE8D7 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8252ACC5B321F400CFA73B /* Demo.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CBC4B44205E4C784001BE8D7 /* Bugs.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBB59CE055CF10B00EEC8EA /* Bugs.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		CBC4B44305E4C784001BE8D7 /* Timing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBB59D0055CF40600EEC8EA /* Timing.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		CBC4B44405E4C784001BE8D7 /* AQTFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = CBB06FE905740EB900D208BA /* AQTFunctions.m */; };
 		CBC4B44605E4C784001BE8D7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
@@ -1158,7 +1157,6 @@
 				CBC4B44105E4C784001BE8D7 /* Demo.m in Sources */,
 				CBC4B44205E4C784001BE8D7 /* Bugs.m in Sources */,
 				CBC4B44305E4C784001BE8D7 /* Timing.m in Sources */,
-				CBC4B44405E4C784001BE8D7 /* AQTFunctions.m in Sources */,
 				CB9B70D4065A0B9C00563010 /* AQTPrefController.m in Sources */,
 				CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */,
 				CBB800C90723A4740068A0C9 /* AQTStringDrawingAdditions.m in Sources */,

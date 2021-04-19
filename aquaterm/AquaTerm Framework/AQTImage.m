@@ -76,7 +76,6 @@
 
 #define AQTImageBitmapKey @"Bitmap"
 #define AQTImageBitmapSizeKey @"BitmapSize"
-#define AQTImageBoundsKey @"Bounds"
 #define AQTImageTransformKey @"Transform"
 #define AQTImageFitBoundsKey @"FitBounds"
 
@@ -90,7 +89,6 @@
   [super encodeWithCoder:coder];
   [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
   [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
-  [coder encodeRect:_bounds forKey:AQTImageBoundsKey];
   [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
   [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
 }
@@ -101,7 +99,6 @@
     if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTImageTransformKey]) {
       bitmap = RETAINOBJ([coder decodeObjectOfClass:[NSData class] forKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
-      _bounds = [coder decodeRectForKey:AQTImageBoundsKey];
       NSValue * tmpVal = [coder decodeObjectOfClass:[NSValue class] forKey:AQTImageTransformKey];
       [tmpVal getValue:&transform];
       fitBounds = [coder decodeBoolForKey:AQTImageFitBoundsKey];

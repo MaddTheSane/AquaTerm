@@ -67,6 +67,8 @@ adapter.plotTitle = @"Testview "
   @"(x86_64h)"
 #elif __x86_64__
   @"(x86_64)"
+#elif __aarch64__
+   @"(Arm64)"
 #else
   @"(unknown Arch)"
 #endif

@@ -29,13 +29,14 @@ int main(void)
    }
   return 0;
 }
+
 void aqtTestview(AQTAdapter *adapter)
 {
-NSPoint points[128];
+  NSPoint points[128];
   NSPoint pos;
-int32_t i;
-float f;
-const double pi = 4.0*atan(1.0);
+  int32_t i;
+  float f;
+  const double pi = 4.0*atan(1.0);
 unsigned char rgbImage[12]={
   255, 0, 0,
   0, 255, 0,
@@ -331,7 +332,7 @@ adapter.fontSize = 12.0;
   [attrStr addAttribute:NSUnderlineStyleAttributeName value:@1 range:NSMakeRange(0,9)];
   [attrStr addAttribute:NSSuperscriptAttributeName value:@-1 range:NSMakeRange(31,1)];
   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(32,2)];
-  [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];  
+  [adapter addLabel:attrStr atPoint:NSMakePoint(320, 75) angle:0.0 align:AQTAlignLeft];
 }
 [adapter takeColorFromColormapEntry:2];
 adapter.lineWidth = 0.5;

@@ -51,6 +51,7 @@
 		55E4B3BE1F671E1C0003B1D2 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55E4B3CA1F6725310003B1D2 /* Timing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBB59D0055CF40600EEC8EA /* Timing.m */; };
 		55E4B3CD1F6725830003B1D2 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
+		55E7A826262D723B00EDC6DE /* AQTPicture-Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
 		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
@@ -304,6 +305,7 @@
 		55E4B3B21F671D840003B1D2 /* AquaTermTimingSwift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermTimingSwift; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E4B3B41F671D840003B1D2 /* main.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55E4B3C31F67251D0003B1D2 /* AquaTermTiming */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermTiming; sourceTree = BUILT_PRODUCTS_DIR; };
+		55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AQTPicture-Image.swift"; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
@@ -544,6 +546,7 @@
 				550857EB1C80F6FD005ACF4A /* Info.plist */,
 				550857EF1C80F719005ACF4A /* AQTHelpers.swift */,
 				558DB8391D60D38C007E54ED /* AQTAdapter.swift */,
+				55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */,
 				55602F421D624D5700FC75A5 /* AQTPath.swift */,
 			);
 			indentWidth = 4;
@@ -1081,6 +1084,7 @@
 				558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */,
 				55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */,
 				550857F01C80F719005ACF4A /* AQTHelpers.swift in Sources */,
+				55E7A826262D723B00EDC6DE /* AQTPicture-Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

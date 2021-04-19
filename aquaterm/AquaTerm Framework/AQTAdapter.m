@@ -522,6 +522,31 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addImageWithBitmap:bitmap size:bitmapSize bounds:destBounds];
 }
 
+- (BOOL)addImageWithBitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   [_clientManager clearPlotRect:destBounds];
+   return [_selectedBuilder addImageWithBitmapData:bitmap size:bitmapSize bounds:destBounds];
+}
+
+- (BOOL)addImageWithRGBABitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   [_clientManager clearPlotRect:destBounds];
+   return [_selectedBuilder addImageWithRGBABitmapData:bitmap size:bitmapSize bounds:destBounds];
+}
+
+- (BOOL)addImageWithImageData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   [_clientManager clearPlotRect:destBounds];
+   return [_selectedBuilder addImageWithImageData:bitmap size:bitmapSize bounds:destBounds];
+
+}
+
+- (BOOL)addImageWithImageData:(NSData *)bitmap bounds:(NSRect)destBounds
+{
+   [_clientManager clearPlotRect:destBounds];
+   return [_selectedBuilder addImageWithImageData:bitmap size:NSZeroSize bounds:destBounds];
+}
+
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds
 {
    [_selectedBuilder addTransformedImageWithBitmap:bitmap size:bitmapSize clipRect:destBounds];

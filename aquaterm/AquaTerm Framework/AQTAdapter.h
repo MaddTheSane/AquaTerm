@@ -305,14 +305,28 @@ NS_ASSUME_NONNULL_BEGIN
 /// see \c NSImage documentation for details.
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY NS_SWIFT_NAME(setImageTransform(m11:m12:m21:m22:tX:tY:));
 
-///Set transformation matrix to unity, i.e. no transform.
+/// Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
 
-/// Add a bitmap image of size bitmapSize scaled to fit destBounds, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+/// Add a bitmap image of size \c bitmapSize scaled to fit destBounds, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
 /*! Add a bitmap image of size \c bitmapSize \b honoring transform, transformed image is clipped to current <code>clipRect</code>. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
+
+
+/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+- (BOOL)addImageWithBitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
+
+/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 32bits per pixel in sequence RGBARGBA... with 8 bits per color.
+- (BOOL)addImageWithRGBABitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
+
+/// Add an image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
+- (BOOL)addImageWithImageData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
+
+/// Add an image scaled to fit <code>destBounds</code>, does \b not apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
+- (BOOL)addImageWithImageData:(NSData *)bitmap bounds:(NSRect)destBounds;
+
 
 /**
  @}

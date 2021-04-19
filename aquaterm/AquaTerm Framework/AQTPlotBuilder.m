@@ -13,6 +13,7 @@
 #import "AQTLabel.h"
 #import "AQTPath.h"
 #import "AQTImage.h"
+#import "AQTPicture.h"
 #import "AQTColorMap.h"
 #import "ARCBridge.h"
 #import "AQTFunctions.h"
@@ -441,6 +442,48 @@
    [_model addObject:tmpImage];
    RELEASEOBJ(tmpImage);
    [self _aqtPlotBuilderSetModelIsDirty:YES];
+}
+
+- (BOOL)addImageWithBitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   AQTPicture *tmpImage = [[AQTPicture alloc] initWithBitmapData:bitmap size:bitmapSize bounds:destBounds];
+   if (!tmpImage) {
+      return NO;
+   }
+   tmpImage.clipRect = _clipRect;
+   tmpImage.clipped = _isClipped;
+   [_model addObject:tmpImage];
+   RELEASEOBJ(tmpImage);
+   [self _aqtPlotBuilderSetModelIsDirty:YES];
+   return YES;
+}
+
+- (BOOL)addImageWithRGBABitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   AQTPicture *tmpImage = [[AQTPicture alloc] initWithRGBABitmapData:bitmap size:bitmapSize bounds:destBounds];
+   if (!tmpImage) {
+      return NO;
+   }
+   tmpImage.clipRect = _clipRect;
+   tmpImage.clipped = _isClipped;
+   [_model addObject:tmpImage];
+   RELEASEOBJ(tmpImage);
+   [self _aqtPlotBuilderSetModelIsDirty:YES];
+   return YES;
+}
+
+- (BOOL)addImageWithImageData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
+{
+   AQTPicture *tmpImage = [[AQTPicture alloc] initWithImageData:bitmap size:bitmapSize bounds:destBounds];
+   if (!tmpImage) {
+      return NO;
+   }
+   tmpImage.clipRect = _clipRect;
+   tmpImage.clipped = _isClipped;
+   [_model addObject:tmpImage];
+   RELEASEOBJ(tmpImage);
+   [self _aqtPlotBuilderSetModelIsDirty:YES];
+   return YES;
 }
 
 // FIXME: Deprecated form, rewrite AQTImage

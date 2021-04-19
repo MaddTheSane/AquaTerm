@@ -63,12 +63,53 @@
    const void *bdBytes = bytes.bytes;
    NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 * (NSInteger)size.width bitsPerPixel:24];
    NSImage *img = [[NSImage alloc] initWithSize:size];
-   RELEASEOBJ(bir);
    [img addRepresentation:bir];
-   
+   RELEASEOBJ(bir);
+
    self = [self initWithImage:img size:size bounds:bounds];
    RELEASEOBJ(img);
 
+   return self;
+}
+
+- (nullable instancetype)initWithRGBABitmapData:(NSData *)bytes size:(NSSize)size bounds:(NSRect)bounds
+{
+   // first, make sure the data is big enough:
+   NSInteger minSize = 4 * (NSInteger)size.width * (NSInteger)size.height;
+   if (bytes.length < minSize || NSEqualSizes(NSZeroSize, size)) {
+      self = [self init];
+      RELEASEOBJ(self);
+      // Error out if it isn't.
+      return nil;
+   }
+
+   const void *bdBytes = bytes.bytes;
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:4 * (NSInteger)size.width bitsPerPixel:32];
+   NSImage *img = [[NSImage alloc] initWithSize:size];
+   [img addRepresentation:bir];
+   RELEASEOBJ(bir);
+
+   self = [self initWithImage:img size:size bounds:bounds];
+   RELEASEOBJ(img);
+
+   return self;
+
+}
+
+- (nullable instancetype)initWithImageData:(NSData * _Nonnull)imageData size:(NSSize)size bounds:(NSRect)bounds
+{
+   NSImage *img = [[NSImage alloc] initWithData:imageData];
+   if (!img) {
+      self = [self init];
+      RELEASEOBJ(self);
+      return nil;
+   }
+   
+   NSSize passedSize = NSEqualSizes(size, NSZeroSize) ? img.size : size;
+   
+   self = [self initWithImage:img size:passedSize bounds:bounds];
+   RELEASEOBJ(img);
+   
    return self;
 }
 

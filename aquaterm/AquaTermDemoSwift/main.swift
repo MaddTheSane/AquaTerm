@@ -120,7 +120,7 @@ private func internalMain() {
 		adapter.takeColor(fromColormapEntry: 1)
 		points.append(points.first!)
 		adapter.addPolyline(points: points)
-		adapter.addImage(withBitmap: rgbImage, size: NSSize(width: 2, height: 2), bounds: NSRect(x: 190, y: 280, width: 50, height: 50)) // ClipRect demo
+		adapter.addImage(withBitmapData: Data(rgbImage), size: NSSize(width: 2, height: 2), bounds: NSRect(x: 190, y: 280, width: 50, height: 50)) // ClipRect demo
 		adapter.setDefaultClipRect()
 		
 		// ***** Reset clip rect! *****

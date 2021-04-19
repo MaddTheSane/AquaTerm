@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)initWithImage:(NSImage*)img size:(NSSize)size bounds:(NSRect)bounds NS_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithBitmapData:(NSData *)bytes size:(NSSize)size bounds:(NSRect)bounds;
+- (nullable instancetype)initWithRGBABitmapData:(NSData *)bytes size:(NSSize)size bounds:(NSRect)bounds;
+- (nullable instancetype)initWithImageData:(NSData * _Nonnull)imageData size:(NSSize)size bounds:(NSRect)bounds;
 
 @property (nonatomic, copy) NSAffineTransform *transform;
 @property (readonly, copy) NSImage *baseImage;

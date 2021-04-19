@@ -170,7 +170,7 @@
          status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:[@"~/Applications/AquaTerm.app" stringByExpandingTildeInPath]], NULL);
       }
       if (status != noErr) {
-         // No, search for it based on creator code, choose latest version
+         // No, search for it based on bundle identifier, choose latest version
          if (@available(macOS 10.10, *)) {
             NSArray *aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
             if (aquaTermURLs) {
@@ -196,9 +196,9 @@
 
 - (void)terminateConnection
 {
-   NSArray *allKeys = [[_plots allKeys] copy];
+   NSArray<id<AQTClientProtocol>> *allKeys = [[_plots allKeys] copy];
 
-   for (id key in allKeys) {
+   for (id<AQTClientProtocol> key in allKeys) {
       [self setActivePlotKey:key];
       [self closePlot];
    }
@@ -261,7 +261,7 @@
 - (AQTPlotBuilder *)newPlotWithIndex:(int32_t)refNum
 {
    AQTPlotBuilder *newBuilder = nil;
-   NSNumber *key = @(refNum);;
+   NSNumber *key = @(refNum);
    id <AQTClientProtocol> newPlot;
    
    if (errorState == YES) {
@@ -344,7 +344,7 @@
 - (AQTPlotBuilder *)clearPlot
 {
    AQTPlotBuilder *newBuilder, *oldBuilder;
-   id <NSObject, AQTClientProtocol> thePlot;
+   id <AQTClientProtocol> thePlot;
    
    if (errorState == YES || _activePlotKey == nil) return nil;
    
@@ -372,7 +372,7 @@
 {
    AQTPlotBuilder *pb;
    AQTRect aqtRect;
-   id <NSObject, AQTClientProtocol> thePlot;
+   id <AQTClientProtocol> thePlot;
    
    if (errorState == YES || _activePlotKey == nil) return;
    
@@ -471,7 +471,7 @@
    
    pb = _builders[_activePlotKey];
    if (pb.modelIsDirty) {
-      id <NSObject, AQTClientProtocol> thePlot = _plots[_activePlotKey];
+      id <AQTClientProtocol> thePlot = _plots[_activePlotKey];
       @try {
          if ([thePlot isProxy]) {
             [thePlot appendModel:pb.model];

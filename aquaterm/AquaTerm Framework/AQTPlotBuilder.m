@@ -418,8 +418,7 @@
 
 - (void)addFilledRect:(NSRect)aRect
 {
-   // FIXME: This could (should) be implemented by a separate class, using NSDrawFilledRect(List)
-   // to improve drawing speed. 
+   // FIXME: This could (should) be implemented by a separate class, using NSDrawFilledRect(List) to improve drawing speed. 
    NSPoint pointList[4]={
       NSMakePoint(NSMinX(aRect), NSMinY(aRect)),
       NSMakePoint(NSMaxX(aRect), NSMinY(aRect)),

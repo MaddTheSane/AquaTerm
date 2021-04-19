@@ -8,12 +8,6 @@
 
 #import "AQTGraphic.h"
 
-typedef struct _AQTColor_v100 {
-   float red;
-   float green;
-   float blue;
-} AQTColor_v100;
-
 @implementation AQTGraphic
 @synthesize clipped = _isClipped;
 @synthesize clipRect = _clipRect;

@@ -76,7 +76,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    if (_clientPID != -1)
    {
       NSString *nameString = [preferences boolForKey:ShowProcessNameKey]?[NSString stringWithFormat:@"%@ ", _clientName]:@"";
-      NSString *pidString = [preferences boolForKey:ShowProcessIDKey]?[NSString stringWithFormat:@"(%d) ", _clientPID]:@"";
+      NSString *pidString = [preferences boolForKey:ShowProcessIDKey]?[NSString localizedStringWithFormat:@"(%d) ", _clientPID]:@"";
       canvas.window.title = [NSString stringWithFormat:@"%@%@%@", nameString, pidString, model.title];
    }
    else

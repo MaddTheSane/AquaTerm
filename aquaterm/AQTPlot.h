@@ -11,7 +11,7 @@
 #import <AquaTerm/AQTEventProtocol.h>
 
 @class AQTModel, AQTView;
-@protocol AQTEventProtocol;
+
 @interface AQTPlot : NSObject <AQTClientProtocol, NSWindowDelegate>
 {
   AQTModel	*model;		/**< Holds the model for the view "*/
@@ -24,9 +24,9 @@
   IBOutlet NSBox *extendSavePanelView;
   IBOutlet NSPopUpButton *saveFormatPopUp;
 }
-@property (nonatomic, readwrite, retain) id<AQTEventProtocol> client;
+@property (nonatomic, readwrite, strong) id<AQTEventProtocol> client;
 /// Holds the model for the view
-@property (nonatomic, readwrite, retain) AQTModel *model;
+@property (nonatomic, readwrite, strong) AQTModel *model;
 - (void)cascadeWindowOrderFront:(BOOL)orderFront;
 - (void)constrainWindowToFrame:(NSRect)tileFrame;
 /// Points to the rendering view

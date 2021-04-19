@@ -50,6 +50,22 @@
   return self;
 }
 
+- (instancetype)initWithBitmapData:(NSData *)bytes size:(NSSize)size bounds:(NSRect)bounds
+{
+  // first, make sure the data is big enough:
+  NSInteger minSize = 3 * (NSInteger)size.width * (NSInteger)size.height;
+  if (bytes.length < minSize) {
+    self = [self init];
+    RELEASEOBJ(self);
+    // Error out if it isn't.
+    return nil;
+  }
+  if (self = [self initWithBitmap:bytes.bytes size:size bounds:bounds]) {
+    
+  }
+  return self;
+}
+
 #if !__has_feature(objc_arc)
 -(void)dealloc
 {

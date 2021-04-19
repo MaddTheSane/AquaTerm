@@ -169,6 +169,7 @@ static CGFloat _aqtMinimumLinewidth;
          context = [NSGraphicsContext currentContext];
          [context saveGraphicsState];
          NSRectClip(clippedBounds);
+         // TODO: migrate to drawing directly to the context. This would allow selection of text in the saved PDF.
          [_cache  fill];
          [context restoreGraphicsState];
       } else {

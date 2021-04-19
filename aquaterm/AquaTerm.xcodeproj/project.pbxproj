@@ -1481,6 +1481,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1496,6 +1497,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

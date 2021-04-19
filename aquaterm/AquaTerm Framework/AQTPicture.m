@@ -128,7 +128,8 @@
 {
    if (self = [super initWithCoder:coder]) {
       NSAssert([coder allowsKeyedCoding], @"No app should be sending non-keyed coding!");
-      baseImage = RETAINOBJ([coder decodeObjectOfClass:[NSImage class] forKey:AQTPictureBaseImageKey]);
+      NSData *imgDat = [coder decodeObjectOfClass:[NSData class] forKey:AQTPictureBaseImageKey];
+      baseImage = [[NSImage alloc] initWithData:imgDat];
       self.transform = [coder decodeObjectOfClass:[NSAffineTransform class] forKey:AQTPictureTransformKey];
       fitBounds = [coder decodeBoolForKey:AQTPictureFitBoundsKey];
       bitmapSize = [coder decodeSizeForKey:AQTPictureBitmapSizeKey];
@@ -139,7 +140,7 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
    [super encodeWithCoder:coder];
-   [coder encodeObject:baseImage forKey:AQTPictureBaseImageKey];
+   [coder encodeObject:baseImage.TIFFRepresentation forKey:AQTPictureBaseImageKey];
    [coder encodeSize:bitmapSize forKey:AQTPictureBitmapSizeKey];
    [coder encodeObject:transform forKey:AQTPictureTransformKey];
    [coder encodeBool:fitBounds forKey:AQTPictureFitBoundsKey];

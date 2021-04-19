@@ -14,6 +14,7 @@
 #import <AquaTerm/AQTLabel.h>
 #import <AquaTerm/AQTPath.h>
 #import <AquaTerm/AQTImage.h>
+#import <AquaTerm/AQTPicture.h>
 #import <AquaTerm/AQTFunctions.h>
 #import "AQTStringDrawingAdditions.h"
 #import "PreferenceKeys.h"
@@ -264,7 +265,7 @@ static CGFloat _aqtMinimumLinewidth;
 
 @implementation AQTImage (AQTImageDrawing)
 
-NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t)
+static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t)
 {
     NSAffineTransformStruct tmp = {
         .m11 = (CGFloat)t.m11,
@@ -363,3 +364,67 @@ NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformStruct t
 }
 @end
 
+@implementation AQTPicture (AQTImageDrawing)
+
+-(NSRect)updateBounds
+{
+   NSRect tmpBounds;
+   if (fitBounds) {
+      tmpBounds = self.bounds;
+   } else {
+      // FIXME: This is lazy beyond any reasonable measure...
+      tmpBounds = [transform transformBezierPath:[NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, bitmapSize.width, bitmapSize.height)]].bounds;
+      self.bounds = tmpBounds;
+   }
+   return tmpBounds;
+}
+
+-(void)renderInRect:(NSRect)boundsRect
+{
+   NSGraphicsContext *context = nil;
+   NSRect clippedBounds = _isClipped?NSIntersectionRect(_bounds, _clipRect):_bounds;
+   if (AQTIntersectsRect(boundsRect, clippedBounds)) {
+      if (_isClipped) {
+         context = [NSGraphicsContext currentContext];
+         [context saveGraphicsState];
+         NSRectClip(clippedBounds);
+      }
+      if (fitBounds == YES) {
+         [baseImage drawInRect:_bounds
+                      fromRect:NSMakeRect(0,0,[baseImage size].width,[baseImage size].height)
+                     operation:NSCompositeSourceOver
+                      fraction:1.0];
+      } else {
+         // If the image is clipped, the state is already stored
+         if (!_isClipped) {
+            context = [NSGraphicsContext currentContext];
+            [context saveGraphicsState];
+         }
+         [transform concat];
+         [baseImage drawAtPoint:NSMakePoint(0, 0)
+                       fromRect:NSMakeRect(0, 0, [baseImage size].width, [baseImage size].height)
+                      operation:NSCompositeSourceOver
+                       fraction:1.0];
+         if (!_isClipped)
+            [context restoreGraphicsState];
+      }
+      if (_isClipped)
+         [context restoreGraphicsState];
+   }
+#ifdef DEBUG_BOUNDS
+   if (_shouldShowBounds) {
+      NSGraphicsContext *debugContext = [NSGraphicsContext currentContext];
+      [debugContext saveGraphicsState];
+      [[NSColor yellowColor] set];
+      NSFrameRect([self bounds]);
+      if (_isClipped) {
+         [[NSColor orangeColor] set];
+         NSFrameRect(_clipRect);
+      }
+      [debugContext restoreGraphicsState];
+   }
+#endif
+   
+}
+
+@end

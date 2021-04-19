@@ -37,6 +37,11 @@ framework module AquaTerm [extern_c] {
 			header "AQTPath.h"
 			export *
 		}
+		
+		module AQTPicture {
+			header "AQTPicture.h"
+			export *
+		}
 	}
 	
 	explicit module AQTFunctions {

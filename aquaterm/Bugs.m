@@ -67,10 +67,10 @@ void aqtDebug(id sender)
   adapter.plotTitle = @"Unicode";
   adapter.fontSize = 20;
   [adapter addLabel:as atPoint:NSMakePoint(100,100)];
-  //[adapter setFontname:@"Song Regular"];
-  //[adapter addLabel:[NSString stringWithFormat:@"%C", 0x5925] atPoint:NSMakePoint(100,120)];
+  //[adapter setFontName:@"Song Regular"];
+  //[adapter addLabel:[NSString stringWithFormat:@"%C", (unichar)0x5925] atPoint:NSMakePoint(100,120)];
   [adapter renderPlot];
-  [as autorelease];
+  [as release];
   
   float a;
   float a1=40.;

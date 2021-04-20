@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -994,7 +994,7 @@
 				};
 			};
 			buildConfigurationList = CB699C8C08953AAD00C4B248 /* Build configuration list for PBXProject "AquaTerm" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (
@@ -1321,7 +1321,11 @@
 				);
 				INFOPLIST_FILE = AquaTermSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1348,7 +1352,11 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = AquaTermSwift/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.github.maddthesane.AquaTermSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1372,6 +1380,10 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1389,6 +1401,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					AQT_STANDALONE,
 					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1410,6 +1426,10 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1428,6 +1448,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					AQT_STANDALONE,
 					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1448,6 +1472,10 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1466,6 +1494,10 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1481,7 +1513,10 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1497,7 +1532,10 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1517,7 +1555,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 			};
@@ -1533,7 +1574,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
-				LD_RUNPATH_SEARCH_PATHS = "@executable_path/.";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -1554,6 +1598,10 @@
 					AQT_STANDALONE,
 					"$(inherited)",
 				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1572,6 +1620,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					AQT_STANDALONE,
 					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = (
+					"@executable_path/.",
+					/Library/Developer,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -1879,7 +1931,8 @@
 				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;

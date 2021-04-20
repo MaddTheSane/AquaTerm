@@ -161,7 +161,7 @@ for (f=1.0; f<13.0; f+=2.0)
    [adapter takeColorFromColormapEntry:1];
    points[5] = points[0];
    [adapter addPolylineWithPoints:points pointCount:6];
-   [adapter addImageWithBitmap:rgbImage size:NSMakeSize(2,2) bounds:NSMakeRect(190, 280, 50, 50)]; // ClipRect demo
+   [adapter addImageWithBitmapData:[NSData dataWithBytes:rgbImage length:sizeof(rgbImage)] size:NSMakeSize(2,2) bounds:NSMakeRect(190, 280, 50, 50)]; // ClipRect demo
    [adapter setDefaultClipRect];
    
    // ***** Reset clip rect! *****

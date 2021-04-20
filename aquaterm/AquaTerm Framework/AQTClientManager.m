@@ -325,7 +325,7 @@
    
    pb = _builders[_activePlotKey];
    if (pb.modelIsDirty) {
-      id <NSObject, AQTClientProtocol> thePlot = _plots[_activePlotKey];
+      id <AQTClientProtocol> thePlot = _plots[_activePlotKey];
       @try {
          if ([thePlot isProxy]) {
             [thePlot appendModel:pb.model];
@@ -389,7 +389,7 @@
          }
          
       }
-      // FIXME make sure in server that this combo doesn't draw unnecessarily
+      // FIXME: make sure in server that this combo doesn't draw unnecessarily
       // 64 bit compatibility
       aqtRect.origin.x = aRect.origin.x;
       aqtRect.origin.y = aRect.origin.y;

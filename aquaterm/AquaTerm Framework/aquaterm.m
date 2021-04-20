@@ -393,6 +393,12 @@ void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh,
    [_adapter addImageWithBitmap:bitmap size:NSMakeSize(pixWide, pixHigh) bounds:NSMakeRect(originX, originY, width, height)];
 }
 
+void aqtAddImageWithRGBABitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float originX, float originY, float width, float height)
+{
+   NSInteger minSize = 4 * pixWide * pixHigh;
+   [_adapter addImageWithRGBABitmapData:[NSData dataWithBytes:bitmap length:minSize] size:NSMakeSize(pixWide, pixHigh) bounds:NSMakeRect(originX, originY, width, height)];
+}
+
 // FIXME: This function maps to a deprecated method in AQTAdapter. It overrides the global clipRect setting.
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float originX, float originY, float width, float height)
 {

@@ -19,12 +19,12 @@
 <enum name='AQTAlignMiddle' value='0'/>
 <enum name='AQTAlignRight' value='2'/>
 <enum name='AQTAlignTop' value='16'/>
-<enum name='AQTButtLineCapStyle' value='0'/>
 <enum name='AQTLineCapStyleButt' value='0'/>
 <enum name='AQTLineCapStyleRound' value='1'/>
 <enum name='AQTLineCapStyleSquare' value='2'/>
-<enum name='AQTRoundLineCapStyle' value='1'/>
-<enum name='AQTSquareLineCapStyle' value='2'/>
+<enum name='AQTButtLineCapStyle' value='0' ignore='true' suggestion='Use AQTLineCapStyleButt instead'/>
+<enum name='AQTRoundLineCapStyle' value='1' ignore='true' suggestion='Use AQTLineCapStyleRound instead'/>
+<enum name='AQTSquareLineCapStyle' value='2' ignore='true' suggestion='Use AQTLineCapStyleSquare instead'/>
 <function name='AQTContainsRect'>
 <arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
 <arg type='{_NSRect={_NSPoint=ff}{_NSSize=ff}}' type64='{CGRect={CGPoint=dd}{CGSize=dd}}'/>
@@ -76,6 +76,15 @@
 <arg type='f'/>
 </function>
 <function name='aqtAddImageWithBitmap'>
+<arg type='^v'/>
+<arg type='i'/>
+<arg type='i'/>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+<arg type='f'/>
+</function>
+<function name='aqtAddImageWithRGBABitmap'>
 <arg type='^v'/>
 <arg type='i'/>
 <arg type='i'/>
@@ -322,15 +331,33 @@
 <arg index='1' type_modifier='o'/>
 <arg index='2' type_modifier='o'/>
 </method>
+<method selector='getBackgroundColorRed:green:blue:alpha:'>
+<arg index='0' type_modifier='o'/>
+<arg index='1' type_modifier='o'/>
+<arg index='2' type_modifier='o'/>
+<arg index='3' type_modifier='o'/>
+</method>
 <method selector='getColorRed:green:blue:'>
 <arg index='0' type_modifier='o'/>
 <arg index='1' type_modifier='o'/>
 <arg index='2' type_modifier='o'/>
 </method>
+<method selector='getColorRed:green:blue:alpha:'>
+<arg index='0' type_modifier='o'/>
+<arg index='1' type_modifier='o'/>
+<arg index='2' type_modifier='o'/>
+<arg index='3' type_modifier='o'/>
+</method>
 <method selector='getColormapEntry:red:green:blue:'>
 <arg index='0' type_modifier='o'/>
 <arg index='1' type_modifier='o'/>
 <arg index='2' type_modifier='o'/>
+</method>
+<method selector='getColormapEntry:red:green:blue:alpha:'>
+<arg index='0' type_modifier='o'/>
+<arg index='1' type_modifier='o'/>
+<arg index='2' type_modifier='o'/>
+<arg index='3' type_modifier='o'/>
 </method>
 <method selector='setAcceptingEvents:'>
 <arg type='B' index='0'/>
@@ -341,8 +368,21 @@
 <retval type='v'/>
 </arg>
 </method>
+<method selector='setErrorBlock:'>
+<arg function_pointer='true' index='0' type='@?'>
+<arg type='@'/>
+<retval type='v'/>
+</arg>
+</method>
 <method selector='setEventHandler:'>
 <arg function_pointer='true' index='0' type='^?'>
+<arg type='i'/>
+<arg type='@'/>
+<retval type='v'/>
+</arg>
+</method>
+<method selector='setEventBlock:'>
+<arg function_pointer='true' index='0' type='@?'>
 <arg type='i'/>
 <arg type='@'/>
 <retval type='v'/>

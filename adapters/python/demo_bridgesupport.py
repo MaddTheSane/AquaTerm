@@ -224,14 +224,14 @@ adapter.resetImageTransform() # clean up
 # Text
 adapter.setFontname_("Times-Roman")
 s = u"Unicode: %c %c %c %c%c%c%c%c" % (0x2124, 0x2133, 0x5925, 0x2654, 0x2655, 0x2656, 0x2657, 0x2658) 
-as = NSMutableAttributedString.alloc().initWithString_(s)
-as.setAttributes_range_({"AQTFontname" : "AppleSymbols"}, NSMakeRange(9,11))
-as.setAttributes_range_({"AQTFontname" : "Song Regular"}, NSMakeRange(13,1))
+as1 = NSMutableAttributedString.alloc().initWithString_(s)
+as1.setAttributes_range_({"AQTFontname" : "AppleSymbols"}, NSMakeRange(9,11))
+as1.setAttributes_range_({"AQTFontname" : "Song Regular"}, NSMakeRange(13,1))
 
 adapter.takeColorFromColormapEntry_(1);
 adapter.setFontname_("Times-Roman");
 adapter.setFontsize_(12.0);
-adapter.addLabel_atPoint_(as, NSMakePoint(320,150));
+adapter.addLabel_atPoint_(as1, NSMakePoint(320,150));
 #adapter.addLabel_atPoint_angle_align_("Times-Roman 16pt", NSMakePoint(320, 150), 0.0, AQTAlignLeft);
 adapter.takeColorFromColormapEntry_(2);
 adapter.setFontname_("Times-Italic");

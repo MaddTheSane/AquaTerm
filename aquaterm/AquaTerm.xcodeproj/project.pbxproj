@@ -54,7 +54,7 @@
 		55E7A826262D723B00EDC6DE /* AQTPicture-Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
-		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Resources */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
+		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Copy Bridge Support */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
 		CB58A20006F9A60900AF8A5E /* AQTAdapter.html in Resources */ = {isa = PBXBuildFile; fileRef = CB58A1FE06F9A60900AF8A5E /* AQTAdapter.html */; };
 		CB58A20106F9A60900AF8A5E /* help.html in Resources */ = {isa = PBXBuildFile; fileRef = CB58A1FF06F9A60900AF8A5E /* help.html */; };
 		CB58A23B06FA0FB600AF8A5E /* ReadMe.rtf in Resources */ = {isa = PBXBuildFile; fileRef = CB58A23A06FA0FB600AF8A5E /* ReadMe.rtf */; };
@@ -265,6 +265,17 @@
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 1;
+		};
+		55E7A914262E943800EDC6DE /* Copy Bridge Support */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = ../BridgeSupport;
+			dstSubfolderSpec = 7;
+			files = (
+				CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Copy Bridge Support */,
+			);
+			name = "Copy Bridge Support";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -929,6 +940,8 @@
 				CB91250F07CB3BDE001D5EAF /* Resources */,
 				CB91251007CB3BDE001D5EAF /* Sources */,
 				CB91251107CB3BDE001D5EAF /* Frameworks */,
+				55E7A914262E943800EDC6DE /* Copy Bridge Support */,
+				55E7A942262E9A6600EDC6DE /* Link Bridge Support */,
 			);
 			buildRules = (
 			);
@@ -1036,7 +1049,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1061,6 +1073,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		55E7A942262E9A6600EDC6DE /* Link Bridge Support */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Link Bridge Support";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"${BUILT_PRODUCTS_DIR}\"\ncd \"${WRAPPER_NAME}\"\nln -sf Versions/Current/BridgeSupport BridgeSupport\n";
+		};
 		CB2F5A2D1322D53F00228657 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

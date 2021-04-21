@@ -112,10 +112,11 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Image handling
  @{ */
+
 @property AQTAffineTransformStruct imageTransform;
-- (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; // AQTImage
-- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds;
-- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
+- (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; // AQTPicture
+- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds; // AQTImage
+- (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize; // AQTImage
 
 - (BOOL)addImageWithBitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds; // AQTPicture
 - (BOOL)addImageWithRGBABitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;

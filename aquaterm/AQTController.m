@@ -268,7 +268,7 @@ extern void aqtLineDrawingTest(id sender);
 
 -(IBAction)showHelp:(id)sender
 {
-  NSURL *helpURL = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"help" ofType:@"html"]];
+  NSURL *helpURL = [NSBundle.mainBundle URLForResource:@"help" withExtension:@"html"];
   if (helpURL)
   {
     [[NSWorkspace sharedWorkspace] openURL:helpURL];

@@ -72,14 +72,12 @@ NS_ASSUME_NONNULL_BEGIN
 //! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c -init should be used, which calls \c -initWithHandler: with a \c nil argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
-@property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
-@property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
-
-/*! @brief Optionally set an error handling routine of the form <code>customErrorHandler(NSString *errMsg)</code>
+/*! @brief Optionally set an error handling block of the form <code>customErrorHandler(NSString *errMsg)</code>
  to override default behaviour. */
-- (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
+@property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 
-/*" Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+/*! Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+ 
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
  
@@ -89,7 +87,25 @@ NS_ASSUME_NONNULL_BEGIN
  _{1:%{x,y}:%button MouseDownEvent }
  _{2:%{x,y}:%key KeyDownEvent }
  _{42:%{x,y}:%key ServerError }
- _{43:%{x,y}:%key Error } "*/
+ _{43:%{x,y}:%key Error } */
+@property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
+
+/*! @brief Optionally set an error handling routine of the form <code>customErrorHandler(NSString *errMsg)</code>
+ to override default behaviour. */
+- (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
+
+/*! Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+ 
+ The reference number of the plot that generated the event is passed in index and
+ the structure of the string event is @"type:data1:data2:..."
+ 
+ Currently supported events are:
+ _{event description}
+ _{0 NoEvent }
+ _{1:%{x,y}:%button MouseDownEvent }
+ _{2:%{x,y}:%key KeyDownEvent }
+ _{42:%{x,y}:%key ServerError }
+ _{43:%{x,y}:%key Error } */
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
 /**

@@ -436,7 +436,8 @@
 
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
 {
-   AQTImage *tmpImage = [[AQTImage alloc] initWithBitmap:bitmap size:bitmapSize bounds:destBounds];
+    NSInteger minSize = 3 * (NSInteger)bitmapSize.width * (NSInteger)bitmapSize.height;
+   AQTPicture *tmpImage = [[AQTPicture alloc] initWithBitmapData:[NSData dataWithBytes:bitmap length:minSize] size:bitmapSize bounds:destBounds];
    tmpImage.clipRect = _clipRect;
    tmpImage.clipped = _isClipped;
    [_model addObject:tmpImage];
@@ -486,7 +487,7 @@
    return YES;
 }
 
-// FIXME: Deprecated form, rewrite AQTImage
+// TODO: Deprecated form, rewrite AQTImage
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds
 {
    // FIXME: Bounds either needs to be transformed bounds or NOT tested for in AQTDrawingMethods

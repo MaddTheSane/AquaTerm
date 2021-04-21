@@ -35,7 +35,10 @@ BOOL AQTContainsRect(NSRect containerRect, NSRect testRect);
 BOOL AQTIntersectsRect(NSRect aRect, NSRect bRect);
 NSRect AQTUnionRect(NSRect aRect, NSRect bRect);
 static inline NSRect AQTRectFromSize(NSSize aSize) {
-   return NSMakeRect(0.0, 0.0, aSize.width, aSize.height);
+   NSRect toRet;
+   toRet.origin = NSZeroPoint;
+   toRet.size = aSize;
+   return toRet;
 }
 static inline BOOL AQTProportionalSizes(NSSize aSize, NSSize bSize) {
    return EQ(aSize.height/aSize.width, bSize.height/bSize.width);

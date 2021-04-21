@@ -24,8 +24,8 @@
 #import <AquaTerm/AQTAdapter.h>
 
 #ifdef AQT_STANDALONE
-void aqtStringDrawingTest(AQTAdapter *adapter);
-void aqtLineDrawingTest(AQTAdapter *adapter);
+static void aqtStringDrawingTest(AQTAdapter *adapter);
+static void aqtLineDrawingTest(AQTAdapter *adapter);
 
 int32_t main(void)
 {

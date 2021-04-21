@@ -26,7 +26,7 @@
 #include <tgmath.h>
 
 #ifdef AQT_STANDALONE
-void aqtTestview(AQTAdapter *adapter);
+static void aqtTestview(AQTAdapter *adapter);
 
 int main(void)
 {
@@ -46,7 +46,7 @@ NSPoint points[128];
   NSPoint pos;
 int32_t i;
 float f;
-double pi = 4.0*atan(1.0);
+const double pi = 4.0*atan(1.0);
 unsigned char rgbImage[12]={
   255, 0, 0,
   0, 255, 0,
@@ -277,9 +277,8 @@ for (i=0; i<8; i++)
    float red[] = {1.0, 0.0, 0.0};
    float green[] = {0.0, 1.0, 0.0};
    float blue[] = {0.0, 0.0, 1.0};
-   int j;
    
-   for (j=0; j<3; j++) {
+   for (int j=0; j<3; j++) {
       for (i=0; i<32; i++) {
          double radians=(double)i*pi/16.0, r=20.0;
          points[i]=NSMakePoint(x[j]+r*cos(radians), y[j]+r*sin(radians));

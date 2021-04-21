@@ -19,14 +19,14 @@
 #import <AquaTerm/AQTAdapter.h>
 #include <tgmath.h>
 
-void aqtTestview(AQTAdapter *adapter);
+static void aqtTestview(AQTAdapter *adapter);
 
 int main(void)
 {
   @autoreleasepool {
     AQTAdapter *adapter = [[AQTAdapter alloc] init];
     aqtTestview(adapter);
-   }
+  }
   return 0;
 }
 

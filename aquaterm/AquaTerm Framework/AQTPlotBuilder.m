@@ -436,7 +436,7 @@
 
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds
 {
-    NSInteger minSize = 3 * (NSInteger)bitmapSize.width * (NSInteger)bitmapSize.height;
+   NSInteger minSize = 3 * (NSInteger)bitmapSize.width * (NSInteger)bitmapSize.height;
    AQTPicture *tmpImage = [[AQTPicture alloc] initWithBitmapData:[NSData dataWithBytes:bitmap length:minSize] size:bitmapSize bounds:destBounds];
    tmpImage.clipRect = _clipRect;
    tmpImage.clipped = _isClipped;

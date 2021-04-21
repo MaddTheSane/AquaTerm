@@ -324,7 +324,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
 
-/// Add a bitmap image of size \c bitmapSize scaled to fit destBounds, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
 /*! Add a bitmap image of size \c bitmapSize \b honoring transform, transformed image is clipped to current <code>clipRect</code>. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */

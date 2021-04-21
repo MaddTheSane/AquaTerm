@@ -32,7 +32,7 @@ __unused static void customEventHandler(int32_t index, NSString *event)
 
 
 #ifdef AQT_STANDALONE
-void aqtDebug(AQTAdapter *adapter);
+static void aqtDebug(AQTAdapter *adapter);
 
 int32_t main(void)
 {

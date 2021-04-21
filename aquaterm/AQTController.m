@@ -21,21 +21,14 @@ extern void aqtTestview(id sender);
 extern void aqtStringDrawingTest(id sender);
 extern void aqtLineDrawingTest(id sender);
 
-@implementation NSString (AQTRFC2396Support)
-- (NSString *)stringByAddingPercentEscapes
-{
-   return (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL, (CFStringRef)self, NULL, NULL, kCFStringEncodingASCII));
-}
-@end
-
+/**
+ AQTController is the main controller object which coordinates all the
+ action and manages the main DO connection.
+ */
 @implementation AQTController
 {
    NSConnection * doConnection;
 }
-/**"
-*** AQTController is the main controller object which coordinates all the
-*** action and manages the main DO connection.
-"**/
 
 + (void)initialize{
    NSUserDefaults *defaults = preferences;

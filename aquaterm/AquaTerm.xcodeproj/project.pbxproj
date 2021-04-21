@@ -33,14 +33,11 @@
 		556C56341F3F94180080A38F /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556C56331F3F90E50080A38F /* AQTWindow.xib */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		558DB83A1D60D38C007E54ED /* AQTAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapter.swift */; };
-		559E72DA262797C60041F5CB /* AquaTermSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; };
-		559E72E6262797DA0041F5CB /* AquaTermSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; };
 		55D06454262D2A05004B4E9C /* AQTPicture.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D06452262D2A05004B4E9C /* AQTPicture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55D06455262D2A05004B4E9C /* AQTPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D06453262D2A05004B4E9C /* AQTPicture.m */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
 		55D31F091C3C8F840060FF56 /* Demo.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8252ACC5B321F400CFA73B /* Demo.m */; };
 		55D31F171C3D0F8D0060FF56 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F161C3D0F8D0060FF56 /* main.swift */; };
-		55D31F1F1C3D0FF00060FF56 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55D74C591C3DAB620013C8EC /* AquaTerm.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		55D74C611C3DB4890013C8EC /* MainMenu1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C631C3DB4890013C8EC /* MainMenu1.xib */; };
 		55D74C661C3DB4AD0013C8EC /* ColorInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C681C3DB4AD0013C8EC /* ColorInspector.xib */; };
@@ -48,10 +45,11 @@
 		55D74C751C3DB5160013C8EC /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55D74C771C3DB5160013C8EC /* Preferences.xib */; };
 		55D74C881C3DB8830013C8EC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 554387C11C3B95AA006FBFB4 /* Assets.xcassets */; };
 		55E4B3B51F671D840003B1D2 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E4B3B41F671D840003B1D2 /* main.swift */; };
-		55E4B3BE1F671E1C0003B1D2 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55E4B3CA1F6725310003B1D2 /* Timing.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBB59D0055CF40600EEC8EA /* Timing.m */; };
 		55E4B3CD1F6725830003B1D2 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55E7A826262D723B00EDC6DE /* AQTPicture-Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */; };
+		55E7A982263011FE00EDC6DE /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
+		55E7A9832630120300EDC6DE /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
 		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Copy Bridge Support */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
@@ -142,33 +140,12 @@
 			remoteGlobalIDString = CB91251207CB3BDE001D5EAF;
 			remoteInfo = AQTFwk;
 		};
-		55D31F1B1C3D0FE90060FF56 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CBC4B42705E4C784001BE8D7;
-			remoteInfo = AquaTerm;
-		};
 		55D31F1D1C3D0FE90060FF56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CB91251207CB3BDE001D5EAF;
 			remoteInfo = AQTFwk;
-		};
-		55D74C5B1C3DB3020013C8EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CBC4B42705E4C784001BE8D7;
-			remoteInfo = AquaTerm;
-		};
-		55D74C5D1C3DB30F0013C8EC /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CBC4B42705E4C784001BE8D7;
-			remoteInfo = AquaTerm;
 		};
 		55E4B3BC1F671E100003B1D2 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -407,6 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E7A982263011FE00EDC6DE /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +392,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55E7A9832630120300EDC6DE /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,8 +400,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				559E72DA262797C60041F5CB /* AquaTermSwift.framework in Frameworks */,
-				55D31F1F1C3D0FF00060FF56 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,8 +407,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				559E72E6262797DA0041F5CB /* AquaTermSwift.framework in Frameworks */,
-				55E4B3BE1F671E1C0003B1D2 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,8 +532,8 @@
 				550857EB1C80F6FD005ACF4A /* Info.plist */,
 				550857EF1C80F719005ACF4A /* AQTHelpers.swift */,
 				558DB8391D60D38C007E54ED /* AQTAdapter.swift */,
-				55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */,
 				55602F421D624D5700FC75A5 /* AQTPath.swift */,
+				55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */,
 			);
 			indentWidth = 4;
 			path = AquaTermSwift;
@@ -848,7 +823,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				55D74C5C1C3DB3020013C8EC /* PBXTargetDependency */,
 				55D31EFB1C3C8E230060FF56 /* PBXTargetDependency */,
 			);
 			name = AquaTermDemo;
@@ -867,7 +841,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				55D74C5E1C3DB30F0013C8EC /* PBXTargetDependency */,
 				55D31EFD1C3C8F020060FF56 /* PBXTargetDependency */,
 			);
 			name = AquaTermDemoARC;
@@ -887,7 +860,6 @@
 			);
 			dependencies = (
 				55602F451D6265C100FC75A5 /* PBXTargetDependency */,
-				55D31F1C1C3D0FE90060FF56 /* PBXTargetDependency */,
 				55D31F1E1C3D0FE90060FF56 /* PBXTargetDependency */,
 			);
 			name = AquaTermDemoSwift;
@@ -1238,25 +1210,10 @@
 			target = CB91251207CB3BDE001D5EAF /* AQTFwk */;
 			targetProxy = 55D31EFE1C3C8F020060FF56 /* PBXContainerItemProxy */;
 		};
-		55D31F1C1C3D0FE90060FF56 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CBC4B42705E4C784001BE8D7 /* AquaTerm */;
-			targetProxy = 55D31F1B1C3D0FE90060FF56 /* PBXContainerItemProxy */;
-		};
 		55D31F1E1C3D0FE90060FF56 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CB91251207CB3BDE001D5EAF /* AQTFwk */;
 			targetProxy = 55D31F1D1C3D0FE90060FF56 /* PBXContainerItemProxy */;
-		};
-		55D74C5C1C3DB3020013C8EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CBC4B42705E4C784001BE8D7 /* AquaTerm */;
-			targetProxy = 55D74C5B1C3DB3020013C8EC /* PBXContainerItemProxy */;
-		};
-		55D74C5E1C3DB30F0013C8EC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CBC4B42705E4C784001BE8D7 /* AquaTerm */;
-			targetProxy = 55D74C5D1C3DB30F0013C8EC /* PBXContainerItemProxy */;
 		};
 		55E4B3BD1F671E100003B1D2 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

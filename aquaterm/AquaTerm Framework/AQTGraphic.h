@@ -24,7 +24,7 @@ typedef struct _AQTColor {
    
    //! The alpha component.
    float alpha;
-} AQTColor;
+} CG_BOXABLE AQTColor;
 
 /** \brief Architecture-independant NSPoint.
  */

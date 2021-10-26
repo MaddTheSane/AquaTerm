@@ -76,14 +76,24 @@
          _clipRect = [coder decodeRectForKey:AQTGraphicClipRectKey];
          _isClipped = [coder decodeBoolForKey:AQTGraphicIsClippedKey];
       } else {
-         [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
-         [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+         if (@available(macOS 10.13, *)) {
+            [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color size:sizeof(AQTColor)];
+            [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
+         } else {
+            [coder decodeValueOfObjCType:@encode(AQTColor) at:&_color];
+            [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+         }
          _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
          _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-         [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+         if (@available(macOS 10.13, *)) {
+            [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
+            [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped size:sizeof(BOOL)];
+         } else {
+            [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+            [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
+         }
          _clipRect.origin.x = r.origin.x; _clipRect.origin.y = r.origin.y;
          _clipRect.size.width = r.size.width; _clipRect.size.height = r.size.height;
-         [coder decodeValueOfObjCType:@encode(BOOL) at:&_isClipped];
       }
    }
    return self;

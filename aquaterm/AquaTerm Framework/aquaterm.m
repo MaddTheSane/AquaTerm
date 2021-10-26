@@ -159,7 +159,7 @@ int32_t aqtWaitNextEvent(char *buffer) // FIXME: retval?
    return 0;
 }
 
-void aqtEventProcessingMode()
+void aqtEventProcessingMode(void)
 {
    // FIXME: Add this to adapter?
    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];

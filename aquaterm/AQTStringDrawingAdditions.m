@@ -14,8 +14,7 @@
 #import "PreferenceKeys.h"
 
 static NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
-AVAILABLE_MAC_OS_X_VERSION_10_13_AND_LATER
-static NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
+static NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale) AVAILABLE_MAC_OS_X_VERSION_10_13_AND_LATER;
 
 
 static NSImage *_aqtSharedScratchPad(void)

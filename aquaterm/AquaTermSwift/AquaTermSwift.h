@@ -6,7 +6,7 @@
 //  Copyright © 2016 AquaTerm Team. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
 
 //! Project version number for AquaTermSwift.
 FOUNDATION_EXPORT double AquaTermSwiftVersionNumber;

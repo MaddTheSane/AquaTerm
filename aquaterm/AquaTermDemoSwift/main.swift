@@ -349,6 +349,29 @@ private func internalMain() {
 		
 		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 		
+		if #available(macOS 12, *) {
+			var attrStr2 = AttributedString("mSke-wk2")
+			var range = attrStr2.startIndex ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 2)
+			attrStr2[range].fontName = "Symbol"
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 1) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 2)
+			attrStr2[range].fontSize = 20
+			// Lower symbol 25%
+			attrStr2[range].baselineAdjust = -0.25
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 2) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 3)
+			attrStr2[range].superscript = -1
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 3) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 4)
+			attrStr2[range].fontName = "Times-Roman"
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 4) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 6)
+			attrStr2[range].superscript = 1
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 5) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 6)
+			attrStr2[range].fontName = "Symbol"
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 6) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 7)
+			attrStr2[range].superscript = -2
+			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 7) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 8)
+			attrStr2[range].superscript = 2
+			
+			adapter.addLabel(attrStr2, at: NSPoint(x: 260, y: 45), align: .center)
+		} else {
 		attrStr = NSMutableAttributedString(string: "mSke-wk2")
 		attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSRange(location: 0, length: 2))
 		attrStr.addAttribute(.aqtFontSize, value: 20.0, range: NSRange(location: 1, length: 1))
@@ -361,6 +384,7 @@ private func internalMain() {
 		attrStr.addAttribute(.superscript, value: 2, range: NSRange(location: 7, length: 1))
 		
 		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 45), align: .center)
+		}
 	}
 	
 	adapter.renderPlot()

@@ -168,7 +168,7 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
       attributes[AQTFontNameKey]:
       defaultFontName;
       CGFloat attributedFontsize = (attributes[AQTFontSizeKey] != nil)?
-      [attributes[AQTFontSizeKey] integerValue]:defaultFontSize;
+      [attributes[AQTFontSizeKey] doubleValue]:defaultFontSize;
       attributedSublevel = (attributes[NSSuperscriptAttributeName] != nil)?
       [attributes[NSSuperscriptAttributeName] integerValue]:0;
       CGFloat baselineAdjust = (attributes[AQTBaselineAdjustKey] != nil)?

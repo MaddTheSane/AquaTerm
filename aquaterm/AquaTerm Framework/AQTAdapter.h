@@ -160,7 +160,7 @@ NS_ASSUME_NONNULL_BEGIN
  @{ */
 
 /*! When setting a clipping region (rectangular) to apply to all subsequent operations,
- until changed again by \c setClipRect: or <code>setDefaultClipRect</code>. */
+ until changed again by \c -setClipRect: or <code>setDefaultClipRect</code>. */
 @property NSRect clipRect;
 
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.

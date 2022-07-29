@@ -169,7 +169,9 @@ public extension AttributeScopes {
 				return object as String
 			}
 			
-			public static let name: String = NSAttributedString.Key.aqtFontName.rawValue
+			public static var name: String {
+				return NSAttributedString.Key.aqtFontName.rawValue
+			}
 		}
 
 		@frozen public enum FontSizeAttribute : CodableAttributedStringKey, ObjectiveCConvertibleAttributedStringKey {
@@ -184,7 +186,9 @@ public extension AttributeScopes {
 				return object.doubleValue
 			}
 			
-			public static let name: String = NSAttributedString.Key.aqtFontSize.rawValue
+			public static var name: String {
+				return NSAttributedString.Key.aqtFontSize.rawValue
+			}
 		}
 
 		@frozen public enum BaselineAdjustAttribute : CodableAttributedStringKey, ObjectiveCConvertibleAttributedStringKey {
@@ -199,7 +203,9 @@ public extension AttributeScopes {
 				return object.doubleValue
 			}
 
-			public static let name: String = NSAttributedString.Key.aqtBaselineAdjust.rawValue
+			public static var name: String {
+				return NSAttributedString.Key.aqtBaselineAdjust.rawValue
+			}
 		}
 
 		@frozen public enum NonPrintingAttribute : CodableAttributedStringKey, ObjectiveCConvertibleAttributedStringKey {
@@ -207,14 +213,16 @@ public extension AttributeScopes {
 			public typealias Value = Bool
 
 			public static func objectiveCValue(for value: Bool) throws -> NSNumber {
-				return value as NSNumber
+				return NSNumber(value: value)
 			}
 			
 			public static func value(for object: NSNumber) throws -> Bool {
 				return object.boolValue
 			}
 
-			public static let name: String = NSAttributedString.Key.aqtNonPrintingChar.rawValue
+			public static var name: String {
+				return NSAttributedString.Key.aqtNonPrintingChar.rawValue
+			}
 		}
 		
 		public typealias DecodingConfiguration = AttributeScopeCodableConfiguration

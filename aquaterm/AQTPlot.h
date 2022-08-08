@@ -32,7 +32,7 @@
 /// Points to the rendering view
 @property (weak) IBOutlet AQTView *canvas;
 - (void)setClient:(byref id<AQTEventProtocol>)client;
-- (void)setClientInfoName:(NSString *)name pid:(pid_t)pid;
+- (void)setClientInfoName:(NSString *)name pid:(pid_t)pid NS_SWIFT_NAME(setClientInfo(name:pid:));
 @property (readonly) BOOL clientValidAndResponding;
 - (BOOL)invalidateClient;
 @property (readwrite, nonatomic) BOOL acceptingEvents;

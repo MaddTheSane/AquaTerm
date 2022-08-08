@@ -115,7 +115,7 @@
    [self logMessage:@"Trying to connect..." logLevel:2];
    // FIXME: Check to see if _server exists.
    BOOL didConnect = NO;
-   _server = [NSConnection rootProxyForConnectionWithRegisteredName:registeredName host:nil];
+   _server = (NSDistantObject<AQTConnectionProtocol>*)[NSConnection rootProxyForConnectionWithRegisteredName:registeredName host:nil];
    if (!_server) {
       [self logMessage:@"Launching server..." logLevel:2];
       if (![self launchServer]) {
@@ -128,7 +128,7 @@
             [self logMessage:[NSString stringWithFormat:@"Waiting... %d", timer] logLevel:2];
             [NSThread sleepUntilDate:[NSDate dateWithTimeIntervalSinceNow:1.0]];
             // check for server connection
-            _server = [NSConnection rootProxyForConnectionWithRegisteredName:registeredName host:nil];
+            _server = (NSDistantObject<AQTConnectionProtocol>*)[NSConnection rootProxyForConnectionWithRegisteredName:registeredName host:nil];
          }
       }
    }
@@ -448,7 +448,7 @@
    return;
 }
 
-- (oneway void)processEvent:(bycopy NSString *)event sender:(id)sender
+- (oneway void)processEvent:(bycopy NSString *)event sender:(id<AQTClientProtocol>)sender
 {
    NSNumber *key;
    

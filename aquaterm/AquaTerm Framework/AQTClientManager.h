@@ -9,16 +9,23 @@
 #import <stdint.h>
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTEventProtocol.h>
+#import <AquaTerm/AQTClientProtocol.h>
+#import <AquaTerm/AQTConnectionProtocol.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @class AQTPlotBuilder;
-@protocol AQTEventProtocol;
 @protocol AQTClientProtocol;
 
 @interface AQTClientManager : NSObject <AQTEventProtocol>
 {
-   __unsafe_unretained id _server; /**< The viewer app's (AquaTerm) default connection */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated"
+
+   /// The viewer app's (AquaTerm) default connection
+   __unsafe_unretained NSDistantObject<AQTConnectionProtocol> *_server;
+   
+#pragma clang diagnostic pop
    NSMutableDictionary *_builders; /**< The objects responsible for assembling a model object from client's calls. */
    NSMutableDictionary<id, id<AQTClientProtocol>> *_plots; /**< The objects responsible for assembling a model object from client's calls. */
    id _activePlotKey;

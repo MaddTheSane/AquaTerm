@@ -1,3 +1,4 @@
+#import <Foundation/NSObject.h>
 #import <AquaTerm/AQTGraphic.h>
 
 @class AQTModel;

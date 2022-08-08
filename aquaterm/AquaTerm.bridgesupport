@@ -105,13 +105,13 @@
 <arg type='f'/>
 </function>
 <function name='aqtAddPolygon'>
-<arg type='^f'/>
-<arg type='^f'/>
+<arg type='^f' c_array_length_in_arg='2'/>
+<arg type='^f' c_array_length_in_arg='2'/>
 <arg type='i'/>
 </function>
 <function name='aqtAddPolyline'>
-<arg type='^f'/>
-<arg type='^f'/>
+<arg type='^f' c_array_length_in_arg='2'/>
+<arg type='^f' c_array_length_in_arg='2'/>
 <arg type='i'/>
 </function>
 <function name='aqtAddShearedLabel'>
@@ -278,7 +278,7 @@
 <arg type='i'/>
 </function>
 <function name='aqtSetLinestylePattern'>
-<arg type='^f'/>
+<arg type='^f' c_array_length_in_arg='1'/>
 <arg type='i'/>
 <arg type='f'/>
 </function>

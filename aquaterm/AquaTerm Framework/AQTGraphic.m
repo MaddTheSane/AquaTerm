@@ -55,7 +55,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-   [coder encodeObject:[NSValue valueWithBytes:&_color objCType:@encode(AQTColor)] forKey:AQTGraphicColorKey];
+   [coder encodeObject:@(_color) forKey:AQTGraphicColorKey];
    [coder encodeRect:_bounds forKey:AQTGraphicBoundsKey];
    [coder encodeRect:_clipRect forKey:AQTGraphicClipRectKey];
    [coder encodeBool:_isClipped forKey:AQTGraphicIsClippedKey];

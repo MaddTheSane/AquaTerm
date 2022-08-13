@@ -90,7 +90,7 @@
    NSMutableArray *points = [[NSMutableArray alloc] initWithCapacity:pointCount];
    @autoreleasepool {
       for (i = 0; i < pointCount; i++) {
-         [points addObject:[NSValue valueWithPoint:path[i]]];
+         [points addObject:@(path[i])];
       }
       [coder encodeObject:points forKey:AQTPathPathKey];
       RELEASEOBJ(points);

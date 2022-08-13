@@ -89,7 +89,7 @@
   [super encodeWithCoder:coder];
   [coder encodeObject:bitmap forKey:AQTImageBitmapKey];
   [coder encodeSize:bitmapSize forKey:AQTImageBitmapSizeKey];
-  [coder encodeObject:[NSValue value:&transform withObjCType:@encode(AQTAffineTransformStruct)] forKey:AQTImageTransformKey];
+  [coder encodeObject:@(transform) forKey:AQTImageTransformKey];
   [coder encodeBool:fitBounds forKey:AQTImageFitBoundsKey];
 }
 
@@ -100,19 +100,29 @@
       bitmap = RETAINOBJ([coder decodeObjectOfClass:[NSData class] forKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       NSValue * tmpVal = [coder decodeObjectOfClass:[NSValue class] forKey:AQTImageTransformKey];
-      [tmpVal getValue:&transform];
+      if (@available(macOS 10.13, *)) {
+        [tmpVal getValue:&transform size:sizeof(transform)];
+      } else {
+        [tmpVal getValue:&transform];
+      }
       fitBounds = [coder decodeBoolForKey:AQTImageFitBoundsKey];
     } else {
       AQTRect r;
       AQTSize s;
       
       bitmap = RETAINOBJ([coder decodeObject]);
-      [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
+      if (@available(macOS 10.13, *)) {
+        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s size:sizeof(AQTSize)];
+        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
+        [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform size:sizeof(AQTAffineTransformStruct)];
+      } else {
+        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
+        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
+        [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
+      }
       bitmapSize.width = s.width; bitmapSize.height = s.height;
-      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
       _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
       _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-      [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
       [coder decodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
     }
   }

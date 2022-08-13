@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef struct _AQTAffineTransformStruct {
   float m11, m12, m21, m22;
   float tX, tY;
-} AQTAffineTransformStruct;
+} CG_BOXABLE AQTAffineTransformStruct;
 
 @interface AQTImage : AQTGraphic
 {

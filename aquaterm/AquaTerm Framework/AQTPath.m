@@ -152,22 +152,39 @@
          float tmpFloat;
          
          [coder decodeValueOfObjCType:@encode(BOOL) at:&isFilled];
-         [coder decodeValueOfObjCType:@encode(int32_t) at:&lineCapStyle];
-         [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+         if (@available(macOS 10.13, *)) {
+            [coder decodeValueOfObjCType:@encode(int32_t) at:&lineCapStyle size:sizeof(int32_t)];
+            [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
+            [coder decodeValueOfObjCType:@encode(int32_t) at:&pointCount size:sizeof(int32_t)];
+         } else {
+            [coder decodeValueOfObjCType:@encode(int32_t) at:&lineCapStyle];
+            [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+            [coder decodeValueOfObjCType:@encode(int32_t) at:&pointCount];
+         }
          linewidth = tmpFloat;
-         [coder decodeValueOfObjCType:@encode(int32_t) at:&pointCount];
          // path might be malloc'd or on heap depending on pointCount
          pointCount = [self _aqtSetupPathStoreForPointCount:pointCount];
          // Fix for 64bit interoperability: NSPoint is of type GCFloat which is double on 64 bit and float on 32
          for( i = 0; i < pointCount; i++ )
          {
-            [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];
+            if (@available(macOS 10.13, *)) {
+               [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p size:sizeof(AQTPoint)];
+            } else {
+               [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];
+            }
             path[i].x = p.x; path[i].y = p.y;
          }
+         if (@available(macOS 10.13, *)) {
+            [coder decodeValueOfObjCType:@encode(int32_t) at:&patternCount size:sizeof(int32_t)];
+            [coder decodeArrayOfObjCType:@encode(float) count:patternCount at:pattern];
+            [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
+            patternPhase = tmpFloat;
+         } else {
          [coder decodeValueOfObjCType:@encode(int32_t) at:&patternCount];
          [coder decodeArrayOfObjCType:@encode(float) count:patternCount at:pattern];
          [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
          patternPhase = tmpFloat;
+         }
          [coder decodeValueOfObjCType:@encode(BOOL) at:&hasPattern];
       }
    }

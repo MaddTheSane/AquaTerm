@@ -111,14 +111,28 @@
       float tmpFloat = 0;
       string = [[coder decodeObject] copy];
       fontName = [[coder decodeObject] copy];
-      [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+      if (@available(macOS 10.13, *)) {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
+        [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p size:sizeof(AQTPoint)];
+      } else {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+        [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];
+      }
       fontSize = tmpFloat;
-      [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p];
       position.x = p.x; position.y = p.y;
-      [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+      if (@available(macOS 10.13, *)) {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
+        [coder decodeValueOfObjCType:@encode(int32_t) at:&justification size:sizeof(int32_t)];
+      } else {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+        [coder decodeValueOfObjCType:@encode(int32_t) at:&justification];
+      }
       angle = tmpFloat;
-      [coder decodeValueOfObjCType:@encode(int32_t) at:&justification];
-      [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+      if (@available(macOS 10.13, *)) {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
+      } else {
+        [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat];
+      }
       shearAngle = tmpFloat;
     }
   }

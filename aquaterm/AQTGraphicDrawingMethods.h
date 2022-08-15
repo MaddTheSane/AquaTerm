@@ -17,7 +17,7 @@
 @property (setter=_setCache:, strong) id _cache;
 - (void)_setCache:(id)object;
 - (void)setAQTColor;
-@property (readonly) NSRect updateBounds;
+- (NSRect)updateBounds;
 - (void)renderInRect:(NSRect)boundsRect; // <--- canvas coords
 @end
 

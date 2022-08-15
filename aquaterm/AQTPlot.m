@@ -368,12 +368,12 @@ __unused static inline void NOOP_(id x, ...) {;}
    printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, model.canvasSize.width, model.canvasSize.height)];
    printView.model = model;
    
-   [pasteboard declareTypes:@[NSPDFPboardType, NSPostScriptPboardType] owner:nil];
+   [pasteboard declareTypes:@[NSPasteboardTypePDF, @"com.adobe.encapsulated-postscript"] owner:nil];
    [printView writeEPSInsideRect:printView.bounds toPasteboard:pasteboard];
    [printView writePDFInsideRect:printView.bounds toPasteboard:pasteboard];
 }
 
-- (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success  contextInfo:(AQTView *)printView
+- (void)printOperationDidRun:(NSPrintOperation *)printOperation success:(BOOL)success  contextInfo:(void *)printView
 {
 }
 
@@ -420,22 +420,25 @@ __unused static inline void NOOP_(id x, ...) {;}
    }
    [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:SaveFormatKey]];
    savePanel.accessoryView = extendSavePanelView;
-   savePanel.directoryURL = [preferences URLForKey:SaveFolderKey];
+   NSURL *dirURL;
+   if ((dirURL = [preferences URLForKey:SaveFolderKey])) {
+      savePanel.directoryURL = dirURL;
+   }
    savePanel.nameFieldLabel = model.title;
    [savePanel beginSheetModalForWindow:canvas.window completionHandler:^(NSInteger result) {
       NSData *data;
-      NSString *filename;
+      NSURL *filename;
       AQTView *printView;
       if (NSFileHandlingPanelOKButton == result) {
          printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, self->model.canvasSize.width, self->model.canvasSize.height)];
          printView.model = self->model;
-         filename = savePanel.URL.path.stringByDeletingPathExtension;
+         filename = savePanel.URL.URLByDeletingPathExtension;
          if ([self->saveFormatPopUp.titleOfSelectedItem isEqualToString:@"PDF"]) {
             data = [printView dataWithPDFInsideRect: printView.bounds];
-            [data writeToFile:[filename stringByAppendingPathExtension:@"pdf"] atomically: NO];
+            [data writeToURL:[filename URLByAppendingPathExtension:@"pdf"] atomically:NO];
          } else {
             data = [printView dataWithEPSInsideRect: printView.bounds];
-            [data writeToFile:[filename stringByAppendingPathExtension:@"eps"] atomically: NO];
+            [data writeToURL:[filename URLByAppendingPathExtension:@"eps"] atomically:NO];
          }
          [preferences setURL:savePanel.URL.URLByDeletingLastPathComponent forKey:SaveFolderKey];
          [preferences setObject:self->saveFormatPopUp.titleOfSelectedItem forKey:SaveFormatKey];

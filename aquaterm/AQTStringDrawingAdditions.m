@@ -275,7 +275,8 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
     
    while (*i < strLen) {
       // Read attributes
-      NSDictionary *attributes = [attrString attributesAtIndex:*i effectiveRange:nil];
+      NSRange range;
+      NSDictionary *attributes = [attrString attributesAtIndex:*i effectiveRange:&range];
       NSString *attributedFontname = (attributes[AQTFontNameKey] != nil)?
          attributes[AQTFontNameKey]:
          defaultFontName; 
@@ -295,20 +296,25 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
       if (attributedSublevel == sublevel) {
          //TODO: migrate to NSLayoutManager?
          NSFont *aFont;
-         unichar theChar;
-         NSGlyph theGlyph;
+         unichar theChars[range.length];
+         NSGlyph theGlyphs[range.length];
+         NSSize theAdvances[range.length];
          // Get selected font
          if ((aFont = [NSFont fontWithName:attributedFontname size:attributedFontsize * fontScale]) == nil)
             aFont = [NSFont systemFontOfSize:attributedFontsize * fontScale]; 
-         theChar = [text characterAtIndex:*i];
+         [text getCharacters:theChars range:range];
          // Perform neccessary conversion to Unicode
          if ([aFont.fontName isEqualToString:@"Symbol"] && convertSymbolFontToUnicode) {
-            theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
+            for (NSInteger i = 0; i < range.length; i++) {
+               theChars[i] = _aqtMapAdobeSymbolEncodingToUnicode(theChars[i]);
+            }
          }
-         // Get the glyph
-         theGlyph = [aFont _defaultGlyphForChar:theChar];
+         // Get the glyphs
+         for (NSInteger i = 0; i < range.length; i++) {
+            theGlyphs[i] = [aFont _defaultGlyphForChar:theChars[i]];
+         }
          // Adjust glyph position
-         glyphHeight = [aFont boundingRectForGlyph:theGlyph].size.height;
+         glyphHeight = [aFont boundingRectForGlyph:theGlyphs[range.length-1]].size.height;
          if (extendsRight)
             pos.x = maxRight;         
          baselineOffset = glyphHeight*baselineAdjust;
@@ -325,15 +331,20 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          }
          underlining = newUnderlining;
          [path moveToPoint:NSMakePoint(pos.x, pos.y+baselineOffset)];
-         // render glyph
+         // render glyphs
          if (isVisible)
-            [path appendBezierPathWithGlyph:theGlyph inFont:aFont];
+            [path appendBezierPathWithGlyphs:theGlyphs count:range.length inFont:aFont];
          // advance position
-         pos.x += [aFont advancementForGlyph:theGlyph].width;
+         [aFont getAdvancements:theAdvances forGlyphs:theGlyphs count:range.length];
+         CGFloat AllAdvancements = 0;
+         for (NSInteger i = 0; i < range.length; i++) {
+            AllAdvancements += theAdvances[i].width;
+         }
+         pos.x += AllAdvancements;
          [path moveToPoint:pos];
          maxRight = MAX(pos.x, maxRight);
          extendsRight = NO; 
-         (*i)++;
+         (*i) += range.length;
       } else if(labs(attributedSublevel) <= labs(sublevel)) {
          return pos;
       } else {

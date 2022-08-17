@@ -6,10 +6,7 @@
 //  Copyright © 2016 AquaTerm Team. All rights reserved.
 //
 
-import Foundation
-import AppKit
-import AquaTerm
-import AquaTerm.AQTAdapter
+import Cocoa
 
 extension AQTAdapter {
 	/// The current RGB color components.

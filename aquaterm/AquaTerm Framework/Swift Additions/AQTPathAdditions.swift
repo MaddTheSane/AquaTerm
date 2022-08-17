@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import AquaTerm
-import AquaTerm.AQTGraphic.AQTPath
 
 extension AQTPath {
 	@nonobjc public convenience init(points: [NSPoint]) {

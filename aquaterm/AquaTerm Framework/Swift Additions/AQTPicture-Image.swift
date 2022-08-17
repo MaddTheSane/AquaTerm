@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import AquaTerm
-import AquaTerm.AQTGraphic.AQTPicture
-import AquaTerm.AQTGraphic.AQTImage
 
 extension AQTPicture {
 	open var transformStruct: AQTAffineTransformStruct {

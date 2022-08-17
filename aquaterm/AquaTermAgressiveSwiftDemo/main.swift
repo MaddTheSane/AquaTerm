@@ -10,7 +10,6 @@ import Foundation
 import AppKit.NSAttributedString
 import AquaTerm
 import AquaTerm.AQTAdapter
-import AquaTermSwift
 
 extension NSPoint {
 	fileprivate init(x: Float, y: Float) {

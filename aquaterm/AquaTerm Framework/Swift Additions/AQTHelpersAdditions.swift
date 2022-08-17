@@ -6,8 +6,7 @@
 //  Copyright © 2016 AquaTerm Team. All rights reserved.
 //
 
-import AquaTerm
-import AquaTerm.AQTFunctions
+import Foundation
 
 extension AQTColor: Equatable {
 	@inlinable static public func ==(lhs: AQTColor, rhs: AQTColor) -> Bool {

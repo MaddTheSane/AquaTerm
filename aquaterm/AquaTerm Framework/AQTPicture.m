@@ -40,7 +40,7 @@
 {
    static const unsigned char whiteChars[] = {0,0,0};
 
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&whiteChars pixelsWide:1 pixelsHigh:1 bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 bitsPerPixel:24];
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char**)&whiteChars pixelsWide:1 pixelsHigh:1 bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 bitsPerPixel:24];
    NSImage *img = [[NSImage alloc] initWithSize:NSMakeSize(1, 1)];
    [img addRepresentation:bir];
    RELEASEOBJ(bir);
@@ -61,7 +61,7 @@
    }
 
    const void *bdBytes = bytes.bytes;
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 * (NSInteger)size.width bitsPerPixel:24];
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char**)&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 * (NSInteger)size.width bitsPerPixel:24];
    NSImage *img = [[NSImage alloc] initWithSize:size];
    [img addRepresentation:bir];
    RELEASEOBJ(bir);
@@ -84,7 +84,7 @@
    }
 
    const void *bdBytes = bytes.bytes;
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:4 * (NSInteger)size.width bitsPerPixel:32];
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char**)&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:4 * (NSInteger)size.width bitsPerPixel:32];
    NSImage *img = [[NSImage alloc] initWithSize:size];
    [img addRepresentation:bir];
    RELEASEOBJ(bir);

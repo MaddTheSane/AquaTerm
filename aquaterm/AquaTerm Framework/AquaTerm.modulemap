@@ -10,13 +10,13 @@ framework module AquaTerm {
 		export *
 	}
 	
-	explicit module AQTModel {
+	module AQTModel {
 		requires objc
 		header "AQTModel.h"
 		export *
 	}
 	
-	explicit module AQTGraphic {
+	module AQTGraphic {
 		requires objc
 		header "AQTGraphic.h"
 		
@@ -47,7 +47,7 @@ framework module AquaTerm {
 		export *
 	}
 	
-	explicit module AQTFunctions {
+	module AQTFunctions {
 		requires objc
 		header "AQTFunctions.h"
 		export *

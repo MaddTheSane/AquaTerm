@@ -29,6 +29,10 @@
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		55443136273D27AD0015E63A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55443128273D276A0015E63A /* main.swift */; };
+		5552F05128AB087D00C7675C /* AQTObjCTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5552F05028AB087D00C7675C /* AQTObjCTryCatch.m */; };
+		5552F05528AB1FD700C7675C /* NSWindowAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552F05428AB1FD700C7675C /* NSWindowAdditions.swift */; };
+		5552F05828AB9DD600C7675C /* AquaTermSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5552F05928AB9DDF00C7675C /* AquaTermSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 550857E71C80F6FC005ACF4A /* AquaTermSwift.framework */; };
 		55602F431D624D5700FC75A5 /* AQTPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55602F421D624D5700FC75A5 /* AQTPath.swift */; };
 		55602F471D626CFB00FC75A5 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		556C56341F3F94180080A38F /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556C56331F3F90E50080A38F /* AQTWindow.xib */; };
@@ -127,6 +131,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = CB91251207CB3BDE001D5EAF;
 			remoteInfo = AQTFwk;
+		};
+		5552F05628AB9DC700C7675C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 550857E61C80F6FC005ACF4A;
+			remoteInfo = AquaTermSwift;
 		};
 		55602F441D6265C100FC75A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -268,6 +279,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				5552F05828AB9DD600C7675C /* AquaTermSwift.framework in Embed Frameworks */,
 				55D74C591C3DAB620013C8EC /* AquaTerm.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -319,6 +331,10 @@
 		554387CF1C3B96B1006FBFB4 /* AquaTerm.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = AquaTerm.modulemap; sourceTree = "<group>"; usesTabs = 1; };
 		55443128273D276A0015E63A /* main.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55443135273D27960015E63A /* AquaTermAgressiveSwiftDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermAgressiveSwiftDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		5552F04D28AAFFFC00C7675C /* AquaTerm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AquaTerm-Bridging-Header.h"; sourceTree = "<group>"; };
+		5552F05028AB087D00C7675C /* AQTObjCTryCatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQTObjCTryCatch.m; sourceTree = "<group>"; };
+		5552F05228AB088C00C7675C /* AQTObjCTryCatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQTObjCTryCatch.h; sourceTree = "<group>"; };
+		5552F05428AB1FD700C7675C /* NSWindowAdditions.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = NSWindowAdditions.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55602F421D624D5700FC75A5 /* AQTPath.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTPath.swift; sourceTree = "<group>"; };
 		556C562B1F3F90640080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu1.xib; sourceTree = "<group>"; };
 		556C562C1F3F906F0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu1.strings; sourceTree = "<group>"; };
@@ -496,6 +512,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5552F05928AB9DDF00C7675C /* AquaTermSwift.framework in Frameworks */,
 				CBC4B44605E4C784001BE8D7 /* Cocoa.framework in Frameworks */,
 				CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */,
 			);
@@ -565,9 +582,13 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				5552F04D28AAFFFC00C7675C /* AquaTerm-Bridging-Header.h */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				5575FDE61C403A5800B7D002 /* PreferenceKeys.h */,
 				5575FDE41C403A4900B7D002 /* PreferenceKeys.m */,
+				5552F05228AB088C00C7675C /* AQTObjCTryCatch.h */,
+				5552F05028AB087D00C7675C /* AQTObjCTryCatch.m */,
+				5552F05428AB1FD700C7675C /* NSWindowAdditions.swift */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -1060,6 +1081,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5552F05728AB9DC700C7675C /* PBXTargetDependency */,
 				CB9125B707CB4C15001D5EAF /* PBXTargetDependency */,
 			);
 			name = AquaTerm;
@@ -1099,6 +1121,9 @@
 					55E4B3C21F67251D0003B1D2 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+					};
+					CBC4B42705E4C784001BE8D7 = {
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -1307,14 +1332,16 @@
 				CBC4B43C05E4C784001BE8D7 /* main.m in Sources */,
 				CBC4B43D05E4C784001BE8D7 /* AQTView.m in Sources */,
 				5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */,
-				CBC4B43E05E4C784001BE8D7 /* AQTController.m in Sources */,
 				CBC4B43F05E4C784001BE8D7 /* AQTPlot.m in Sources */,
+				CBC4B43E05E4C784001BE8D7 /* AQTController.m in Sources */,
+				5552F05128AB087D00C7675C /* AQTObjCTryCatch.m in Sources */,
 				CBC4B44005E4C784001BE8D7 /* AQTGraphicDrawingMethods.m in Sources */,
 				CBC4B44105E4C784001BE8D7 /* Demo.m in Sources */,
 				CBC4B44205E4C784001BE8D7 /* Bugs.m in Sources */,
 				CBC4B44305E4C784001BE8D7 /* Timing.m in Sources */,
 				CB9B70D4065A0B9C00563010 /* AQTPrefController.m in Sources */,
 				CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */,
+				5552F05528AB1FD700C7675C /* NSWindowAdditions.swift in Sources */,
 				CBB800C90723A4740068A0C9 /* AQTStringDrawingAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1341,6 +1368,11 @@
 			isa = PBXTargetDependency;
 			target = CB91251207CB3BDE001D5EAF /* AQTFwk */;
 			targetProxy = 5544312D273D27960015E63A /* PBXContainerItemProxy */;
+		};
+		5552F05728AB9DC700C7675C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 550857E61C80F6FC005ACF4A /* AquaTermSwift */;
+			targetProxy = 5552F05628AB9DC700C7675C /* PBXContainerItemProxy */;
 		};
 		55602F451D6265C100FC75A5 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1972,6 +2004,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AquaTerm;
 				BUILD_VARIANTS = normal;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1989,6 +2022,9 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = AquaTerm;
 				SECTORDER_FLAGS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1998,6 +2034,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AquaTerm;
 				BUILD_VARIANTS = normal;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -2013,6 +2050,8 @@
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
 				PRODUCT_NAME = AquaTerm;
 				SECTORDER_FLAGS = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

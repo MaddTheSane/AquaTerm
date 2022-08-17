@@ -18,8 +18,8 @@
 
 #import "AQTEventProtocol.h"
 #import "PreferenceKeys.h"
+#import "AquaTermApp-Swift.h"
 
-#define TITLEBAR_HEIGHT 22.0
 #define WINDOW_MIN_WIDTH 200.0
 #define WINDOW_MAX_WIDTH 4096.0
 
@@ -65,10 +65,10 @@ __unused static inline void NOOP_(id x, ...) {;}
    NSPoint windowTopLeft = NSMakePoint(NSMinX(windowFrame), NSMaxY(windowFrame)); 
    contentSize = model.canvasSize;
    windowSize = contentSize;
-   windowSize.height += TITLEBAR_HEIGHT;
+   windowSize.height += canvas.window.titlebarHeight;
    // FIXME: Better handling of min/max size
-   maxSize = NSMakeSize(WINDOW_MAX_WIDTH, WINDOW_MAX_WIDTH*contentSize.height/contentSize.width + TITLEBAR_HEIGHT);
-   minSize = NSMakeSize(WINDOW_MIN_WIDTH, WINDOW_MIN_WIDTH*contentSize.height/contentSize.width + TITLEBAR_HEIGHT);
+   maxSize = NSMakeSize(WINDOW_MAX_WIDTH, WINDOW_MAX_WIDTH*contentSize.height/contentSize.width + canvas.window.titlebarHeight);
+   minSize = NSMakeSize(WINDOW_MIN_WIDTH, WINDOW_MIN_WIDTH*contentSize.height/contentSize.width + canvas.window.titlebarHeight);
    ratio = windowSize;
    
    canvas.model = model;
@@ -128,16 +128,16 @@ __unused static inline void NOOP_(id x, ...) {;}
 -(void)constrainWindowToFrame:(NSRect)tileFrame
 {
    NSRect tmpFrame;
-   CGFloat tileContentHWRatio = (tileFrame.size.height - TITLEBAR_HEIGHT)/tileFrame.size.width;
+   CGFloat tileContentHWRatio = (tileFrame.size.height - canvas.window.titlebarHeight)/tileFrame.size.width;
    CGFloat canvasHWRatio = model.canvasSize.height/model.canvasSize.width;
    
    if (canvasHWRatio < tileContentHWRatio) {
       // limited by width
-      float height = tileFrame.size.width*canvasHWRatio+TITLEBAR_HEIGHT;
+      float height = tileFrame.size.width*canvasHWRatio+canvas.window.titlebarHeight;
       tmpFrame = NSMakeRect(tileFrame.origin.x, tileFrame.origin.y+(tileFrame.size.height-height), tileFrame.size.width, height);
    } else {
       // limited by height
-      tmpFrame = NSMakeRect(tileFrame.origin.x, tileFrame.origin.y, (tileFrame.size.height - TITLEBAR_HEIGHT)/canvasHWRatio, tileFrame.size.height);
+      tmpFrame = NSMakeRect(tileFrame.origin.x, tileFrame.origin.y, (tileFrame.size.height - canvas.window.titlebarHeight)/canvasHWRatio, tileFrame.size.height);
    }
    // NSLog(@"%@ --> %@", NSStringFromRect(tileFrame), NSStringFromRect(tmpFrame));
    [canvas.window setFrame:tmpFrame display:YES];
@@ -311,12 +311,12 @@ __unused static inline void NOOP_(id x, ...) {;}
    if (tmpSize.width > tmpSize.height)
    {
       // decide by width
-      proposedFrameSize.height = proposedFrameSize.width * (model.canvasSize.height/model.canvasSize.width) + TITLEBAR_HEIGHT;
+      proposedFrameSize.height = proposedFrameSize.width * (model.canvasSize.height/model.canvasSize.width) + sender.titlebarHeight;
    }
    else
    {
       // decide by height
-      proposedFrameSize.width = (proposedFrameSize.height - TITLEBAR_HEIGHT) * (model.canvasSize.width/model.canvasSize.height);
+      proposedFrameSize.width = (proposedFrameSize.height - sender.titlebarHeight) * (model.canvasSize.width/model.canvasSize.height);
    }
    return proposedFrameSize;
 }
@@ -327,7 +327,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    if (_client)
    {
       // Post a notification to check (later) wheter or not the client is still alive, if it isn't the window is closed
-      [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:@"AQTWindowDidCloseNotification" object:self]
+      [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:AQTWindowDidCloseNotification object:self]
                                                  postingStyle:NSPostWhenIdle];
       if ([self acceptingEvents] == NO)
       {

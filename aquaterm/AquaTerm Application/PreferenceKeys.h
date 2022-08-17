@@ -23,4 +23,6 @@ extern NSString * const CrosshairColorKey;
 extern NSString * const CloseWindowWithPlotKey;
 extern NSString * const ConfirmCloseWindowWithPlotKey;
 
+extern NSNotificationName const AQTWindowDidCloseNotification;
+
 #endif /* PreferenceKeys_h */

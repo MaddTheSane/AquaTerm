@@ -19,3 +19,5 @@ NSString * const ImageInterpolationKey = @"ImageInterpolationLevel";
 NSString * const CrosshairColorKey = @"CrosshairCursorColor";
 NSString * const CloseWindowWithPlotKey = @"CloseWindowWhenClosingPlot";
 NSString * const ConfirmCloseWindowWithPlotKey = @"ConfirmCloseWindowWhenClosingPlot";
+
+NSNotificationName const AQTWindowDidCloseNotification = @"AQTWindowDidCloseNotification";

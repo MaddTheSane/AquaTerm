@@ -77,7 +77,7 @@ extern void aqtLineDrawingTest(id sender);
 "**/
 -(void)awakeFromNib
 {
-   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidClose:) name:@"AQTWindowDidCloseNotification" object:nil];
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidClose:) name:AQTWindowDidCloseNotification object:nil];
   //
   // Set up a DO connection:
   //

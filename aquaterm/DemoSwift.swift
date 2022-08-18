@@ -35,7 +35,7 @@ extension AQTController {
 		]
 		adapter.openPlot(with: 1)
 		adapter.plotSize = NSSize(width: 620, height: 420)
-		adapter.plotTitle = "TestView"
+		adapter.plotTitle = "TestSwiftView"
 		adapter.setAcceptingEvents(true)
 		
 		// Set colormap
@@ -267,15 +267,26 @@ extension AQTController {
 		do {
 			adapter.fontName = "Times-Roman"
 			//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
-			let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}"
-			let attrStr = NSMutableAttributedString(string: s)
-			attrStr.setAttributes([.aqtFontName: "AppleSymbols"], range: NSRange(location: 9, length: 11))
-			attrStr.setAttributes([.aqtFontName: "STSong"], range: NSRange(location: 13, length: 1))
-			
 			adapter.takeColor(fromColormapEntry: 1)
 			adapter.fontName = "Times-Roman"
 			adapter.fontSize = 12.0
-			adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
+			let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}"
+			if #available(macOS 12, *) {
+				var attrStr = AttributedString(s)
+				var range = attrStr.index(attrStr.startIndex, offsetByCharacters: 9) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 20)
+				attrStr[range].fontName = "AppleSymbols"
+				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 13) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 14)
+				attrStr[range].fontName = "STSong"
+
+				adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
+			} else {
+				let attrStr = NSMutableAttributedString(string: s)
+				attrStr.setAttributes([.aqtFontName: "AppleSymbols"], range: NSRange(location: 9, length: 11))
+				attrStr.setAttributes([.aqtFontName: "STSong"], range: NSRange(location: 13, length: 1))
+				
+				adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
+			}
+			
 			//[adapter addLabel:@"Times-Roman 16pt" atPoint:NSPoint(x: 320, 150) angle:0.0 align:AQTAlignLeft];
 			adapter.takeColor(fromColormapEntry: 2)
 			adapter.fontName = "Times-Italic"
@@ -317,11 +328,22 @@ extension AQTController {
 		
 		// MARK: Some styling is possible
 		autoreleasepool() {
+			if #available(macOS 12, *) {
+				var attrStr = AttributedString("Underline, super- and subscript123")
+				var range = attrStr.startIndex ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 9)
+				attrStr[range].underline = .single
+				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 31) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 32)
+				attrStr[range].superscript = -1
+				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 32) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 34)
+				attrStr[range].superscript = 1
+				adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+			} else {
 			let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
 			attrStr.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: 9))
 			attrStr.addAttribute(.superscript, value: -1, range: NSRange(location: 31, length: 1))
 			attrStr.addAttribute(.superscript, value: 1, range: NSRange(location: 32, length: 2))
 			adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+			}
 		}
 		adapter.takeColor(fromColormapEntry: 2)
 		adapter.lineWidth = 0.5
@@ -344,13 +366,14 @@ extension AQTController {
 			adapter.fontName = "Times-Roman"
 			adapter.fontSize = 14
 			
-			let attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
+			var attrStr = NSMutableAttributedString(string: "e-ip+1= 0")
 			attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSRange(location: 3, length: 1)) // Greek
 			attrStr.addAttribute(.superscript, value: 1, range: NSRange(location: 1, length: 3)) // exponent
 			attrStr.addAttribute(.aqtFontSize, value: 6.0, range: NSRange(location: 7, length: 1)) // extra spacing
 			
 			adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 			
+			attrStr = NSMutableAttributedString(string: "mSke-wk2")
 			attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSRange(location: 0, length: 2))
 			attrStr.addAttribute(.aqtFontSize, value: 20.0, range: NSRange(location: 1, length: 1))
 			attrStr.addAttribute(.aqtBaselineAdjust, value: -0.25, range: NSRange(location: 1, length: 1)) // Lower symbol 25%

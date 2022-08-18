@@ -106,7 +106,7 @@ static CGFloat _aqtMinimumLinewidth;
    NSAffineTransform *aTransform = [NSAffineTransform transform];
    NSAffineTransform *shearTransform = [NSAffineTransform transform];
    NSAffineTransformStruct ts;
-   NSBezierPath *tmpPath = [NSBezierPath bezierPath];
+   NSBezierPath *tmpPath;
    NSSize tmpSize;
    NSPoint adjust = NSZeroPoint;
    // Make sure we get a valid font....

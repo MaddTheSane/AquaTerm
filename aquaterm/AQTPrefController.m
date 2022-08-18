@@ -31,7 +31,7 @@
 }
 
 - (void)showPrefs {
-   float lw = [preferences floatForKey:MinimumLineWidthKey];
+   double lw = [preferences doubleForKey:MinimumLineWidthKey];
    [imageInterpolateLevel selectItemAtIndex:[preferences integerForKey:ImageInterpolationKey]];
    [crosshairCursorColor selectItemAtIndex:[preferences integerForKey:CrosshairColorKey]];
    shouldAntialiasSwitch.state = [preferences boolForKey:AntialiasDrawingKey] ? NSOnState : NSOffState;
@@ -69,7 +69,7 @@
    [preferences setInteger:imageInterpolateLevel.indexOfSelectedItem forKey:ImageInterpolationKey];
    [preferences setInteger:crosshairCursorColor.indexOfSelectedItem forKey:CrosshairColorKey];
    [preferences setBool:shouldAntialiasSwitch.state == NSOnState forKey:AntialiasDrawingKey];
-   [preferences setFloat:minimumLinewidthSlider.doubleValue forKey:MinimumLineWidthKey];
+   [preferences setDouble:minimumLinewidthSlider.doubleValue forKey:MinimumLineWidthKey];
    [preferences setBool:convertSymbolFontSwitch.state == NSOnState forKey:ConvertSymbolFontKey];
    [preferences setBool:closeWindowSwitch.state == NSOnState forKey:CloseWindowWithPlotKey];
    [preferences setBool:confirmCloseWindowSwitch.state == NSOnState forKey:ConfirmCloseWindowWithPlotKey];

@@ -152,7 +152,6 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
    static CGFloat maxRight = 0.0;
    static NSPoint underlineLeftPoint;
    NSString *text = attrString.string;
-   NSPoint subPos = pos;
    BOOL extendsRight = NO;
    BOOL underlining = NO;
    NSInteger strLen = text.length;
@@ -240,7 +239,7 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
          else
             baseline = pos.y + glyphHeight * 0.7 + baselineOffset;
          extendsRight = YES;
-         subPos = recurseCG(path, attrString, defaultFontName, defaultFontSize, i, attributedSublevel, NSMakePoint(pos.x, baseline), fontScale * 0.75);
+         NSPoint subPos = recurseCG(path, attrString, defaultFontName, defaultFontSize, i, attributedSublevel, NSMakePoint(pos.x, baseline), fontScale * 0.75);
          maxRight = MAX(subPos.x, maxRight);
       }
    }
@@ -264,7 +263,6 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    static CGFloat maxRight = 0.0;
    static NSPoint underlineLeftPoint;
    NSString *text = attrString.string;
-   NSPoint subPos = pos;
    BOOL extendsRight = NO;
    BOOL underlining = NO;
    NSInteger strLen = text.length;
@@ -354,7 +352,7 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          else
             baseline = pos.y + glyphHeight * 0.7 + baselineOffset; 
          extendsRight = YES;
-         subPos = recurse(path, attrString, defaultFontName, defaultFontSize, i, attributedSublevel, NSMakePoint(pos.x, baseline), fontScale * 0.75);
+         NSPoint subPos = recurse(path, attrString, defaultFontName, defaultFontSize, i, attributedSublevel, NSMakePoint(pos.x, baseline), fontScale * 0.75);
          maxRight = MAX(subPos.x, maxRight);
       }
    }

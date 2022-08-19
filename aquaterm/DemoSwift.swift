@@ -64,7 +64,7 @@ extension AQTController {
 		// Display the colormap, but first create a background for the white box...
 		adapter.color = AQTColor(red: 0.8, green: 0.8, blue: 0.8, alpha: 1)
 		adapter.addFilledRect(NSRect(x: 28, y: 348, width: 24, height: 24))
-		for i in 0..<8 {
+		for i in 0 ..< 8 {
 			adapter.takeColor(fromColormapEntry: Int32(i))
 			adapter.addFilledRect(NSRect(x: 30 + i * 30, y: 350, width: 20, height: 20))
 			// Print the color index
@@ -77,7 +77,7 @@ extension AQTController {
 		adapter.takeColor(fromColormapEntry: 1)
 		adapter.addLabel(#""Any color you like""#, at: NSPoint(x: 320, y: 385), align: [])
 		adapter.lineWidth = 1.0
-		for i in 0..<256 {
+		for i in 0 ..< 256 {
 			f = Float(i) / 255.0
 			adapter.setColor(red: 1.0, green: f, blue: f / 2.0)
 			adapter.addFilledRect(NSRect(x: 320 + i, y: 350, width: 1, height: 20))
@@ -94,8 +94,8 @@ extension AQTController {
 		adapter.addLabel("Specify linewidth and pattern", at: NSPoint(x: 30, y: 325))
 		for f2 in stride(from: 1, to: 13, by: 2) {
 			let f = CGFloat(f2)
-			let lw = f/2.0
-			adapter.lineWidth = CGFloat(round(lw - 0.5))
+			let lw = f / 2.0
+			adapter.lineWidth = round(lw - 0.5)
 			adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
 			adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
 			adapter.addLine(to: NSPoint(x: 180, y: 200.5 + f * 10))
@@ -106,9 +106,9 @@ extension AQTController {
 		autoreleasepool() {
 			let r = NSRect(x: 200, y: 200, width: 60, height: 120)
 			adapter.addLabel("Clip rects", at: NSPoint(x: 200, y: 325))
-			adapter.setColor(red: 0.9, green: 0.9, blue: 0.9)
+			adapter.color = AQTColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1)
 			adapter.addFilledRect(r)
-			adapter.setColor(red: 0, green: 0, blue: 0)
+			adapter.color = AQTColor(red: 0, green: 0, blue: 0, alpha: 1)
 			adapter.clipRect = r
 			adapter.addLabel("Clipped text. Clipped text. Clipped text.", at: NSPoint(x: 180, y: 230), angle: 30.0, align: [.center])
 			adapter.lineWidth = 1.0
@@ -268,7 +268,6 @@ extension AQTController {
 			adapter.fontName = "Times-Roman"
 			//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
 			adapter.takeColor(fromColormapEntry: 1)
-			adapter.fontName = "Times-Roman"
 			adapter.fontSize = 12.0
 			let s = "Unicode: \u{2124} \u{2133} \u{5925} \u{2654}\u{2655}\u{2656}\u{2657}\u{2658}"
 			if #available(macOS 12, *) {
@@ -338,11 +337,11 @@ extension AQTController {
 				attrStr[range].superscript = 1
 				adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 			} else {
-			let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
-			attrStr.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: 9))
-			attrStr.addAttribute(.superscript, value: -1, range: NSRange(location: 31, length: 1))
-			attrStr.addAttribute(.superscript, value: 1, range: NSRange(location: 32, length: 2))
-			adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+				let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
+				attrStr.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: 9))
+				attrStr.addAttribute(.superscript, value: -1, range: NSRange(location: 31, length: 1))
+				attrStr.addAttribute(.superscript, value: 1, range: NSRange(location: 32, length: 2))
+				adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 			}
 		}
 		adapter.takeColor(fromColormapEntry: 2)

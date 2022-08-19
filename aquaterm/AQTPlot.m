@@ -410,13 +410,15 @@ __unused static inline void NOOP_(id x, ...) {;}
    NSSavePanel *savePanel = [NSSavePanel savePanel];
    NSArray *tmpNibArr = nil;
    
-   if (![[NSBundle mainBundle] loadNibNamed:@"ExtendSavePanel" owner:self topLevelObjects:&tmpNibArr])
-   {
-      NSLog(@"Failed to load ExtendSavePanel.nib");
-      return;
-   }
-   if (tmpNibArr) {
-      [nibObjects addObjectsFromArray:tmpNibArr];
+   if (saveFormatPopUp == nil) {
+      if (![[NSBundle mainBundle] loadNibNamed:@"ExtendSavePanel" owner:self topLevelObjects:&tmpNibArr])
+      {
+         NSLog(@"Failed to load ExtendSavePanel.nib");
+         return;
+      }
+      if (tmpNibArr) {
+         [nibObjects addObjectsFromArray:tmpNibArr];
+      }
    }
    [saveFormatPopUp selectItemWithTitle:[preferences objectForKey:SaveFormatKey]];
    savePanel.accessoryView = extendSavePanelView;

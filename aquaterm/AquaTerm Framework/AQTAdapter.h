@@ -10,6 +10,7 @@
 #import <Foundation/NSGeometry.h>
 #import <Foundation/NSAttributedString.h>
 #include <AquaTerm/aquaterm.h>
+#import <AquaTerm/AQTGraphic.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -117,12 +118,18 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)openPlotWithIndex:(int32_t)refNum;
 
 /*! Get the plot referenced by \c refNum and make it the target for subsequent commands.
+ 
  If no plot exists for refNum, the currently targeted plot remain unchanged. Disables
  event handling for previously targeted plot.
  \return \c YES on success, \c NO otherwise.
  */
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
 
+/*! Set the limits of the plot area.
+ 
+ Must be set \a before any drawing command following
+ an \c -openPlotWithIndex: or \c -clearPlot command or behaviour is undefined.
+ */
 @property NSSize plotSize;
 
 //! Title to appear in window titlebar, also default name when saving.
@@ -218,6 +225,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /*! Get background color components by reference. */
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
+
+//! The current RGB color components.
+@property AQTColor color;
+
+//! The background color components.
+@property AQTColor backgroundColor;
 
 /**
  @}

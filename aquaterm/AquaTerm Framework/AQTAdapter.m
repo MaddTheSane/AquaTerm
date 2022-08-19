@@ -283,7 +283,7 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 - (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a
 {
    AQTColor newColor = (AQTColor){r, g, b, a};
-   _selectedBuilder.color = newColor;
+   self.color = newColor;
 }
 
 - (void)setColorRed:(float)r green:(float)g blue:(float)b
@@ -296,7 +296,7 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a
 {
    AQTColor newColor = (AQTColor){r, g, b, a};
-   _selectedBuilder.backgroundColor = newColor;
+   self.backgroundColor = newColor;
 }
 
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b
@@ -308,7 +308,7 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 /*" Get current RGB color components by reference. "*/
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a
 {
-   AQTColor tmpColor = _selectedBuilder.color;
+   AQTColor tmpColor = self.color;
    *r = tmpColor.red;
    *g = tmpColor.green;
    *b = tmpColor.blue;
@@ -318,7 +318,7 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 
 - (void)getColorRed:(float *)r green:(float *)g blue:(float *)b
 {
-   AQTColor tmpColor = _selectedBuilder.color;
+   AQTColor tmpColor = self.color;
    *r = tmpColor.red;
    *g = tmpColor.green;
    *b = tmpColor.blue;
@@ -327,7 +327,7 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 /*" Get background color components by reference. "*/
 - (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a
 {
-    AQTColor tmpColor = _selectedBuilder.backgroundColor;
+    AQTColor tmpColor = self.backgroundColor;
     *r = tmpColor.red;
     *g = tmpColor.green;
     *b = tmpColor.blue;
@@ -339,6 +339,30 @@ NSString *const AQTNonPrintingCharKey = @"AQTNonPrintingChar";
 {
    float dummyAlpha;
    [self getBackgroundColorRed:r green:g blue:b alpha:&dummyAlpha];
+}
+
+
+- (AQTColor)color
+{
+   return _selectedBuilder.color;
+}
+
+
+- (void)setColor:(AQTColor)color
+{
+   _selectedBuilder.color = color;
+}
+
+
+- (AQTColor)backgroundColor
+{
+   return _selectedBuilder.backgroundColor;
+}
+
+
+- (void)setBackgroundColor:(AQTColor)backgroundColor
+{
+   _selectedBuilder.backgroundColor = backgroundColor;
 }
 
 

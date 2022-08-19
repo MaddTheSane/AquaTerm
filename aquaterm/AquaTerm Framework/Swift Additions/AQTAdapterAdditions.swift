@@ -9,34 +9,6 @@
 import Cocoa
 
 extension AQTAdapter {
-	/// The current RGB color components.
-	@objc open var color: AQTColor {
-		get {
-			var r: Float = 0
-			var g: Float = 0
-			var b: Float = 0
-			var a: Float = 0
-			getColor(red: &r, green: &g, blue: &b, alpha: &a)
-			return AQTColor(red: r, green: g, blue: b, alpha: a)
-		} set {
-			setColor(red: newValue.red, green: newValue.green, blue: newValue.blue, alpha: newValue.alpha)
-		}
-	}
-	
-	/// The background color components.
-	@objc open var backgroundColor: AQTColor {
-		get {
-			var r: Float = 0
-			var g: Float = 0
-			var b: Float = 0
-			var a: Float = 0
-			getBackgroundColor(red: &r, green: &g, blue: &b, alpha: &a)
-			return AQTColor(red: r, green: g, blue: b, alpha: a)
-		} set {
-			setBackgroundColor(red: newValue.red, green: newValue.green, blue: newValue.blue, alpha: newValue.alpha)
-		}
-	}
-	
 	/// Add a sequence of line segments specified by a list of start-, end-, 
 	/// and joinpoint(s) in points.
 	/// - parameter points: the polyline points to add.
@@ -61,8 +33,8 @@ extension AQTAdapter {
 	/// in e.g. 3D plot labels.
 	///
 	/// By using
-	/// `NSAttributedString` a subset of the attributes defined in AppKit may be 
-	/// used to format the string beyond the fontface ans size. The currently supported 
+	/// `NSAttributedString`, a subset of the attributes defined in AppKit may be
+	/// used to format the string beyond the font face and size. The currently supported
 	/// attributes are:
 	/// * {Attribute value}
 	/// * {@"NSSuperScript" raise-level}
@@ -86,8 +58,8 @@ extension AQTAdapter {
 	/// in e.g. 3D plot labels.
 	///
 	/// By using
-	/// `AttributedString` the attributes defined in `AquaTermAttributes` may be
-	/// used to format the string beyond the fontface ans size.
+	/// `AttributedString`, the attributes defined in `AquaTermAttributes` may be
+	/// used to format the string beyond the font face and size.
 	/// - parameter text: The text to show.
 	/// - parameter pos: The location to show the text.
 	/// - parameter angle: The angle, in degrees, to rotate the text.<br> Default is `0`.
@@ -116,7 +88,6 @@ extension AQTAdapter {
 	@nonobjc open func addLabel(_ text: String, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
-
 
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions

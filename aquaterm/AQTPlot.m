@@ -424,7 +424,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    if ((dirURL = [preferences URLForKey:SaveFolderKey])) {
       savePanel.directoryURL = dirURL;
    }
-   savePanel.nameFieldLabel = model.title;
+   savePanel.nameFieldStringValue = model.title;
    [savePanel beginSheetModalForWindow:canvas.window completionHandler:^(NSInteger result) {
       NSData *data;
       NSURL *filename;

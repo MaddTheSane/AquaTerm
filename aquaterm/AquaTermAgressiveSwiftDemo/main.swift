@@ -272,7 +272,6 @@ private func internalMain() {
 		attrStr[range].fontName = "STSong"
 		
 		adapter.takeColor(fromColormapEntry: 1)
-		adapter.fontName = "Times-Roman"
 		adapter.fontSize = 12.0
 		adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
 		//[adapter addLabel:@"Times-Roman 16pt" atPoint:NSPoint(x: 320, 150) angle:0.0 align:AQTAlignLeft];
@@ -317,7 +316,7 @@ private func internalMain() {
 	// MARK: Some styling is possible
 	autoreleasepool() {
 		var attrStr = AttributedString("Underline, super- and subscript123")
-		var range = attrStr.startIndex ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 21)
+		var range = attrStr.startIndex ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 9)
 		attrStr[range].underline = .single
 		range = attrStr.index(attrStr.startIndex, offsetByCharacters: 31) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 32)
 		attrStr[range].superscript = -1

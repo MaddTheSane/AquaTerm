@@ -43,14 +43,12 @@
 
 -(instancetype)initWithPoints:(const NSPointArray)points pointCount:(int32_t)pc;
 {
-  int32_t i;
   if (self = [super init])
   {
      pc = [self _aqtSetupPathStoreForPointCount:pc];
-     // FIXME: memcpy
-     for (i = 0; i < pc; i++)
+     if (pc != 0)
      {
-        path[i] = points[i];
+        memcpy(path, points, sizeof(NSPoint) * pc);
      }
      pointCount = pc;
      linewidth = .2;
@@ -118,7 +116,7 @@
          isFilled = [coder decodeBoolForKey:AQTPathIsFilledKey];
          lineCapStyle = [coder decodeInt32ForKey:AQTPathLineCapStyleKey];
          linewidth = [coder decodeDoubleForKey:AQTPathLineWidthKey];
-         NSArray *tmpArr = [coder decodeObjectOfClass:[NSValue class] forKey:AQTPathPathKey];
+         NSArray *tmpArr = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSValue class], [NSArray class], nil] forKey:AQTPathPathKey];
          pointCount = (int)tmpArr.count;
          pointCount = [self _aqtSetupPathStoreForPointCount:pointCount];
          
@@ -132,7 +130,7 @@
             i++;
          }
          
-         tmpArr = [coder decodeObjectOfClass:[NSNumber class] forKey:AQTPathPatternKey];
+         tmpArr = [coder decodeObjectOfClasses:[NSSet setWithObjects:[NSNumber class], [NSArray class], nil] forKey:AQTPathPatternKey];
          
          i = 0;
          for (NSNumber *val in tmpArr) {
@@ -165,7 +163,7 @@
          // path might be malloc'd or on heap depending on pointCount
          pointCount = [self _aqtSetupPathStoreForPointCount:pointCount];
          // Fix for 64bit interoperability: NSPoint is of type GCFloat which is double on 64 bit and float on 32
-         for( i = 0; i < pointCount; i++ )
+         for (i = 0; i < pointCount; i++ )
          {
             if (@available(macOS 10.13, *)) {
                [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p size:sizeof(AQTPoint)];

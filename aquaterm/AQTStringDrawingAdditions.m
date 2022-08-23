@@ -129,7 +129,7 @@ static unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    if (@available(macOS 10.13, *)) {
       pos = recurseCG(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
    } else {
-   pos = recurse(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
+      pos = recurse(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
    }
    [_aqtSharedScratchPad() unlockFocus];
    return tmpPath;
@@ -180,9 +180,8 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
       if (attributedSublevel == sublevel) {
          //TODO: migrate to NSLayoutManager?
          NSFont *aFont;
-         unichar theChars[range.length];
-         CGGlyph theGlyphs[range.length];
-         NSSize theAdvances[range.length];
+         unichar *theChars = calloc(range.length, sizeof(unichar));
+         CGGlyph *theGlyphs = calloc(range.length, sizeof(CGGlyph));
          // Get selected font
          if ((aFont = [NSFont fontWithName:attributedFontname size:attributedFontsize * fontScale]) == nil)
             aFont = [NSFont systemFontOfSize:attributedFontsize * fontScale];
@@ -196,7 +195,9 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
          // Get the glyphs
          CTFontGetGlyphsForCharacters((CTFontRef)aFont, theChars, theGlyphs, range.length);
          // Adjust glyph position
-         glyphHeight = [aFont boundingRectForCGGlyph:theGlyphs[range.length-1]].size.height;
+         CGRect glyphBounds;
+         CTFontGetBoundingRectsForGlyphs((CTFontRef)aFont, kCTFontOrientationDefault, &theGlyphs[range.length-1], &glyphBounds, 1);
+         glyphHeight = glyphBounds.size.height;
          if (extendsRight) {
             pos.x = maxRight;
          }
@@ -220,16 +221,14 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
             [path appendBezierPathWithCGGlyphs:theGlyphs count:range.length inFont:aFont];
          }
          // advance position
-         [aFont getAdvancements:theAdvances forCGGlyphs:theGlyphs count:range.length];
-         CGFloat AllAdvancements = 0;
-         for (NSInteger i = 0; i < range.length; i++) {
-            AllAdvancements += theAdvances[i].width;
-         }
+         CGFloat AllAdvancements = CTFontGetAdvancesForGlyphs((CTFontRef)aFont, kCTFontOrientationDefault, theGlyphs, NULL, range.length);
          pos.x += AllAdvancements;
          [path moveToPoint:pos];
          maxRight = MAX(pos.x, maxRight);
          extendsRight = NO;
          (*i) += range.length;
+         free(theChars);
+         free(theGlyphs);
       } else if(labs(attributedSublevel) <= labs(sublevel)) {
          return pos;
       } else {
@@ -294,9 +293,9 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
       if (attributedSublevel == sublevel) {
          //TODO: migrate to NSLayoutManager?
          NSFont *aFont;
-         unichar theChars[range.length];
-         NSGlyph theGlyphs[range.length];
-         NSSize theAdvances[range.length];
+         unichar *theChars = calloc(range.length, sizeof(unichar));
+         NSGlyph *theGlyphs = calloc(range.length, sizeof(NSGlyph));
+         NSSize *theAdvances = calloc(range.length, sizeof(NSSize));
          // Get selected font
          if ((aFont = [NSFont fontWithName:attributedFontname size:attributedFontsize * fontScale]) == nil)
             aFont = [NSFont systemFontOfSize:attributedFontsize * fontScale]; 
@@ -343,6 +342,9 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
          maxRight = MAX(pos.x, maxRight);
          extendsRight = NO; 
          (*i) += range.length;
+         free(theChars);
+         free(theGlyphs);
+         free(theAdvances);
       } else if(labs(attributedSublevel) <= labs(sublevel)) {
          return pos;
       } else {
@@ -359,4 +361,3 @@ NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSStri
    maxRight = 0.0; 
    return pos;
 }
-

@@ -16,12 +16,16 @@
 #import <AquaTerm/AQTImage.h>
 #import <AquaTerm/AQTPicture.h>
 #import <AquaTerm/AQTFunctions.h>
+#import <AquaTerm/AQTAdapter.h>
+#include <CoreText/CoreText.h>
 #import "AQTStringDrawingAdditions.h"
 #import "PreferenceKeys.h"
 
 /* _aqtMinimumLinewidth is used by view to pass user prefs to line drawing routine,
 this is ugly, but I can't see a simple way to do it without affecting performance. */
 static CGFloat _aqtMinimumLinewidth;
+extern unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar);
+
 
 @implementation AQTGraphic (AQTGraphicDrawingMethods)
 - (void)setAQTColor
@@ -99,6 +103,83 @@ static CGFloat _aqtMinimumLinewidth;
 }
 @end
 
+static NSAttributedString *ConvertAttributedStringToCoreTextAttributes(id oldString, AQTLabel *label)
+{
+   NSMutableAttributedString *toRet = nil;
+   const BOOL prefConvertToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:ConvertSymbolFontKey];
+   NSFont *normalFont;
+   NSInteger strLen = [oldString length];
+   if ((normalFont = [NSFont fontWithName:label.fontName size:label.fontSize]) == nil)
+      normalFont = [NSFont systemFontOfSize:label.fontSize]; // Fall back to a system font
+   NSDictionary *defaultAttrs = @{(id)kCTFontAttributeName: normalFont, (id)kCTLigatureAttributeName: @1, (id)kCTForegroundColorFromContextAttributeName: @YES};
+   if ([oldString isKindOfClass:[NSString class]]) {
+      BOOL convertSymbolFontToUnicode = [normalFont.fontName isEqualToString:@"Symbol"]
+         && prefConvertToUnicode;
+      if (convertSymbolFontToUnicode) {
+         unichar * chars = calloc(strLen + 1, sizeof(unichar));
+         for (NSInteger i = 0; i < strLen; i++) {
+            unichar theChar = [oldString characterAtIndex:i];
+            theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
+            chars[i] = theChar;
+         }
+         toRet = [[NSMutableAttributedString alloc] initWithString:[[NSString alloc] initWithCharactersNoCopy:chars length:strLen freeWhenDone:YES] attributes:defaultAttrs];
+
+      } else {
+         toRet = [[NSMutableAttributedString alloc] initWithString:oldString attributes:defaultAttrs];
+      }
+   } else {
+      toRet = [[NSMutableAttributedString alloc] initWithAttributedString:oldString];
+      [toRet addAttributes:defaultAttrs range:NSMakeRange(0, toRet.length)];
+      NSInteger i = 0;
+      NSInteger strLen = [oldString length];
+      NSRange range;
+      while (i < strLen) {
+         NSDictionary<NSAttributedStringKey,id> *attrDict = [oldString attributesAtIndex:i effectiveRange:&range];
+         NSMutableDictionary<NSAttributedStringKey,id> *newAttrs = [[NSMutableDictionary alloc] initWithCapacity:attrDict.count];
+         NSFont *tmpFont = normalFont;
+         for (NSAttributedStringKey key in attrDict) {
+            id value = attrDict[key];
+            if ([key isEqualToString:AQTFontNameKey]) {
+               tmpFont = [NSFont fontWithName:value size:tmpFont.pointSize];
+               if ([tmpFont.fontName isEqualToString:@"Symbol"] && prefConvertToUnicode) {
+                  NSString *toUTF = [[oldString string] substringWithRange:range];
+                  NSInteger tmpLen = [toUTF length];
+                  unichar * chars = calloc(tmpLen + 1, sizeof(unichar));
+                  for (NSInteger i = 0; i < tmpLen; i++) {
+                     unichar theChar = [toUTF characterAtIndex:i];
+                     theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
+                     chars[i] = theChar;
+                  }
+                  NSString *theUTF = [[NSString alloc] initWithCharactersNoCopy:chars length:tmpLen freeWhenDone:YES];
+                  [toRet replaceCharactersInRange:range withString:theUTF];
+               }
+            } else if ([key isEqualToString:AQTFontSizeKey]) {
+               tmpFont = [[NSFontManager sharedFontManager] convertFont:tmpFont toSize:[value doubleValue]];
+            } else if ([key isEqualToString:AQTBaselineAdjustKey]) {
+               if (@available(macOS 10.13, *)) {
+                  newAttrs[(id)kCTBaselineOffsetAttributeName] = value;
+               } else {
+                  // Fallback on earlier versions
+               }
+            } else if ([key isEqualToString:NSSuperscriptAttributeName]) {
+               newAttrs[(id)kCTSuperscriptAttributeName] = value;
+            }
+            
+            
+         }
+         if (![tmpFont isEqual: normalFont]) {
+            newAttrs[(id)kCTFontAttributeName] = tmpFont;
+         }
+         
+         [toRet addAttributes:newAttrs range:range];
+         
+         i += range.length;
+      }
+   }
+   
+   return toRet;
+}
+
 @implementation AQTLabel (AQTLabelDrawing)
 -(void)_aqtLabelUpdateCache
 {
@@ -161,21 +242,30 @@ static CGFloat _aqtMinimumLinewidth;
 
 -(void)renderInRect:(NSRect)boundsRect
 {
-   NSGraphicsContext *context;
+   NSAttributedString *attrStr = ConvertAttributedStringToCoreTextAttributes(string, self);
+   CTLineRef line = CTLineCreateWithAttributedString((__bridge CFAttributedStringRef)attrStr);
+   NSGraphicsContext *context = [NSGraphicsContext currentContext];
    NSRect clippedBounds = _isClipped?NSIntersectionRect(_bounds, _clipRect):_bounds;
    if (AQTIntersectsRect(boundsRect, clippedBounds)) {
       [self setAQTColor];
       if (_isClipped) {
-         context = [NSGraphicsContext currentContext];
+//         context;
          [context saveGraphicsState];
          NSRectClip(clippedBounds);
          // TODO: migrate to drawing directly to the context. This would allow selection of text in the saved PDF.
          [_cache  fill];
+         CGContextSetTextPosition(context.CGContext, position.x, position.y);
+         CTLineDraw(line, context.CGContext);
          [context restoreGraphicsState];
       } else {
+         [context saveGraphicsState];
          [_cache  fill];
+         CGContextSetTextPosition(context.CGContext, position.x, position.y);
+         CTLineDraw(line, context.CGContext);
+         [context restoreGraphicsState];
       }
    }
+   CFRelease(line);
 #ifdef DEBUG_BOUNDS
    if (_shouldShowBounds) {
       NSGraphicsContext *debugContext = [NSGraphicsContext currentContext];

@@ -16,6 +16,10 @@
 @implementation AQTLabel
 @synthesize fontName;
 @synthesize fontSize;
+@synthesize angle;
+@synthesize position;
+@synthesize justification;
+@synthesize shearAngle;
 
 -(instancetype)init
 {

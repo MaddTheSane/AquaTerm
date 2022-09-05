@@ -27,7 +27,6 @@ static NSImage *_aqtSharedScratchPad(void)
    return scratchPadImage;
 }
 
-/*! Utility function to map Adobe Symbol encoding to unicode */ 
 unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 {
    static const unichar map[256] = {
@@ -53,35 +52,6 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 
 
 @implementation NSString (AQTStringDrawingAdditions)
-- (NSData*)pdfDataInFont:(NSFont *)aFont
-{
-   NSMutableData *mutDat = [NSMutableData data];
-   CGDataConsumerRef consumer = CGDataConsumerCreateWithCFData((CFMutableDataRef)mutDat);
-   [_aqtSharedScratchPad() lockFocus];
-   NSSize aSize = [self sizeWithAttributes:@{NSFontAttributeName: aFont}];
-   [_aqtSharedScratchPad() unlockFocus];
-   NSRect pdfRect;
-   pdfRect.origin = NSZeroPoint;
-   pdfRect.size.width = ceil(aSize.width);
-   pdfRect.size.height = ceil(aSize.height);
-   CGContextRef pdfCtx = CGPDFContextCreate(consumer, &pdfRect, NULL);
-   CGDataConsumerRelease(consumer);
-   NSGraphicsContext *stringCtx;
-   if (@available(macOS 10.10, *)) {
-      stringCtx = [NSGraphicsContext graphicsContextWithCGContext:pdfCtx flipped:NO];
-   } else {
-      stringCtx = [NSGraphicsContext graphicsContextWithGraphicsPort:pdfCtx flipped:NO];
-   }
-   NSGraphicsContext *curCtx = NSGraphicsContext.currentContext;
-   NSGraphicsContext.currentContext = stringCtx;
-   [self drawAtPoint:NSZeroPoint withAttributes:@{NSFontAttributeName: aFont}];
-
-   NSGraphicsContext.currentContext = curCtx;
-   CGPDFContextClose(pdfCtx);
-   stringCtx = nil;
-   CGContextRelease(pdfCtx);
-   return mutDat;
-}
 
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)aFont
 {

@@ -29,4 +29,12 @@
 
 @property (copy) NSString *fontName;
 @property CGFloat fontSize;
+//! The position of the text
+@property (readonly) NSPoint position;
+
+@property (readonly) CGFloat angle;
+//! Justification with respect to the position of the text
+@property (readonly) AQTAlign justification;
+
+@property (readonly) CGFloat shearAngle;
 @end

@@ -25,4 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSBezierPath *)aqtBezierPathInFont:(NSFont *)aFont;
 @end
 
+/*! Utility function to map Adobe Symbol encoding to unicode */
+extern unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar);
+
 NS_ASSUME_NONNULL_END

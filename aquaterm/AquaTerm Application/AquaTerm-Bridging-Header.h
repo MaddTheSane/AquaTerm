@@ -9,3 +9,4 @@
 #import "AQTController.h"
 #import "PreferenceKeys.h"
 #import "AQTObjCTryCatch.h"
+#import "AQTStringDrawingAdditions.h"

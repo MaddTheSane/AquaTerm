@@ -27,6 +27,7 @@
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
 		554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		55443136273D27AD0015E63A /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55443128273D276A0015E63A /* main.swift */; };
+		554FE7A028C3FB2D00418258 /* AQTCoreTextLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554FE79F28C3FB2D00418258 /* AQTCoreTextLine.swift */; };
 		5552F05128AB087D00C7675C /* AQTObjCTryCatch.m in Sources */ = {isa = PBXBuildFile; fileRef = 5552F05028AB087D00C7675C /* AQTObjCTryCatch.m */; };
 		5552F05528AB1FD700C7675C /* NSWindowAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5552F05428AB1FD700C7675C /* NSWindowAdditions.swift */; };
 		5552F05B28AC88F500C7675C /* AQTAdapterAdditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558DB8391D60D38C007E54ED /* AQTAdapterAdditions.swift */; };
@@ -282,6 +283,7 @@
 		554387CF1C3B96B1006FBFB4 /* AquaTerm.modulemap */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = "sourcecode.module-map"; path = AquaTerm.modulemap; sourceTree = "<group>"; usesTabs = 1; };
 		55443128273D276A0015E63A /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55443135273D27960015E63A /* AquaTermAgressiveSwiftDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermAgressiveSwiftDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		554FE79F28C3FB2D00418258 /* AQTCoreTextLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AQTCoreTextLine.swift; sourceTree = "<group>"; };
 		5552F04D28AAFFFC00C7675C /* AquaTerm-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AquaTerm-Bridging-Header.h"; sourceTree = "<group>"; };
 		5552F05028AB087D00C7675C /* AQTObjCTryCatch.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AQTObjCTryCatch.m; sourceTree = "<group>"; };
 		5552F05228AB088C00C7675C /* AQTObjCTryCatch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AQTObjCTryCatch.h; sourceTree = "<group>"; };
@@ -710,6 +712,7 @@
 				CB71321205444AEC00D208BA /* AQTGraphicDrawingMethods.m */,
 				CBB800C60723A4740068A0C9 /* AQTStringDrawingAdditions.h */,
 				CBB800C70723A4740068A0C9 /* AQTStringDrawingAdditions.m */,
+				554FE79F28C3FB2D00418258 /* AQTCoreTextLine.swift */,
 			);
 			name = View;
 			path = ..;
@@ -1231,6 +1234,7 @@
 				CBC4B44305E4C784001BE8D7 /* Timing.m in Sources */,
 				CB9B70D4065A0B9C00563010 /* AQTPrefController.m in Sources */,
 				CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */,
+				554FE7A028C3FB2D00418258 /* AQTCoreTextLine.swift in Sources */,
 				5552F05528AB1FD700C7675C /* NSWindowAdditions.swift in Sources */,
 				CBB800C90723A4740068A0C9 /* AQTStringDrawingAdditions.m in Sources */,
 				5552F06128ACDA4400C7675C /* DemoSwift.swift in Sources */,

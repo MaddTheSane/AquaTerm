@@ -113,6 +113,18 @@ static CGFloat _aqtMinimumLinewidth;
    // Make sure we get a valid font....
    if ((normalFont = [NSFont fontWithName:fontName size:fontSize]) == nil)
       normalFont = [NSFont systemFontOfSize:fontSize]; // Fall back to a system font 
+   if (@available(macOS 10.13, *)) {
+      AQTCoreTextLine *ctLine = nil;
+      if ([string isKindOfClass:[NSString class]]) {
+         ctLine = [[AQTCoreTextLine alloc] initWithString:string label:self normalFont:normalFont];
+      } else if ([string isKindOfClass:[NSAttributedString class]]) {
+         ctLine = [[AQTCoreTextLine alloc] initWithAttributedString:string label:self normalFont:normalFont];
+      }
+      if (ctLine) {
+         [self _setCache:ctLine];
+         return;
+      }
+   }
                                                       // Convert (attributed) string into a path
    tmpPath = [string aqtBezierPathInFont:normalFont]; // Implemented in AQTStringDrawingAdditions
    tmpSize = tmpPath.bounds.size;

@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import AquaTerm
+import AquaTerm.AQTGraphic
 import AquaTerm.AQTGraphic.AQTLabel
 import CoreText
 
@@ -18,8 +20,7 @@ private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
 }
 
 @available(macOS 10.13, *)
-func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel) -> NSAttributedString {
-   let normalFont = NSFont(name: label.fontName, size: label.fontSize) ?? NSFont.systemFont(ofSize: label.fontSize)
+private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel, normalFont: NSFont) -> NSAttributedString? {
    let convertSymbolFontToUnicode = UserDefaults.standard.bool(forKey: ConvertSymbolFontKey)
 
    let strLength = oldString.length
@@ -40,7 +41,7 @@ func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, 
       let attributedSublevel: Int = (attrDict[.superscript] as? Int) ?? 0
       let baselineAdjust: CGFloat = (attrDict[.aqtBaselineAdjust] as? CGFloat) ?? 0
       let isVisible: Bool = ((attrDict[.aqtNonPrintingChar] as? Int) == nil
-                        || (attrDict[.aqtNonPrintingChar] as? Int) == 0);
+                        || (attrDict[.aqtNonPrintingChar] as? Int) == 0)
       let newUnderlining: Bool = (attrDict[.underlineStyle] != nil
                                   && (attrDict[.underlineStyle] as? Int) == 1)
       
@@ -60,6 +61,10 @@ func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, 
          newAttributes[NSAttributedString.Key(kCTForegroundColorAttributeName as String)] = CGColor.clear
       }
       
+      //TODO: work on a better way of doing superscripts that match the old behavior.
+      if attributedSublevel != 0 {
+         return nil
+      }
       newAttributes[NSAttributedString.Key(kCTBaselineOffsetAttributeName as String)] = attributedSublevel
 
       if newUnderlining {
@@ -78,89 +83,10 @@ func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, 
    return toRet
 }
 
-/*
- static NSAttributedString *ConvertAttributedStringToCoreTextAttributes(id oldString, AQTLabel *label)
- {
-    NSMutableAttributedString *toRet = nil;
-    const BOOL prefConvertToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:ConvertSymbolFontKey];
-    NSFont *normalFont;
-    NSInteger strLen = [oldString length];
-    if ((normalFont = [NSFont fontWithName:label.fontName size:label.fontSize]) == nil)
-       normalFont = [NSFont systemFontOfSize:label.fontSize]; // Fall back to a system font
-    NSDictionary *defaultAttrs = @{(id)kCTFontAttributeName: normalFont, (id)kCTLigatureAttributeName: @1, (id)kCTForegroundColorFromContextAttributeName: @YES};
-    if ([oldString isKindOfClass:[NSString class]]) {
-       BOOL convertSymbolFontToUnicode = [normalFont.fontName isEqualToString:@"Symbol"]
-          && prefConvertToUnicode;
-       if (convertSymbolFontToUnicode) {
-          unichar * chars = calloc(strLen + 1, sizeof(unichar));
-          for (NSInteger i = 0; i < strLen; i++) {
-             unichar theChar = [oldString characterAtIndex:i];
-             theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
-             chars[i] = theChar;
-          }
-          toRet = [[NSMutableAttributedString alloc] initWithString:[[NSString alloc] initWithCharactersNoCopy:chars length:strLen freeWhenDone:YES] attributes:defaultAttrs];
-
-       } else {
-          toRet = [[NSMutableAttributedString alloc] initWithString:oldString attributes:defaultAttrs];
-       }
-    } else {
-       toRet = [[NSMutableAttributedString alloc] initWithAttributedString:oldString];
-       [toRet addAttributes:defaultAttrs range:NSMakeRange(0, toRet.length)];
-       NSInteger i = 0;
-       NSInteger strLen = [oldString length];
-       NSRange range;
-       while (i < strLen) {
-          NSDictionary<NSAttributedStringKey,id> *attrDict = [oldString attributesAtIndex:i effectiveRange:&range];
-          NSMutableDictionary<NSAttributedStringKey,id> *newAttrs = [[NSMutableDictionary alloc] initWithCapacity:attrDict.count];
-          NSFont *tmpFont = normalFont;
-          for (NSAttributedStringKey key in attrDict) {
-             id value = attrDict[key];
-             if ([key isEqualToString:AQTFontNameKey]) {
-                tmpFont = [NSFont fontWithName:value size:tmpFont.pointSize];
-                if ([tmpFont.fontName isEqualToString:@"Symbol"] && prefConvertToUnicode) {
-                   NSString *toUTF = [[oldString string] substringWithRange:range];
-                   NSInteger tmpLen = [toUTF length];
-                   unichar * chars = calloc(tmpLen + 1, sizeof(unichar));
-                   for (NSInteger i = 0; i < tmpLen; i++) {
-                      unichar theChar = [toUTF characterAtIndex:i];
-                      theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
-                      chars[i] = theChar;
-                   }
-                   NSString *theUTF = [[NSString alloc] initWithCharactersNoCopy:chars length:tmpLen freeWhenDone:YES];
-                   [toRet replaceCharactersInRange:range withString:theUTF];
-                }
-             } else if ([key isEqualToString:AQTFontSizeKey]) {
-                tmpFont = [[NSFontManager sharedFontManager] convertFont:tmpFont toSize:[value doubleValue]];
-             } else if ([key isEqualToString:AQTBaselineAdjustKey]) {
-                if (@available(macOS 10.13, *)) {
-                   newAttrs[(id)kCTBaselineOffsetAttributeName] = value;
-                } else {
-                   // Fallback on earlier versions
-                }
-             } else if ([key isEqualToString:NSSuperscriptAttributeName]) {
-                newAttrs[(id)kCTSuperscriptAttributeName] = value;
-             }
-             
-             
-          }
-          if (![tmpFont isEqual: normalFont]) {
-             newAttrs[(id)kCTFontAttributeName] = tmpFont;
-          }
-          
-          [toRet addAttributes:newAttrs range:range];
-          
-          i += range.length;
-       }
-    }
-    
-    return toRet;
- }
-
- */
 
 @available(macOS 10.13, *)
 class AQTCoreTextLine: NSObject {
-   let transform: AffineTransform = AffineTransform()
+   let transform: AffineTransform
    let line: CTLine
    
    @objc func fill() {
@@ -172,21 +98,64 @@ class AQTCoreTextLine: NSObject {
          NSGraphicsContext.restoreGraphicsState()
       }
       (transform as NSAffineTransform).concat()
+      //ctx.textPosition
       CTLineDraw(line, ctx)
    }
    
-   @objc(initWithAttributedString:label:) init(_ attrString: NSAttributedString, label: AQTLabel) {
-      let attrStr2 = convertAttributedStringToCoreTextAttributes(oldString: attrString, label: label)
+   @objc(initWithAttributedString:label:normalFont:) init?(_ attrString: NSAttributedString, label: AQTLabel, normalFont: NSFont) {
+      let shearAngle = label.shearAngle
+      let position = label.position
+      guard let attrStr2 = convertAttributedStringToCoreTextAttributes(oldString: attrString, label: label, normalFont: normalFont) else {
+         return nil
+      }
       line = CTLineCreateWithAttributedString(attrStr2)
+      var trans = AffineTransform()
+      let lineBounds = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+      var tmpSize = lineBounds.size
+      var adjust = NSPoint()
+      adjust.x = -CGFloat(label.justification.intersection(AQTAlign(rawValue: 0x03)).rawValue)*0.5*tmpSize.width; // hAlign:
+      switch label.justification.intersection([.bottom, .top, .baseline]) {
+         // align middle wrt *font size*
+      case []:
+         adjust.y = -(normalFont.descender + normalFont.capHeight)*0.5
+         
+         // align bottom wrt *bounding box*
+      case .bottom:
+         adjust.y = -lineBounds.origin.y
+         
+         // align top wrt *bounding box*
+      case .top:
+         adjust.y = -(lineBounds.origin.y + tmpSize.height)
+         break
+         
+         // align baseline (do nothing)
+      case .baseline:
+         fallthrough
+      default:
+         // default to align baseline (do nothing) in case of error
+         break
+      }
+      
+      // Avoid multiples of 90 degrees (pi/2) since tan(k*pi/2)=inf, set beta to 0.0 instead.
+      let beta = (abs(shearAngle - 90.0*round(shearAngle/90.0))<0.1) ? 0.0 : -shearAngle
+      var ts = AffineTransform()
+      ts.m21 = -tan(beta*atan(1.0)/45.0); // =-tan(beta*pi/180.0)
+      trans.prepend(ts)
+      // Now, place the sheared label correctly
+      trans.translate(x: position.x, y: position.y)
+      trans.rotate(byDegrees: label.angle)
+      trans.translate(x: adjust.x, y: adjust.y)
+      
+      transform = trans
       super.init()
    }
    
-   @objc(initWithString:label:) convenience init(_ str: String, label: AQTLabel) {
-      self.init(NSAttributedString(string: str), label: label)
+   @objc(initWithString:label:normalFont:) convenience init?(_ str: String, label: AQTLabel, normalFont: NSFont) {
+      self.init(NSAttributedString(string: str), label: label, normalFont: normalFont)
    }
 
    
    @objc var bounds: NSRect {
-      return .zero
+      return CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
    }
 }

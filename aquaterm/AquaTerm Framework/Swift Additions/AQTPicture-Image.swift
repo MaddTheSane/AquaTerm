@@ -9,7 +9,7 @@
 import Foundation
 
 extension AQTPicture {
-	open var transformStruct: AQTAffineTransformStruct {
+	public var transformStruct: AQTAffineTransformStruct {
 		get {
 			let tmpTrans = transform
 			return AQTAffineTransformStruct(m11: Float(tmpTrans.m11), m12: Float(tmpTrans.m12), m21: Float(tmpTrans.m21), m22: Float(tmpTrans.m22), tX: Float(tmpTrans.tX), tY: Float(tmpTrans.tY))

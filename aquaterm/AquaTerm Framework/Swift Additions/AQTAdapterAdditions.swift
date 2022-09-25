@@ -12,14 +12,14 @@ extension AQTAdapter {
 	/// Add a sequence of line segments specified by a list of start-, end-, 
 	/// and joinpoint(s) in points.
 	/// - parameter points: the polyline points to add.
-	@nonobjc open func addPolyline(points: [NSPoint]) {
+	@nonobjc public func addPolyline(points: [NSPoint]) {
 		var points1 = points
 		__addPolyline(with: &points1, pointCount: points.count)
 	}
 	
 	/// Add a polygon specified by a list of corner points.
 	/// - parameter vp: the corner points.
-	@nonobjc open func addPolygon(vertexPoints vp: [NSPoint]) {
+	@nonobjc public func addPolygon(vertexPoints vp: [NSPoint]) {
 		var points1 = vp
 		__addPolygon(withVertexPoints: &points1, pointCount: vp.count)
 	}
@@ -45,7 +45,7 @@ extension AQTAdapter {
 	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
 	/// Default is `0`.
 	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
-	@nonobjc open func addLabel(_ text: NSAttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+	@nonobjc public func addLabel(_ text: NSAttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 		
@@ -67,7 +67,7 @@ extension AQTAdapter {
 	/// Default is `0`.
 	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
 	@available(macOS 12, *)
-	@nonobjc open func addLabel(_ text: AttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+	@nonobjc public func addLabel(_ text: AttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(try! NSAttributedString(text, including: AttributeScopes.AquaTermAttributes.self), at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 	
@@ -85,21 +85,21 @@ extension AQTAdapter {
 	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
 	/// Default is `0`.
 	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
-	@nonobjc open func addLabel(_ text: String, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
+	@nonobjc public func addLabel(_ text: String, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
-	@nonobjc open func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
+	@nonobjc public func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
 		setLinestylePattern(newPattern.map({Float($0)}), phase: Float(newPhase))
 	}
 
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
-	@nonobjc open func setLinestylePattern(_ newPattern: [Float], phase newPhase: Float) {
+	@nonobjc public func setLinestylePattern(_ newPattern: [Float], phase newPhase: Float) {
 		var newFPattern = newPattern
 		
 		setLinestylePattern(&newFPattern, count: newFPattern.count, phase: newPhase)

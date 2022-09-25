@@ -50,8 +50,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /** \name Acessors
  @{ */
-@property (readonly) BOOL modelIsDirty; /**< A flag indicating that AquaTerm has not been updated with the latest info */
-@property (readonly, retain) AQTModel *model; /**< The graph currently being built */
+
+/// A flag indicating that AquaTerm has not been updated with the latest info
+@property (readonly) BOOL modelIsDirty;
+/// The graph currently being built
+@property (readonly, retain) AQTModel *model;
 @property NSSize size;
 @property (copy) NSString *title;
 
@@ -59,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Clip rect, applies to all objects
  @{ */
+
 @property (nonatomic) NSRect clipRect;
 - (void)setClipRect:(NSRect)clip;
 - (void)setDefaultClipRect;
@@ -67,7 +71,9 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  Color handling
  @{ */
-@property (nonatomic) AQTColor color; /**< Currently selected color */
+
+/// Currently selected color
+@property (nonatomic) AQTColor color;
 @property AQTColor backgroundColor;
 
 - (void)takeColorFromColormapEntry:(int32_t)index;
@@ -82,18 +88,26 @@ NS_ASSUME_NONNULL_BEGIN
  \name Text handling
  @{ */
 
-@property (copy) NSString* fontName; /**< Currently selected font */
-@property CGFloat fontSize; /**< Currently selected fontsize [pt] */
+/// Currently selected font name
+@property (copy) NSString* fontName;
+/// Currently selected fontsize (pt)
+@property CGFloat fontSize;
+
 - (void)addLabel:(id)text position:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle justification:(AQTAlign)just;
 
 /**
  @}
  \name Line handling
  @{ */
-@property (nonatomic) CGFloat lineWidth; /**< Currently selected linewidth [pt] */
+
+/// Currently selected linewidth [pt]
+@property (nonatomic) CGFloat lineWidth;
+
 - (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
 - (void)setLinestyleSolid;
-@property (nonatomic) AQTLineCapStyle lineCapStyle; /**< Currently selected linecap style */
+/// Currently selected linecap style
+@property (nonatomic) AQTLineCapStyle lineCapStyle;
+
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
@@ -103,6 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Filled areas
  @{ */
+
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToPoint:(NSPoint)point; 
 - (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc; // AQTPatch
@@ -126,12 +141,14 @@ NS_ASSUME_NONNULL_BEGIN
  @}
  \name Misc.
  @{ */
+
 - (void)removeAllParts;
 
 /**
  @}
  \name Deprecated
  @{ */
+
 - (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 - (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));

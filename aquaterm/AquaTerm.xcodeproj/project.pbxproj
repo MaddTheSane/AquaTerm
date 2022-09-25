@@ -573,8 +573,10 @@
 				55602F421D624D5700FC75A5 /* AQTPathAdditions.swift */,
 				55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */,
 			);
+			indentWidth = 4;
 			path = "Swift Additions";
 			sourceTree = "<group>";
+			usesTabs = 1;
 		};
 		559DC43028A63AA100DE6EEA /* AquaTermCSwiftDemo */ = {
 			isa = PBXGroup;

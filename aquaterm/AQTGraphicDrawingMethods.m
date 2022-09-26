@@ -281,12 +281,12 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
 
 -(NSRect)updateBounds
 {
-   NSAffineTransform *transf = [NSAffineTransform transform];
    NSRect tmpBounds;
    if (fitBounds)
    {
       tmpBounds = self.bounds;
    } else {
+      NSAffineTransform *transf = [NSAffineTransform transform];
       transf.transformStruct = AQTConvertTransformStructToNS(transform);
       // FIXME: This is lazy beyond any reasonable measure...
       tmpBounds = [transf transformBezierPath:[NSBezierPath bezierPathWithRect:NSMakeRect(0, 0, bitmapSize.width, bitmapSize.height)]].bounds;
@@ -342,11 +342,13 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
                     fromRect:NSMakeRect(0,0,[(NSImage*)_cache size].width,[(NSImage*)_cache size].height)
                    operation:NSCompositeSourceOver
                     fraction:1.0];
-         if (!_isClipped)
+         if (!_isClipped) {
             [context restoreGraphicsState];
+         }
       }
-      if (_isClipped)
+      if (_isClipped) {
          [context restoreGraphicsState];
+      }
    }
 #ifdef DEBUG_BOUNDS
    if (_shouldShowBounds) {
@@ -406,11 +408,13 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
                        fromRect:NSMakeRect(0, 0, [baseImage size].width, [baseImage size].height)
                       operation:NSCompositeSourceOver
                        fraction:1.0];
-         if (!_isClipped)
+         if (!_isClipped) {
             [context restoreGraphicsState];
+         }
       }
-      if (_isClipped)
+      if (_isClipped) {
          [context restoreGraphicsState];
+      }
    }
 #ifdef DEBUG_BOUNDS
    if (_shouldShowBounds) {

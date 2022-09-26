@@ -73,6 +73,7 @@ typedef struct _AQTRect {
  @}
  \name color handling
  @{ */
+
 @property AQTColor color;
 
 /**

@@ -22,6 +22,10 @@ private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
 @available(macOS 10.13, *)
 private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel, normalFont: NSFont) -> NSAttributedString? {
    let convertSymbolFontToUnicode = UserDefaults.standard.bool(forKey: ConvertSymbolFontKey)
+   // TODO: shear and rotation doesn't work!
+   guard label.shearAngle == 0, label.angle == 0 else {
+      return nil
+   }
 
    let strLength = oldString.length
    let defaultAttrs: [NSAttributedString.Key: Any] =
@@ -93,12 +97,11 @@ class AQTCoreTextLine: NSObject {
       guard let ctx = NSGraphicsContext.current?.cgContext else {
          return
       }
-      NSGraphicsContext.saveGraphicsState()
+      ctx.saveGState()
       defer {
-         NSGraphicsContext.restoreGraphicsState()
+         ctx.restoreGState()
       }
-      (transform as NSAffineTransform).concat()
-      //ctx.textPosition
+      ctx.textMatrix = CGAffineTransform(a: transform.m11, b: transform.m12, c: transform.m21, d: transform.m22, tx: transform.tX, ty: transform.tY)
       CTLineDraw(line, ctx)
    }
    
@@ -111,13 +114,13 @@ class AQTCoreTextLine: NSObject {
       line = CTLineCreateWithAttributedString(attrStr2)
       var trans = AffineTransform()
       let lineBounds = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
-      var tmpSize = lineBounds.size
+      let tmpSize = lineBounds.size
       var adjust = NSPoint()
-      adjust.x = -CGFloat(label.justification.intersection(AQTAlign(rawValue: 0x03)).rawValue)*0.5*tmpSize.width; // hAlign:
+      adjust.x = -CGFloat(label.justification.intersection([.center, .right]).rawValue) * 0.5 * tmpSize.width // hAlign:
       switch label.justification.intersection([.bottom, .top, .baseline]) {
          // align middle wrt *font size*
       case []:
-         adjust.y = -(normalFont.descender + normalFont.capHeight)*0.5
+         adjust.y = -(normalFont.descender + normalFont.capHeight) * 0.5
          
          // align bottom wrt *bounding box*
       case .bottom:
@@ -137,9 +140,9 @@ class AQTCoreTextLine: NSObject {
       }
       
       // Avoid multiples of 90 degrees (pi/2) since tan(k*pi/2)=inf, set beta to 0.0 instead.
-      let beta = (abs(shearAngle - 90.0*round(shearAngle/90.0))<0.1) ? 0.0 : -shearAngle
+      let beta = (abs(shearAngle - 90.0 * round(shearAngle / 90.0)) < 0.1) ? 0.0 : -shearAngle
       var ts = AffineTransform()
-      ts.m21 = -tan(beta*atan(1.0)/45.0); // =-tan(beta*pi/180.0)
+      ts.m21 = -tan(beta * atan(1.0) / 45.0) // =-tan(beta*pi/180.0)
       trans.prepend(ts)
       // Now, place the sheared label correctly
       trans.translate(x: position.x, y: position.y)
@@ -156,6 +159,9 @@ class AQTCoreTextLine: NSObject {
 
    
    @objc var bounds: NSRect {
-      return CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+      let tmpRect = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+      let basicPath = NSBezierPath(rect: tmpRect)
+      basicPath.transform(using: transform)
+      return basicPath.bounds
    }
 }

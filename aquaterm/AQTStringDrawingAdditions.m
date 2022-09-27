@@ -20,9 +20,10 @@ static NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrStrin
 static NSImage *_aqtSharedScratchPad(void)
 {
    static NSImage *scratchPadImage;
-   if (!scratchPadImage) {
+   static dispatch_once_t onceToken;
+   dispatch_once(&onceToken, ^{
       scratchPadImage = [[NSImage alloc] initWithSize:NSMakeSize(10,10)];
-   }
+   });
    return scratchPadImage;
 }
 

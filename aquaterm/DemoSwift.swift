@@ -96,7 +96,7 @@ extension AQTController {
 			let f = CGFloat(f2)
 			let lw = f / 2.0
 			adapter.lineWidth = round(lw - 0.5)
-			adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
+			adapter.setLinestyle(pattern: pat[f2 % 3], phase: 0.0)
 			adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
 			adapter.addLine(to: NSPoint(x: 180, y: 200.5 + f * 10))
 		}
@@ -277,7 +277,7 @@ extension AQTController {
 				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 13) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 14)
 				attrStr[range].fontName = "STSong"
 
-				adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
+				try! adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
 			} else {
 				let attrStr = NSMutableAttributedString(string: s)
 				attrStr.setAttributes([.aqtFontName: "AppleSymbols"], range: NSRange(location: 9, length: 11))
@@ -335,7 +335,7 @@ extension AQTController {
 				attrStr[range].superscript = -1
 				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 32) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 34)
 				attrStr[range].superscript = 1
-				adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+				try! adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 			} else {
 				let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
 				attrStr.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: 9))

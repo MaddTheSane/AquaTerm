@@ -103,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Currently selected linewidth [pt]
 @property (nonatomic) CGFloat lineWidth;
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase;
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 - (void)setLinestyleSolid;
 /// Currently selected linecap style
 @property (nonatomic) AQTLineCapStyle lineCapStyle;

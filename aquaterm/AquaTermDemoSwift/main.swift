@@ -93,7 +93,7 @@ private func internalMain() {
 		let f = CGFloat(f2)
 		let lw = f/2.0
 		adapter.lineWidth = CGFloat(round(lw - 0.5))
-		adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
+		adapter.setLinestyle(pattern: pat[f2 % 3], phase: 0.0)
 		adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
 		adapter.addLine(to: NSPoint(x: 180, y: 200.5 + f * 10))
 	}
@@ -369,7 +369,7 @@ private func internalMain() {
 			range = attrStr2.index(attrStr2.startIndex, offsetByCharacters: 7) ..< attrStr2.index(attrStr2.startIndex, offsetByCharacters: 8)
 			attrStr2[range].superscript = 2
 			
-			adapter.addLabel(attrStr2, at: NSPoint(x: 260, y: 45), align: .center)
+			try! adapter.addLabel(attrStr2, at: NSPoint(x: 260, y: 45), align: .center)
 		} else {
 		attrStr = NSMutableAttributedString(string: "mSke-wk2")
 		attrStr.addAttribute(.aqtFontName, value: "Symbol", range: NSRange(location: 0, length: 2))

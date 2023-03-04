@@ -58,7 +58,7 @@ extension AQTAdapter {
 	/// in e.g. 3D plot labels.
 	///
 	/// By using
-	/// `AttributedString`, the attributes defined in `AquaTermAttributes` may be
+	/// `AttributedString`, the attributes defined in `AquaTermAttributes` should be
 	/// used to format the string beyond the font face and size.
 	/// - parameter text: The text to show.
 	/// - parameter pos: The location to show the text.
@@ -66,9 +66,10 @@ extension AQTAdapter {
 	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
 	/// Default is `0`.
 	/// - parameter just: Alignment of the text.<br> Default is `[.baseline]`.
+	/// - throws: If there's a problem converting the `AttributedString` to an `NSAttributedString`.
 	@available(macOS 12, *)
-	@nonobjc public func addLabel(_ text: AttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) {
-		__addLabel(try! NSAttributedString(text, including: AttributeScopes.AquaTermAttributes.self), at: pos, angle: angle, shearAngle: shearAngle, align: just)
+	@nonobjc public func addLabel(_ text: AttributedString, at pos: NSPoint, angle: CGFloat = 0, shearAngle: CGFloat = 0, align just: AQTAlign = [.baseline]) throws {
+		__addLabel(try NSAttributedString(text, including: AttributeScopes.AquaTermAttributes.self), at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 	
 	/// Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned
@@ -92,14 +93,14 @@ extension AQTAdapter {
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
-	@nonobjc public func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {
-		setLinestylePattern(newPattern.map({Float($0)}), phase: Float(newPhase))
+	@nonobjc public func setLinestyle(pattern newPattern: [CGFloat], phase newPhase: CGFloat) {
+		setLinestyle(pattern: newPattern.map({Float($0)}), phase: newPhase)
 	}
 
 	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
-	@nonobjc public func setLinestylePattern(_ newPattern: [Float], phase newPhase: Float) {
+	@nonobjc public func setLinestyle(pattern newPattern: [Float], phase newPhase: CGFloat) {
 		var newFPattern = newPattern
 		
 		setLinestylePattern(&newFPattern, count: newFPattern.count, phase: newPhase)

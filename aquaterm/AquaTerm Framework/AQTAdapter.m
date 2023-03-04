@@ -451,7 +451,7 @@ _{@"NSUnderline" 0or1}
 }
 
 /*" Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}."*/
-- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(float)newPhase
+- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase
 {
    [_selectedBuilder setLinestylePattern:newPattern count:(int32_t)newCount phase:newPhase];
 }

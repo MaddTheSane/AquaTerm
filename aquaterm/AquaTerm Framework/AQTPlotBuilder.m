@@ -234,7 +234,7 @@
    }
 }
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(float)newPhase //CM
+- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase //CM
 {
    [self _flushBuffers]; // FIXME: expose flush methods in API?
    // Copy the pattern

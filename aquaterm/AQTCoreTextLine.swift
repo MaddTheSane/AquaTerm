@@ -13,9 +13,10 @@ import AquaTerm.AQTGraphic.AQTLabel
 import CoreText
 
 private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
-   let symUTF = symTXT.utf16.map { codeUnit -> unichar in
+   var symUTF = symTXT.utf16.map { codeUnit -> unichar in
       return _aqtMapAdobeSymbolEncodingToUnicode(codeUnit)
    }
+   symUTF.append(0)
    return String.decodeCString(symUTF, as: UTF16.self)!.result
 }
 
@@ -23,9 +24,9 @@ private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
 private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel, normalFont: NSFont) -> NSAttributedString? {
    let convertSymbolFontToUnicode = UserDefaults.standard.bool(forKey: ConvertSymbolFontKey)
    // TODO: shear and rotation doesn't work!
-   guard label.shearAngle == 0, label.angle == 0 else {
-      return nil
-   }
+//   guard label.shearAngle == 0, label.angle == 0 else {
+//      return nil
+//   }
 
    let strLength = oldString.length
    let defaultAttrs: [NSAttributedString.Key: Any] =
@@ -91,7 +92,8 @@ private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributed
 @available(macOS 10.13, *)
 class AQTCoreTextLine: NSObject {
    let transform: AffineTransform
-   let line: CTLine
+   let framesetter: CTFramesetter
+   let frame: CTFrame
    
    @objc func fill() {
       guard let ctx = NSGraphicsContext.current?.cgContext else {
@@ -101,19 +103,33 @@ class AQTCoreTextLine: NSObject {
       defer {
          ctx.restoreGState()
       }
-      ctx.textMatrix = CGAffineTransform(a: transform.m11, b: transform.m12, c: transform.m21, d: transform.m22, tx: transform.tX, ty: transform.tY)
-      CTLineDraw(line, ctx)
+      (transform as NSAffineTransform).concat()
+      CTFrameDraw(frame, ctx)
    }
    
-   @objc(initWithAttributedString:label:normalFont:) init?(_ attrString: NSAttributedString, label: AQTLabel, normalFont: NSFont) {
+   @objc(initWithAttributedString:label:normalFont:)
+   init?(_ attrString: NSAttributedString, label: AQTLabel, normalFont: NSFont) {
       let shearAngle = label.shearAngle
       let position = label.position
       guard let attrStr2 = convertAttributedStringToCoreTextAttributes(oldString: attrString, label: label, normalFont: normalFont) else {
          return nil
       }
-      line = CTLineCreateWithAttributedString(attrStr2)
+      framesetter = CTFramesetterCreateWithAttributedString(attrStr2)
+      
       var trans = AffineTransform()
-      let lineBounds = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+      let textSize = attrStr2.size()
+      let textPath = CGPath(rect: CGRect(x: CGFloat(-textSize.width/2), y: -normalFont.ascender / 2, width: ceil(textSize.width), height: ceil(textSize.height)), transform: nil)
+
+      frame = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: attrString.length), textPath, nil)
+      var lineBounds = CGRect()
+      let lines = CTFrameGetLines(frame) as! [CTLine]
+      for line in lines {
+         if lineBounds.isEmpty {
+            lineBounds = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+         } else {
+            lineBounds = lineBounds.union(CTLineGetBoundsWithOptions(line, [.useHangingPunctuation]))
+         }
+      }
       let tmpSize = lineBounds.size
       var adjust = NSPoint()
       adjust.x = -CGFloat(label.justification.intersection([.center, .right]).rawValue) * 0.5 * tmpSize.width // hAlign:
@@ -153,14 +169,24 @@ class AQTCoreTextLine: NSObject {
       super.init()
    }
    
-   @objc(initWithString:label:normalFont:) convenience init?(_ str: String, label: AQTLabel, normalFont: NSFont) {
+   @objc(initWithString:label:normalFont:)
+   convenience init?(_ str: String, label: AQTLabel, normalFont: NSFont) {
       self.init(NSAttributedString(string: str), label: label, normalFont: normalFont)
    }
 
    
    @objc var bounds: NSRect {
-      let tmpRect = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
-      let basicPath = NSBezierPath(rect: tmpRect)
+      var lineBounds = CGRect()
+      let lines = CTFrameGetLines(frame) as! [CTLine]
+      for line in lines {
+         if lineBounds.isEmpty {
+            lineBounds = CTLineGetBoundsWithOptions(line, [.useHangingPunctuation])
+         } else {
+            lineBounds = lineBounds.union(CTLineGetBoundsWithOptions(line, [.useHangingPunctuation]))
+         }
+      }
+
+      let basicPath = NSBezierPath(rect: lineBounds)
       basicPath.transform(using: transform)
       return basicPath.bounds
    }

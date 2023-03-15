@@ -21,6 +21,13 @@ extern void aqtTestview(id sender);
 extern void aqtStringDrawingTest(id sender);
 extern void aqtLineDrawingTest(id sender);
 
+
+#ifdef DEBUG_BOUNDS
+@interface AQTPlot (BoundsDebug)
+- (void)toggleShowBounds:(id)sender;
+@end
+#endif
+
 /**
  AQTController is the main controller object which coordinates all the
  action and manages the main DO connection.
@@ -157,7 +164,13 @@ extern void aqtLineDrawingTest(id sender);
    // FIXME: Add debugging menu items here if built with DEBUG_XXX flags
 #ifdef DEBUG_BOUNDS
    id menu = [[[NSApp mainMenu] itemWithTitle:@"Debug"] submenu];
-   [[menu insertItemWithTitle:@"Show bounds" action:@selector(toggleShowBounds:) keyEquivalent:@"" atIndex:1] setTarget:nil];
+   if (!menu) {
+      NSMenuItem *mnuItem = [[NSApp mainMenu] addItemWithTitle:@"Debug" action:NULL keyEquivalent:@""];
+      NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Debug"];
+      mnuItem.submenu = submenu;
+      menu = mnuItem.submenu;
+   }
+   [[menu insertItemWithTitle:@"Show bounds" action:@selector(toggleShowBounds:) keyEquivalent:@"" atIndex:0] setTarget:nil];
 #endif
 }
 

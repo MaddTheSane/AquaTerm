@@ -32,6 +32,12 @@ __unused static inline void NOOP_(id x, ...) {;}
 #define LOG  NOOP_
 #endif	/* LOGGING */
 
+#ifdef DEBUG_BOUNDS
+@interface AQTGraphic (BoundsDebug)
+- (void)toggleShouldShowBounds;
+- (BOOL)shouldShowBounds;
+@end
+#endif
 
 @implementation AQTPlot {
    NSMutableArray *nibObjects;

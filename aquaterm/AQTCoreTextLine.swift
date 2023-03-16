@@ -23,10 +23,10 @@ private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
 @available(macOS 10.13, *)
 private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel, normalFont: NSFont) -> NSAttributedString? {
    let convertSymbolFontToUnicode = UserDefaults.standard.bool(forKey: ConvertSymbolFontKey)
-   // TODO: shear and rotation doesn't work!
-//   guard label.shearAngle == 0, label.angle == 0 else {
-//      return nil
-//   }
+   // TODO: shear doesn't work!
+   guard label.shearAngle == 0 else {
+      return nil
+   }
 
    let strLength = oldString.length
    let defaultAttrs: [NSAttributedString.Key: Any] =
@@ -114,11 +114,15 @@ class AQTCoreTextLine: NSObject {
       guard let attrStr2 = convertAttributedStringToCoreTextAttributes(oldString: attrString, label: label, normalFont: normalFont) else {
          return nil
       }
+      let beta = (abs(shearAngle - 90.0 * round(shearAngle / 90.0)) < 0.1) ? 0.0 : -shearAngle
+      var cgTrans = CGAffineTransform.identity
+      cgTrans.c = -tan(beta * atan(1.0) / 45.0) // =-tan(beta*pi/180.0)
       framesetter = CTFramesetterCreateWithAttributedString(attrStr2)
+      let fullRange = CFRange(location: 0, length: attrStr2.length)
+      let textSize = CTFramesetterSuggestFrameSizeWithConstraints(framesetter, fullRange, nil, CGSize(width: CGFloat.greatestFiniteMagnitude, height: .greatestFiniteMagnitude), nil)
       
       var trans = AffineTransform()
-      let textSize = attrStr2.size()
-      let textPath = CGPath(rect: CGRect(x: CGFloat(-textSize.width/2), y: -normalFont.ascender / 2, width: ceil(textSize.width), height: ceil(textSize.height)), transform: nil)
+      let textPath = CGPath(rect: CGRect(x: 0, y: -normalFont.ascender / 2, width: ceil(textSize.width), height: ceil(textSize.height)), transform: &cgTrans)
 
       frame = CTFramesetterCreateFrame(framesetter, CFRange(location: 0, length: attrString.length), textPath, nil)
       var lineBounds = CGRect()
@@ -132,7 +136,7 @@ class AQTCoreTextLine: NSObject {
       }
       let tmpSize = lineBounds.size
       var adjust = NSPoint()
-      adjust.x = -CGFloat(label.justification.intersection([.center, .right]).rawValue) * 0.5 * tmpSize.width // hAlign:
+      adjust.x = -CGFloat(label.justification.intersection(AQTAlign(rawValue: 0x03)).rawValue) * 0.5 * tmpSize.width // hAlign:
       switch label.justification.intersection([.bottom, .top, .baseline]) {
          // align middle wrt *font size*
       case []:
@@ -156,7 +160,6 @@ class AQTCoreTextLine: NSObject {
       }
       
       // Avoid multiples of 90 degrees (pi/2) since tan(k*pi/2)=inf, set beta to 0.0 instead.
-      let beta = (abs(shearAngle - 90.0 * round(shearAngle / 90.0)) < 0.1) ? 0.0 : -shearAngle
       var ts = AffineTransform()
       ts.m21 = -tan(beta * atan(1.0) / 45.0) // =-tan(beta*pi/180.0)
       trans.prepend(ts)

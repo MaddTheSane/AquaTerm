@@ -93,7 +93,7 @@ private func internalMain() {
 		let f = CGFloat(f2)
 		let lw = f/2.0
 		adapter.lineWidth = CGFloat(round(lw - 0.5))
-		adapter.setLinestylePattern(pat[f2 % 3], phase: 0.0)
+		adapter.setLinestyle(pattern: pat[f2 % 3], phase: 0.0)
 		adapter.move(to: NSPoint(x: 30, y: 200.5 + f * 10))
 		adapter.addLine(to: NSPoint(x: 180, y: 200.5 + f * 10))
 	}
@@ -273,7 +273,7 @@ private func internalMain() {
 		
 		adapter.takeColor(fromColormapEntry: 1)
 		adapter.fontSize = 12.0
-		adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
+		try? adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 150), align: [])
 		//[adapter addLabel:@"Times-Roman 16pt" atPoint:NSPoint(x: 320, 150) angle:0.0 align:AQTAlignLeft];
 		adapter.takeColor(fromColormapEntry: 2)
 		adapter.fontName = "Times-Italic"
@@ -322,7 +322,7 @@ private func internalMain() {
 		attrStr[range].superscript = -1
 		range = attrStr.index(attrStr.startIndex, offsetByCharacters: 32) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 34)
 		attrStr[range].superscript = 1
-		adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+		try? adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
 	}
 	adapter.takeColor(fromColormapEntry: 2)
 	adapter.lineWidth = 0.5
@@ -353,7 +353,7 @@ private func internalMain() {
 		range = attrStr.index(attrStr.startIndex, offsetByCharacters: 7) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 8)
 		attrStr[range].fontSize = 6.0  // extra spacing
 		
-		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
+		try? adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 75), align: .center)
 		
 		attrStr = AttributedString("mSke-wk2")
 		range = attrStr.startIndex ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 2)
@@ -375,7 +375,7 @@ private func internalMain() {
 		range = attrStr.index(attrStr.startIndex, offsetByCharacters: 7) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 8)
 		attrStr[range].superscript = 2
 		
-		adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 45), align: .center)
+		try? adapter.addLabel(attrStr, at: NSPoint(x: 260, y: 45), align: .center)
 	}
 	
 	adapter.renderPlot()

@@ -83,16 +83,18 @@ NS_ASSUME_NONNULL_BEGIN
  the structure of the string event is @"type:data1:data2:..."
  
  Currently supported events are:
- _{event description}
- _{0 NoEvent }
- _{1:%{x,y}:%button MouseDownEvent }
- _{2:%{x,y}:%key KeyDownEvent }
- _{42:%{x,y}:%key ServerError }
- _{43:%{x,y}:%key Error } */
+ \li _{event description}
+ \li _{0 NoEvent }
+ \li _{1:%{x,y}:%button MouseDownEvent }
+ \li _{2:%{x,y}:%key KeyDownEvent }
+ \li _{42:%{x,y}:%key ServerError }
+ \li _{43:%{x,y}:%key Error }
+ */
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 
 /*! @brief Optionally set an error handling routine of the form <code>customErrorHandler(NSString *errMsg)</code>
- to override default behaviour. */
+ to override default behaviour.
+ */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
 
 /*! Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
@@ -101,12 +103,13 @@ NS_ASSUME_NONNULL_BEGIN
  the structure of the string event is @"type:data1:data2:..."
  
  Currently supported events are:
- _{event description}
- _{0 NoEvent }
- _{1:%{x,y}:%button MouseDownEvent }
- _{2:%{x,y}:%key KeyDownEvent }
- _{42:%{x,y}:%key ServerError }
- _{43:%{x,y}:%key Error } */
+ \li _{event description}
+ \li _{0 NoEvent }
+ \li _{1:%{x,y}:%button MouseDownEvent }
+ \li _{2:%{x,y}:%key KeyDownEvent }
+ \li _{42:%{x,y}:%key ServerError }
+ \li _{43:%{x,y}:%key Error }
+ */
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
 /**

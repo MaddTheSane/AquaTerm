@@ -104,7 +104,7 @@
   if (self = [super initWithCoder:coder]) {
     if (coder.allowsKeyedCoding && [coder containsValueForKey:AQTLabelStringKey]) {
       string = [[coder decodeObjectOfClasses:[NSSet setWithObjects:[NSString class], [NSAttributedString class], nil] forKey:AQTLabelStringKey] copy];
-      fontName = [[coder decodeObjectOfClass:[NSString class] forKey:AQTLabelFontNameKey] copy];
+      self.fontName = [coder decodeObjectOfClass:[NSString class] forKey:AQTLabelFontNameKey];
       fontSize = [coder decodeDoubleForKey:AQTLabelFontSizeKey];
       position = [coder decodePointForKey:AQTLabelPositionKey];
       angle = [coder decodeDoubleForKey:AQTLabelAngleKey];
@@ -114,7 +114,7 @@
       AQTPoint p;
       float tmpFloat = 0;
       string = [[coder decodeObject] copy];
-      fontName = [[coder decodeObject] copy];
+      self.fontName = [coder decodeObject];
       if (@available(macOS 10.13, *)) {
         [coder decodeValueOfObjCType:@encode(float) at:&tmpFloat size:sizeof(float)];
         [coder decodeValueOfObjCType:@encode(AQTPoint) at:&p size:sizeof(AQTPoint)];

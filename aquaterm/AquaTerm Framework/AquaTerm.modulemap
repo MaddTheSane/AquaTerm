@@ -65,20 +65,20 @@ framework module AquaTerm {
 		export *
 	}
 	
-	explicit module AQTProtocols {
+	explicit module Protocols {
 		requires objc
 		
-		module AQTClientProtocol {
+		module Client {
 			header "AQTClientProtocol.h"
 			export *
 		}
 		
-		module AQTEventProtocol {
+		module Event {
 			header "AQTEventProtocol.h"
 			export *
 		}
 		
-		module AQTConnectionProtocol {
+		module Connection {
 			header "AQTConnectionProtocol.h"
 			export *
 		}

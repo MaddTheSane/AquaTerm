@@ -31,25 +31,25 @@ NS_ASSUME_NONNULL_BEGIN
  Event handling of user input is provided through an optional callback function.
 
 \code{.m}
-   //example: HelloAquaTerm.m
-   //
-   // gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation
-   // gcc main.m -o aqtex -framework AquaTerm -framework Foundation
-   #import <Foundation/Foundation.h>
-   #import <AquaTerm/AQTAdapter.h>
+//example: HelloAquaTerm.m
+//
+// gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation
+// gcc main.m -o aqtex -framework AquaTerm -framework Foundation
+#import <Foundation/Foundation.h>
+#import <AquaTerm/AQTAdapter.h>
 
-      int main(void)
-      {
-         NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-         AQTAdapter *adapter = [[AQTAdapter alloc] init];
-         [adapter openPlotWithIndex:1];
-         [adapter setPlotSize:NSMakeSize(600,400)];
-         [adapter addLabel:@"HelloAquaTerm!" atPoint:NSMakePoint(300, 200) angle:0.0 align:1];
-         [adapter renderPlot];
-         [adapter release];
-         [pool release];
-         return 0;
-      }
+int main(void)
+{
+   NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
+   AQTAdapter *adapter = [[AQTAdapter alloc] init];
+   [adapter openPlotWithIndex:1];
+   [adapter setPlotSize:NSMakeSize(600,400)];
+   [adapter addLabel:@"HelloAquaTerm!" atPoint:NSMakePoint(300, 200) angle:0.0 align:1];
+   [adapter renderPlot];
+   [adapter release];
+   [pool release];
+   return 0;
+}
 \endcode
 */
 @interface AQTAdapter : NSObject

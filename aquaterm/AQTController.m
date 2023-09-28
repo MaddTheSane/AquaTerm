@@ -157,7 +157,13 @@ extern void aqtLineDrawingTest(id sender);
    // FIXME: Add debugging menu items here if built with DEBUG_XXX flags
 #ifdef DEBUG_BOUNDS
    id menu = [[[NSApp mainMenu] itemWithTitle:@"Debug"] submenu];
-   [[menu insertItemWithTitle:@"Show bounds" action:@selector(toggleShowBounds:) keyEquivalent:@"" atIndex:1] setTarget:nil];
+   if (!menu) {
+      NSMenuItem *mnuItem = [[NSApp mainMenu] addItemWithTitle:@"Debug" action:NULL keyEquivalent:@""];
+      NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Debug"];
+      mnuItem.submenu = submenu;
+      menu = mnuItem.submenu;
+   }
+   [[menu insertItemWithTitle:@"Show bounds" action:@selector(toggleShowBounds:) keyEquivalent:@"" atIndex:0] setTarget:nil];
 #endif
 }
 

@@ -33,6 +33,11 @@ __unused static inline void NOOP_(id x, ...) {;}
 #endif	/* LOGGING */
 
 
+@interface AQTGraphic (Private)
+- (BOOL)shouldShowBounds;
+- (void)toggleShouldShowBounds;
+@end
+
 @implementation AQTPlot {
    NSMutableArray *nibObjects;
 }

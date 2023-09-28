@@ -6,6 +6,7 @@
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
 
+#import <CoreGraphics/CGBase.h>
 #import <Foundation/Foundation.h>
 
 @class AQTModel;

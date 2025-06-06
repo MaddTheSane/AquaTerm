@@ -219,7 +219,7 @@ private func internalMain() {
 		adapter.addPolygon(vertexPoints: points)
 		adapter.takeColor(fromColormapEntry: 1)
 		points.append(points[0])
-		adapter.addPolygon(vertexPoints: points)
+		adapter.addPolyline(points: points)
 		points = Array<Int>(0..<8).map { (i) -> NSPoint in
 			let radians = CGFloat(i) * CGFloat.pi / 4.0
 			let r: CGFloat = 20.0

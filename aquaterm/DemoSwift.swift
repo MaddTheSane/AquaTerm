@@ -222,7 +222,7 @@ extension AQTController {
 			adapter.addPolygon(vertexPoints: points)
 			adapter.takeColor(fromColormapEntry: 1)
 			points.append(points[0])
-			adapter.addPolygon(vertexPoints: points)
+			adapter.addPolyline(points: points)
 			points = Array<Int>(0..<8).map { (i) -> NSPoint in
 				let radians = CGFloat(i) * CGFloat.pi / 4.0
 				let r: CGFloat = 20.0
@@ -335,13 +335,13 @@ extension AQTController {
 				attrStr[range].superscript = -1
 				range = attrStr.index(attrStr.startIndex, offsetByCharacters: 32) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 34)
 				attrStr[range].superscript = 1
-				try! adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+				try! adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 75), align: [])
 			} else {
 				let attrStr = NSMutableAttributedString(string: "Underline, super- and subscript123")
 				attrStr.addAttribute(.underlineStyle, value: 1, range: NSRange(location: 0, length: 9))
 				attrStr.addAttribute(.superscript, value: -1, range: NSRange(location: 31, length: 1))
 				attrStr.addAttribute(.superscript, value: 1, range: NSRange(location: 32, length: 2))
-				adapter.addLabel(attrStr, at:NSPoint(x: 320, y: 75), align: [])
+				adapter.addLabel(attrStr, at: NSPoint(x: 320, y: 75), align: [])
 			}
 		}
 		adapter.takeColor(fromColormapEntry: 2)

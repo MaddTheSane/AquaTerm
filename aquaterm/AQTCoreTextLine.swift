@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import CoreGraphics
 import AquaTerm
 import AquaTerm.AQTGraphic
 import AquaTerm.AQTGraphic.AQTLabel
@@ -23,7 +24,7 @@ private func convertSymbolsTextToUnicode(_ symTXT: String) -> String {
 @available(macOS 10.13, *)
 private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributedString, label: AQTLabel, normalFont: NSFont) -> NSAttributedString? {
    let convertSymbolFontToUnicode = UserDefaults.standard.bool(forKey: ConvertSymbolFontKey)
-   // TODO: shear doesn't work!
+   // FIXME: shear doesn't work!
    guard label.shearAngle == 0 else {
       return nil
    }

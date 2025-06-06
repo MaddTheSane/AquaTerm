@@ -138,13 +138,15 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
 @end
 
 /**
- * This function appends the attributed string to a <code>bezierPath</code>. The following string attributes are honored:
- * \c AQTFontname - overrides defaultFontName (NSString)
- * \c AQTFontsize - overrides defaultFontSize (float)
- * \c NSSuperscript - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript
- * \c NSUnderline - underline text (int) {0, 1} FIXME: AQTUnderline
- * \c AQTBaselineAdjust - move baseline relative to glyph height (float) <0 below and 0> above baseline
- * \c AQTNonPrintingChar - if defined and 1 char will not be drawn, only occupy space (int) {0, 1}
+ * This function appends the attributed string to a `bezierPath`.
+ *
+ * The following string attributes are honored:
+ * * `AQTFontname` - overrides defaultFontName (NSString)
+ * * `AQTFontsize` - overrides defaultFontSize (float)
+ * * `NSSuperscript` - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript
+ * * `NSUnderline` - underline text (int) {0, 1} FIXME: AQTUnderline
+ * * `AQTBaselineAdjust` - move baseline relative to glyph height (float) <0 below and 0> above baseline
+ * * `AQTNonPrintingChar` - if defined and 1 char will not be drawn, only occupy space (int) {0, 1}
  *
  * If Symbol font is specified (defaultFont or as attribute), automatic conversion to Unicode is performed.
  */
@@ -248,13 +250,15 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
 }
 
 /**
- * This function appends the attributed string to a bezierPath. The following string attributes are honored:
- * AQTFontname - overrides defaultFontName (NSString)
- * AQTFontsize - overrides defaultFontSize (float)
- * NSSuperscript - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript
- * NSUnderline - underline text (int) {0, 1} FIXME: AQTUnderline
- * AQTBaselineAdjust - move baseline relative to glyph height (float) <0 below and 0> above baseline
- * AQTNonPrintingChar - if defined and 1 char will not be drawn, only occupy space (int) {0, 1}
+ * This function appends the attributed string to a bezierPath.
+ *
+ * The following string attributes are honored:
+ * * `AQTFontname` - overrides defaultFontName (NSString)
+ * * `AQTFontsize` - overrides defaultFontSize (float)
+ * * `NSSuperscript` - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript
+ * * `NSUnderline` - underline text (int) {0, 1} FIXME: AQTUnderline
+ * * `AQTBaselineAdjust` - move baseline relative to glyph height (float) <0 below and 0> above baseline
+ * * `AQTNonPrintingChar` - if defined and 1 char will not be drawn, only occupy space (int) {0, 1}
  *
  * If Symbol font is specified (defaultFont or as attribute), automatic conversion to Unicode is performed. 
 */

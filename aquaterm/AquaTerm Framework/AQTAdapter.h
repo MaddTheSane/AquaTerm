@@ -16,12 +16,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @class AQTPlotBuilder, AQTClientManager;
 
-/** \brief Class that provides an interface to the functionality of AquaTerm.
+/**
+ Class that provides an interface to the functionality of AquaTerm.
  
  AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
  As such, it bridges the gap between client's procedural calls requesting operations
  such as drawing a line or placing a label and the object-oriented graph being built.
- The actual assembling of the graph is performed by an instance of class <code>AQTPlotBuilder</code>.
+ The actual assembling of the graph is performed by an instance of class `AQTPlotBuilder`.
 
  It seemlessly provides a connection to the viewer (AquaTermApp.app) without any work on behalf of the client.
 
@@ -30,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  Event handling of user input is provided through an optional callback function.
 
-\code{.m}
+```
 //example: HelloAquaTerm.m
 //
 // gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation
@@ -50,7 +51,7 @@ int main(void)
    [pool release];
    return 0;
 }
-\endcode
+```
 */
 @interface AQTAdapter : NSObject
 {
@@ -70,14 +71,16 @@ int main(void)
 //! Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary.
 - (nullable instancetype)init;
 
-//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance. In most cases \c -init should be used, which calls \c -initWithHandler: with a \c nil argument.
+//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance.
+//!
+//! In most cases `-init` should be used, which calls `-initWithHandler:` with a `nil` argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
-/*! @brief Optionally set an error handling block of the form <code>customErrorHandler(NSString *errMsg)</code>
+/*! @brief Optionally set an error handling block of the form `customErrorHandler(NSString *errMsg)`
  to override default behaviour. */
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 
-/*! Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+/*! Optionally set an event handling routine of the form `customEventHandler(int index, NSString *event)`.
  
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
@@ -92,12 +95,12 @@ int main(void)
  */
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 
-/*! @brief Optionally set an error handling routine of the form <code>customErrorHandler(NSString *errMsg)</code>
+/*! @brief Optionally set an error handling routine of the form `customErrorHandler(NSString *errMsg)`
  to override default behaviour.
  */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
 
-/*! Optionally set an event handling routine of the form <code>customEventHandler(int index, NSString *event)</code>.
+/*! Optionally set an event handling routine of the form `customEventHandler(int index, NSString *event)`.
  
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
@@ -117,21 +120,23 @@ int main(void)
  \name Control operations
  @{ */
 
-/*! Open up a new plot with internal reference number \c refNum and make it the target for subsequent commands. If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot. */
+/*! Open up a new plot with internal reference number `refNum` and make it the target for subsequent commands.
+ *
+ * If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot. */
 - (void)openPlotWithIndex:(int32_t)refNum;
 
-/*! Get the plot referenced by \c refNum and make it the target for subsequent commands.
+/*! Get the plot referenced by `refNum` and make it the target for subsequent commands.
  
  If no plot exists for refNum, the currently targeted plot remain unchanged. Disables
  event handling for previously targeted plot.
- \return \c YES on success, \c NO otherwise.
+ \return `YES` on success, `NO` otherwise.
  */
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
 
 /*! Set the limits of the plot area.
  
- Must be set \a before any drawing command following
- an \c -openPlotWithIndex: or \c -clearPlot command or behaviour is undefined.
+ Must be set  *before* any drawing command following
+ an `-openPlotWithIndex:` or `-clearPlot` command or behaviour is undefined.
  */
 @property NSSize plotSize;
 
@@ -156,7 +161,7 @@ int main(void)
  event passing from any plot previously set to pass events. */
 - (void)setAcceptingEvents:(BOOL)flag;
 
-/*! Reads the last event logged by the viewer. Will always return \c NoEvent unless \c setAcceptingEvents: is called with a \c YES argument. */
+/*! Reads the last event logged by the viewer. Will always return `NoEvent` unless `-setAcceptingEvents:` is called with a `YES` argument. */
 @property (readonly, copy) NSString *lastEvent;
 
 - (NSString *)waitNextEvent;
@@ -170,7 +175,7 @@ int main(void)
  @{ */
 
 /*! When setting a clipping region (rectangular) to apply to all subsequent operations,
- until changed again by \c -setClipRect: or <code>setDefaultClipRect</code>. */
+ until changed again by `-setClipRect:` or `-setDefaultClipRect`. */
 @property NSRect clipRect;
 
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
@@ -184,12 +189,12 @@ int main(void)
 //! Return the number of color entries available in the currently active colormap.
 @property (readonly) int32_t colormapSize;
 
-//! Set an RGB entry in the colormap, at the position given by <code>entryIndex</code>.
+//! Set an RGB entry in the colormap, at the position given by `entryIndex`.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b alpha:(float)a;
 
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
 
-//! Set an RGB entry in the colormap, at the position given by <code>entryIndex</code>.
+//! Set an RGB entry in the colormap, at the position given by `entryIndex`.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b;
 
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b;
@@ -246,13 +251,13 @@ int main(void)
 /*! The font size in points. Applies to all future operations. Default is 14pt. */
 @property CGFloat fontSize;
 
-/*! Convenience form of \c addLabel:atPoint:angle:shearAngle:align: for horizontal, left and baseline aligned text. */
+/*! Convenience form of `-addLabel:atPoint:angle:shearAngle:align:` for horizontal, left and baseline aligned text. */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos NS_REFINED_FOR_SWIFT;
 
-/*! Same as \c addLabel:atPoint:angle:shearAngle:align: except that \c shearAngle defaults to <code>0</code>.*/
+/*! Same as `-addLabel:atPoint:angle:shearAngle:align:` except that `shearAngle` defaults to `0`.*/
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
-/*! Add \c text at coordinate given by <code>pos</code>, rotated by \c angle degrees and aligned vertically and horisontally (with respect to pos and rotation) according to <code>align</code>. Horizontal and vertical align may be combined by an OR operation, e.g. <code>(AQTAlignCenter | AQTAlignMiddle)</code>.
+/*! Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned vertically and horisontally (with respect to pos and rotation) according to `align`. Horizontal and vertical align may be combined by an OR operation, e.g. `(AQTAlignCenter | AQTAlignMiddle)`.
  
  \li {HorizontalAlign Description}
  \li {AQTAlignLeft LeftAligned}
@@ -264,8 +269,8 @@ int main(void)
  \li {AQTAlignBottom BottomBoundsOfTHISString}
  \li {AQTAlignTop TopBoundsOfTHISString}
  
- By specifying \c shearAngle the text may be sheared in order to appear correctly in e.g. 3D plot labels.
- The text can be either an \c NSString or an NSAttributedString. By using \c NSAttributedString a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
+ By specifying `shearAngle`, the text may be sheared in order to appear correctly in e.g. 3D plot labels.
+ The text can be either an `NSString` or an NSAttributedString. By using `NSAttributedString` a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
  \li {Attribute value}
  \li {@"NSSuperScript" raise-level}
  \li {@"NSUnderline" 0 or 1}
@@ -277,7 +282,7 @@ int main(void)
  \name Line handling
  @{ */
 
-/*! The current \c linewidth (in points), used for all subsequent lines. Any line currently being built by \c -moveToPoint:/\c -addLineToPoint will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default \c lineWidth is 1pt.*/
+/*! The current `linewidth` (in points), used for all subsequent lines. Any line currently being built by `-moveToPoint:`/`-addLineToPoint:` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.*/
 @property CGFloat lineWidth;
 
 /*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified
@@ -288,11 +293,11 @@ int main(void)
 /*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
 - (void)setLinestyleSolid;
 
-/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by \c moveToPoint: / \c addLineToPoint: will be considered finished since any coalesced sequence of line segments must share the same cap style.
+/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by `-moveToPoint:`/`-addLineToPoint:` will be considered finished since any coalesced sequence of line segments must share the same cap style.
 
- \li {AQTLineCapStyleButt ButtLineCapStyle}
- \li {AQTLineCapStyleRound RoundLineCapStyle}
- \li {AQTLineCapStyleSquare SquareLineCapStyle}
+ @li {AQTLineCapStyleButt ButtLineCapStyle}
+ @li {AQTLineCapStyleRound RoundLineCapStyle}
+ @li {AQTLineCapStyleSquare SquareLineCapStyle}
  
  Default is RoundLineCapStyle. */
 @property AQTLineCapStyle lineCapStyle;
@@ -300,11 +305,13 @@ int main(void)
 /*! Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments.*/
 - (void)moveToPoint:(NSPoint)point;
 
-/*! Add a line segment from the current point (given by a previous \c moveToPoint: or <code>addLineToPoint</code>).*/
+/*! Add a line segment from the current point (given by a previous `-moveToPoint:` or `-addLineToPoint:`).*/
 - (void)addLineToPoint:(NSPoint)point;
 
 /** Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points.
- \param pc Number of line segments + 1. */
+ * \param pc Number of line segments + 1.
+ * \param points The points to add.
+ */
 - (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
 /**
@@ -316,14 +323,14 @@ int main(void)
 - (void)addEdgeToVertexPoint:(NSPoint)point;
 
 /*! Add a polygon specified by a list of corner points.<br>
- Number of corners is passed in <code>pc</code>.
+ Number of corners is passed in `pc`.
  */
 - (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
 //! Add a filled rectangle. Will attempt to remove any objects that will be covered by <code>aRect</code>.
 - (void)addFilledRect:(NSRect)aRect;
 
-//! Remove any objects \a completely inside <code>aRect</code>. Does \a not force a redraw of the plot.
+//! Remove any objects *completely* inside `aRect`. Does *not* force a redraw of the plot.
 - (void)eraseRect:(NSRect)aRect;
 
 /**
@@ -331,32 +338,32 @@ int main(void)
  \name Image handling
  @{*/
 
-/// \brief Set a transformation matrix.
+/// Set a transformation matrix.
 ///
-/// For images added by <code>addTransformedImageWithBitmap:size:clipRect:</code>,
-/// see \c NSImage documentation for details.
+/// For images added by `-addTransformedImageWithBitmap:size:clipRect:`,
+/// see `NSImage` documentation for details.
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY NS_SWIFT_NAME(setImageTransform(m11:m12:m21:m22:tX:tY:));
 
 /// Set transformation matrix to unity, i.e. no transform.
 - (void)resetImageTransform;
 
-/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+/// Add a bitmap image of size `bitmapSize` scaled to fit `destBounds`, does **not** apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (void)addImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
-/*! Add a bitmap image of size \c bitmapSize \b honoring transform, transformed image is clipped to current <code>clipRect</code>. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */
+/*! Add a bitmap image of size `bitmapSize` **honoring** transform, transformed image is clipped to current `clipRect`. Bitmap format is 24bits per pixel in sequence RGBRGB...  with 8 bits per color. */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize;
 
 
-/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
+/// Add a bitmap image of size `bitmapSize` scaled to fit `destBounds`, does **not** apply transform. Bitmap format is 24bits per pixel in sequence RGBRGB... with 8 bits per color.
 - (BOOL)addImageWithBitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
-/// Add a bitmap image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Bitmap format is 32bits per pixel in sequence RGBARGBA... with 8 bits per color.
+/// Add a bitmap image of size `bitmapSize` scaled to fit `destBounds`, does **not** apply transform. Bitmap format is 32bits per pixel in sequence RGBARGBA... with 8 bits per color.
 - (BOOL)addImageWithRGBABitmapData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
-/// Add an image of size \c bitmapSize scaled to fit <code>destBounds</code>, does \b not apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
+/// Add an image of size `bitmapSize` scaled to fit `destBounds`, does **not** apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
 - (BOOL)addImageWithImageData:(NSData *)bitmap size:(NSSize)bitmapSize bounds:(NSRect)destBounds;
 
-/// Add an image scaled to fit <code>destBounds</code>, does \b not apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
+/// Add an image scaled to fit `destBounds`, does **not** apply transform. Image data has to be an image format that AppKit supports, such as PNG, GIF, TIFF, etc...
 - (BOOL)addImageWithImageData:(NSData *)bitmap bounds:(NSRect)destBounds;
 
 
@@ -373,29 +380,34 @@ int main(void)
  \name Deprecated
  @{ */
 
-/*! \brief Deprecated method to set the line width.
- \deprecated Use the \c lineWidth property or \c -setLineWidth: instead.
- \param newLinewidth The new line width.
+/*!
+ Deprecated method to set the line width.
+ @deprecated Use the `lineWidth` property or `-setLineWidth:` instead.
+ @param newLinewidth The new line width.
  */
 - (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
-/*! \brief Deprecated method to set the font name.
- \deprecated Use the \c fontName property or \c -setFontName: instead.
- \param newFontname The new font name.
+/*!
+ Deprecated method to set the font name.
+ @deprecated Use the `fontName` property or `-setFontName:` instead.
+ @param newFontname The new font name.
  */
 - (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
 
-/*! \brief Deprecated method to set the font size.
- \deprecated Use the \c fontSize property or \c -setFontSize: instead.
- \param newFontsize The new font size.
+/*!
+ Deprecated method to set the font size.
+ @deprecated Use the `fontSize` property or `-setFontSize:` instead.
+ @param newFontsize The new font size.
  */
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
-/** Deprecated, use \c addTransformedImageWithBitmap:size: instead.
- Add a bitmap image of size \c bitmapSize \b honoring transform,
- transformed image is clipped to <code>destBounds</code>. Bitmap format is 24bits
+/**
+ Deprecated, use `-addTransformedImageWithBitmap:size:` instead.
+ Add a bitmap image of size `bitmapSize` **honoring** transform,
+ transformed image is clipped to `destBounds`.
+ Bitmap format is 24bits
  per pixel in sequence RGBRGB...  with 8 bits per color.
- \deprecated Use \c addTransformedImageWithBitmap:size: instead.
+ @deprecated Use `-addTransformedImageWithBitmap:size:` instead.
  */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 /**

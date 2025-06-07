@@ -36,10 +36,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)init;
 
 /*!
- \brief A leaf object class representing an actual item in the plot.
- 
- Since the app is a viewer we do three things with the object:
- create (once), draw (any number of times) and (eventually) dispose of it.
+ * A leaf object class representing an actual item in the plot.
+ *
+ * Since the app is a viewer we do three things with the object:
+ * create (once), draw (any number of times) and (eventually) dispose of it.
  */
 - (instancetype)initWithPoints:(nullable const NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
@@ -49,11 +49,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (readonly) BOOL hasPattern;
 - (void)setLinestylePattern:(nullable const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
-/** \deprecated Use the \c lineWidth property or \c -setLineWidth: instead.
+/** @deprecated Use the `lineWidth` property or `-setLineWidth:` instead.
  */
 - (void)setLinewidth:(float)lw __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
-/** \deprecated Use the \c filled property or \c -setFilled: instead.
+/** @deprecated Use the `filled` property or `-setFilled:` instead.
  */
 - (void)setIsFilled:(BOOL)newFill __API_DEPRECATED_WITH_REPLACEMENT("-setFilled:", macos(10.4, 10.9));
 @end

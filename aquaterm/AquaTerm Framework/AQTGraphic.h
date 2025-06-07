@@ -11,7 +11,8 @@
 
 @class AQTModel;
 
-/** \brief Color struct used by AquaTerm.
+/**
+ * Color struct used by AquaTerm.
  */
 typedef struct _AQTColor {
    //! The red component.
@@ -27,21 +28,24 @@ typedef struct _AQTColor {
    float alpha;
 } CG_BOXABLE AQTColor;
 
-/** \brief Architecture-independant NSPoint.
+/**
+ * Architecture-independant NSPoint.
  */
 typedef struct _AQTPoint {
   float x;
   float y;
 } AQTPoint;
 
-/** \brief Architecture-independant size.
+/**
+ * Architecture-independant size.
  */
 typedef struct _AQTSize {
   float width;
   float height;
 } AQTSize;
 
-/** \brief Architecture-independant rect.
+/**
+ * Architecture-independant rect.
  */
 typedef struct _AQTRect {
   AQTPoint origin;

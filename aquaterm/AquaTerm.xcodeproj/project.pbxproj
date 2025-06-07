@@ -38,6 +38,12 @@
 		556C56341F3F94180080A38F /* AQTWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556C56331F3F90E50080A38F /* AQTWindow.xib */; };
 		5575FDE51C403A4900B7D002 /* PreferenceKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5575FDE41C403A4900B7D002 /* PreferenceKeys.m */; };
 		559DC43228A63B9A00DE6EEA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559DC43128A63AC200DE6EEA /* main.swift */; };
+		55B68AB92DF52AB100E06938 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97324FDCFA39411CA2CEA /* AppKit.framework */; };
+		55B68ABA2DF52AB100E06938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		55B68ABB2DF52AB100E06938 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD51DED04EB839F00EBD329 /* CoreFoundation.framework */; };
+		55B68ABC2DF52AB100E06938 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97325FDCFA39411CA2CEA /* Foundation.framework */; };
+		55B68ABD2DF52AB100E06938 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBD51DED04EB839F00EBD329 /* CoreFoundation.framework */; };
+		55B68ABE2DF52AB100E06938 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29B97324FDCFA39411CA2CEA /* AppKit.framework */; };
 		55D06454262D2A05004B4E9C /* AQTPicture.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D06452262D2A05004B4E9C /* AQTPicture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		55D06455262D2A05004B4E9C /* AQTPicture.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D06453262D2A05004B4E9C /* AQTPicture.m */; };
 		55D31F081C3C8F2B0060FF56 /* Demo-ARC.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D31F071C3C8F2B0060FF56 /* Demo-ARC.m */; };
@@ -450,6 +456,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55B68ABC2DF52AB100E06938 /* Foundation.framework in Frameworks */,
+				55B68ABD2DF52AB100E06938 /* CoreFoundation.framework in Frameworks */,
+				55B68ABE2DF52AB100E06938 /* AppKit.framework in Frameworks */,
 				554387A71C3B86CD006FBFB4 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -459,6 +468,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				CBC4B44605E4C784001BE8D7 /* Cocoa.framework in Frameworks */,
+				55B68AB92DF52AB100E06938 /* AppKit.framework in Frameworks */,
+				55B68ABA2DF52AB100E06938 /* Foundation.framework in Frameworks */,
+				55B68ABB2DF52AB100E06938 /* CoreFoundation.framework in Frameworks */,
 				CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

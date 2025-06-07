@@ -2,7 +2,7 @@
 
 # Installer postflight script
 
-VERSIONS=".1.0.0 .1.0.1 .1.1.0"
+VERSIONS=".1.0.0 .1.0.1 .1.1.0 .1.1.1"
 PREFIX=/usr/local
 
 LIBDIR=$PREFIX/lib

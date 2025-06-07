@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
  such as drawing a line or placing a label and the object-oriented graph being built.
  The actual assembling of the graph is performed by an instance of class <code>AQTPlotBuilder</code>.
 
- It seemlessly provides a connection to the viewer (AquaTerm.app) without any work on behalf of the client.
+ It seemlessly provides a connection to the viewer (AquaTermApp.app) without any work on behalf of the client.
 
  It also provides some utility functionality such an indexed colormap, and an optional
  error handling callback function for the client.

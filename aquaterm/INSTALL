@@ -1,7 +1,7 @@
 If you are building from source, perform the following steps to install AquaTerm after building.
 
 To install at default locations:
-1) Drag AquaTerm.app to /Applications
+1) Drag AquaTermApp.app to /Applications
 2) Drag AquaTerm.framework to /Library/Frameworks
 
 3) If you wantsome  backwards compatibility, symlinks could be placed from /usr/local/lib/libaquaterm.dylib
@@ -16,7 +16,7 @@ However this method is deprecated and you should use -framework AquaTerm instead
 
 You should then end up with:
 ---
-/Applications/AquaTerm.app
+/Applications/AquaTermApp.app
 /Library/Frameworks/AquaTerm.framework
 
 /usr/local/
@@ -38,7 +38,7 @@ Documentation for AQTAdapter on http://aquaterm.sourceforge.net
 The following environment variables may be of interest:
 ---
 AQUATERM_LOGLEVEL       set in the range 0-4 to have increasing levels of logging, zero means no logging. 
-AQUATERM_PATH           point to any non-standard location of AquaTerm.app e.g. /Users/you/Apps/AquaTerm.app
+AQUATERM_PATH           point to any non-standard location of AquaTermApp.app e.g. /Users/you/Apps/AquaTermApp.app
 GNUTERM                 set to "aqua" to make AquaTerm default output in Gnuplot
 PGPLOT_DEV              set to "/AQT" to make AquaTerm default output in PGPLOT
 ===

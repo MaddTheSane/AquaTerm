@@ -350,7 +350,7 @@
 		CBB8466E056C0A4B00D208BA /* AQTClientManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTClientManager.h; sourceTree = "<group>"; };
 		CBB8466F056C0A4B00D208BA /* AQTClientManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AQTClientManager.m; sourceTree = "<group>"; };
 		CBC4B44A05E4C784001BE8D7 /* AquaTerm.app-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AquaTerm.app-Info.plist"; sourceTree = "<group>"; };
-		CBC4B44B05E4C784001BE8D7 /* AquaTerm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTerm.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CBC4B44B05E4C784001BE8D7 /* AquaTermApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AquaTermApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CBD51DED04EB839F00EBD329 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		CBD51E0004EB84FA00EBD329 /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		CBD6C05D066284A70096ACB5 /* helplayout.css */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; name = helplayout.css; path = /Users/per/Documents/Source/aquaterm_help/build/helplayout.css; sourceTree = "<absolute>"; };
@@ -490,7 +490,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CBC4B44B05E4C784001BE8D7 /* AquaTerm.app */,
+				CBC4B44B05E4C784001BE8D7 /* AquaTermApp.app */,
 				CB12640507CB5F5A00EF1763 /* AquaTerm.framework */,
 				55D31EF21C3C8DFA0060FF56 /* AquaTermDemo */,
 				55D31F061C3C8F020060FF56 /* AquaTermDemoARC */,
@@ -999,7 +999,7 @@
 			name = AquaTerm;
 			productInstallPath = /Applications;
 			productName = AquaTerm;
-			productReference = CBC4B44B05E4C784001BE8D7 /* AquaTerm.app */;
+			productReference = CBC4B44B05E4C784001BE8D7 /* AquaTermApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1819,11 +1819,12 @@
 					"DEBUG_BOUNDS=1",
 				);
 				INFOPLIST_FILE = "AquaTerm Application/AquaTerm.app-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = AquaTerm;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = AquaTerm;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = AquaTermApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1841,11 +1842,12 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				INFOPLIST_FILE = "AquaTerm Application/AquaTerm.app-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = AquaTerm;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;
-				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)App";
-				PRODUCT_NAME = AquaTerm;
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
+				PRODUCT_NAME = AquaTermApp;
 				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

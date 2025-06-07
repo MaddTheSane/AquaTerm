@@ -165,7 +165,14 @@
       status = LSOpenCFURLRef((__bridge CFURLRef)appURL, NULL);
    } else {
       // Look for AquaTerm at default location
-      status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
+      status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTermApp.app"], NULL);
+      if (status != noErr) {
+         status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:[@"~/Applications/AquaTermApp.app" stringByExpandingTildeInPath]], NULL);
+      }
+      // Look for AquaTerm at legacy location
+      if (status != noErr) {
+         status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:@"/Applications/AquaTerm.app"], NULL);
+      }
       if (status != noErr) {
          status = LSOpenCFURLRef((__bridge CFURLRef)[NSURL fileURLWithPath:[@"~/Applications/AquaTerm.app" stringByExpandingTildeInPath]], NULL);
       }

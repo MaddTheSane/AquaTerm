@@ -90,14 +90,18 @@ extension AQTAdapter {
 		__addLabel(text, at: pos, angle: angle, shearAngle: shearAngle, align: just)
 	}
 
-	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
+	/// Set the current line style to pattern style, used for all subsequent lines.
+	///
+	/// The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc public func setLinestyle(pattern newPattern: [CGFloat], phase newPhase: CGFloat) {
 		setLinestyle(pattern: newPattern.map({Float($0)}), phase: newPhase)
 	}
 
-	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
+	/// Set the current line style to pattern style, used for all subsequent lines.
+	///
+	/// The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc public func setLinestyle(pattern newPattern: [Float], phase newPhase: CGFloat) {

@@ -28,7 +28,7 @@ The class `AQTAdapter` is (despite its name) a "facade", hiding the internals fr
 
 When the client opens a new plot, the request is forwarded from `AQTAdapter` to `AQTClientManager` which sends a message to AquaTerm (after launching it if it is not running) requesting a new plot. AquaTerm instantiates an object of class `AQTPlot` and replies with a reference to the newly instantiated `AQTPlot` object. `AQTClientManager` then instantiates a corresponding `AQTPlotBuilder` and returns a reference to AQTAdapter which will forward all drawing related messages to it. Thus, there is a one-to-one relationship between `AQTPlotBuilder` (in AquaTerm.framework) and `AQTPlot` (in AquaTerm).
 
-It also implements the methods in protocol `AQTEventProtocol` in order to receive event from a plot window, see `AQTEventProtocol`.
+It also implements the methods in protocol `AQTEventProtocol` in order to receive event from a plot window, see ``AQTEventProtocol``.
 
 ### AQTPlotBuilder
 
@@ -120,7 +120,7 @@ _To be documented._
 
 Example: aqt_hello.m
 
-````
+````objc
 
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTAdapter.h>
@@ -174,15 +174,16 @@ Finally, add a category to `AQTGraphicDrawingAdditions` that makes renders the n
 
 The following is an example of how `AQTBezierPath` could look:
 
-
+```objc
     @interface AQTBezierPath : AQTPath 
     {
     }
     - (id)initWithStartPoint:(NSPoint)p1 controlPoint1:(NSPoint)c1 controlPoint2:(NSPoint)c2 endPoint:(NSPoint)p2;
     @end
 
-````
+```
 
+```objc
 @implementation AQTBezierPath
 
 - (id)initWithStartPoint:(NSPoint)p1 controlPoint1:(NSPoint)c1 controlPoint2:(NSPoint)c2 endPoint:(NSPoint)p2

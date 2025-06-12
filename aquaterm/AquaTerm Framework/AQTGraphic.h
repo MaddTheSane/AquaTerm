@@ -86,8 +86,10 @@ typedef struct _AQTRect {
  \name Deprecated
  @{ */
 
-/*! \brief Set the \c clipped property.
- \deprecated Use the \c clipped property or \c -setClipped: instead.
+/*!
+ * Sets the ``clipped`` property.
+ * 
+ * \deprecated Use the ``clipped`` property or `-setClipped:` instead.
  */
 - (void)setIsClipped:(BOOL)newClip __API_DEPRECATED_WITH_REPLACEMENT("-setClipped:", macos(10.4, 10.9));
 

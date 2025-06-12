@@ -22,7 +22,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		5508AF252DFABB2400FCA5E0 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5508AF242DFABB2400FCA5E0 /* Documentation.docc */; };
+		5508AF252DFABB2400FCA5E0 /* AquaTerm.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5508AF242DFABB2400FCA5E0 /* AquaTerm.docc */; };
+		5508AF292DFB703700FCA5E0 /* AquaTermApp.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5508AF282DFB703700FCA5E0 /* AquaTermApp.docc */; };
 		551354BE1F439A9400D6F95E /* Bugs.m in Sources */ = {isa = PBXBuildFile; fileRef = FEBB59CE055CF10B00EEC8EA /* Bugs.m */; };
 		551354C11F439ADD00D6F95E /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		551A59BF1C3F775D00DED042 /* ARCBridge.h in Headers */ = {isa = PBXBuildFile; fileRef = 551A59BE1C3F775D00DED042 /* ARCBridge.h */; };
@@ -284,7 +285,8 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		550857EF1C80F719005ACF4A /* AQTHelpersAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTHelpersAdditions.swift; sourceTree = "<group>"; };
-		5508AF242DFABB2400FCA5E0 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		5508AF242DFABB2400FCA5E0 /* AquaTerm.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AquaTerm.docc; sourceTree = "<group>"; };
+		5508AF282DFB703700FCA5E0 /* AquaTermApp.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = AquaTermApp.docc; sourceTree = "<group>"; };
 		551354B91F439A8400D6F95E /* AquaTermBugs */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermBugs; sourceTree = BUILT_PRODUCTS_DIR; };
 		551A59BE1C3F775D00DED042 /* ARCBridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCBridge.h; sourceTree = "<group>"; };
 		554387C11C3B95AA006FBFB4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -712,7 +714,8 @@
 				CB0C496E065ABF7C00AC22F7 /* INSTALL */,
 				CBAA608305E7AFF0009B33CD /* distroMakefile */,
 				F57C16A302506DE3010D3DE4 /* ToDo */,
-				5508AF242DFABB2400FCA5E0 /* Documentation.docc */,
+				5508AF242DFABB2400FCA5E0 /* AquaTerm.docc */,
+				5508AF282DFB703700FCA5E0 /* AquaTermApp.docc */,
 			);
 			name = Dist;
 			path = ..;
@@ -1226,7 +1229,7 @@
 				CB91253807CB489E001D5EAF /* AQTImage.m in Sources */,
 				CB91253A07CB48A0001D5EAF /* AQTLabel.m in Sources */,
 				CB91253C07CB48A2001D5EAF /* AQTModel.m in Sources */,
-				5508AF252DFABB2400FCA5E0 /* Documentation.docc in Sources */,
+				5508AF252DFABB2400FCA5E0 /* AquaTerm.docc in Sources */,
 				CB91253E07CB48A4001D5EAF /* AQTPath.m in Sources */,
 				CB91253F07CB48A7001D5EAF /* AQTConstants.m in Sources */,
 				CB91254107CB48A9001D5EAF /* AQTFunctions.m in Sources */,
@@ -1248,6 +1251,7 @@
 				CBC4B44105E4C784001BE8D7 /* Demo.m in Sources */,
 				CBC4B44205E4C784001BE8D7 /* Bugs.m in Sources */,
 				CBC4B44305E4C784001BE8D7 /* Timing.m in Sources */,
+				5508AF292DFB703700FCA5E0 /* AquaTermApp.docc in Sources */,
 				CB9B70D4065A0B9C00563010 /* AQTPrefController.m in Sources */,
 				CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */,
 				554FE7A028C3FB2D00418258 /* AQTCoreTextLine.swift in Sources */,

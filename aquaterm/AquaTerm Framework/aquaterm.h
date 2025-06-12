@@ -13,6 +13,7 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include <AvailabilityMacros.h>
 #include <CoreFoundation/CFAvailability.h>
 
 #define AQT_EVENTBUF_SIZE 128
@@ -20,26 +21,26 @@
 /** Constants that specify linecap styles. */
 typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    /**
-    * Butt line cap style.
+    * Line does not extend beyond the endpoint.
     */
    AQTLineCapStyleButt = 0,
    /**
-    * Round line cap style.
+    * Line extends into a half-circle beyond endpoint.
     */
    AQTLineCapStyleRound = 1,
    /**
-    * Square line cap style.
+    * Line extends into a half-square beyond endpoint.
     */
    AQTLineCapStyleSquare = 2,
 };
 
-/*! \deprecated Use ``AQTLineCapStyle/butt`` instead.*/
+/*! Use ``AQTLineCapStyle/butt`` instead.*/
 static const AQTLineCapStyle AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt;
 
-/*! \deprecated Use ``AQTLineCapStyle/round`` instead.*/
+/*! Use ``AQTLineCapStyle/round`` instead.*/
 static const AQTLineCapStyle AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound;
 
-/*! \deprecated Use ``AQTLineCapStyle/square`` instead.*/
+/*! Use ``AQTLineCapStyle/square`` instead.*/
 static const AQTLineCapStyle AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare;
 
 /*! Constants that specify horizontal and vertical alignment for labels. See ``AQTAdapter/addLabel:atPoint:angle:align:`` for definitions and use. */
@@ -85,18 +86,25 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
 /** \name Class initialization etc.
  @{ */
 
+/*!
+ * Initialize the AquaTerm C functions.
+ */
 bool aqtInit(void);
+
+/*!
+ * Deinitializes the AquaTerm C functions.
+ */
 void aqtTerminate(void);
 
 /** The event handler callback functionality should be used with caution, it may
-   not be safe to use in all circumstances. It is certainly _not_ threadsafe. 
+   not be safe to use in all circumstances. It is certainly _not_ thread-safe.
    If in doubt, use aqtWaitNextEvent() instead. */
 /*!
- * @function aqtSetEventHandler
+ * aqtSetEventHandler
  *
  * The event handler callback functionality should be used with caution, it may
- * not be safe to use in all circumstances. It is certainly \b not threadsafe.
- * If in doubt, use \c aqtWaitNextEvent() instead.
+ * not be safe to use in all circumstances. It is certainly __not__ thread-safe.
+ * If in doubt, use ``aqtWaitNextEvent`` instead.
  */
 void aqtSetEventHandler(void (*func)(int ref, const char *event));
 
@@ -104,8 +112,8 @@ void aqtSetEventHandler(void (*func)(int ref, const char *event));
  * @function aqtSetEventBlock
  *
  * The event handler callback functionality should be used with caution, it may
- * not be safe to use in all circumstances. It is certainly \b not threadsafe.
- * If in doubt, use \c aqtWaitNextEvent() instead.
+ * not be safe to use in all circumstances. It is certainly **not** thread-safe.
+ * If in doubt, use ``aqtWaitNextEvent`` instead.
  */
 void aqtSetEventBlock(void (^func)(int ref, const char *event));
 
@@ -117,6 +125,12 @@ void aqtSetEventBlock(void (^func)(int ref, const char *event));
 void aqtOpenPlot(int32_t refNum);
 int32_t aqtSelectPlot(int32_t refNum);
 void aqtSetPlotSize(float width, float height);
+/**
+ * Set the window name.
+ *
+ * Attempts to read it as UTF-8, but falls back to ISO Latin 1 if UTF-8 reading fails,
+ * changes the title to "Untitled" if ISO Latin 1 decoding fails.
+ */
 void aqtSetPlotTitle(const char *title);
 void aqtRenderPlot(void);
 void aqtClearPlot(void);
@@ -211,6 +225,11 @@ void aqtSetImageTransform(float m11, float m12, float m21, float m22, float tX, 
 void aqtResetImageTransform(void);
 void aqtAddImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
 void aqtAddImageWithRGBABitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float destX, float destY, float destWidth, float destHeight);
+/**
+ * Deprecated, do not use.
+ *
+ * @deprecated Deprecated.
+ */
 void aqtAddTransformedImageWithBitmap(const void *bitmap, int32_t pixWide, int32_t pixHigh, float clipX, float clipY, float clipWidth, float clipHeight) DEPRECATED_ATTRIBUTE;
 
 /**

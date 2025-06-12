@@ -43,17 +43,31 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithPoints:(nullable const NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
+/// Current linewidth in points
 @property CGFloat lineWidth;
+
 @property AQTLineCapStyle lineCapStyle;
 @property (getter=isFilled) BOOL filled;
 @property (readonly) BOOL hasPattern;
+
+/*! Set the line style to pattern style.
+ 
+ The linestyle is specified
+ as a pattern, an array of at most 8 floats, where even positions correspond to dash-lengths and odd positions
+ correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`. */
 - (void)setLinestylePattern:(nullable const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
-/** @deprecated Use the `lineWidth` property or `-setLineWidth:` instead.
+/**
+ * Deprecated way of setting the ``lineWidth`` property.
+ *
+ * Use the `lineWidth` property or `-setLineWidth:` instead.
  */
 - (void)setLinewidth:(float)lw __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
-/** @deprecated Use the `filled` property or `-setFilled:` instead.
+/**
+ * Deprecated way of setting the ``filled`` property.
+ *
+ * Use the `filled` property or `-setFilled:` instead.
  */
 - (void)setIsFilled:(BOOL)newFill __API_DEPRECATED_WITH_REPLACEMENT("-setFilled:", macos(10.4, 10.9));
 @end

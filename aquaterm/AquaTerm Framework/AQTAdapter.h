@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  Event handling of user input is provided through an optional callback function.
 
-```
+```objc
 //example: HelloAquaTerm.m
 //
 // gcc -ObjC main.c -o aqtex -lobjc -framework AquaTerm -framework Foundation
@@ -266,13 +266,13 @@ int main(void)
  
  | Horizontal Align | Description |
  | --- | --- |
- | ``AQTAlignLeft`` | Left aligned text |
+ | ``AQTAlign/left`` | Left aligned text |
  | ``AQTAlign/center`` | Centered text |
  | ``AQTAlign/right`` | Right aligned text |
 
  | Vertical Align | Description |
  | --- | --- |
- | ``AQTAlignMiddle`` | Approximate centerline |
+ | ``AQTAlign/middle`` | Approximate centerline |
  | ``AQTAlign/baseline`` | Normal |
  | ``AQTAlign/bottom`` | Bottom bounds of _this_ string |
  | ``AQTAlign/top`` | Top bounds of _this_ string |
@@ -295,9 +295,12 @@ int main(void)
 /*! The current `linewidth` (in points), used for all subsequent lines. Any line currently being built by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.*/
 @property CGFloat lineWidth;
 
-/*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified
- as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
- correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}. */
+/*! Set the current line style to pattern style, used for all subsequent lines.
+ *
+ * The linestyle is specified
+ * as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
+ * correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`.
+ */
 - (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase;
 
 /*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
@@ -311,7 +314,7 @@ int main(void)
  | ``AQTLineCapStyle/round`` | Line extends into half-circle beyond endpoint |
  | ``AQTLineCapStyle/square`` | Line extends into half-square beyond endpoint |
  
- Default is RoundLineCapStyle. */
+ Default is `AQTLineCapStyleRound`. */
 @property AQTLineCapStyle lineCapStyle;
 
 /*! Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments.*/
@@ -422,7 +425,7 @@ int main(void)
  transformed image is clipped to `destBounds`.
  Bitmap format is 24bits
  per pixel in sequence RGBRGB...  with 8 bits per color.
- @deprecated Use `-addTransformedImageWithBitmap:size:` instead.
+ @deprecated Use ``addTransformedImageWithBitmap:size:`` instead.
  */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 /**

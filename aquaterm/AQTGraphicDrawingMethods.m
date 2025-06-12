@@ -339,7 +339,7 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
       if (fitBounds == YES) {
          [_cache drawInRect:_bounds
                    fromRect:NSMakeRect(0,0,[(NSImage*)_cache size].width,[(NSImage*)_cache size].height)
-                  operation:NSCompositeSourceOver
+                  operation:NSCompositingOperationSourceOver
                    fraction:1.0];
       } else {
          NSAffineTransform *transf = [NSAffineTransform transform];
@@ -353,7 +353,7 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
          [transf concat];
          [_cache drawAtPoint:NSMakePoint(0,0)
                     fromRect:NSMakeRect(0,0,[(NSImage*)_cache size].width,[(NSImage*)_cache size].height)
-                   operation:NSCompositeSourceOver
+                   operation:NSCompositingOperationSourceOver
                     fraction:1.0];
          if (!_isClipped) {
             [context restoreGraphicsState];
@@ -408,7 +408,7 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
       if (fitBounds == YES) {
          [baseImage drawInRect:_bounds
                       fromRect:NSMakeRect(0,0,[baseImage size].width,[baseImage size].height)
-                     operation:NSCompositeSourceOver
+                     operation:NSCompositingOperationSourceOver
                       fraction:1.0];
       } else {
          // If the image is clipped, the state is already stored
@@ -419,7 +419,7 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
          [transform concat];
          [baseImage drawAtPoint:NSMakePoint(0, 0)
                        fromRect:NSMakeRect(0, 0, [baseImage size].width, [baseImage size].height)
-                      operation:NSCompositeSourceOver
+                      operation:NSCompositingOperationSourceOver
                        fraction:1.0];
          if (!_isClipped) {
             [context restoreGraphicsState];

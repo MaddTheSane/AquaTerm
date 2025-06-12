@@ -392,7 +392,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    
    paperSize.width -= (printInfo.leftMargin + printInfo.rightMargin);
    paperSize.height -= (printInfo.topMargin + printInfo.bottomMargin);
-   if (printInfo.orientation == NSPortraitOrientation)
+   if (printInfo.orientation == NSPaperOrientationPortrait)
    {
       paperSize.height = (model.canvasSize.height * paperSize.width) / model.canvasSize.width;
    }

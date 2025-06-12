@@ -338,7 +338,7 @@ extern void aqtLineDrawingTest(id sender);
    NSString *version = [[NSProcessInfo processInfo] operatingSystemVersionString];
    NSString *location = [NSBundle mainBundle].bundlePath;
    
-   return [NSString stringWithFormat:@"Mac OS X %@\nInstall location: %@", version, location];
+   return [NSString stringWithFormat:@"macOS %@\nInstall location: %@", version, location];
 }
 
 -(NSString *)_aqtBugMsg

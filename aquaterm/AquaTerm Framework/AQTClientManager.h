@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setAcceptingEvents:(BOOL)flag; 
 @property (readonly, copy) NSString *lastEvent;
 
-/* testing methods */
+/*! testing methods */
 - (void)timingTestWithTag:(uint32_t)tag;
 @end
 

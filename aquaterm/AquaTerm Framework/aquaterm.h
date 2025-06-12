@@ -19,34 +19,43 @@
 
 /** Constants that specify linecap styles. */
 typedef CF_ENUM(int32_t, AQTLineCapStyle) {
+   /**
+    * Butt line cap style.
+    */
    AQTLineCapStyleButt = 0,
+   /**
+    * Round line cap style.
+    */
    AQTLineCapStyleRound = 1,
+   /**
+    * Square line cap style.
+    */
    AQTLineCapStyleSquare = 2,
 };
 
-/*! \deprecated Use \c AQTLineCapStyleButt instead.*/
+/*! \deprecated Use ``AQTLineCapStyle/butt`` instead.*/
 static const AQTLineCapStyle AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt;
 
-/*! \deprecated Use \c AQTLineCapStyleRound instead.*/
+/*! \deprecated Use ``AQTLineCapStyle/round`` instead.*/
 static const AQTLineCapStyle AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound;
 
-/*! \deprecated Use \c AQTLineCapStyleSquare instead.*/
+/*! \deprecated Use ``AQTLineCapStyle/square`` instead.*/
 static const AQTLineCapStyle AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare;
 
-/*! Constants that specify horizontal and vertical alignment for labels. See `-addLabel:atPoint:angle:align:` for definitions and use. */
+/*! Constants that specify horizontal and vertical alignment for labels. See ``AQTAdapter/addLabel:atPoint:angle:align:`` for definitions and use. */
 typedef CF_OPTIONS(int32_t, AQTAlign) {
    /** @name Constants that specify horizontal alignment for labels.
     @{ */
    
-   /** @brief Left alignment.
+   /** Left alignment.
     */
    AQTAlignLeft = 0x00,
    
-   /** @brief Horizontal center alignment.
+   /** Horizontal center alignment.
     */
    AQTAlignCenter = 0x01,
    
-   /** @brief Right alignment.
+   /** Right alignment.
     */
    AQTAlignRight = 0x02,
    
@@ -54,19 +63,19 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
     @name Constants that specify vertical alignment for labels.
     @{ */
    
-   /** @brief Vertical center alignment.
+   /** Vertical center alignment.
     */
    AQTAlignMiddle = 0x00,
    
-   /** @brief Vertical baseline alignment.
+   /** Vertical baseline alignment.
     */
    AQTAlignBaseline = 0x04,
    
-   /** @brief Bottom alignment.
+   /** Bottom alignment.
     */
    AQTAlignBottom = 0x08,
    
-   /** @brief Top alignment.
+   /** Top alignment.
     */
    AQTAlignTop = 0x10
    

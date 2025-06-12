@@ -149,8 +149,17 @@ NS_ASSUME_NONNULL_BEGIN
  \name Deprecated
  @{ */
 
+/**
+ * Deprecated way of setting line width: use ``lineWidth`` setter instead.
+ */
 - (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
+/**
+ * Deprecated way of setting a font name: use ``fontName`` setter instead.
+ */
 - (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
+/**
+ * Deprecated way of setting font size: use ``fontSize`` setter instead.
+ */
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
 /**

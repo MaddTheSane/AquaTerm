@@ -19,10 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Class that provides an interface to the functionality of AquaTerm.
  
- AQTAdapter is a class that provides an interface to the functionality of AquaTerm.
+ `AQTAdapter` is a class that provides an interface to the functionality of AquaTerm.
  As such, it bridges the gap between client's procedural calls requesting operations
  such as drawing a line or placing a label and the object-oriented graph being built.
- The actual assembling of the graph is performed by an instance of class `AQTPlotBuilder`.
+ The actual assembling of the graph is performed by an instance of class ``AQTPlotBuilder``.
 
  It seemlessly provides a connection to the viewer (AquaTermApp.app) without any work on behalf of the client.
 
@@ -71,31 +71,32 @@ int main(void)
 //! Initializes an instance and sets up a connection to the handler object via DO. Launches AquaTerm if necessary.
 - (nullable instancetype)init;
 
-//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via OS X's distributed objects mechanism) to be replaced by a local instance.
+//! This is the designated initalizer, allowing for the default handler (an object vended by AquaTerm via macOS's distributed objects mechanism) to be replaced by a local instance.
 //!
 //! In most cases `-init` should be used, which calls `-initWithHandler:` with a `nil` argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
-/*! @brief Optionally set an error handling block of the form `customErrorHandler(NSString *errMsg)`
+/*! Optionally set an error handling block of the form `void (^customErrorHandler)(NSString *errMsg)`
  to override default behaviour. */
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 
-/*! Optionally set an event handling routine of the form `customEventHandler(int index, NSString *event)`.
+/*! Optionally set an event handling routine of the form `void (^customEventHandler)(int index, NSString *event)`.
  
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
  
  Currently supported events are:
- \li _{event description}
- \li _{0 NoEvent }
- \li _{1:%{x,y}:%button MouseDownEvent }
- \li _{2:%{x,y}:%key KeyDownEvent }
- \li _{42:%{x,y}:%key ServerError }
- \li _{43:%{x,y}:%key Error }
+ | Event string format | Description |
+ | --- | --- |
+ | 0 | No event (time-out) |
+ | 1:_x,y_:_button_ | Mouse down event |
+ | 2:_x,y_:_key_ | Key down event |
+ | 42:_x,y_:_key_ | Server error |
+ | 43:_x,y_:_key_ | General error |
  */
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 
-/*! @brief Optionally set an error handling routine of the form `customErrorHandler(NSString *errMsg)`
+/*! Optionally set an error handling routine of the form `void customErrorHandler(NSString *errMsg)`
  to override default behaviour.
  */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
@@ -106,12 +107,13 @@ int main(void)
  the structure of the string event is @"type:data1:data2:..."
  
  Currently supported events are:
- \li _{event description}
- \li _{0 NoEvent }
- \li _{1:%{x,y}:%button MouseDownEvent }
- \li _{2:%{x,y}:%key KeyDownEvent }
- \li _{42:%{x,y}:%key ServerError }
- \li _{43:%{x,y}:%key Error }
+ | Event string format | Description |
+ | --- | --- |
+ | 0 | No event (time-out) |
+ | 1:_x,y_:_button_ | Mouse down event |
+ | 2:_x,y_:_key_ | Key down event |
+ | 42:_x,y_:_key_ | Server error |
+ | 43:_x,y_:_key_ | General error |
  */
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
@@ -127,7 +129,7 @@ int main(void)
 
 /*! Get the plot referenced by `refNum` and make it the target for subsequent commands.
  
- If no plot exists for refNum, the currently targeted plot remain unchanged. Disables
+ If no plot exists for `refNum`, the currently targeted plot remain unchanged. Disables
  event handling for previously targeted plot.
  \return `YES` on success, `NO` otherwise.
  */
@@ -175,7 +177,7 @@ int main(void)
  @{ */
 
 /*! When setting a clipping region (rectangular) to apply to all subsequent operations,
- until changed again by `-setClipRect:` or `-setDefaultClipRect`. */
+ until changed again by `-setClipRect:` or ``setDefaultClipRect``. */
 @property NSRect clipRect;
 
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
@@ -189,20 +191,22 @@ int main(void)
 //! Return the number of color entries available in the currently active colormap.
 @property (readonly) int32_t colormapSize;
 
-//! Set an RGB entry in the colormap, at the position given by `entryIndex`.
+//! Set an RGBA entry in the colormap, at the position given by `entryIndex`.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b alpha:(float)a;
 
+//! Get an RGBA entry in the colormap, at the position given by `entryIndex`.
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
 
 //! Set an RGB entry in the colormap, at the position given by `entryIndex`.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b;
 
+//! Get an RGB entry in the colormap, at the position given by `entryIndex`.
 - (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b;
 
-//! Set the current color, used for all subsequent items, using the color stored at the position given by \c index in the colormap.
+//! Set the current color, used for all subsequent items, using the color stored at the position given by `index` in the colormap.
 - (void)takeColorFromColormapEntry:(int32_t)index;
 
-//! Set the background color, overriding any previous color, using the color stored at the position given by \c index in the colormap.
+//! Set the background color, overriding any previous color, using the color stored at the position given by `index` in the colormap.
 - (void)takeBackgroundColorFromColormapEntry:(int32_t)index;
 
 /**
@@ -210,10 +214,10 @@ int main(void)
  \name Color handling
  @{ */
 
-/*! Set the current color, used for all subsequent items, using explicit RGB components. */
+/*! Set the current color, used for all subsequent items, using explicit RGBA components. */
 - (void)setColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a NS_SWIFT_NAME(setColor(red:green:blue:alpha:));
 
-/*! Set the background color, overriding any previous color, using explicit RGB components. */
+/*! Set the background color, overriding any previous color, using explicit RGBA components. */
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a  NS_SWIFT_NAME(setBackgroundColor(red:green:blue:alpha:));
 
 /*! Get current RGB color components by reference. */
@@ -245,35 +249,41 @@ int main(void)
  \name Text handling
  @{ */
 
-/*! The font to be used. Applies to all future operations. Default is Times-Roman.*/
+/*! The font to be used. Applies to all future operations. Default is "Times-Roman".
+ */
 @property (copy) NSString *fontName;
 
 /*! The font size in points. Applies to all future operations. Default is 14pt. */
 @property CGFloat fontSize;
 
-/*! Convenience form of `-addLabel:atPoint:angle:shearAngle:align:` for horizontal, left and baseline aligned text. */
+/*! Convenience form of ``addLabel:atPoint:angle:shearAngle:align:`` for horizontal, left and baseline aligned text. */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos NS_REFINED_FOR_SWIFT;
 
-/*! Same as `-addLabel:atPoint:angle:shearAngle:align:` except that `shearAngle` defaults to `0`.*/
+/*! Same as ``addLabel:atPoint:angle:shearAngle:align:`` except that `shearAngle` defaults to `0`.*/
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
 /*! Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned vertically and horisontally (with respect to pos and rotation) according to `align`. Horizontal and vertical align may be combined by an OR operation, e.g. `(AQTAlignCenter | AQTAlignMiddle)`.
  
- \li {HorizontalAlign Description}
- \li {AQTAlignLeft LeftAligned}
- \li {AQTAlignCenter Centered}
- \li {AQTAlignRight RightAligned}
- \li {VerticalAlign -}
- \li {AQTAlignMiddle ApproxCenter}
- \li {AQTAlignBaseline Normal}
- \li {AQTAlignBottom BottomBoundsOfTHISString}
- \li {AQTAlignTop TopBoundsOfTHISString}
+ | Horizontal Align | Description |
+ | --- | --- |
+ | ``AQTAlignLeft`` | Left aligned text |
+ | ``AQTAlign/center`` | Centered text |
+ | ``AQTAlign/right`` | Right aligned text |
+
+ | Vertical Align | Description |
+ | --- | --- |
+ | ``AQTAlignMiddle`` | Approximate centerline |
+ | ``AQTAlign/baseline`` | Normal |
+ | ``AQTAlign/bottom`` | Bottom bounds of _this_ string |
+ | ``AQTAlign/top`` | Top bounds of _this_ string |
  
  By specifying `shearAngle`, the text may be sheared in order to appear correctly in e.g. 3D plot labels.
- The text can be either an `NSString` or an NSAttributedString. By using `NSAttributedString` a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
- \li {Attribute value}
- \li {@"NSSuperScript" raise-level}
- \li {@"NSUnderline" 0 or 1}
+ The text can be either an `NSString` or an `NSAttributedString`. By using `NSAttributedString` a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
+ 
+ | Attribute | Description |
+ | --- | --- |
+ | @"NSSuperScript" | raise-level -3 to 3, default is 0 |
+ | @"NSUnderline" | 0 or 1 |
  */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
@@ -282,7 +292,7 @@ int main(void)
  \name Line handling
  @{ */
 
-/*! The current `linewidth` (in points), used for all subsequent lines. Any line currently being built by `-moveToPoint:`/`-addLineToPoint:` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.*/
+/*! The current `linewidth` (in points), used for all subsequent lines. Any line currently being built by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.*/
 @property CGFloat lineWidth;
 
 /*! Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified
@@ -293,11 +303,13 @@ int main(void)
 /*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
 - (void)setLinestyleSolid;
 
-/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by `-moveToPoint:`/`-addLineToPoint:` will be considered finished since any coalesced sequence of line segments must share the same cap style.
+/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same cap style.
 
- @li {AQTLineCapStyleButt ButtLineCapStyle}
- @li {AQTLineCapStyleRound RoundLineCapStyle}
- @li {AQTLineCapStyleSquare SquareLineCapStyle}
+ | _capStyle_ | Description |
+ | --- | --- |
+ | ``AQTLineCapStyle/butt`` | Line does not extend beyond endpoint |
+ | ``AQTLineCapStyle/round`` | Line extends into half-circle beyond endpoint |
+ | ``AQTLineCapStyle/square`` | Line extends into half-square beyond endpoint |
  
  Default is RoundLineCapStyle. */
 @property AQTLineCapStyle lineCapStyle;
@@ -305,7 +317,7 @@ int main(void)
 /*! Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments.*/
 - (void)moveToPoint:(NSPoint)point;
 
-/*! Add a line segment from the current point (given by a previous `-moveToPoint:` or `-addLineToPoint:`).*/
+/*! Add a line segment from the current point (given by a previous ``moveToPoint:`` or ``addLineToPoint:``).*/
 - (void)addLineToPoint:(NSPoint)point;
 
 /** Add a sequence of line segments specified by a list of start-, end-, and joinpoint(s) in points.
@@ -340,7 +352,7 @@ int main(void)
 
 /// Set a transformation matrix.
 ///
-/// For images added by `-addTransformedImageWithBitmap:size:clipRect:`,
+/// For images added by ``addTransformedImageWithBitmap:size:clipRect:``,
 /// see `NSImage` documentation for details.
 - (void)setImageTransformM11:(float)m11 m12:(float)m12 m21:(float)m21 m22:(float)m22 tX:(float)tX tY:(float)tY NS_SWIFT_NAME(setImageTransform(m11:m12:m21:m22:tX:tY:));
 
@@ -381,28 +393,31 @@ int main(void)
  @{ */
 
 /*!
- Deprecated method to set the line width.
- @deprecated Use the `lineWidth` property or `-setLineWidth:` instead.
+ Deprecated method to set the line width. Use the ``lineWidth`` property instead.
+ @deprecated Use the ``lineWidth`` property or `-setLineWidth:` instead.
  @param newLinewidth The new line width.
  */
 - (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
 /*!
- Deprecated method to set the font name.
- @deprecated Use the `fontName` property or `-setFontName:` instead.
- @param newFontname The new font name.
+ * Deprecated method to set the font name. Use the ``fontName`` property instead.
+ *
+ * @param newFontname The new font name.
+ *
+ * @deprecated Use the ``fontName`` property or `-setFontName:` instead.
  */
 - (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
 
 /*!
- Deprecated method to set the font size.
- @deprecated Use the `fontSize` property or `-setFontSize:` instead.
- @param newFontsize The new font size.
+ * Deprecated method to set the font size. Use the ``fontSize`` property instead.
+ * @deprecated Use the ``fontSize`` property or `-setFontSize:` instead.
+ * @param newFontsize The new font size.
  */
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
 /**
- Deprecated, use `-addTransformedImageWithBitmap:size:` instead.
+ Deprecated, use ``addTransformedImageWithBitmap:size:`` instead.
+ 
  Add a bitmap image of size `bitmapSize` **honoring** transform,
  transformed image is clipped to `destBounds`.
  Bitmap format is 24bits

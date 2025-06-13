@@ -25,11 +25,11 @@
 - ``waitNextEvent``
 ### Plotting Related Commands
 
-#### Clip rect, applies to all objects
+### Clip rect, applies to all objects
 - ``clipRect``
 - ``setDefaultClipRect``
 
-#### Colormap (Utility)
+### Colormap (Utility)
 - ``colormapSize``
 - ``setColormapEntry:red:green:blue:alpha:``
 - ``getColormapEntry:red:green:blue:alpha:``
@@ -38,7 +38,7 @@
 - ``takeColorFromColormapEntry:``
 - ``takeBackgroundColorFromColormapEntry:``
 
-#### Color Handling
+### Color Handling
 - ``setColorRed:green:blue:alpha:``
 - ``setBackgroundColorRed:green:blue:alpha:``
 - ``getColorRed:green:blue:alpha:``
@@ -50,7 +50,7 @@
 - ``color``
 - ``backgroundColor``
 
-#### Text Handling
+### Text Handling
 - ``fontName``
 - ``fontSize``
 - ``addLabel:atPoint:``
@@ -60,7 +60,7 @@
 - ``addLabel(_:at:angle:shearAngle:align:)-(AttributedString,_,_,_,_)``
 - ``addLabel(_:at:angle:shearAngle:align:)-(NSAttributedString,_,_,_,_)``
 
-#### Line Handling
+### Line Handling
 - ``lineWidth``
 - ``setLinestylePattern:count:phase:``
 - ``setLinestyle(pattern:phase:)-([Float],_)``
@@ -72,7 +72,7 @@
 - ``addPolylineWithPoints:pointCount:``
 - ``addPolyline(points:)``
 
-#### Rect and Polygon Handling
+### Rect and Polygon Handling
 - ``moveToVertexPoint:``
 - ``addEdgeToVertexPoint:``
 - ``addPolygonWithVertexPoints:pointCount:``
@@ -80,7 +80,7 @@
 - ``addFilledRect:``
 - ``eraseRect:``
 
-#### Image Handling
+### Image Handling
 - ``setImageTransformM11:m12:m21:m22:tX:tY:``
 - ``resetImageTransform``
 - ``addImageWithBitmap:size:bounds:``
@@ -94,6 +94,8 @@
 - ``timingTestWithTag:``
 
 ### Attributed String Keys
+These keys can be put on a `NSAttributedString` to change how the output looks.
+ 
 - ``AQTFontNameKey``
 - ``AQTFontSizeKey``
 - ``AQTBaselineAdjustKey``

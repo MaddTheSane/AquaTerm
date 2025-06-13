@@ -26,7 +26,9 @@ extension AQTAdapter {
 	
 	/// Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned 
 	/// vertically and horisontally (with respect to pos and rotation) according to 
-	/// `align`. Horizontal and vertical `align` may be combined, e.g.
+	/// `align`.
+	///
+	/// Horizontal and vertical `align` may be combined, e.g.
 	/// `[.center, .middle]`.
 	///
 	/// By specifying `shearAngle` the text may be sheared in order to appear correctly 
@@ -36,9 +38,10 @@ extension AQTAdapter {
 	/// `NSAttributedString`, a subset of the attributes defined in AppKit may be
 	/// used to format the string beyond the font face and size. The currently supported
 	/// attributes are:
-	/// * {Attribute value}
-	/// * {@"NSSuperScript" raise-level}
-	/// * {@"NSUnderline" `0` or `1`}
+	/// | Attribute | Description |
+	/// | --- | --- |
+	/// | `NSSuperscriptAttributeName` | raise-level -3 to 3, default is 0 |
+	/// | `NSUnderlineStyleAttributeName` | 0 or 1 |
 	/// - parameter text: The text to show.
 	/// - parameter pos: The location to show the text.
 	/// - parameter angle: The angle, in degrees, to rotate the text.<br> Default is `0`.
@@ -51,8 +54,9 @@ extension AQTAdapter {
 		
 	/// Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned
 	/// vertically and horisontally (with respect to pos and rotation) according to
-	/// `align`. Horizontal and vertical `align` may be combined, e.g.
-	/// `[.center, .middle]`.
+	/// `align`.
+	///
+	/// Horizontal and vertical `align` may be combined, e.g. `[.center, .middle]`.
 	///
 	/// By specifying `shearAngle` the text may be sheared in order to appear correctly
 	/// in e.g. 3D plot labels.
@@ -60,7 +64,7 @@ extension AQTAdapter {
 	/// By using
 	/// `AttributedString`, the attributes defined in `AquaTermAttributes` should be
 	/// used to format the string beyond the font face and size.
-	/// - parameter text: The text to show.
+	/// - parameter text: The attributed text to show.
 	/// - parameter pos: The location to show the text.
 	/// - parameter angle: The angle, in degrees, to rotate the text.<br> Default is `0`.
 	/// - parameter shearAngle: The angle to shear the text. Useful for e.g. 3D plot labels.<br>
@@ -74,8 +78,9 @@ extension AQTAdapter {
 	
 	/// Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned
 	/// vertically and horisontally (with respect to pos and rotation) according to
-	/// `align`. Horizontal and vertical `align` may be combined, e.g.
-	/// `[.center, .middle]`.
+	/// `align`.
+	///
+	/// Horizontal and vertical `align` may be combined, e.g. `[.center, .middle]`.
 	///
 	/// By specifying `shearAngle` the text may be sheared in order to appear correctly
 	/// in e.g. 3D plot labels.

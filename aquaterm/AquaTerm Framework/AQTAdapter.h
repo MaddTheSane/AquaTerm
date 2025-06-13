@@ -146,7 +146,7 @@ int main(void)
 /*! Set the limits of the plot area.
  
  Must be set  *before* any drawing command following
- an `-openPlotWithIndex:` or `-clearPlot` command or behaviour is undefined.
+ an ``openPlotWithIndex:`` or ``clearPlot`` command or behaviour is undefined.
  */
 @property NSSize plotSize;
 
@@ -173,7 +173,11 @@ int main(void)
  */
 - (void)setAcceptingEvents:(BOOL)flag;
 
-/*! Reads the last event logged by the viewer. Will always return `NoEvent` unless `-setAcceptingEvents:` is called with a `YES` argument. */
+/*!
+ * Reads the last event logged by the viewer.
+ *
+ * Will always return `NoEvent` unless ``setAcceptingEvents:`` is called with a `YES` argument.
+*/
 @property (readonly, copy) NSString *lastEvent;
 
 - (NSString *)waitNextEvent;
@@ -188,7 +192,7 @@ int main(void)
 
 /*!
  * When setting a clipping region (rectangular) to apply to all subsequent operations,
- * until changed again by `-setClipRect:` or ``setDefaultClipRect``.
+ * until changed again by setting the clip rect again or ``setDefaultClipRect``.
  */
 @property NSRect clipRect;
 
@@ -268,23 +272,33 @@ int main(void)
 /*! The font size in points. Applies to all future operations. Default is 14pt. */
 @property CGFloat fontSize;
 
-/*! Convenience form of ``addLabel:atPoint:angle:shearAngle:align:`` for horizontal, left and baseline aligned text. */
+/*!
+ * Convenience form of ``addLabel:atPoint:angle:shearAngle:align:`` for horizontal, left and baseline aligned text.
+ * @param text The text to add. Must be either `NSString` or `NSAttributedString`.
+ * @param pos The location to show the text.
+ */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos NS_REFINED_FOR_SWIFT;
 
-/*! Same as ``addLabel:atPoint:angle:shearAngle:align:`` except that `shearAngle` defaults to `0`.*/
+/*!
+ * Same as ``addLabel:atPoint:angle:shearAngle:align:`` except that `shearAngle` defaults to `0`.
+ * @param text The text to add. Must be either `NSString` or `NSAttributedString`.
+ * @param pos The location to show the text.
+ * @param angle The angle, in degrees, to rotate the text.
+ * @param just Alignment of the text.
+ */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
 /*! Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned vertically and horisontally (with respect to pos and rotation) according to `align`.
  
  Horizontal and vertical align may be combined by an OR operation, e.g. `(AQTAlignCenter | AQTAlignMiddle)`.
  
- | Horizontal Align | Description |
+ | Horizontal Alignment | Description |
  | --- | --- |
  | ``AQTAlign/left`` | Left aligned text |
  | ``AQTAlign/center`` | Centered text |
  | ``AQTAlign/right`` | Right aligned text |
 
- | Vertical Align | Description |
+ | Vertical Alignment | Description |
  | --- | --- |
  | ``AQTAlign/middle`` | Approximate centerline |
  | ``AQTAlign/baseline`` | Normal |
@@ -293,11 +307,16 @@ int main(void)
  
  By specifying `shearAngle`, the text may be sheared in order to appear correctly in e.g. 3D plot labels.
  The text can be either an `NSString` or an `NSAttributedString`. By using `NSAttributedString` a subset of the attributes defined in AppKit may be used to format the string beyond the fontface ans size. The currently supported attributes are:
- 
  | Attribute | Description |
  | --- | --- |
- | @"NSSuperScript" | raise-level -3 to 3, default is 0 |
- | @"NSUnderline" | 0 or 1 |
+ | `NSSuperscriptAttributeName` | raise-level -3 to 3, default is 0 |
+ | `NSUnderlineStyleAttributeName` | 0 or 1 |
+ 
+ @param text The text to show. Must be either `NSString` or `NSAttributedString`.
+ @param pos The location to show the text.
+ @param angle The angle, in degrees, to rotate the text.
+ @param shearAngle The angle to shear the text. Useful for e.g. 3D plot labels.
+ @param just Alignment of the text.
  */
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle shearAngle:(CGFloat)shearAngle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
@@ -365,7 +384,7 @@ int main(void)
  */
 - (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
-//! Add a filled rectangle. Will attempt to remove any objects that will be covered by <code>aRect</code>.
+//! Add a filled rectangle. Will attempt to remove any objects that will be covered by `aRect`.
 - (void)addFilledRect:(NSRect)aRect;
 
 //! Remove any objects *completely* inside `aRect`. Does *not* force a redraw of the plot.
@@ -443,14 +462,14 @@ int main(void)
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
 /*!
- Deprecated, use ``addTransformedImageWithBitmap:size:`` instead.
- 
- Add a bitmap image of size `bitmapSize` **honoring** transform,
- transformed image is clipped to `destBounds`.
- Bitmap format is 24bits
- per pixel in sequence RGBRGB...  with 8 bits per color.
- 
- @deprecated Use ``addTransformedImageWithBitmap:size:`` instead.
+ * Deprecated, use ``addTransformedImageWithBitmap:size:`` instead.
+ *
+ * Add a bitmap image of size `bitmapSize` **honoring** transform,
+ * transformed image is clipped to `destBounds`.
+ * Bitmap format is 24bits
+ * per pixel in sequence RGBRGB...  with 8 bits per color.
+ *
+ * Use ``addTransformedImageWithBitmap:size:`` instead.
  */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;
 /**

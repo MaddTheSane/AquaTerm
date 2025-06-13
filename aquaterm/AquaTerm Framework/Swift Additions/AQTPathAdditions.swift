@@ -9,13 +9,19 @@
 import Foundation
 
 extension AQTPath {
+	/// A leaf object class representing an actual item in the plot.
+	///
+	/// Since the app is a viewer we do three things with the object:
+	/// create (once), draw (any number of times) and (eventually) dispose of it.
 	@nonobjc public convenience init(points: [NSPoint]) {
 		var points1 = points
 		
 		self.init(points: &points1, pointCount: Int32(points.count))
 	}
 	
-	/// Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a
+	/// Set the current line style to pattern style, used for all subsequent lines.
+	///
+	/// The linestyle is specified as a
 	/// pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
 	/// correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `[4.0, 2.0, 1.0, 2.0]`.
 	@nonobjc public func setLinestylePattern(_ newPattern: [CGFloat], phase newPhase: CGFloat) {

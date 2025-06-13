@@ -1798,6 +1798,7 @@
 				MODULEMAP_FILE = "AquaTerm Framework/AquaTerm.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
+				RUN_DOCUMENTATION_COMPILER = YES;
 			};
 			name = Debug;
 		};
@@ -1820,6 +1821,7 @@
 				MODULEMAP_FILE = "AquaTerm Framework/AquaTerm.modulemap";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
+				RUN_DOCUMENTATION_COMPILER = YES;
 			};
 			name = Release;
 		};

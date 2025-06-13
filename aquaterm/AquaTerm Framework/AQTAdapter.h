@@ -76,11 +76,14 @@ int main(void)
 //! In most cases `-init` should be used, which calls `-initWithHandler:` with a `nil` argument.
 - (nullable instancetype)initWithServer:(nullable id)localServer NS_DESIGNATED_INITIALIZER;
 
-/*! Optionally set an error handling block of the form `void (^customErrorHandler)(NSString *errMsg)`
- to override default behaviour. */
+/*!
+ * Optionally set an error handling block of the form `void (^customErrorHandler)(NSString *errMsg)`
+ to override default behaviour.
+ */
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 
-/*! Optionally set an event handling routine of the form `void (^customEventHandler)(int index, NSString *event)`.
+/*!
+ Optionally set an event handling routine of the form `void (^customEventHandler)(int index, NSString *event)`.
  
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
@@ -96,12 +99,14 @@ int main(void)
  */
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
 
-/*! Optionally set an error handling routine of the form `void customErrorHandler(NSString *errMsg)`
- to override default behaviour.
+/*!
+ * Optionally set an error handling routine of the form `void customErrorHandler(NSString *errMsg)`
+ * to override default behaviour.
  */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable msg))fPtr;
 
-/*! Optionally set an event handling routine of the form `customEventHandler(int index, NSString *event)`.
+/*!
+ Optionally set an event handling routine of the form `customEventHandler(int index, NSString *event)`.
  
  The reference number of the plot that generated the event is passed in index and
  the structure of the string event is @"type:data1:data2:..."
@@ -122,16 +127,19 @@ int main(void)
  \name Control operations
  @{ */
 
-/*! Open up a new plot with internal reference number `refNum` and make it the target for subsequent commands.
+/*!
+ * Open up a new plot with internal reference number `refNum` and make it the target for subsequent commands.
  *
- * If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot. */
+ * If the referenced plot already exists, it is selected and cleared. Disables event handling for previously targeted plot.
+ */
 - (void)openPlotWithIndex:(int32_t)refNum;
 
-/*! Get the plot referenced by `refNum` and make it the target for subsequent commands.
- 
- If no plot exists for `refNum`, the currently targeted plot remain unchanged. Disables
- event handling for previously targeted plot.
- \return `YES` on success, `NO` otherwise.
+/*!
+ * Get the plot referenced by `refNum` and make it the target for subsequent commands.
+ *
+ * If no plot exists for `refNum`, the currently targeted plot remain unchanged. Disables
+ * event handling for previously targeted plot.
+ * \return `YES` on success, `NO` otherwise.
  */
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
 
@@ -159,8 +167,10 @@ int main(void)
  \name Event handling
   @{ */
 
-/*! Inform AquaTerm whether or not events should be passed from the currently selected plot. Deactivates
- event passing from any plot previously set to pass events. */
+/*!
+ * Inform AquaTerm whether or not events should be passed from the currently selected plot. Deactivates
+ * event passing from any plot previously set to pass events.
+ */
 - (void)setAcceptingEvents:(BOOL)flag;
 
 /*! Reads the last event logged by the viewer. Will always return `NoEvent` unless `-setAcceptingEvents:` is called with a `YES` argument. */
@@ -176,8 +186,10 @@ int main(void)
 /** \name Clip rect, applies to all objects
  @{ */
 
-/*! When setting a clipping region (rectangular) to apply to all subsequent operations,
- until changed again by `-setClipRect:` or ``setDefaultClipRect``. */
+/*!
+ * When setting a clipping region (rectangular) to apply to all subsequent operations,
+ * until changed again by `-setClipRect:` or ``setDefaultClipRect``.
+ */
 @property NSRect clipRect;
 
 //! Restore clipping region to the deafult (object bounds), i.e. no clipping performed.
@@ -241,7 +253,7 @@ int main(void)
 //! The current RGB color components.
 @property AQTColor color;
 
-//! The background color components.
+//! The current background color components.
 @property AQTColor backgroundColor;
 
 /**
@@ -262,7 +274,9 @@ int main(void)
 /*! Same as ``addLabel:atPoint:angle:shearAngle:align:`` except that `shearAngle` defaults to `0`.*/
 - (void)addLabel:(id)text atPoint:(NSPoint)pos angle:(CGFloat)angle align:(AQTAlign)just NS_REFINED_FOR_SWIFT;
 
-/*! Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned vertically and horisontally (with respect to pos and rotation) according to `align`. Horizontal and vertical align may be combined by an OR operation, e.g. `(AQTAlignCenter | AQTAlignMiddle)`.
+/*! Add `text` at coordinate given by `pos`, rotated by `angle` degrees and aligned vertically and horisontally (with respect to pos and rotation) according to `align`.
+ 
+ Horizontal and vertical align may be combined by an OR operation, e.g. `(AQTAlignCenter | AQTAlignMiddle)`.
  
  | Horizontal Align | Description |
  | --- | --- |
@@ -292,10 +306,15 @@ int main(void)
  \name Line handling
  @{ */
 
-/*! The current `linewidth` (in points), used for all subsequent lines. Any line currently being built by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.*/
+/*!
+ * The current `linewidth` (in points), used for all subsequent lines.
+ *
+ * Any line currently being built by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same lineWidth.  Default `lineWidth` is 1pt.
+ */
 @property CGFloat lineWidth;
 
-/*! Set the current line style to pattern style, used for all subsequent lines.
+/*!
+ * Set the current line style to pattern style, used for all subsequent lines.
  *
  * The linestyle is specified
  * as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
@@ -306,15 +325,19 @@ int main(void)
 /*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
 - (void)setLinestyleSolid;
 
-/** The current line cap style (in points), used for all subsequent lines. Any line currently being built when this is set by ``moveToPoint:``/``addLineToPoint:`` will be considered finished since any coalesced sequence of line segments must share the same cap style.
-
- | _capStyle_ | Description |
- | --- | --- |
- | ``AQTLineCapStyle/butt`` | Line does not extend beyond endpoint |
- | ``AQTLineCapStyle/round`` | Line extends into half-circle beyond endpoint |
- | ``AQTLineCapStyle/square`` | Line extends into half-square beyond endpoint |
- 
- Default is `AQTLineCapStyleRound`. */
+/** The current line cap style (in points), used for all subsequent lines.
+ *
+ * Any line currently being built when this is set by ``moveToPoint:``/``addLineToPoint:``
+ * will be considered finished since any coalesced sequence of line segments must share the same cap style.
+ *
+ * | _capStyle_ | Description |
+ * | --- | --- |
+ * | ``AQTLineCapStyle/butt`` | Line does not extend beyond endpoint |
+ * | ``AQTLineCapStyle/round`` | Line extends into half-circle beyond endpoint |
+ * | ``AQTLineCapStyle/square`` | Line extends into half-square beyond endpoint |
+ *
+ * Default is `AQTLineCapStyleRound`.
+ */
 @property AQTLineCapStyle lineCapStyle;
 
 /*! Moves the current point (in canvas coordinates) in preparation for a new sequence of line segments.*/
@@ -396,35 +419,37 @@ int main(void)
  @{ */
 
 /*!
- Deprecated method to set the line width. Use the ``lineWidth`` property instead.
- @deprecated Use the ``lineWidth`` property or `-setLineWidth:` instead.
- @param newLinewidth The new line width.
+ * Deprecated method to set the line width. Use the ``lineWidth`` property instead.
+ *
+ * Use the ``lineWidth`` property or `-setLineWidth:` instead.
+ * @param newLinewidth The new line width.
  */
 - (void)setLinewidth:(float)newLinewidth __API_DEPRECATED_WITH_REPLACEMENT("-setLineWidth:", macos(10.4, 10.9));
 
 /*!
  * Deprecated method to set the font name. Use the ``fontName`` property instead.
  *
+ * Use the ``fontName`` property or `-setFontName:` instead.
  * @param newFontname The new font name.
- *
- * @deprecated Use the ``fontName`` property or `-setFontName:` instead.
  */
 - (void)setFontname:(NSString *)newFontname __API_DEPRECATED_WITH_REPLACEMENT("-setFontName:", macos(10.4, 10.9));
 
 /*!
  * Deprecated method to set the font size. Use the ``fontSize`` property instead.
- * @deprecated Use the ``fontSize`` property or `-setFontSize:` instead.
+ *
+ * Use the ``fontSize`` property or `-setFontSize:` instead.
  * @param newFontsize The new font size.
  */
 - (void)setFontsize:(float)newFontsize __API_DEPRECATED_WITH_REPLACEMENT("-setFontSize:", macos(10.4, 10.9));
 
-/**
+/*!
  Deprecated, use ``addTransformedImageWithBitmap:size:`` instead.
  
  Add a bitmap image of size `bitmapSize` **honoring** transform,
  transformed image is clipped to `destBounds`.
  Bitmap format is 24bits
  per pixel in sequence RGBRGB...  with 8 bits per color.
+ 
  @deprecated Use ``addTransformedImageWithBitmap:size:`` instead.
  */
 - (void)addTransformedImageWithBitmap:(const void *)bitmap size:(NSSize)bitmapSize clipRect:(NSRect)destBounds DEPRECATED_ATTRIBUTE;

@@ -3,8 +3,9 @@ C API Documentation
 
 ## Topics
 
+### Constants and Enumerations
 
-### Enumerations
+- ``AQT_EVENTBUF_SIZE``
 
 - ``AQTLineCapStyle``
 - ``AQTAlign``

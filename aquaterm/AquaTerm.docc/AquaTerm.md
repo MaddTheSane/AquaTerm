@@ -16,8 +16,8 @@
 
 - ``AQTColorMap``
 - ``AQTGraphic``
-- ``AQTLabel``
 - ``AQTModel``
+- ``AQTLabel``
 - ``AQTPath``
 - ``AQTImage``
 - ``AQTPicture``

@@ -16,6 +16,9 @@
 #include <AvailabilityMacros.h>
 #include <CoreFoundation/CFAvailability.h>
 
+/*!
+ * The biggest value that ``aqtGetLastEvent`` and ``aqtWaitNextEvent`` will ever fill.
+ */
 #define AQT_EVENTBUF_SIZE 128
 
 /** Constants that specify linecap styles. */
@@ -48,15 +51,18 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
    /** @name Constants that specify horizontal alignment for labels.
     @{ */
    
-   /** Left alignment.
+   /**
+    * Left alignment.
     */
    AQTAlignLeft = 0x00,
    
-   /** Horizontal center alignment.
+   /**
+    * Horizontal center alignment.
     */
    AQTAlignCenter = 0x01,
    
-   /** Right alignment.
+   /**
+    * Right alignment.
     */
    AQTAlignRight = 0x02,
    
@@ -64,19 +70,23 @@ typedef CF_OPTIONS(int32_t, AQTAlign) {
     @name Constants that specify vertical alignment for labels.
     @{ */
    
-   /** Vertical center alignment.
+   /**
+    * Vertical center alignment.
     */
    AQTAlignMiddle = 0x00,
    
-   /** Vertical baseline alignment.
+   /**
+    * Vertical baseline alignment.
     */
    AQTAlignBaseline = 0x04,
    
-   /** Bottom alignment.
+   /**
+    * Bottom alignment.
     */
    AQTAlignBottom = 0x08,
    
-   /** Top alignment.
+   /**
+    * Top alignment.
     */
    AQTAlignTop = 0x10
    

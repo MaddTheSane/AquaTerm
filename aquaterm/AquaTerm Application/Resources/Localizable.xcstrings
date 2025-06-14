@@ -1,0 +1,42 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm." : {
+      "comment" : "Another App could be using \"aquatermServer\"."
+    },
+    "Cancel" : {
+      "comment" : "Cancel"
+    },
+    "Clients still awaiting events" : {
+      "comment" : "Clients still awaiting events"
+    },
+    "Clients still connected" : {
+      "comment" : "Clients still connected"
+    },
+    "Close" : {
+      "comment" : "Close"
+    },
+    "Close window?" : {
+      "comment" : "Close window?"
+    },
+    "Could not establish service" : {
+      "comment" : "Could not establish service"
+    },
+    "Keep" : {
+      "comment" : "Keep"
+    },
+    "Quit" : {
+      "comment" : "Quit"
+    },
+    "The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?" : {
+      "comment" : "Client closing. Keep window open?"
+    },
+    "There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
+      "comment" : "Idle client are still running."
+    },
+    "There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
+      "comment" : "Client are awaiting input."
+    }
+  },
+  "version" : "1.0"
+}

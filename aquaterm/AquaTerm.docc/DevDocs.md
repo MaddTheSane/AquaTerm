@@ -36,7 +36,7 @@ It also implements the methods in protocol `AQTEventProtocol` in order to receiv
 
 ### AQTGraphic
 
-This is the base class of all objects comprising a plot. All objects inherit bounds and color from AQTGraphic as well as an untyped instance variable named `_cache` used by the category ``AQTGraphicDrawingMethods``. (NOTE: clip rect and transform too in the future. )
+This is the base class of all objects comprising a plot. All objects inherit bounds and color from AQTGraphic as well as an untyped instance variable named `_cache` used by the category `AQTGraphicDrawingMethods`. (NOTE: clip rect and transform too in the future. )
 
 ### AQTModel : AQTGraphic
 

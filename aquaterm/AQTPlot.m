@@ -232,14 +232,6 @@ __unused static inline void NOOP_(id x, ...) {;}
    }
 }
 
--(void)aqtClosePanelDidEnd:(id)sheet returnCode:(int32_t)retCode contextInfo:(id)contextInfo
-{
-   LOG(@"%@", NSStringFromSelector(_cmd));
-   if (retCode == NSAlertAlternateReturn) {
-      [canvas.window close];
-   }
-}
-
 -(void)close
 {
    // Check defaults and maybe throw up a modal sheet asking for confirmation
@@ -251,10 +243,13 @@ __unused static inline void NOOP_(id x, ...) {;}
             return;
          }
          NSAlert *alert = [[NSAlert alloc] init];
-         alert.messageText = @"Close window?";
-         alert.informativeText = @"The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?";
-         [alert addButtonWithTitle:@"Keep"];
-         [alert addButtonWithTitle:@"Close"];
+         alert.messageText = NSLocalizedString(@"Close window?", @"Close window?");
+         alert.informativeText = NSLocalizedString(@"The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?", @"Client closing. Keep window open?");
+         [alert addButtonWithTitle:NSLocalizedString(@"Keep", @"Keep")];
+         NSButton *desButton = [alert addButtonWithTitle:NSLocalizedString(@"Close", @"Close")];
+         if (@available(macOS 11.0, *)) {
+            desButton.hasDestructiveAction = YES;
+         }
          
          [alert beginSheetModalForWindow:canvas.window completionHandler:^(NSModalResponse returnCode) {
             if (returnCode == NSAlertSecondButtonReturn) {
@@ -437,7 +432,7 @@ __unused static inline void NOOP_(id x, ...) {;}
       NSData *data;
       NSURL *filename;
       AQTView *printView;
-      if (NSFileHandlingPanelOKButton == result) {
+      if (NSModalResponseOK == result) {
          printView = [[AQTView alloc] initWithFrame:NSMakeRect(0.0, 0.0, self->model.canvasSize.width, self->model.canvasSize.height)];
          printView.model = self->model;
          filename = savePanel.URL.URLByDeletingPathExtension;

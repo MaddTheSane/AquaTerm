@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXAggregateTarget section */
@@ -62,6 +62,7 @@
 		55E4B3CD1F6725830003B1D2 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55E7A982263011FE00EDC6DE /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		55E7A9832630120300EDC6DE /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
+		55FEBED32DFD48060099ED07 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 55FEBED22DFD48060099ED07 /* Localizable.xcstrings */; };
 		CB12640607CB5F5A00EF1763 /* AquaTerm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB12640507CB5F5A00EF1763 /* AquaTerm.framework */; };
 		CB2CC1100677017B0042863D /* AQTModelAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2CC10E0677017B0042863D /* AQTModelAdditions.m */; };
 		CB3949DA0E8D7A5B00BA7404 /* AquaTerm.bridgesupport in Copy Bridge Support */ = {isa = PBXBuildFile; fileRef = CB3949D90E8D7A5B00BA7404 /* AquaTerm.bridgesupport */; };
@@ -301,13 +302,9 @@
 		5552F06028ACDA4400C7675C /* DemoSwift.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = DemoSwift.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55602F421D624D5700FC75A5 /* AQTPathAdditions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AQTPathAdditions.swift; sourceTree = "<group>"; };
 		556C562B1F3F90640080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu1.xib; sourceTree = "<group>"; };
-		556C562C1F3F906F0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu1.strings; sourceTree = "<group>"; };
 		556C562D1F3F907F0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ExtendSavePanel.xib; sourceTree = "<group>"; };
-		556C562E1F3F90850080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ExtendSavePanel.strings; sourceTree = "<group>"; };
 		556C562F1F3F90AB0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Preferences.xib; sourceTree = "<group>"; };
-		556C56301F3F90AF0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Preferences.strings; sourceTree = "<group>"; };
 		556C56311F3F90BA0080A38F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ColorInspector.xib; sourceTree = "<group>"; };
-		556C56321F3F90BF0080A38F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ColorInspector.strings; sourceTree = "<group>"; };
 		556C56331F3F90E50080A38F /* AQTWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AQTWindow.xib; sourceTree = "<group>"; };
 		5575FDE41C403A4900B7D002 /* PreferenceKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferenceKeys.m; sourceTree = "<group>"; };
 		5575FDE61C403A5800B7D002 /* PreferenceKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferenceKeys.h; sourceTree = "<group>"; };
@@ -326,6 +323,11 @@
 		55E4B3B41F671D840003B1D2 /* main.swift */ = {isa = PBXFileReference; indentWidth = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; usesTabs = 1; };
 		55E4B3C31F67251D0003B1D2 /* AquaTermTiming */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AquaTermTiming; sourceTree = BUILT_PRODUCTS_DIR; };
 		55E7A825262D723B00EDC6DE /* AQTPicture-Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AQTPicture-Image.swift"; sourceTree = "<group>"; };
+		55FEBECE2DFD40380099ED07 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/MainMenu1.xcstrings; sourceTree = "<group>"; };
+		55FEBECF2DFD40380099ED07 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/Preferences.xcstrings; sourceTree = "<group>"; };
+		55FEBED02DFD40390099ED07 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ColorInspector.xcstrings; sourceTree = "<group>"; };
+		55FEBED12DFD40390099ED07 /* mul */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; name = mul; path = mul.lproj/ExtendSavePanel.xcstrings; sourceTree = "<group>"; };
+		55FEBED22DFD48060099ED07 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		CB0C496E065ABF7C00AC22F7 /* INSTALL */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text; path = INSTALL; sourceTree = "<group>"; };
 		CB12640507CB5F5A00EF1763 /* AquaTerm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AquaTerm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB2CC10D0677017B0042863D /* AQTModelAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTModelAdditions.h; sourceTree = "<group>"; };
@@ -336,7 +338,7 @@
 		CB58A1FF06F9A60900AF8A5E /* help.html */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.html; name = help.html; path = Help/help.html; sourceTree = SOURCE_ROOT; };
 		CB58A23A06FA0FB600AF8A5E /* ReadMe.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = ReadMe.rtf; sourceTree = SOURCE_ROOT; };
 		CB5B187104A9A49E00EBD329 /* AQTController.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.h; path = AQTController.h; sourceTree = "<group>"; };
-		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
+		CB5B187204A9A49E00EBD329 /* AQTController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = AQTController.m; sourceTree = "<group>"; };
 		CB5B1BEE04A9C2E900EBD329 /* AQTClientProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTClientProtocol.h; sourceTree = "<group>"; };
 		CB5B1BEF04A9C2E900EBD329 /* AQTConnectionProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AQTConnectionProtocol.h; sourceTree = "<group>"; };
 		CB6785CE05866FCE00D208BA /* aquaterm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aquaterm.h; sourceTree = "<group>"; };
@@ -562,6 +564,7 @@
 				55D74C6D1C3DB4CD0013C8EC /* ExtendSavePanel.xib */,
 				556C56331F3F90E50080A38F /* AQTWindow.xib */,
 				55D74C771C3DB5160013C8EC /* Preferences.xib */,
+				55FEBED22DFD48060099ED07 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1099,6 +1102,7 @@
 			files = (
 				CBC4B43405E4C784001BE8D7 /* Credits.rtf in Resources */,
 				55D74C661C3DB4AD0013C8EC /* ColorInspector.xib in Resources */,
+				55FEBED32DFD48060099ED07 /* Localizable.xcstrings in Resources */,
 				CB72184906072CF6008DCEAD /* ReleaseNotes in Resources */,
 				CB58A20006F9A60900AF8A5E /* AQTAdapter.html in Resources */,
 				CB58A20106F9A60900AF8A5E /* help.html in Resources */,
@@ -1323,7 +1327,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				556C562B1F3F90640080A38F /* Base */,
-				556C562C1F3F906F0080A38F /* en */,
+				55FEBECE2DFD40380099ED07 /* mul */,
 			);
 			name = MainMenu1.xib;
 			sourceTree = "<group>";
@@ -1332,7 +1336,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				556C56311F3F90BA0080A38F /* Base */,
-				556C56321F3F90BF0080A38F /* en */,
+				55FEBED02DFD40390099ED07 /* mul */,
 			);
 			name = ColorInspector.xib;
 			sourceTree = "<group>";
@@ -1341,7 +1345,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				556C562D1F3F907F0080A38F /* Base */,
-				556C562E1F3F90850080A38F /* en */,
+				55FEBED12DFD40390099ED07 /* mul */,
 			);
 			name = ExtendSavePanel.xib;
 			sourceTree = "<group>";
@@ -1350,7 +1354,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				556C562F1F3F90AB0080A38F /* Base */,
-				556C56301F3F90AF0080A38F /* en */,
+				55FEBECF2DFD40380099ED07 /* mul */,
 			);
 			name = Preferences.xib;
 			sourceTree = "<group>";
@@ -1962,11 +1966,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -2014,11 +2020,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MARKETING_VERSION = "$(CURRENT_PROJECT_VERSION)";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 			};

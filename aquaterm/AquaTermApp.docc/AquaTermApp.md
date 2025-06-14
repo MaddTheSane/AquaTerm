@@ -4,7 +4,7 @@
 
 ## Overview
 
-<!--@START_MENU_TOKEN@-->Text<!--@END_MENU_TOKEN@-->
+See also ``/AquaTerm``
 
 ## Topics
 

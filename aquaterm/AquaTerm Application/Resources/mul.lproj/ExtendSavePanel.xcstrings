@@ -1,0 +1,66 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "17.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"EPS\"; ObjectID = \"17\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "EPS"
+          }
+        }
+      }
+    },
+    "18.title" : {
+      "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"18\";",
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OtherViews"
+          }
+        }
+      }
+    },
+    "20.title" : {
+      "comment" : "Class = \"NSMenuItem\"; title = \"PDF\"; ObjectID = \"20\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "PDF"
+          }
+        }
+      }
+    },
+    "22.title" : {
+      "comment" : "Class = \"NSBox\"; title = \"Format\"; ObjectID = \"22\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Format"
+          }
+        }
+      }
+    },
+    "30.title" : {
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Save figure as:\"; ObjectID = \"30\";",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Save figure as:"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

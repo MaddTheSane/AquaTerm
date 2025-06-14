@@ -93,10 +93,14 @@ extern void aqtLineDrawingTest(id sender);
 
   if([doConnection registerName:@"aquatermServer"] == NO)
   {
-    NSInteger retCode = NSRunCriticalAlertPanel(@"Could not establish service",
-                                       @"Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm.",
-                                       @"Quit", @"Cancel", nil);
-    if (retCode == NSAlertDefaultReturn)
+    NSAlert *alert = [[NSAlert alloc] init];
+    alert.alertStyle = NSAlertStyleCritical;
+    alert.messageText = NSLocalizedString(@"Could not establish service", @"Could not establish service");
+    alert.informativeText = NSLocalizedString(@"Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm.", @"Another App could be using \"aquatermServer\".");
+    [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+    NSInteger retCode = [alert runModal];
+    if (retCode == NSAlertFirstButtonReturn)
        [NSApp terminate:self];
     else
        NSLog(@"Error registering \"aquatermServer\" with defaultConnection"); 
@@ -141,19 +145,33 @@ extern void aqtLineDrawingTest(id sender);
       NSInteger retCode;
       if(eventsActive)
       {
-         retCode = NSRunCriticalAlertPanel(@"Clients still awaiting events",
-                                           @"There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.",
-                                           @"Cancel",
-                                           @"Quit", nil);
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleCritical;
+        alert.messageText = NSLocalizedString(@"Clients still awaiting events", @"Clients still awaiting events");
+        alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Client are awaiting input.");
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+        NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+        if (@available(macOS 11.0, *)) {
+          desAlert.hasDestructiveAction = YES;
+        }
+
+         retCode = [alert runModal];
       }
       else
       {
-         retCode = NSRunAlertPanel(@"Clients still connected",
-                                   @"There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.",
-                                   @"Cancel",
-                                   @"Quit", nil);
+        NSAlert *alert = [[NSAlert alloc] init];
+        alert.alertStyle = NSAlertStyleWarning;
+        alert.messageText = NSLocalizedString(@"Clients still connected", @"Clients still connected");
+        alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Idle client are still running.");
+        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+        NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+        if (@available(macOS 11.0, *)) {
+          desAlert.hasDestructiveAction = YES;
+        }
+        
+        retCode = [alert runModal];
       }
-      terminateDecision = (retCode == NSAlertDefaultReturn)?NSTerminateCancel:NSTerminateNow;
+      terminateDecision = (retCode == NSAlertFirstButtonReturn)?NSTerminateCancel:NSTerminateNow;
    }
    return terminateDecision;
 }

@@ -29,29 +29,30 @@ extern void aqtLineDrawingTest(id sender);
 #endif
 
 /**
- AQTController is the main controller object which coordinates all the
- action and manages the main DO connection.
+ * AQTController is the main controller object which coordinates all the
+ * action and manages the main DO connection.
  */
 @implementation AQTController
 {
    NSConnection * doConnection;
 }
 
-+ (void)initialize{
++ (void)initialize
+{
    NSUserDefaults *defaults = preferences;
    NSDictionary *appDefaults = @{SaveFolderKey: NSHomeDirectory(),
-         SaveFormatKey: @"PDF", 
-         ShowProcessNameKey: @NO,
-         ShowProcessIDKey: @NO,
-         MinimumLineWidthKey: @0.0,
-         ConvertSymbolFontKey: @YES,
-         AntialiasDrawingKey: @YES,
-         ImageInterpolationKey: @1,
-         CrosshairColorKey: @0,
-         CloseWindowWithPlotKey: @NO,
-         ConfirmCloseWindowWithPlotKey: @YES};
+                                 SaveFormatKey: @"PDF",
+                                 ShowProcessNameKey: @NO,
+                                 ShowProcessIDKey: @NO,
+                                 MinimumLineWidthKey: @0.0,
+                                 ConvertSymbolFontKey: @YES,
+                                 AntialiasDrawingKey: @YES,
+                                 ImageInterpolationKey: @1,
+                                 CrosshairColorKey: @0,
+                                 CloseWindowWithPlotKey: @NO,
+                                 ConfirmCloseWindowWithPlotKey: @YES};
    [defaults registerDefaults:appDefaults];
-  
+   
    //Make sure that SaveFolderKey is an NSURL
    if (![defaults URLForKey:SaveFolderKey]) {
       [defaults setURL:[NSURL fileURLWithPath:NSHomeDirectory()] forKey:SaveFolderKey];
@@ -65,13 +66,12 @@ extern void aqtLineDrawingTest(id sender);
 
 -(instancetype)init
 {
-  if (self =  [super init])
-  {
-     NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
-     handlerList = [[NSMutableArray alloc] initWithCapacity:256];
-     cascadingPoint = NSMakePoint(NSMinX(screenFrame), NSMaxY(screenFrame));
-  }
-  return self;
+   if (self =  [super init]) {
+      NSRect screenFrame = [NSScreen mainScreen].visibleFrame;
+      handlerList = [[NSMutableArray alloc] initWithCapacity:256];
+      cascadingPoint = NSMakePoint(NSMinX(screenFrame), NSMaxY(screenFrame));
+   }
+   return self;
 }
 
 -(void)dealloc
@@ -85,36 +85,36 @@ extern void aqtLineDrawingTest(id sender);
 -(void)awakeFromNib
 {
    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidClose:) name:AQTWindowDidCloseNotification object:nil];
-  //
-  // Set up a DO connection:
-  //
-  doConnection = [NSConnection new];
-  doConnection.rootObject = self;
-
-  if([doConnection registerName:@"aquatermServer"] == NO)
-  {
-    NSAlert *alert = [[NSAlert alloc] init];
-    alert.alertStyle = NSAlertStyleCritical;
-    alert.messageText = NSLocalizedString(@"Could not establish service", @"Could not establish service");
-    alert.informativeText = NSLocalizedString(@"Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm.", @"Another App could be using \"aquatermServer\".");
-    [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
-    [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-    NSInteger retCode = [alert runModal];
-    if (retCode == NSAlertFirstButtonReturn)
-       [NSApp terminate:self];
-    else
-       NSLog(@"Error registering \"aquatermServer\" with defaultConnection"); 
-  }
+   //
+   // Set up a DO connection:
+   //
+   doConnection = [NSConnection new];
+   doConnection.rootObject = self;
+   
+   if([doConnection registerName:@"aquatermServer"] == NO)
+   {
+      NSAlert *alert = [[NSAlert alloc] init];
+      alert.alertStyle = NSAlertStyleCritical;
+      alert.messageText = NSLocalizedString(@"Could not establish service", @"Could not establish service");
+      alert.informativeText = NSLocalizedString(@"Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm.", @"Another App could be using \"aquatermServer\".");
+      [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+      [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+      NSInteger retCode = [alert runModal];
+      if (retCode == NSAlertFirstButtonReturn) {
+         [NSApp terminate:self];
+      } else {
+         NSLog(@"Error registering \"aquatermServer\" with defaultConnection");
+      }
+   }
 }
 
 - (AQTAdapter *)sharedAdapter
 {
-  static AQTAdapter *adapter;
-  if (adapter == nil)
-  {
-    adapter = [[AQTAdapter alloc] initWithServer:self];
-  }
-  return adapter;
+   static AQTAdapter *adapter;
+   if (adapter == nil) {
+      adapter = [[AQTAdapter alloc] initWithServer:self];
+   }
+   return adapter;
 }
 
 - (void)setWindowPos:(NSWindow *)plotWindow
@@ -128,48 +128,42 @@ extern void aqtLineDrawingTest(id sender);
    int32_t terminateDecision = NSTerminateNow;
    BOOL validClients = NO;
    BOOL eventsActive = NO;
-   for (AQTPlot *aHandler in handlerList)
-   {
-      if ([aHandler clientValidAndResponding])
-      {
+   for (AQTPlot *aHandler in handlerList) {
+      if ([aHandler clientValidAndResponding]) {
          validClients = YES;
-         if ([aHandler acceptingEvents])
-         {
+         if ([aHandler acceptingEvents]) {
             eventsActive = YES;
          }
       }
    }
-
+   
    if(validClients)
    {
       NSInteger retCode;
-      if(eventsActive)
-      {
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.alertStyle = NSAlertStyleCritical;
-        alert.messageText = NSLocalizedString(@"Clients still awaiting events", @"Clients still awaiting events");
-        alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Client are awaiting input.");
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-        NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
-        if (@available(macOS 11.0, *)) {
-          desAlert.hasDestructiveAction = YES;
-        }
-
+      if (eventsActive) {
+         NSAlert *alert = [[NSAlert alloc] init];
+         alert.alertStyle = NSAlertStyleCritical;
+         alert.messageText = NSLocalizedString(@"Clients still awaiting events", @"Clients still awaiting events");
+         alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Client are awaiting input.");
+         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+         NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+         if (@available(macOS 11.0, *)) {
+            desAlert.hasDestructiveAction = YES;
+         }
+         
          retCode = [alert runModal];
-      }
-      else
-      {
-        NSAlert *alert = [[NSAlert alloc] init];
-        alert.alertStyle = NSAlertStyleWarning;
-        alert.messageText = NSLocalizedString(@"Clients still connected", @"Clients still connected");
-        alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Idle client are still running.");
-        [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-        NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
-        if (@available(macOS 11.0, *)) {
-          desAlert.hasDestructiveAction = YES;
-        }
-        
-        retCode = [alert runModal];
+      } else {
+         NSAlert *alert = [[NSAlert alloc] init];
+         alert.alertStyle = NSAlertStyleWarning;
+         alert.messageText = NSLocalizedString(@"Clients still connected", @"Clients still connected");
+         alert.informativeText = NSLocalizedString(@"There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit.", @"Idle client are still running.");
+         [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+         NSButton * desAlert = [alert addButtonWithTitle:NSLocalizedString(@"Quit", @"Quit")];
+         if (@available(macOS 11.0, *)) {
+            desAlert.hasDestructiveAction = YES;
+         }
+         
+         retCode = [alert runModal];
       }
       terminateDecision = (retCode == NSAlertFirstButtonReturn)?NSTerminateCancel:NSTerminateNow;
    }
@@ -181,7 +175,7 @@ extern void aqtLineDrawingTest(id sender);
 {
    // FIXME: Add debugging menu items here if built with DEBUG_XXX flags
 #ifdef DEBUG_BOUNDS
-   id menu = [[[NSApp mainMenu] itemWithTitle:@"Debug"] submenu];
+   NSMenu *menu = [[[NSApp mainMenu] itemWithTitle:@"Debug"] submenu];
    if (!menu) {
       NSMenuItem *mnuItem = [[NSApp mainMenu] addItemWithTitle:@"Debug" action:NULL keyEquivalent:@""];
       NSMenu *submenu = [[NSMenu alloc] initWithTitle:@"Debug"];
@@ -219,7 +213,7 @@ extern void aqtLineDrawingTest(id sender);
    // [newPlot setPlotKey:client];
    [newPlot setClientInfoName:name pid:procId];
    [handlerList addObject:newPlot];
-
+   
    return newPlot;
 }
 
@@ -232,16 +226,15 @@ extern void aqtLineDrawingTest(id sender);
 */
 - (void)removePlot:(id)aPlot
 {
-  [handlerList removeObject:aPlot];
+   [handlerList removeObject:aPlot];
 }
 
 - (void)windowDidClose:(NSNotification *)aNotification
 {
    // NSLog(@"in %@, %s:%d\nnotification %@", NSStringFromSelector(_cmd), __FILE__, __LINE__, [aNotification description]);
 
-   AQTPlot *aPlot = aNotification.object; 
-   if ([aPlot clientValidAndResponding] == NO)
-   {
+   AQTPlot *aPlot = aNotification.object;
+   if ([aPlot clientValidAndResponding] == NO) {
       [[[aPlot canvas] window] close];
       [self removePlot:aPlot];
    }
@@ -250,10 +243,10 @@ extern void aqtLineDrawingTest(id sender);
 #pragma mark === Actions ===
 -(IBAction)showPrefs:(id)sender;
 {
-   [[AQTPrefController sharedPrefController] showPrefs];    
+   [[AQTPrefController sharedPrefController] showPrefs];
 }
 
- -(IBAction)tileWindows:(id)sender;
+-(IBAction)tileWindows:(id)sender;
 {
    /* FIXME: This algorithm just divides the screen into N equally size tiles and fits the
       windows into the tiles trying to maximize screen usage. Could be improved... */
@@ -264,8 +257,9 @@ extern void aqtLineDrawingTest(id sender);
    int32_t i, row, col, nRow, nCol;
    NSInteger n = handlerList.count;
    
-   if (n==0)
+   if (n == 0) {
       return;
+   }
    
    nRow = nCol = 1 + (int32_t)sqrt(n-1);
    tileSize = NSMakeSize((int32_t)screenFrame.size.width/nCol, (int32_t)screenFrame.size.height/nRow);
@@ -292,11 +286,10 @@ extern void aqtLineDrawingTest(id sender);
 
 -(IBAction)showHelp:(id)sender
 {
-  NSURL *helpURL = [NSBundle.mainBundle URLForResource:@"help" withExtension:@"html"];
-  if (helpURL)
-  {
-    [[NSWorkspace sharedWorkspace] openURL:helpURL];
-  }
+   NSURL *helpURL = [NSBundle.mainBundle URLForResource:@"help" withExtension:@"html"];
+   if (helpURL) {
+      [[NSWorkspace sharedWorkspace] openURL:helpURL];
+   }
 }
 
 -(IBAction)showAvailableFonts:(id)sender
@@ -306,14 +299,14 @@ extern void aqtLineDrawingTest(id sender);
    NSFontManager *fontManager = [NSFontManager sharedFontManager];
    NSString *systemFont = [NSFont systemFontOfSize:10.0].fontName;
    NSMutableArray *allFontnames = [NSMutableArray arrayWithCapacity:1024];
-
+   
    // Set up Aquaterm
    AQTAdapter *adapter = [self sharedAdapter];
    [adapter openPlotWithIndex:1];
    adapter.plotTitle = @"Available fonts";
    adapter.plotSize = NSMakeSize(1000, 700);
    adapter.fontSize = 8.0;
-
+   
    // Collect all fontnames
    NSArray *allFontFamilies = fontManager.availableFontFamilies;
    
@@ -409,16 +402,20 @@ Feedback:\n-----------------------\n\n\
 {
    aqtDebug(self);
 }
+
 -(IBAction)testview:(id)sender;
 {
    aqtTestview(self);
 }
+
 -(IBAction)stringDrawingTest:(id)sender;
 {
    aqtStringDrawingTest(self);
 }
+
 -(IBAction)lineDrawingTest:(id)sender;
 {
    aqtLineDrawingTest(self);
 }
+
 @end

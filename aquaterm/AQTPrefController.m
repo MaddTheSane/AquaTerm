@@ -16,8 +16,7 @@
 
 -(instancetype)init
 {
-   if (self = [super init])
-   {
+   if (self = [super init]) {
       NSArray *tmpNibArr;
       [[NSBundle mainBundle] loadNibNamed:@"Preferences" owner:self topLevelObjects:&tmpNibArr];
       nibObjects = [tmpNibArr copy];

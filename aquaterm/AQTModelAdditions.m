@@ -34,45 +34,37 @@
    dirtyRect = backgroundDidChange?AQTRectFromSize(self.canvasSize):AQTUnionRect(dirtyRect, newModel.bounds);
 }
 
-
-
 - (void)removeGraphicsInRect:(AQTRect)aRect
 {
-    NSRect targetRect;
-    NSRect testRect;
-    NSRect clipRect = AQTRectFromSize(self.canvasSize);
-    NSRect newBounds = NSZeroRect;
-    NSInteger i;
-    NSInteger  objectCount = self.count;
-
-    targetRect.origin.x = aRect.origin.x; targetRect.origin.y = aRect.origin.y;
-    targetRect.size.width = aRect.size.width; targetRect.size.height = aRect.size.height;
-    // check for nothing to remove or disjoint modelBounds <--> targetRect
-    if (objectCount == 0 || AQTIntersectsRect(targetRect, self.bounds) == NO)
-    return;
-    
-    // Apply clipRect (=canvasRect) to graphic bounds before comparing.
-    if (AQTContainsRect(targetRect, NSIntersectionRect(self.bounds, clipRect)))
-    {
-       [self removeAllObjects];
-    }
-    else
-    {
-       for (i = objectCount - 1; i >= 0; i--)
-       {
-          testRect = [modelObjects[i] bounds];
-          if (AQTContainsRect(targetRect, NSIntersectionRect(testRect, clipRect)))
-          {
-             [self removeObjectAtIndex:i];
-          }
-          else
-          {
-             newBounds = AQTUnionRect(newBounds, testRect);
-          }
-       }
-    }
-    self.bounds = newBounds;
-    dirtyRect = AQTUnionRect(dirtyRect, targetRect);
+   NSRect targetRect;
+   NSRect testRect;
+   NSRect clipRect = AQTRectFromSize(self.canvasSize);
+   NSRect newBounds = NSZeroRect;
+   NSInteger i;
+   NSInteger  objectCount = self.count;
+   
+   targetRect.origin.x = aRect.origin.x; targetRect.origin.y = aRect.origin.y;
+   targetRect.size.width = aRect.size.width; targetRect.size.height = aRect.size.height;
+   // check for nothing to remove or disjoint modelBounds <--> targetRect
+   if (objectCount == 0 || AQTIntersectsRect(targetRect, self.bounds) == NO) {
+      return;
+   }
+   
+   // Apply clipRect (=canvasRect) to graphic bounds before comparing.
+   if (AQTContainsRect(targetRect, NSIntersectionRect(self.bounds, clipRect))) {
+      [self removeAllObjects];
+   } else {
+      for (i = objectCount - 1; i >= 0; i--) {
+         testRect = [modelObjects[i] bounds];
+         if (AQTContainsRect(targetRect, NSIntersectionRect(testRect, clipRect))) {
+            [self removeObjectAtIndex:i];
+         } else {
+            newBounds = AQTUnionRect(newBounds, testRect);
+         }
+      }
+   }
+   self.bounds = newBounds;
+   dirtyRect = AQTUnionRect(dirtyRect, targetRect);
 }
 
 @end

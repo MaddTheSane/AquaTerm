@@ -50,8 +50,7 @@ __unused static inline void NOOP_(id x, ...) {;}
 
 -(instancetype)init
 {
-   if (self = [super init])
-   {
+   if (self = [super init]) {
       nibObjects = [[NSMutableArray alloc] init];
       NSArray *intNibArr = nil;
       [self setClientInfoName:@"No connection" pid:-1];
@@ -79,19 +78,15 @@ __unused static inline void NOOP_(id x, ...) {;}
    
    canvas.model = model;
    [canvas setFrameOrigin:NSMakePoint(0.0, 0.0)];
-   if (_clientPID != -1)
-   {
+   if (_clientPID != -1) {
       NSString *nameString = [preferences boolForKey:ShowProcessNameKey]?[NSString stringWithFormat:@"%@ ", _clientName]:@"";
       NSString *pidString = [preferences boolForKey:ShowProcessIDKey]?[NSString localizedStringWithFormat:@"(%d) ", _clientPID]:@"";
       canvas.window.title = [NSString stringWithFormat:@"%@%@%@", nameString, pidString, model.title];
-   }
-   else
-   {
+   } else {
       canvas.window.title = model.title;
    }
    
-   if (shouldResize)
-   {
+   if (shouldResize) {
       NSRect contentFrame = NSZeroRect;
       contentFrame.size = contentSize;
       [canvas.window setContentSize:contentSize];
@@ -107,8 +102,7 @@ __unused static inline void NOOP_(id x, ...) {;}
 -(void)awakeFromNib
 {
    [self cascadeWindowOrderFront:NO];
-   if (model)
-   {
+   if (model) {
       [self _aqtSetupViewShouldResize:YES];
       [canvas.window makeKeyAndOrderFront:self];
    }
@@ -127,9 +121,10 @@ __unused static inline void NOOP_(id x, ...) {;}
 -(void)cascadeWindowOrderFront:(BOOL)orderFront
 {
    [(AQTController*)NSApp.delegate setWindowPos:canvas.window];
-   if (orderFront)
-      [canvas.window makeKeyAndOrderFront:self];      
-}   
+   if (orderFront) {
+      [canvas.window makeKeyAndOrderFront:self];
+   }
+}
 
 -(void)constrainWindowToFrame:(NSRect)tileFrame
 {
@@ -147,17 +142,14 @@ __unused static inline void NOOP_(id x, ...) {;}
    }
    // NSLog(@"%@ --> %@", NSStringFromRect(tileFrame), NSStringFromRect(tmpFrame));
    [canvas.window setFrame:tmpFrame display:YES];
-   [canvas.window makeKeyAndOrderFront:self];      
-}   
-
-
+   [canvas.window makeKeyAndOrderFront:self];
+}
 
 /*" Accessor methods for the AQTView instance "*/
 - (BOOL)clientValidAndResponding
 {
    BOOL validAndResponding = NO;
-   if (_client != nil)
-   {
+   if (_client != nil) {
       validAndResponding = YES;
       @try {
          [_client ping];
@@ -198,8 +190,7 @@ __unused static inline void NOOP_(id x, ...) {;}
       LOG(@"%@", newModel.description);
       BOOL viewNeedResize = !AQTProportionalSizes(model.canvasSize, newModel.canvasSize);
       [model appendModel:newModel];
-      if (_isWindowLoaded)
-      {
+      if (_isWindowLoaded) {
          [self _aqtSetupViewShouldResize:viewNeedResize];
          // FIXME: Why was the next line needed???
          // dirtyRect = backgroundDidChange?AQTRectFromSize([model canvasSize]):AQTUnionRect(dirtyRect, [newModel bounds]);
@@ -226,8 +217,7 @@ __unused static inline void NOOP_(id x, ...) {;}
 {
    LOG(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
    _acceptingEvents = flag; // && (_client != nil);
-   if (_isWindowLoaded)
-   {
+   if (_isWindowLoaded) {
       canvas.processingEvents = _acceptingEvents;
    }
 }
@@ -282,7 +272,6 @@ __unused static inline void NOOP_(id x, ...) {;}
    return YES;
 }
 
-
 -(void)setClientInfoName:(NSString *)name pid:(pid_t)pid
 {
    _clientName = [name copy];
@@ -291,31 +280,29 @@ __unused static inline void NOOP_(id x, ...) {;}
 
 -(void)processEvent:(NSString *)event
 {
-   if(_acceptingEvents) // FIXME: redundant!?
-   {
+   if(_acceptingEvents) { // FIXME: redundant!?
       @try {
          [_client processEvent:event sender:self];
       } @catch (NSException *localException) {
-         if ([localException.name isEqualToString:NSObjectInaccessibleException])
+         if ([localException.name isEqualToString:NSObjectInaccessibleException]) {
             [self invalidateClient];//:_client]; // invalidate client
-         else
+         } else {
             [localException raise];
+         }
       }
    }
 }
+
 #pragma mark === Delegate methods ===
 - (NSSize)windowWillResize:(NSWindow *)sender toSize:(NSSize)proposedFrameSize
 {
    // FIXME: take screen size into account
-   NSSize tmpSize = model.canvasSize; 
+   NSSize tmpSize = model.canvasSize;
    // NSLog(@"in --> %@ %s line %d", NSStringFromSelector(_cmd), __FILE__, __LINE__);
-   if (tmpSize.width > tmpSize.height)
-   {
+   if (tmpSize.width > tmpSize.height) {
       // decide by width
       proposedFrameSize.height = proposedFrameSize.width * (model.canvasSize.height/model.canvasSize.width) + sender.titlebarHeight;
-   }
-   else
-   {
+   } else {
       // decide by height
       proposedFrameSize.width = (proposedFrameSize.height - sender.titlebarHeight) * (model.canvasSize.width/model.canvasSize.height);
    }
@@ -325,13 +312,11 @@ __unused static inline void NOOP_(id x, ...) {;}
 - (BOOL)windowShouldClose:(id)sender
 {
    BOOL shouldClose = YES;
-   if (_client)
-   {
+   if (_client) {
       // Post a notification to check (later) wheter or not the client is still alive, if it isn't the window is closed
       [[NSNotificationQueue defaultQueue] enqueueNotification:[NSNotification notificationWithName:AQTWindowDidCloseNotification object:self]
                                                  postingStyle:NSPostWhenIdle];
-      if ([self acceptingEvents] == NO)
-      {
+      if ([self acceptingEvents] == NO) {
          [sender orderOut:self];
       }
       shouldClose = NO;
@@ -381,18 +366,15 @@ __unused static inline void NOOP_(id x, ...) {;}
 -(IBAction)printDocument:(id)sender
 {
    AQTView *printView;
-   NSPrintInfo *printInfo = [NSPrintInfo sharedPrintInfo]; 
+   NSPrintInfo *printInfo = [NSPrintInfo sharedPrintInfo];
    NSSize paperSize = printInfo.paperSize;
    NSPrintOperation *printOp;
    
    paperSize.width -= (printInfo.leftMargin + printInfo.rightMargin);
    paperSize.height -= (printInfo.topMargin + printInfo.bottomMargin);
-   if (printInfo.orientation == NSPaperOrientationPortrait)
-   {
+   if (printInfo.orientation == NSPaperOrientationPortrait) {
       paperSize.height = (model.canvasSize.height * paperSize.width) / model.canvasSize.width;
-   }
-   else
-   {
+   } else {
       paperSize.width = (model.canvasSize.width * paperSize.height) / model.canvasSize.height;
    }
    
@@ -412,8 +394,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    NSArray *tmpNibArr = nil;
    
    if (saveFormatPopUp == nil) {
-      if (![[NSBundle mainBundle] loadNibNamed:@"ExtendSavePanel" owner:self topLevelObjects:&tmpNibArr])
-      {
+      if (![[NSBundle mainBundle] loadNibNamed:@"ExtendSavePanel" owner:self topLevelObjects:&tmpNibArr]) {
          NSLog(@"Failed to load ExtendSavePanel.nib");
          return;
       }
@@ -449,7 +430,6 @@ __unused static inline void NOOP_(id x, ...) {;}
    }];
 }
 
-
 - (void)runPageLayout:(id)sender 
 {
    [NSApp runPageLayout:(id)sender];
@@ -471,7 +451,7 @@ __unused static inline void NOOP_(id x, ...) {;}
    AQTView *testView = [self canvas];
    testView.model = model;
    if ([testView lockFocusIfCanDraw]) {
-      startTime = [NSDate date];   
+      startTime = [NSDate date];
       [testView drawRect:viewRect];
       thisTime = -startTime.timeIntervalSinceNow;
       totalTime += thisTime;

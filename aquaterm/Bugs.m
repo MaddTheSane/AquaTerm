@@ -52,8 +52,7 @@ void aqtDebug(id sender)
 #ifndef AQT_STANDALONE
   AQTAdapter *adapter = [sender sharedAdapter];
 #endif
-  if (!adapter)
-  {
+  if (!adapter) {
     NSLog(@"Failed to init adapter");
   }
   adapter.fontName = @"Times-Roman";
@@ -77,8 +76,7 @@ void aqtDebug(id sender)
   float a2=20.;
   float x=400., y=200.;
   
-  for (a=0.0; a<360.0; a+=30.0)
-  {
+  for (a=0.0; a<360.0; a+=30.0) {
      [adapter addLabel:@"--- Sheared" atPoint:NSMakePoint(200,200) angle:a shearAngle:a align:AQTAlignLeft | AQTAlignMiddle];
   }
    

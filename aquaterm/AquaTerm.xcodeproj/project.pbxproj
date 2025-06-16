@@ -1057,7 +1057,7 @@
 				};
 			};
 			buildConfigurationList = CB699C8C08953AAD00C4B248 /* Build configuration list for PBXProject "AquaTerm" */;
-			compatibilityVersion = "Xcode 9.3";
+			compatibilityVersion = "Xcode 15.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 1;
 			knownRegions = (

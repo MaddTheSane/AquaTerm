@@ -176,7 +176,7 @@ int main(void)
 /*!
  * Reads the last event logged by the viewer.
  *
- * Will always return `NoEvent` unless ``setAcceptingEvents:`` is called with a `YES` argument.
+ * Will always return `"NoEvent"` unless ``setAcceptingEvents:`` is called with a `YES` argument.
 */
 @property (readonly, copy) NSString *lastEvent;
 

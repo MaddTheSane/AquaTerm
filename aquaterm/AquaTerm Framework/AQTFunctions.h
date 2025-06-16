@@ -28,12 +28,12 @@ static inline BOOL AQTIntervalContainsFloat(float aMin, float aMax, float a) {
    return (GEQ(a, aMin)  && LEQ(a, aMax));
 }
 
-static inline BOOL AQTIsZeroRect(NSRect aRect){
+static inline BOOL AQTIsZeroRect(NSRect aRect) {
    return NSEqualRects(aRect, NSZeroRect);
 }
-BOOL AQTContainsRect(NSRect containerRect, NSRect testRect);
-BOOL AQTIntersectsRect(NSRect aRect, NSRect bRect);
-NSRect AQTUnionRect(NSRect aRect, NSRect bRect);
+extern BOOL AQTContainsRect(NSRect containerRect, NSRect testRect);
+extern BOOL AQTIntersectsRect(NSRect aRect, NSRect bRect);
+extern NSRect AQTUnionRect(NSRect aRect, NSRect bRect);
 static inline NSRect AQTRectFromSize(NSSize aSize) {
    NSRect toRet;
    toRet.origin = NSZeroPoint;

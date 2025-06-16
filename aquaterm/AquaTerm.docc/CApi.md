@@ -104,4 +104,10 @@ Constants that specify vertical alignment for labels.
 - ``aqtResetImageTransform``
 - ``aqtAddImageWithBitmap``
 - ``aqtAddImageWithRGBABitmap``
+
+### Deprecated
+
+- ``AQTButtLineCapStyle``
+- ``AQTRoundLineCapStyle``
+- ``AQTSquareLineCapStyle``
 - ``aqtAddTransformedImageWithBitmap``

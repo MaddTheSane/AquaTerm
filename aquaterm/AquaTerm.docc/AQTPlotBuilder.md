@@ -70,7 +70,8 @@ This is the class that performs all assembling of plots in the form of an ``AQTM
 - ``removeAllParts``
 
 ### Deprecated
-Deprecated, do not use these methods:
+
+Deprecated, do not use these methods.
 
 - ``setLinewidth:`` 
 - ``setFontname:``

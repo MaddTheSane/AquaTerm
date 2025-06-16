@@ -53,19 +53,19 @@ framework module AquaTerm {
 		export *
 	}
 	
-	explicit module AQTClientManager {
+	module AQTClientManager {
 		requires objc
 		header "AQTClientManager.h"
 		export *
 	}
 	
-	explicit module AQTPlotBuilder {
+	module AQTPlotBuilder {
 		requires objc
 		header "AQTPlotBuilder.h"
 		export *
 	}
 	
-	explicit module Protocols {
+	module Protocols {
 		requires objc
 		
 		module Client {

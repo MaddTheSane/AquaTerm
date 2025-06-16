@@ -55,7 +55,6 @@ This is the base class of all objects comprising a plot. All objects inherit bou
 ``AQTPath`` class represents a path, possibly made up of a large number of segments and a fill option.
 
 ## 2, AquaTerm
-====
 
 AquaTerm is pretty much a standard Cocoa application, in fact, in the future I'd like to make it a NSDocument based application with `AQTPlot` a subclass of NSDocument. AquaTerm is linked with AquaTerm.framework which provides the basic model classes.
 
@@ -113,10 +112,8 @@ _To be documented._
 _To be documented._
 
 ## 5, Examples
-====
 
 ### Hello World
-===
 
 Example: aqt_hello.m
 
@@ -151,7 +148,6 @@ or, if you prefer handling the file as a C file
 `gcc -ObjC aqt_hello.c -o aqt_hello -lobjc -framework AquaTerm -framework Foundation`
 
 ### Adding a new property
-====
 
 Next I'll try to outline the steps necessary to add a new property (e.g. clipRect or transform). 
 
@@ -163,8 +159,7 @@ Next, support for the new property must be added to `AQTPlotBuilder`.
 
 Finally, add code to `AQTGraphicDrawingAdditions` that makes use of the new property. 
 
-### Adding a new subclass of AQTGraphic ###
-====
+### Adding a new subclass of AQTGraphic
 
 To add a new subclass of ``AQTGraphic`` (e.g. AQTBezierPath) define a set of API additions to AQTAdapter, take care to follow the add/set naming conventions. Generally , you need to create a new subclass of AQTGraphic, but the example AQTBezierPath is better subclassed from AQTPath.
 

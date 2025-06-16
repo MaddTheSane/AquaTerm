@@ -24,6 +24,20 @@ NS_ASSUME_NONNULL_BEGIN
 #define MAX_POLYGON_POINTS 256
 
 @class AQTModel, AQTColorMap;
+
+/**
+ * `AQTClientManager` is the main controller class present in AquaTerm.framework, a shared instance
+ * is used (and instantiated) by ``AQTAdapter``.
+ *
+ * When the client opens a new plot, the request is forwarded from `AQTAdapter` to `AQTClientManager`
+ * which sends a message to AquaTerm (after launching it if it is not running) requesting a new plot. AquaTerm
+ * instantiates an object of class `AQTPlot` and replies with a reference to the newly instantiated `AQTPlot`
+ * object. `AQTClientManager` then instantiates a corresponding `AQTPlotBuilder` and returns a
+ * reference to AQTAdapter which will forward all drawing related messages to it. Thus, there is a one-to-one
+ * relationship between AQTPlotBuilder (in AquaTerm.framework) and `AQTPlot` (in AquaTerm).
+ *
+ * It also implements the methods in protocol `AQTEventProtocol` in order to receive event from a plot window, see ``AQTEventProtocol``.
+ */
 @interface AQTPlotBuilder : NSObject
 {
   AQTModel *_model;	/**< The graph currently being built */
@@ -74,6 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// Currently selected color
 @property (nonatomic) AQTColor color;
+/// Currently selected background color
 @property AQTColor backgroundColor;
 
 - (void)takeColorFromColormapEntry:(int32_t)index;

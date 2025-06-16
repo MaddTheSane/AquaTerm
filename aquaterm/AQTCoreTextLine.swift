@@ -69,9 +69,14 @@ private func convertAttributedStringToCoreTextAttributes(oldString: NSAttributed
       
       //TODO: work on a better way of doing superscripts that match the old behavior.
       if attributedSublevel != 0 {
+         newAttributes[NSAttributedString.Key(kCTBaselineOffsetAttributeName as String)] = CGFloat(attributedSublevel) * 3
+         if #available(macOS 10.15, *) {
+            newAttributes[NSAttributedString.Key(kCTFontAttributeName as String)] = aFont.withSize(aFont.pointSize * 0.75)
+         } else {
+            newAttributes[NSAttributedString.Key(kCTFontAttributeName as String)] = NSFont(name: aFont.fontName, size: aFont.pointSize * 0.75)!
+         }
          return nil
       }
-      newAttributes[NSAttributedString.Key(kCTBaselineOffsetAttributeName as String)] = attributedSublevel
 
       if newUnderlining {
          newAttributes[NSAttributedString.Key(kCTUnderlineStyleAttributeName as String)] = CTUnderlineStyle.single.rawValue

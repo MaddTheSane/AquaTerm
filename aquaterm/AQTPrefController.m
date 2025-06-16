@@ -35,7 +35,7 @@
    [crosshairCursorColor selectItemAtIndex:[preferences integerForKey:CrosshairColorKey]];
    shouldAntialiasSwitch.state = [preferences boolForKey:AntialiasDrawingKey] ? NSOnState : NSOffState;
    minimumLinewidthSlider.doubleValue = lw;
-   linewidthDisplay.stringValue = (lw < 0.04)?@"off":[NSString localizedStringWithFormat:@"%4.2f", lw];
+   linewidthDisplay.stringValue = (lw < 0.04)?NSLocalizedString(@"off", @"off"):[NSString localizedStringWithFormat:@"%4.2f", lw];
    minimumLinewidthSlider.doubleValue = [preferences floatForKey:MinimumLineWidthKey];
    convertSymbolFontSwitch.state = [preferences boolForKey:ConvertSymbolFontKey] ? NSOnState : NSOffState;
    closeWindowSwitch.state = [preferences boolForKey:CloseWindowWithPlotKey] ? NSOnState : NSOffState;
@@ -80,7 +80,7 @@
 - (IBAction)linewidthSliderMoved:(id)sender
 {
    double lw = [sender doubleValue];
-   linewidthDisplay.stringValue = (lw < 0.04)?@"off":[NSString localizedStringWithFormat:@"%4.2f", lw];
+   linewidthDisplay.stringValue = (lw < 0.04)?NSLocalizedString(@"off", @"off"):[NSString localizedStringWithFormat:@"%4.2f", lw];
 }
 
 @end

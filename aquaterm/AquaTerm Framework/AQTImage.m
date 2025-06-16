@@ -100,30 +100,20 @@
       bitmap = RETAINOBJ([coder decodeObjectOfClass:[NSData class] forKey:AQTImageBitmapKey]);
       bitmapSize = [coder decodeSizeForKey:AQTImageBitmapSizeKey];
       NSValue * tmpVal = [coder decodeObjectOfClass:[NSValue class] forKey:AQTImageTransformKey];
-      if (@available(macOS 10.13, *)) {
-        [tmpVal getValue:&transform size:sizeof(transform)];
-      } else {
-        [tmpVal getValue:&transform];
-      }
+      [tmpVal getValue:&transform size:sizeof(transform)];
       fitBounds = [coder decodeBoolForKey:AQTImageFitBoundsKey];
     } else {
       AQTRect r;
       AQTSize s;
       
       bitmap = RETAINOBJ([coder decodeObject]);
-      if (@available(macOS 10.13, *)) {
-        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s size:sizeof(AQTSize)];
-        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
-        [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform size:sizeof(AQTAffineTransformStruct)];
-      } else {
-        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
-        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-        [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform];
-      }
+      [coder decodeValueOfObjCType:@encode(AQTSize) at:&s size:sizeof(AQTSize)];
+      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
+      [coder decodeValueOfObjCType:@encode(AQTAffineTransformStruct) at:&transform size:sizeof(AQTAffineTransformStruct)];
       bitmapSize.width = s.width; bitmapSize.height = s.height;
       _bounds.origin.x = r.origin.x; _bounds.origin.y = r.origin.y;
       _bounds.size.width = r.size.width; _bounds.size.height = r.size.height;
-      [coder decodeValueOfObjCType:@encode(BOOL) at:&fitBounds];
+      [coder decodeValueOfObjCType:@encode(BOOL) at:&fitBounds size:sizeof(BOOL)];
     }
   }
   return self;

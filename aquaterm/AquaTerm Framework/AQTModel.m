@@ -84,17 +84,12 @@
       
       modelObjects = [[coder decodeObject] mutableCopy];
       title = [[coder decodeObject] copy];
-      if (@available(macOS 10.13, *)) {
-        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s size:sizeof(AQTSize)];
-        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
-      } else {
-        [coder decodeValueOfObjCType:@encode(AQTSize) at:&s];
-        [coder decodeValueOfObjCType:@encode(AQTRect) at:&r];
-      }
+      [coder decodeValueOfObjCType:@encode(AQTSize) at:&s size:sizeof(AQTSize)];
+      [coder decodeValueOfObjCType:@encode(AQTRect) at:&r size:sizeof(AQTRect)];
       canvasSize.width = s.width; canvasSize.height = s.height;
       dirtyRect.origin.x = r.origin.x; dirtyRect.origin.x = r.origin.y;
       dirtyRect.size.width = r.size.width; dirtyRect.size.height = r.size.height;
-      [coder decodeValueOfObjCType:@encode(BOOL) at:&isDirty];
+      [coder decodeValueOfObjCType:@encode(BOOL) at:&isDirty size:sizeof(BOOL)];
     }
   }
   

@@ -22,11 +22,20 @@
     "Could not establish service" : {
       "comment" : "Could not establish service"
     },
+    "Debug" : {
+      "comment" : "Debug"
+    },
     "Keep" : {
       "comment" : "Keep"
     },
+    "off" : {
+      "comment" : "off"
+    },
     "Quit" : {
       "comment" : "Quit"
+    },
+    "Show bounds" : {
+      "comment" : "Show bounds"
     },
     "The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?" : {
       "comment" : "Client closing. Keep window open?"

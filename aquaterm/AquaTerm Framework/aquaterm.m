@@ -104,7 +104,7 @@ void aqtSetPlotTitle(const char *title)
 {
    NSString *titleStr = title ? @(title) : nil;
    if (!titleStr) {
-      titleStr = [NSString stringWithCString:title encoding: NSISOLatin1StringEncoding];
+      titleStr = title ? [NSString stringWithCString:title encoding: NSISOLatin1StringEncoding] : nil;
    }
    _adapter.plotTitle = title?titleStr:@"Untitled";
 }

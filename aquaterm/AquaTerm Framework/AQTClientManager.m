@@ -179,7 +179,7 @@
       }
       if (status != noErr) {
          // No, search for it based on bundle identifier, choose latest version
-         if (@available(macOS 10.10, *)) {
+         {
             NSArray *aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
             if (aquaTermURLs) {
                //TODO: iterate through the URLs, select latest version.

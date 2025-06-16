@@ -13,7 +13,6 @@
 #import "AQTStringDrawingAdditions.h"
 #import "PreferenceKeys.h"
 
-static NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale);
 static NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale) AVAILABLE_MAC_OS_X_VERSION_10_13_AND_LATER;
 
 
@@ -71,38 +70,21 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    [_aqtSharedScratchPad() lockFocus];
    [tmpPath moveToPoint:pos];
    
-   if (@available(macOS 10.13, *)) {
-      unichar * chars = calloc(strLen - firstChar + 1, sizeof(unichar));
-      CGGlyph * glyphs = calloc(strLen - firstChar + 1, sizeof(CGGlyph));
-      for (NSInteger i = firstChar; i < strLen; i++) {
-         unichar theChar = [self characterAtIndex:i];
-         if (convertSymbolFontToUnicode) {
-            theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
-         }
-         chars[i - firstChar] = theChar;
-      }
-      CTFontGetGlyphsForCharacters((CTFontRef)aFont, chars, glyphs, strLen - firstChar);
-      
-      [tmpPath appendBezierPathWithCGGlyphs:glyphs count:strLen - firstChar inFont:aFont];
-
-      free(chars);
-      free(glyphs);
-   } else {
-   for(NSInteger i=firstChar; i<strLen; i++)
-   {
-      NSGlyph theGlyph;
-      NSSize offset;
+   unichar * chars = calloc(strLen - firstChar + 1, sizeof(unichar));
+   CGGlyph * glyphs = calloc(strLen - firstChar + 1, sizeof(CGGlyph));
+   for (NSInteger i = firstChar; i < strLen; i++) {
       unichar theChar = [self characterAtIndex:i];
-      if (convertSymbolFontToUnicode)
+      if (convertSymbolFontToUnicode) {
          theChar = _aqtMapAdobeSymbolEncodingToUnicode(theChar);
-      theGlyph = [aFont _defaultGlyphForChar:theChar];
-      offset = [aFont advancementForGlyph:theGlyph];
-      [tmpPath appendBezierPathWithGlyph:theGlyph inFont:aFont];
-      pos.x += offset.width;
-      pos.y += offset.height;
-      [tmpPath moveToPoint:pos];      
+      }
+      chars[i - firstChar] = theChar;
    }
-   }
+   CTFontGetGlyphsForCharacters((CTFontRef)aFont, chars, glyphs, strLen - firstChar);
+   
+   [tmpPath appendBezierPathWithCGGlyphs:glyphs count:strLen - firstChar inFont:aFont];
+   
+   free(chars);
+   free(glyphs);
 
    [_aqtSharedScratchPad() unlockFocus];
    return tmpPath;
@@ -127,11 +109,7 @@ unichar _aqtMapAdobeSymbolEncodingToUnicode(unichar theChar)
    
    [_aqtSharedScratchPad() lockFocus];   
    [tmpPath moveToPoint:pos];
-   if (@available(macOS 10.13, *)) {
-      pos = recurseCG(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
-   } else {
-      pos = recurse(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
-   }
+   pos = recurseCG(tmpPath, self, defaultFont.fontName, defaultFont.pointSize, &index, 0, pos, 1.0);
    [_aqtSharedScratchPad() unlockFocus];
    return tmpPath;
 }
@@ -246,123 +224,5 @@ NSPoint recurseCG(NSBezierPath *path, const NSAttributedString *attrString, NSSt
       }
    }
    maxRight = 0.0;
-   return pos;
-}
-
-/**
- * This function appends the attributed string to a bezierPath.
- *
- * The following string attributes are honored:
- * * `AQTFontname` - overrides defaultFontName (NSString)
- * * `AQTFontsize` - overrides defaultFontSize (float)
- * * `NSSuperscript` - superscript level (int) [..., -1, 0, 1, ...], negative for subscript FIXME: AQTSuperscript
- * * `NSUnderline` - underline text (int) {0, 1} FIXME: AQTUnderline
- * * `AQTBaselineAdjust` - move baseline relative to glyph height (float) <0 below and 0> above baseline
- * * `AQTNonPrintingChar` - if defined and 1 char will not be drawn, only occupy space (int) {0, 1}
- *
- * If Symbol font is specified (defaultFont or as attribute), automatic conversion to Unicode is performed. 
-*/
-NSPoint recurse(NSBezierPath *path, const NSAttributedString *attrString, NSString *defaultFontName, CGFloat defaultFontSize, int32_t *i, NSInteger sublevel, NSPoint pos, CGFloat fontScale)
-{
-   static CGFloat maxRight = 0.0;
-   static NSPoint underlineLeftPoint;
-   NSString *text = attrString.string;
-   BOOL extendsRight = NO;
-   BOOL underlining = NO;
-   NSInteger strLen = text.length;
-   CGFloat glyphHeight = defaultFontSize * fontScale;
-   NSInteger attributedSublevel = 0;
-   CGFloat baselineOffset = 0.0;
-   BOOL convertSymbolFontToUnicode = [[NSUserDefaults standardUserDefaults] boolForKey:ConvertSymbolFontKey];
-    
-   while (*i < strLen) {
-      // Read attributes
-      NSRange range;
-      NSDictionary *attributes = [attrString attributesAtIndex:*i effectiveRange:&range];
-      NSString *attributedFontname = (attributes[AQTFontNameKey] != nil)?
-         attributes[AQTFontNameKey]:
-         defaultFontName; 
-      CGFloat attributedFontsize = (attributes[AQTFontSizeKey] != nil)?
-         [attributes[AQTFontSizeKey] integerValue]:
-         defaultFontSize;
-      attributedSublevel = (attributes[NSSuperscriptAttributeName] != nil)?
-         [attributes[NSSuperscriptAttributeName] integerValue]:
-         0;
-      CGFloat baselineAdjust = (attributes[AQTBaselineAdjustKey] != nil)?
-         [attributes[AQTBaselineAdjustKey] doubleValue]:
-         0.0;
-      BOOL isVisible = (attributes[AQTNonPrintingCharKey] == nil
-         || [attributes[AQTNonPrintingCharKey] integerValue] == 0);
-      BOOL newUnderlining = (attributes[NSUnderlineStyleAttributeName] != nil
-                        && [attributes[NSUnderlineStyleAttributeName] integerValue] == 1);
-      if (attributedSublevel == sublevel) {
-         //TODO: migrate to NSLayoutManager?
-         NSFont *aFont;
-         unichar *theChars = calloc(range.length, sizeof(unichar));
-         NSGlyph *theGlyphs = calloc(range.length, sizeof(NSGlyph));
-         NSSize *theAdvances = calloc(range.length, sizeof(NSSize));
-         // Get selected font
-         if ((aFont = [NSFont fontWithName:attributedFontname size:attributedFontsize * fontScale]) == nil)
-            aFont = [NSFont systemFontOfSize:attributedFontsize * fontScale]; 
-         [text getCharacters:theChars range:range];
-         // Perform neccessary conversion to Unicode
-         if ([aFont.fontName isEqualToString:@"Symbol"] && convertSymbolFontToUnicode) {
-            for (NSInteger i = 0; i < range.length; i++) {
-               theChars[i] = _aqtMapAdobeSymbolEncodingToUnicode(theChars[i]);
-            }
-         }
-         // Get the glyphs
-         for (NSInteger i = 0; i < range.length; i++) {
-            theGlyphs[i] = [aFont _defaultGlyphForChar:theChars[i]];
-         }
-         // Adjust glyph position
-         glyphHeight = [aFont boundingRectForGlyph:theGlyphs[range.length-1]].size.height;
-         if (extendsRight)
-            pos.x = maxRight;         
-         baselineOffset = glyphHeight*baselineAdjust;
-         // check underlining
-         if (underlining) {
-            if (!newUnderlining) 
-               [path appendBezierPathWithRect:NSMakeRect(underlineLeftPoint.x, 
-                                                         underlineLeftPoint.y+aFont.underlinePosition,
-                                                         pos.x-underlineLeftPoint.x, 
-                                                         aFont.underlineThickness)];
-         } else {
-            if (newUnderlining)
-               underlineLeftPoint = pos;
-         }
-         underlining = newUnderlining;
-         [path moveToPoint:NSMakePoint(pos.x, pos.y+baselineOffset)];
-         // render glyphs
-         if (isVisible)
-            [path appendBezierPathWithGlyphs:theGlyphs count:range.length inFont:aFont];
-         // advance position
-         [aFont getAdvancements:theAdvances forGlyphs:theGlyphs count:range.length];
-         CGFloat AllAdvancements = 0;
-         for (NSInteger i = 0; i < range.length; i++) {
-            AllAdvancements += theAdvances[i].width;
-         }
-         pos.x += AllAdvancements;
-         [path moveToPoint:pos];
-         maxRight = MAX(pos.x, maxRight);
-         extendsRight = NO; 
-         (*i) += range.length;
-         free(theChars);
-         free(theGlyphs);
-         free(theAdvances);
-      } else if(labs(attributedSublevel) <= labs(sublevel)) {
-         return pos;
-      } else {
-         CGFloat baseline;
-         if(attributedSublevel < 0)
-            baseline = pos.y - attributedFontsize * 0.3 * fontScale + baselineOffset;
-         else
-            baseline = pos.y + glyphHeight * 0.7 + baselineOffset; 
-         extendsRight = YES;
-         NSPoint subPos = recurse(path, attrString, defaultFontName, defaultFontSize, i, attributedSublevel, NSMakePoint(pos.x, baseline), fontScale * 0.75);
-         maxRight = MAX(subPos.x, maxRight);
-      }
-   }
-   maxRight = 0.0; 
    return pos;
 }

@@ -295,6 +295,7 @@
    else
    {
       NSLog(@"Error, not a string.");
+      return;
    }
    lb.clipped = _isClipped;
    lb.clipRect = _clipRect;

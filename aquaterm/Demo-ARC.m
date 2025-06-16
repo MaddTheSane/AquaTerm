@@ -11,7 +11,7 @@
 //
 // This code can be build as a stand-alone executable (tool)
 // from the command line:
-// gcc -DAQT_STANDALONE -o demo-arc Demo-ARC.m -framework AquaTerm -framework Foundation -fobjc-arc
+// gcc -o demo-arc Demo-ARC.m -framework AquaTerm -framework Foundation -fobjc-arc
 
 #import <Foundation/Foundation.h>
 #import <AppKit/NSAttributedString.h>
@@ -358,7 +358,7 @@ adapter.fontSize = 14.0;
 
    attrStr = [[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"];
    [attrStr addAttribute:AQTFontNameKey value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
-   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // eponent
+   [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // exponent
    [attrStr addAttribute:AQTFontSizeKey value:@6.0 range:NSMakeRange(7,1)]; // extra spacing
    
    [adapter addLabel:attrStr atPoint:NSMakePoint(260, 75) angle:0.0 align:AQTAlignCenter];

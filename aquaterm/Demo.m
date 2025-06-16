@@ -376,7 +376,7 @@ void aqtTestview(id sender)
       
       attrStr = [[NSMutableAttributedString alloc] initWithString:@"e-ip+1= 0"];
       [attrStr addAttribute:AQTFontNameKey value:@"Symbol" range:NSMakeRange(3,1)]; // Greek
-      [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // eponent
+      [attrStr addAttribute:NSSuperscriptAttributeName value:@1 range:NSMakeRange(1,3)]; // exponent
       [attrStr addAttribute:AQTFontSizeKey value:@6.0 range:NSMakeRange(7,1)]; // extra spacing
       
       [adapter addLabel:attrStr atPoint:NSMakePoint(260, 75) angle:0.0 align:AQTAlignCenter];

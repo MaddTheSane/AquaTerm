@@ -47,7 +47,7 @@ void aqtTestview(id sender)
    int32_t i;
    float f;
    const double pi = 4.0*atan(1.0);
-   unsigned char rgbImage[12]={
+   const unsigned char rgbImage[12]={
       255, 0, 0,
       0, 255, 0,
       0, 0, 255,

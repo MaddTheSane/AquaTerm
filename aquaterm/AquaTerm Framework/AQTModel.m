@@ -9,10 +9,6 @@
 #import "AQTModel.h"
 #import "ARCBridge.h"
 
-@interface AQTModel ()
--(instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
-@end
-
 @implementation AQTModel
 @synthesize title;
 @synthesize canvasSize;

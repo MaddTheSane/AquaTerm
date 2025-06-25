@@ -13,14 +13,14 @@ C API Documentation
 ### Horizontal
 Constants that specify horizontal alignment for labels.
 
-- ``AQTAlign-enum/Left``
+- ``AQTAlign-enum/AQTAlignLeft``
 - ``AQTAlign/center`` 
 - ``AQTAlign/right`` 
 
 ### Vertical
 Constants that specify vertical alignment for labels.
 
-- ``AQTAlign/aqtalignmiddle``
+- ``AQTAlign-enum/AQTAlignMiddle``
 - ``AQTAlign/baseline`` 
 - ``AQTAlign/bottom`` 
 - ``AQTAlign/top``

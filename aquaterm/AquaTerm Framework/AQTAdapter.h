@@ -294,13 +294,13 @@ int main(void)
  
  | Horizontal Alignment | Description |
  | --- | --- |
- | ``AQTAlign/left`` | Left aligned text |
+ | ``AQTAlign-enum/AQTAlignLeft`` | Left aligned text |
  | ``AQTAlign/center`` | Centered text |
  | ``AQTAlign/right`` | Right aligned text |
 
  | Vertical Alignment | Description |
  | --- | --- |
- | ``AQTAlign/middle`` | Approximate centerline |
+ | ``AQTAlign-enum/AQTAlignMiddle`` | Approximate centerline |
  | ``AQTAlign/baseline`` | Normal |
  | ``AQTAlign/bottom`` | Bottom bounds of _this_ string |
  | ``AQTAlign/top`` | Top bounds of _this_ string |

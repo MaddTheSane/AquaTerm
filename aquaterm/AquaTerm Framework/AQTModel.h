@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// A class representing a collection of objects making up the plot.
 @interface AQTModel : AQTGraphic <NSFastEnumeration> /*" NSObject "*/
 {
-   /** An array of `AQTGraphic` objects (leaf or collection) */
+   /** An array of ``AQTGraphic`` objects (leaf or collection) */
    NSMutableArray<__kindof AQTGraphic*> *modelObjects;
    /** Associate a title with the model. Default is 'Figure n'. */
    NSString       *title;
@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(instancetype)init;
 -(instancetype)initWithCanvasSize:(NSSize)canvasSize NS_DESIGNATED_INITIALIZER;
+-(nullable instancetype)initWithCoder:(NSCoder *)coder NS_DESIGNATED_INITIALIZER;
 @property NSSize canvasSize;
 @property (readonly) NSRect dirtyRect;
 @property (readonly, getter=isDirty) BOOL dirty;

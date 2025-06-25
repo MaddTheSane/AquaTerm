@@ -35,7 +35,15 @@
       "comment" : "Quit"
     },
     "Show bounds" : {
-      "comment" : "Show bounds"
+      "comment" : "Show bounds",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Show Bounds"
+          }
+        }
+      }
     },
     "The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?" : {
       "comment" : "Client closing. Keep window open?"

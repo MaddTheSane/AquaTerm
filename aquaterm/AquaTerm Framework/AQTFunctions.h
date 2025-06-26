@@ -6,6 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTFUNCTIONS_H__
+#define __AQUATERM_AQTFUNCTIONS_H__
+
 #import <Foundation/NSGeometry.h>
 #import <AquaTerm/AQTGraphic.h>
 
@@ -43,3 +46,5 @@ static inline NSRect AQTRectFromSize(NSSize aSize) {
 static inline BOOL AQTProportionalSizes(NSSize aSize, NSSize bSize) {
    return EQ(aSize.height/aSize.width, bSize.height/bSize.width);
 }
+
+#endif

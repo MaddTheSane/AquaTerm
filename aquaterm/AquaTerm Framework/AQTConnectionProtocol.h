@@ -1,3 +1,6 @@
+#ifndef __AQUATERM_AQTCONNECTIONPROTOCOL_H__
+#define __AQUATERM_AQTCONNECTIONPROTOCOL_H__
+
 #import <Foundation/NSObject.h>
 
 @protocol AQTConnectionProtocol <NSObject>
@@ -7,3 +10,5 @@
 @optional
 //- (BOOL)removeAQTClient:(bycopy id)client; 
 @end
+
+#endif

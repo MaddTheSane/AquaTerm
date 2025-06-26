@@ -6,6 +6,9 @@
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTIMAGE_H__
+#define __AQUATERM_AQTIMAGE_H__
+
 #import <Foundation/Foundation.h>
 
 #import <AquaTerm/AQTGraphic.h>
@@ -35,3 +38,5 @@ typedef struct _AQTAffineTransformStruct {
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

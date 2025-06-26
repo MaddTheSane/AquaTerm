@@ -6,6 +6,9 @@
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTLABEL_H__
+#define __AQUATERM_AQTLABEL_H__
+
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTGraphic.h>
 #import <AquaTerm/aquaterm.h>
@@ -38,3 +41,5 @@
 
 @property (readonly) CGFloat shearAngle;
 @end
+
+#endif

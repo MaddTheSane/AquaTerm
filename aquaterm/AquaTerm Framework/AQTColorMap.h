@@ -6,6 +6,9 @@
 //  Copyright (c) 2002-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTCOLORMAP_H__
+#define __AQUATERM_AQTCOLORMAP_H__
+
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTGraphic.h>
 
@@ -71,3 +74,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

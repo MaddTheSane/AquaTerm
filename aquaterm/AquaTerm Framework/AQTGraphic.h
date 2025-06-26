@@ -6,6 +6,9 @@
 //  Copyright (c) 2001-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTGRAPHIC_H__
+#define __AQUATERM_AQTGRAPHIC_H__
+
 #import <Foundation/Foundation.h>
 #include <CoreGraphics/CoreGraphics.h>
 
@@ -96,3 +99,5 @@ typedef struct _AQTRect {
 /** @} */
 
 @end
+
+#endif

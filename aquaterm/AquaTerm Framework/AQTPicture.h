@@ -6,6 +6,9 @@
 //  Copyright © 2021 AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTPICTURE_H__
+#define __AQUATERM_AQTPICTURE_H__
+
 #import <AquaTerm/AQTGraphic.h>
 #import <AppKit/AppKit.h>
 
@@ -31,3 +34,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

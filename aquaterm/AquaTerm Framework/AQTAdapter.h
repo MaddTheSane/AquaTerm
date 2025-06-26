@@ -6,6 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTADAPTER_H__
+#define __AQUATERM_AQTADAPTER_H__
+
 #import <Foundation/NSString.h>
 #import <Foundation/NSGeometry.h>
 #import <Foundation/NSAttributedString.h>
@@ -483,3 +486,5 @@ extern NSAttributedStringKey const AQTBaselineAdjustKey NS_SWIFT_NAME(aqtBaselin
 extern NSAttributedStringKey const AQTNonPrintingCharKey NS_SWIFT_NAME(aqtNonPrintingChar);
 
 NS_ASSUME_NONNULL_END
+
+#endif

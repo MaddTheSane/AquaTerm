@@ -6,6 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTCLIENTMANAGER_H__
+#define __AQUATERM_AQTCLIENTMANAGER_H__
+
 #import <stdint.h>
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTEventProtocol.h>
@@ -67,3 +70,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

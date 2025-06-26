@@ -6,6 +6,9 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#ifndef __AQUATERM_AQTPLOTBUILDER_H__
+#define __AQUATERM_AQTPLOTBUILDER_H__
+
 #import <Foundation/Foundation.h>
 #import <AquaTerm/AQTGraphic.h>
 #import <AquaTerm/AQTImage.h>
@@ -182,3 +185,5 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 NS_ASSUME_NONNULL_END
+
+#endif

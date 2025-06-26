@@ -1,3 +1,6 @@
+#ifndef __AQUATERM_AQTCLIENTPROTOCOL_H__
+#define __AQUATERM_AQTCLIENTPROTOCOL_H__
+
 #import <Foundation/NSObject.h>
 #import <AquaTerm/AQTGraphic.h>
 
@@ -21,3 +24,5 @@
 // FIXME: move into separate protocol?
 - (void)timingTestWithTag:(uint32_t)tag;
 @end
+
+#endif

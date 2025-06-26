@@ -264,8 +264,7 @@ private func internalMain() {
 	do {
 		adapter.fontName = "Times-Roman"
 		//NSString *s = [[NSString alloc] initWithFormat:@"Unicode: %C %C %C %C%C%C%C%C", (unichar)0x2124, (unichar)0x2133, (unichar)0x5925, (unichar)0x2654, (unichar)0x2655, (unichar)0x2656, (unichar)0x2657, (unichar)0x2658];
-		let s = "Unicode: ℤ ℳ 夥 ♔♕♖♗♘"
-		var attrStr = AttributedString(s)
+		var attrStr = AttributedString("Unicode: ℤ ℳ 夥 ♔♕♖♗♘")
 		var range = attrStr.index(attrStr.startIndex, offsetByCharacters: 9) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 20)
 		attrStr[range].fontName = "AppleSymbols"
 		range = attrStr.index(attrStr.startIndex, offsetByCharacters: 13) ..< attrStr.index(attrStr.startIndex, offsetByCharacters: 14)

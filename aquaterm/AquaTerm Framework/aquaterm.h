@@ -46,7 +46,7 @@ static const AQTLineCapStyle AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEM
 /*! Use ``AQTLineCapStyle/square`` instead.*/
 static const AQTLineCapStyle AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare;
 
-/*! Constants that specify horizontal and vertical alignment for labels. See ``AQTAdapter/addLabel:atPoint:angle:align:`` for definitions and use. */
+/*! Constants that specify horizontal and vertical alignment for labels. See ``AQTAdapter/addLabel:atPoint:angle:shearAngle:align:`` for definitions and use. */
 typedef CF_OPTIONS(int32_t, AQTAlign) {
    /** @name Constants that specify horizontal alignment for labels.
     @{ */

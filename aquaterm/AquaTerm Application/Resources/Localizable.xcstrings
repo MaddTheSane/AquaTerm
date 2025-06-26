@@ -2,7 +2,21 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm." : {
-      "comment" : "Another App could be using \"aquatermServer\"."
+      "comment" : "Another App could be using \"aquatermServer\".",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Une autre application a déjà enregistré le service \"aquatermServer\". Vous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler, mais aucun client ne pourra l'utiliser. Appuyez sur Quit pour fermer cette copie d'AquaTerm."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "別のアプリケーションはすでにサービス「aquatermServer」を登録しています。キャンセルを押すとAquaTermを実行したままにできますが、クライアントは使用できません。AquaTermのこのコピーを閉じるには、「やめる」を押してください。"
+          }
+        }
+      }
     },
     "Cancel" : {
       "comment" : "Cancel"
@@ -20,7 +34,15 @@
       "comment" : "Close window?"
     },
     "Could not establish service" : {
-      "comment" : "Could not establish service"
+      "comment" : "Could not establish service",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Impossible d'établir le service"
+          }
+        }
+      }
     },
     "Debug" : {
       "comment" : "Debug"
@@ -32,7 +54,15 @@
       "comment" : "off"
     },
     "Quit" : {
-      "comment" : "Quit"
+      "comment" : "Quit",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "やめる"
+          }
+        }
+      }
     },
     "Show bounds" : {
       "comment" : "Show bounds",
@@ -46,13 +76,35 @@
       }
     },
     "The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?" : {
-      "comment" : "Client closing. Keep window open?"
+      "comment" : "Client closing. Keep window open?",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Le client a terminé le tracé (ou sort) et essaie de fermer la fenêtre. Voulez-vous fermer la fenêtre ou la garder à l'écran ?"
+          }
+        }
+      }
     },
     "There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
       "comment" : "Idle client are still running."
     },
     "There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
-      "comment" : "Client are awaiting input."
+      "comment" : "Client are awaiting input.",
+      "localizations" : {
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Il y a encore des clients connectés à AquaTerm en attente d'événements et quitter maintenant peut les laisser dans une boucle infinie. Vous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "イベントを待っているAquaTermに接続されたクライアントがまだ存在し、今終了すると、無限のループに残される可能性があります。キャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

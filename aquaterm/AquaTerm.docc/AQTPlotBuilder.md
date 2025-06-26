@@ -16,7 +16,7 @@ This is the class that performs all assembling of plots in the form of an ``AQTM
 - ``clipRect``
 - ``setDefaultClipRect``
 
-### Color handling
+### Color Handling
 
 - ``color``
 - ``backgroundColor``
@@ -28,14 +28,14 @@ This is the class that performs all assembling of plots in the form of an ``AQTM
 - ``setColor:forColormapEntry:``
 - ``colorForColormapEntry:``
 
-### Text handling
+### Text Handling
 
 - ``fontName``
 - ``fontSize``
 
 - ``addLabel:position:angle:shearAngle:justification:``
 
-### Line handling
+### Line Handling
 
 - ``lineWidth``
 
@@ -47,14 +47,14 @@ This is the class that performs all assembling of plots in the form of an ``AQTM
 - ``addLineToPoint:``
 - ``addPolylineWithPoints:pointCount:`` 
 
-### Filled areas
+### Filled Areas
 
 - ``moveToVertexPoint:``
 - ``addEdgeToPoint:``
 - ``addPolygonWithPoints:pointCount:``
 - ``addFilledRect:``
 
-### Image handling
+### Image Handling
 
 - ``imageTransform``
 - ``addImageWithBitmap:size:bounds:``

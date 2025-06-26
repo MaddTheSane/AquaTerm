@@ -26,14 +26,14 @@ Constants that specify vertical alignment for labels.
 - ``AQTAlign/top``
 
 
-### Class initialization etc.
+### Class Initialization, Etc.
 - ``aqtInit``
 - ``aqtTerminate``
 - ``aqtSetEventHandler``
 - ``aqtSetEventBlock``
 
 
-### Control operations
+### Control Operations
 - ``aqtOpenPlot``
 - ``aqtSelectPlot``
 - ``aqtSetPlotSize``
@@ -42,18 +42,18 @@ Constants that specify vertical alignment for labels.
 - ``aqtClearPlot``
 - ``aqtClosePlot``
 
-### Event handling
+### Event Handling
 - ``aqtSetAcceptingEvents``
 - ``aqtGetLastEvent``
 - ``aqtWaitNextEvent``
 
 ### Plotting related commands 
 
-### Clip rect, applies to all objects
+### Clip Rect, applies to all objects
 - ``aqtSetClipRect``
 - ``aqtSetDefaultClipRect``
 
-### Colormap (utility)
+### Colormap (Utility)
 - ``aqtColormapSize``
 - ``aqtSetColormapEntryRGBA``
 - ``aqtGetColormapEntryRGBA``
@@ -62,8 +62,7 @@ Constants that specify vertical alignment for labels.
 - ``aqtTakeColorFromColormapEntry``
 - ``aqtTakeBackgroundColorFromColormapEntry``
 
-### Color handling
-
+### Color Handling
 - ``aqtSetColorRGBA``
 - ``aqtSetBackgroundColorRGBA``
 - ``aqtGetColorRGBA``
@@ -73,15 +72,13 @@ Constants that specify vertical alignment for labels.
 - ``aqtGetColor``
 - ``aqtGetBackgroundColor``
 
-### Text handling
-
+### Text Handling
 - ``aqtSetFontname``
 - ``aqtSetFontsize``
 - ``aqtAddLabel``
 - ``aqtAddShearedLabel``
 
-### Line handling
-
+### Line Handling
 - ``aqtSetLinewidth``
 - ``aqtSetLinestylePattern``
 - ``aqtSetLinestyleSolid``
@@ -90,23 +87,20 @@ Constants that specify vertical alignment for labels.
 - ``aqtAddLineTo``
 - ``aqtAddPolyline``
 
-### Rect and polygon handling
-
+### Rect and Polygon Handling
 - ``aqtMoveToVertex``
 - ``aqtAddEdgeToVertex``
 - ``aqtAddPolygon``
 - ``aqtAddFilledRect``
 - ``aqtEraseRect``
 
-### Image handling
-
+### Image Handling
 - ``aqtSetImageTransform``
 - ``aqtResetImageTransform``
 - ``aqtAddImageWithBitmap``
 - ``aqtAddImageWithRGBABitmap``
 
 ### Deprecated
-
 - ``AQTButtLineCapStyle``
 - ``AQTRoundLineCapStyle``
 - ``AQTSquareLineCapStyle``

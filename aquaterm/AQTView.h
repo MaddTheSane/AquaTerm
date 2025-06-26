@@ -19,7 +19,7 @@
 }
 @property (weak) AQTModel *model;
 @property (readonly, getter=isPrinting) BOOL printing;
-/*! @brief Holds state of mouse input. */
+/*! Holds state of mouse input. */
 @property (nonatomic, getter=isProcessingEvents) BOOL processingEvents;
 
 /*" Utility methods "*/

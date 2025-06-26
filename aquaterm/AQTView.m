@@ -212,4 +212,9 @@
 #endif
 }
 
+- (NSString *)printJobTitle
+{
+   return model.title;
+}
+
 @end

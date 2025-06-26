@@ -60,8 +60,17 @@
       return nil;
    }
 
-   const void *bdBytes = bytes.bytes;
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char**)&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:3 hasAlpha:NO isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:3 * (NSInteger)size.width bitsPerPixel:24];
+   CGDataProviderRef dataRef = CGDataProviderCreateWithCFData((CFDataRef)bytes);
+   CGColorSpaceRef colrSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+   CGImageRef imgRef = CGImageCreate(size.width, size.height, 8, 24,
+                                     (size_t)(size.width) * 3, colrSpace,
+                                     kCGBitmapByteOrderDefault, dataRef, NULL, true,
+                                     kCGRenderingIntentDefault);
+   CGColorSpaceRelease(colrSpace);
+   CGDataProviderRelease(dataRef);
+   
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+   CGImageRelease(imgRef);
    NSImage *img = [[NSImage alloc] initWithSize:size];
    [img addRepresentation:bir];
    RELEASEOBJ(bir);
@@ -83,8 +92,17 @@
       return nil;
    }
 
-   const void *bdBytes = bytes.bytes;
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:(unsigned char**)&bdBytes pixelsWide:(NSInteger)size.width pixelsHigh:(NSInteger)size.height bitsPerSample:8 samplesPerPixel:4 hasAlpha:YES isPlanar:NO colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:4 * (NSInteger)size.width bitsPerPixel:32];
+   CGDataProviderRef dataRef = CGDataProviderCreateWithCFData((CFDataRef)bytes);
+   CGColorSpaceRef colrSpace = CGColorSpaceCreateWithName(kCGColorSpaceGenericRGB);
+   CGImageRef imgRef = CGImageCreate(size.width, size.height, 8, 32,
+                                     (size_t)(size.width) * 4, colrSpace,
+                                     kCGBitmapByteOrderDefault | kCGImageAlphaLast, dataRef, NULL, true,
+                                     kCGRenderingIntentDefault);
+   CGColorSpaceRelease(colrSpace);
+   CGDataProviderRelease(dataRef);
+
+   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+   CGImageRelease(imgRef);
    NSImage *img = [[NSImage alloc] initWithSize:size];
    [img addRepresentation:bir];
    RELEASEOBJ(bir);

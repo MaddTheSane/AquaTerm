@@ -59,9 +59,9 @@ static CGFloat _aqtMinimumLinewidth;
 
 @end
 
-/**"
-*** Tell every object in the collection to draw itself.
-"**/
+/**
+ * Tell every object in the collection to draw itself.
+ */
 @implementation AQTModel (AQTModelDrawing)
 -(NSRect)updateBounds
 {
@@ -315,19 +315,17 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
    if (AQTIntersectsRect(boundsRect, clippedBounds)) {
       if (![self _cache]) {
          // Install an NSImage in _cache
-         unsigned char *theBytes = (unsigned char*) bitmap.bytes;
          NSImage *tmpImage = [[NSImage alloc] initWithSize:bitmapSize];
-         NSBitmapImageRep *tmpBitmap =
-            [[NSBitmapImageRep alloc] initWithBitmapDataPlanes:&(theBytes)
-                                                    pixelsWide:bitmapSize.width
-                                                    pixelsHigh:bitmapSize.height
-                                                 bitsPerSample:8
-                                               samplesPerPixel:3
-                                                      hasAlpha:NO
-                                                      isPlanar:NO
-                                                colorSpaceName:NSDeviceRGBColorSpace
-                                                   bytesPerRow:3*bitmapSize.width
-                                                  bitsPerPixel:24];
+         CGDataProviderRef dataRef = CGDataProviderCreateWithCFData((CFDataRef)bitmap);
+         CGColorSpaceRef colrSpace = CGColorSpaceCreateDeviceRGB();
+         CGImageRef imgRef = CGImageCreate(bitmapSize.width, bitmapSize.height, 8, 24,
+                                           (size_t)(bitmapSize.width) * 3, colrSpace,
+                                           kCGBitmapByteOrderDefault, dataRef, NULL, true,
+                                           kCGRenderingIntentDefault);
+         CGColorSpaceRelease(colrSpace);
+         CGDataProviderRelease(dataRef);
+         NSBitmapImageRep *tmpBitmap = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+         CGImageRelease(imgRef);
          [tmpImage addRepresentation:tmpBitmap];
          [self _setCache:tmpImage];
       }

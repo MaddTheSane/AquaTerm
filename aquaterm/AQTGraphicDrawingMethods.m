@@ -98,6 +98,7 @@ static CGFloat _aqtMinimumLinewidth;
       [graphic renderInRect:aRect];
    }
 }
+
 @end
 
 @implementation AQTLabel (AQTLabelDrawing)
@@ -203,6 +204,7 @@ static CGFloat _aqtMinimumLinewidth;
    }
 #endif
 }
+
 @end
 
 @implementation AQTPath (AQTPathDrawing)
@@ -273,8 +275,8 @@ static CGFloat _aqtMinimumLinewidth;
       [debugContext restoreGraphicsState];
    }
 #endif
-   
 }
+
 @end
 
 @implementation AQTImage (AQTImageDrawing)
@@ -374,8 +376,8 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
       [debugContext restoreGraphicsState];
    }
 #endif
-   
 }
+
 @end
 
 @implementation AQTPicture (AQTImageDrawing)
@@ -440,7 +442,6 @@ static NSAffineTransformStruct AQTConvertTransformStructToNS(AQTAffineTransformS
       [debugContext restoreGraphicsState];
    }
 #endif
-   
 }
 
 @end

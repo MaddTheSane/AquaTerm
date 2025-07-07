@@ -44,7 +44,7 @@ NS_ASSUME_NONNULL_BEGIN
  * Since the app is a viewer we do three things with the object:
  * create (once), draw (any number of times) and (eventually) dispose of it.
  */
-- (instancetype)initWithPoints:(nullable const NSPointArray)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPoints:(nullable const NSPointArray __counted_by(pointCount) __noescape)points pointCount:(int32_t)pointCount NS_DESIGNATED_INITIALIZER;
 
 /// Current linewidth in points
 @property CGFloat lineWidth;
@@ -58,7 +58,7 @@ NS_ASSUME_NONNULL_BEGIN
  The linestyle is specified
  as a pattern, an array of at most 8 floats, where even positions correspond to dash-lengths and odd positions
  correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`. */
-- (void)setLinestylePattern:(nullable const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
+- (void)setLinestylePattern:(nullable const float * __counted_by(newCount) __noescape)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
 /**
  * Deprecated way of setting the ``lineWidth`` property.

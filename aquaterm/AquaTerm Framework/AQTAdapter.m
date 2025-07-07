@@ -451,7 +451,7 @@ _{@"NSUnderline" 0or1}
 }
 
 /*" Set the current line style to pattern style, used for all subsequent lines. The linestyle is specified as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern {4.0, 2.0, 1.0, 2.0}."*/
-- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase
+- (void)setLinestylePattern:(const float *__counted_by(newCount) __noescape)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase
 {
    [_selectedBuilder setLinestylePattern:newPattern count:(int32_t)newCount phase:newPhase];
 }
@@ -481,7 +481,7 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addLineToPoint:point];
 }
 
-- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc
+- (void)addPolylineWithPoints:(NSPointArray __counted_by(pc) __noescape)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolylineWithPoints:points pointCount:(int32_t)pc];
 }
@@ -496,7 +496,7 @@ _{@"NSUnderline" 0or1}
    [_selectedBuilder addEdgeToPoint:point];
 }
 
-- (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc
+- (void)addPolygonWithVertexPoints:(NSPointArray __counted_by(pc) __noescape)points pointCount:(NSInteger)pc
 {
    [_selectedBuilder addPolygonWithPoints:points pointCount:(int32_t)pc];
 }

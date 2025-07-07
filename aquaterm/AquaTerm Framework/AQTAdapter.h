@@ -214,13 +214,13 @@ int main(void)
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b alpha:(float)a;
 
 //! Get an RGBA entry in the colormap, at the position given by `entryIndex`.
-- (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a;
+- (void)getColormapEntry:(int32_t)entryIndex red:(float *__single)r green:(float *__single)g blue:(float *__single)b alpha:(float *__single)a;
 
 //! Set an RGB entry in the colormap, at the position given by `entryIndex`.
 - (void)setColormapEntry:(int32_t)entryIndex red:(float)r green:(float)g blue:(float)b;
 
 //! Get an RGB entry in the colormap, at the position given by `entryIndex`.
-- (void)getColormapEntry:(int32_t)entryIndex red:(float *)r green:(float *)g blue:(float *)b;
+- (void)getColormapEntry:(int32_t)entryIndex red:(float *__single)r green:(float *__single)g blue:(float *__single)b;
 
 //! Set the current color, used for all subsequent items, using the color stored at the position given by `index` in the colormap.
 - (void)takeColorFromColormapEntry:(int32_t)index;
@@ -240,10 +240,10 @@ int main(void)
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b alpha:(float)a  NS_SWIFT_NAME(setBackgroundColor(red:green:blue:alpha:));
 
 /*! Get current RGB color components by reference. */
-- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getColor(red:green:blue:alpha:));
+- (void)getColorRed:(float *__single)r green:(float *__single)g blue:(float *__single)b alpha:(float *__single)a NS_SWIFT_NAME(getColor(red:green:blue:alpha:));
 
 /*! Get background color components by reference. */
-- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b alpha:(float *)a NS_SWIFT_NAME(getBackgroundColor(red:green:blue:alpha:));
+- (void)getBackgroundColorRed:(float *__single)r green:(float *__single)g blue:(float *__single)b alpha:(float *__single)a NS_SWIFT_NAME(getBackgroundColor(red:green:blue:alpha:));
 
 /*! Set the current color, used for all subsequent items, using explicit RGB components. */
 - (void)setColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setColor(red:green:blue:));
@@ -252,10 +252,10 @@ int main(void)
 - (void)setBackgroundColorRed:(float)r green:(float)g blue:(float)b NS_SWIFT_NAME(setBackgroundColor(red:green:blue:));
 
 /*! Get current RGB color components by reference. */
-- (void)getColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getColor(red:green:blue:));
+- (void)getColorRed:(float *__single)r green:(float *__single)g blue:(float *__single)b NS_SWIFT_NAME(getColor(red:green:blue:));
 
 /*! Get background color components by reference. */
-- (void)getBackgroundColorRed:(float *)r green:(float *)g blue:(float *)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
+- (void)getBackgroundColorRed:(float *__single)r green:(float *__single)g blue:(float *__single)b NS_SWIFT_NAME(getBackgroundColor(red:green:blue:));
 
 //! The current RGB color components.
 @property AQTColor color;
@@ -342,7 +342,7 @@ int main(void)
  * as a pattern, an array of at most 8 float, where even positions correspond to dash-lengths and odd positions
  * correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`.
  */
-- (void)setLinestylePattern:(const float *)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase;
+- (void)setLinestylePattern:(const float * __counted_by(newCount) __noescape)newPattern count:(NSInteger)newCount phase:(CGFloat)newPhase;
 
 /*! Set the current line style to solid, used for all subsequent lines. This is the default.*/
 - (void)setLinestyleSolid;
@@ -372,7 +372,7 @@ int main(void)
  * \param pc Number of line segments + 1.
  * \param points The points to add.
  */
-- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
+- (void)addPolylineWithPoints:(NSPointArray __counted_by(pc) __noescape)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
 /**
  @}
@@ -385,7 +385,7 @@ int main(void)
 /*! Add a polygon specified by a list of corner points.<br>
  Number of corners is passed in `pc`.
  */
-- (void)addPolygonWithVertexPoints:(NSPointArray)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
+- (void)addPolygonWithVertexPoints:(NSPointArray __counted_by(pc) __noescape)points pointCount:(NSInteger)pc NS_REFINED_FOR_SWIFT;
 
 //! Add a filled rectangle. Will attempt to remove any objects that will be covered by `aRect`.
 - (void)addFilledRect:(NSRect)aRect;

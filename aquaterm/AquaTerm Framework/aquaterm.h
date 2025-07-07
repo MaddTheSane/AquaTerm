@@ -13,6 +13,27 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#if __has_include(<lifetimebound.h>)
+#include <lifetimebound.h>
+#else
+#ifndef __noescape
+#define __noescape __attribute__((noescape))
+#endif
+#endif
+#if __has_include(<ptrcheck.h>)
+#include <ptrcheck.h>
+#ifndef __counted_by
+  #error __counted_by is not defined but should be
+#endif
+#else
+// Feature not available so define attributes to be empty to avoid breaking the build
+#define __counted_by(N)
+#define __sized_by(N)
+#define __counted_by_or_null(N)
+#define __sized_by_or_null(N)
+#define __single
+#define __null_terminated
+#endif
 #include <AvailabilityMacros.h>
 #include <CoreFoundation/CFAvailability.h>
 
@@ -141,7 +162,7 @@ void aqtSetPlotSize(float width, float height);
  * Attempts to read it as UTF-8, but falls back to ISO Latin 1 if UTF-8 reading fails,
  * changes the title to "Untitled" if ISO Latin 1 decoding fails.
  */
-void aqtSetPlotTitle(const char *title);
+void aqtSetPlotTitle(const char *__null_terminated title);
 void aqtRenderPlot(void);
 void aqtClearPlot(void);
 void aqtClosePlot(void);
@@ -172,9 +193,9 @@ void aqtSetDefaultClipRect(void);
 
 int32_t aqtColormapSize(void);
 void aqtSetColormapEntryRGBA(int32_t entryIndex, float r, float g, float b, float a);
-void aqtGetColormapEntryRGBA(int32_t entryIndex, float *r, float *g, float *b, float *a);
+void aqtGetColormapEntryRGBA(int32_t entryIndex, float *__single r, float *__single g, float *__single b, float *__single a);
 void aqtSetColormapEntry(int32_t entryIndex, float r, float g, float b);
-void aqtGetColormapEntry(int32_t entryIndex, float *r, float *g, float *b);
+void aqtGetColormapEntry(int32_t entryIndex, float *__single r, float *__single g, float *__single b);
 void aqtTakeColorFromColormapEntry(int32_t index);
 void aqtTakeBackgroundColorFromColormapEntry(int32_t index);
 
@@ -185,12 +206,12 @@ void aqtTakeBackgroundColorFromColormapEntry(int32_t index);
 
 void aqtSetColorRGBA(float r, float g, float b, float a);
 void aqtSetBackgroundColorRGBA(float r, float g, float b, float a);
-void aqtGetColorRGBA(float *r, float *g, float *b, float *a);
-void aqtGetBackgroundColorRGBA(float *r, float *g, float *b, float *a);
+void aqtGetColorRGBA(float *__single r, float *__single g, float *__single b, float *__single a);
+void aqtGetBackgroundColorRGBA(float *__single r, float *__single g, float *__single b, float *__single a);
 void aqtSetColor(float r, float g, float b);
 void aqtSetBackgroundColor(float r, float g, float b);
-void aqtGetColor(float *r, float *g, float *b);
-void aqtGetBackgroundColor(float *r, float *g, float *b);
+void aqtGetColor(float *__single r, float *__single g, float *__single b);
+void aqtGetBackgroundColor(float *__single r, float *__single g, float *__single b);
 
 /**
  @}
@@ -199,8 +220,8 @@ void aqtGetBackgroundColor(float *r, float *g, float *b);
 
 void aqtSetFontname(const char *newFontname);
 void aqtSetFontsize(float newFontsize);
-void aqtAddLabel(const char *text, float x, float y, float angle, AQTAlign align);
-void aqtAddShearedLabel(const char *text, float x, float y, float angle, float shearAngle, AQTAlign align);
+void aqtAddLabel(const char *__null_terminated text, float x, float y, float angle, AQTAlign align);
+void aqtAddShearedLabel(const char *__null_terminated text, float x, float y, float angle, float shearAngle, AQTAlign align);
 
 /**
  @}
@@ -208,12 +229,12 @@ void aqtAddShearedLabel(const char *text, float x, float y, float angle, float s
  @{ */
 
 void aqtSetLinewidth(float newLinewidth);
-void aqtSetLinestylePattern(float *newPattern, int32_t newCount, float newPhase);
+void aqtSetLinestylePattern(float *__counted_by(newCount) newPattern __noescape, int32_t newCount, float newPhase);
 void aqtSetLinestyleSolid(void);
 void aqtSetLineCapStyle(AQTLineCapStyle capStyle);
 void aqtMoveTo(float x, float y);
 void aqtAddLineTo(float x, float y);
-void aqtAddPolyline(float *x, float *y, int32_t pointCount);
+void aqtAddPolyline(float *__counted_by(pointCount) x __noescape, float *__counted_by(pointCount) y __noescape, int32_t pointCount);
 
 /**
  @}
@@ -222,7 +243,7 @@ void aqtAddPolyline(float *x, float *y, int32_t pointCount);
 
 void aqtMoveToVertex(float x, float y);
 void aqtAddEdgeToVertex(float x, float y);
-void aqtAddPolygon(float *x, float *y, int32_t pointCount);
+void aqtAddPolygon(float *__counted_by(pointCount) x __noescape, float *__counted_by(pointCount) y __noescape, int32_t pointCount);
 void aqtAddFilledRect(float originX, float originY, float width, float height);
 void aqtEraseRect(float originX, float originY, float width, float height);
 

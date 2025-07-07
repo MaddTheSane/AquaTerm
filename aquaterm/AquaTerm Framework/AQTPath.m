@@ -41,7 +41,7 @@
    return pc;
 }
 
--(instancetype)initWithPoints:(const NSPointArray)points pointCount:(int32_t)pc;
+-(instancetype)initWithPoints:(const NSPointArray __counted_by(pc) __noescape)points pointCount:(int32_t)pc;
 {
   if (self = [super init])
   {
@@ -173,7 +173,7 @@
    return self;
 }
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase
+- (void)setLinestylePattern:(const float * __counted_by(newCount) __noescape)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase
 {
    // Create a local copy of the pattern.
    int32_t i;

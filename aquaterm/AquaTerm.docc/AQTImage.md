@@ -4,7 +4,8 @@
 
 ### Structs
 
-- ``AQTAffineTransformStruct``
+- ``AQTAffineTransformStruct-typealias``
+- ``AQTAffineTransformStruct-struct``
 
 ### Initialization
 

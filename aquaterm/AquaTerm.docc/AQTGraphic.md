@@ -4,10 +4,10 @@
 
 ### Structs
 
-- ``/AquaTerm/AQTColor``
-- ``/AquaTerm/AQTPoint``
-- ``/AquaTerm/AQTSize``
-- ``/AquaTerm/AQTRect``
+- ``/AquaTerm/AQTColor-typealias``
+- ``/AquaTerm/AQTPoint-typealias``
+- ``/AquaTerm/AQTSize-typealias``
+- ``/AquaTerm/AQTRect-typealias``
 
 ### Initialization
 - ``init`` 

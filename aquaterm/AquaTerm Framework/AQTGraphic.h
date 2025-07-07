@@ -33,6 +33,8 @@ typedef struct _AQTColor {
 
 /**
  * Architecture-independant NSPoint.
+ *
+ * Kept for legacy reasons: do not create new code that uses this.
  */
 typedef struct _AQTPoint {
   float x;
@@ -41,6 +43,8 @@ typedef struct _AQTPoint {
 
 /**
  * Architecture-independant size.
+ *
+ * Kept for legacy reasons: do not create new code that uses this.
  */
 typedef struct _AQTSize {
   float width;
@@ -49,6 +53,8 @@ typedef struct _AQTSize {
 
 /**
  * Architecture-independant rect.
+ *
+ * Kept for legacy reasons: do not create new code that uses this.
  */
 typedef struct _AQTRect {
   AQTPoint origin;

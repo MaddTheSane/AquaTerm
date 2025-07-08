@@ -27,12 +27,34 @@
 #endif
 #else
 // Feature not available so define attributes to be empty to avoid breaking the build
-#define __counted_by(N)
-#define __sized_by(N)
-#define __counted_by_or_null(N)
-#define __sized_by_or_null(N)
+#ifndef __single
 #define __single
+#define __unsafe_indexable
+#define __counted_by(N)
+#define __counted_by_or_null(N)
+#define __sized_by(N)
+#define __sized_by_or_null(N)
+#define __ended_by(E)
+#define __terminated_by(T)
 #define __null_terminated
+#define __ptrcheck_abi_assume_single()
+#define __ptrcheck_abi_assume_unsafe_indexable()
+#define __unsafe_forge_single(T, P) ((T)(P))
+#define __unsafe_forge_terminated_by(T, P, E) ((T)(P))
+#define __unsafe_forge_null_terminated(T, P) ((T)(P))
+#define __array_decay_discards_count_in_parameters
+#define __terminated_by_to_indexable(P) (P)
+#define __unsafe_terminated_by_to_indexable(P) (P)
+#define __null_terminated_to_indexable(P) (P)
+#define __unsafe_null_terminated_to_indexable(P) (P)
+#define __IGNORE_REST(P, ...) (P)
+#define __unsafe_terminated_by_from_indexable(T, ...)                          \
+  __IGNORE_REST(__VA_ARGS__, DUMMY)
+#define __unsafe_null_terminated_from_indexable(...)                           \
+  __unsafe_terminated_by_from_indexable(DUMMY_TYPE, __VA_ARGS__)
+#define __ptrcheck_unavailable
+#define __ptrcheck_unavailable_r(REPLACEMENT)
+#endif
 #endif
 #include <AvailabilityMacros.h>
 #include <CoreFoundation/CFAvailability.h>

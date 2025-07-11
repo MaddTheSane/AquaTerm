@@ -1797,6 +1797,7 @@
 					"$(inherited)",
 					"DEBUG_BOUNDS=1",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1821,6 +1822,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_C_BOUNDS_SAFETY = YES;
 				FRAMEWORK_VERSION = A;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AquaTerm Framework/AquaTerm.framework-Info.plist";
 				INSTALL_PATH = "$(LOCAL_FRAMEWORKS_DIR)";
 				LOCAL_FRAMEWORKS_DIR = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -1849,8 +1851,13 @@
 					"$(inherited)",
 					"DEBUG_BOUNDS=1",
 				);
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AquaTerm Application/AquaTerm.app-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = AquaTerm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "The AquaTerm Project  \nhttp://aquaterm.github.com";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu1;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;
@@ -1873,8 +1880,13 @@
 				COPY_PHASE_STRIP = NO;
 				DEPLOYMENT_POSTPROCESSING = NO;
 				ENABLE_C_BOUNDS_SAFETY = YES;
+				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "AquaTerm Application/AquaTerm.app-Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = AquaTerm;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "The AquaTerm Project  \nhttp://aquaterm.github.com";
+				INFOPLIST_KEY_NSMainNibFile = MainMenu1;
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
 				INSTALL_PATH = "$(LOCAL_APPS_DIR)";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;

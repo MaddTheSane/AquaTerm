@@ -234,7 +234,7 @@
    }
 }
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase //CM
+- (void)setLinestylePattern:(const float * __counted_by(newCount) __noescape)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase //CM
 {
    [self _flushBuffers]; // FIXME: expose flush methods in API?
    // Copy the pattern
@@ -348,7 +348,7 @@
 }
 
    // This is where all line-drawing  ends up eventually. 
-- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(int32_t)pc
+- (void)addPolylineWithPoints:(const NSPointArray __counted_by(pc) __noescape)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
    // Create a path
@@ -403,7 +403,7 @@
    [self _aqtPlotBuilderSetModelIsDirty:YES];
 }
 
-- (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc
+- (void)addPolygonWithPoints:(const NSPointArray __counted_by(pc) __noescape)points pointCount:(int32_t)pc
 {
    AQTPath *tmpPath;
    tmpPath = [[AQTPath alloc] initWithPoints:points pointCount:pc];

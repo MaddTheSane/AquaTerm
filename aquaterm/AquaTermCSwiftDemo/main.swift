@@ -18,13 +18,13 @@ private func internalMain() {
    var yPtr = [Float]()
 
    let pi: Float = 4.0*atan(1.0)
-   // Initialize. Do it or fail miserably...
+   // MARK: Initialize. Do it or fail miserably...
    aqtInit()
-   // Open up a plot for drawing
+   // MARK: Open up a plot for drawing
    aqtOpenPlot(1)
    aqtSetPlotSize(620, 420)
    aqtSetPlotTitle("Testview")
-   // Set colormap
+   // MARK: Set colormap
    aqtSetColormapEntry(0, 1.0, 1.0, 1.0) // white
    aqtSetColormapEntry(1, 0.0, 0.0, 0.0) // black
    aqtSetColormapEntry(2, 1.0, 0.0, 0.0) // red
@@ -33,19 +33,19 @@ private func internalMain() {
    aqtSetColormapEntry(5, 1.0, 0.0, 1.0) // purple
    aqtSetColormapEntry(6, 1.0, 1.0, 0.5) // yellow
    aqtSetColormapEntry(7, 0.0, 0.5, 0.5) // dark green
-   // Set color explicitly
+   // MARK: Set color explicitly
    aqtSetColor(0.0, 0.0, 0.0)
    aqtSetFontname("Helvetica")
    aqtSetFontsize(12.0)
    aqtAddLabel("Testview 620x420 pt", 4.0, 412.0, 0.0, [])
-   // Frame plot
+   // MARK: Frame plot
    aqtMoveTo(20, 20)
    aqtAddLineTo(600, 20)
    aqtAddLineTo(600, 400)
    aqtAddLineTo(20, 400)
    aqtAddLineTo(20, 20)
    aqtAddLabel("Frame 600x400 pt", 24, 30, 0.0, [])
-   // Colormap
+   // MARK: Colormap
    aqtAddLabel("Custom colormap (8 out of 256)", 30, 390, 0.0, [])
    // Display the colormap, but first create a background for the white box...
    aqtSetColor(0.8, 0.8, 0.8)
@@ -57,7 +57,7 @@ private func internalMain() {
       aqtSetColor(0.5, 0.5, 0.5)
       aqtAddLabel("\(i)", 40+Float(i)*30, 360, 0.0, [.center])
    }
-   // Continuos colors
+   // MARK: Continuous colors
    aqtTakeColorFromColormapEntry(1)
    aqtAddLabel(#""Any color you like""#, 320, 390, 0.0, [])
    aqtSetLinewidth(1.0)
@@ -71,7 +71,7 @@ private func internalMain() {
       aqtAddFilledRect(320 + i, 306, 1, 20)
    }
 
-   // Lines
+   // MARK: Lines
    aqtTakeColorFromColormapEntry(1)
    for f in stride(from: Float(1), to: 13, by: 2) {
       let lw = f / 2.0
@@ -82,7 +82,7 @@ private func internalMain() {
       aqtAddLabel(strBuf, 210, 201.5+f*10, 0.0, [])
    }
 
-   // linecap styles
+   // MARK: linecap styles
    aqtSetLinewidth(11.0)
    aqtTakeColorFromColormapEntry(1)
    aqtSetLineCapStyle(.butt)
@@ -116,7 +116,7 @@ private func internalMain() {
    aqtMoveTo(40.5, 130.5)
    aqtAddLineTo(150.5, 130.5)
 
-   // line joins
+   // MARK: line joins
    aqtTakeColorFromColormapEntry(1)
    aqtAddLabel("Line joins:", 40, 90, 0.0, [])
    aqtSetLinewidth(11.0)
@@ -153,7 +153,7 @@ private func internalMain() {
    aqtAddLineTo(200, 70)
    aqtAddLineTo(210, 50)
 
-   // Polygons
+   // MARK: Polygons
    aqtTakeColorFromColormapEntry(1)
    aqtAddLabel("Polygons", 320, 290, 0.0, [])
    for i in 0 ..< 4 {
@@ -213,7 +213,7 @@ private func internalMain() {
    yPtr.removeAll(keepingCapacity: false)
    
    
-   // Images
+   // MARK: Images
    aqtTakeColorFromColormapEntry(1)
    aqtAddLabel("Images", 320, 220, 0.0, [])
    aqtAddImageWithBitmap(rgbImage, 2, 2, 328, 200, 4, 4)
@@ -225,7 +225,7 @@ private func internalMain() {
    aqtAddLabel("scale, rotate & translate", 500, 180, 0.0, .center)
    aqtResetImageTransform()
    
-    // Text
+    // MARK: Text
     aqtTakeColorFromColormapEntry(1)
     aqtSetFontname("Times-Roman")
     aqtSetFontsize(16.0)
@@ -279,9 +279,9 @@ private func internalMain() {
    aqtAddLabel("Middle", 410, 45.5, 0.0, [])
    aqtAddLabel("Baseline", 460, 45.5, 0.0, [.baseline])
 
-   // Draw it
+   // MARK: Draw it
    aqtRenderPlot()
-   // Let go of plot _when done_
+   // MARK: Let go of plot _when done_
    aqtClosePlot()
    aqtTerminate()
 }

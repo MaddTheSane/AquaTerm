@@ -18,6 +18,8 @@
 #else
 #ifndef __noescape
 #define __noescape __attribute__((noescape))
+#define __lifetimebound
+#define __lifetime_capture_by(X)
 #endif
 #endif
 #if __has_include(<ptrcheck.h>)

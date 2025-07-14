@@ -121,7 +121,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// Currently selected linewidth [pt]
 @property (nonatomic) CGFloat lineWidth;
 
-- (void)setLinestylePattern:(const float *)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
+- (void)setLinestylePattern:(const float * __counted_by(newCount) __noescape)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 - (void)setLinestyleSolid;
 /// Currently selected linecap style
 @property (nonatomic) AQTLineCapStyle lineCapStyle;
@@ -129,7 +129,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)setLineCapStyle:(AQTLineCapStyle)capStyle;
 - (void)moveToPoint:(NSPoint)point;  // AQTPath
 - (void)addLineToPoint:(NSPoint)point;  // AQTPath
-- (void)addPolylineWithPoints:(NSPointArray)points pointCount:(int32_t)pc;
+- (void)addPolylineWithPoints:(const NSPointArray __counted_by(pc) __noescape)points pointCount:(int32_t)pc;
 
 /**
  @}
@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)moveToVertexPoint:(NSPoint)point;
 - (void)addEdgeToPoint:(NSPoint)point; 
-- (void)addPolygonWithPoints:(NSPointArray)points pointCount:(int32_t)pc; // AQTPatch
+- (void)addPolygonWithPoints:(const NSPointArray __counted_by(pc) __noescape)points pointCount:(int32_t)pc; // AQTPatch
 - (void)addFilledRect:(NSRect)aRect;
 
 /**

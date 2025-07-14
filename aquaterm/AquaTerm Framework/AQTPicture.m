@@ -168,9 +168,6 @@
          transform1.transformStruct = aStruct;
          self.transform = transform1;
       }
-      if ([[NSAffineTransform transform] isEqual:transform]) {
-         fitBounds = YES;
-      }
       fitBounds = [coder decodeBoolForKey:AQTPictureFitBoundsKey];
       bitmapSize = [coder decodeSizeForKey:AQTPictureBitmapSizeKey];
    }

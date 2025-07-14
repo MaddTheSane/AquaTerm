@@ -135,6 +135,12 @@
 #define AQTPictureBaseImageKey @"BaseImage"
 #define AQTPictureBitmapSizeKey @"BitmapSize"
 #define AQTPictureTransformKey @"Transform"
+#define AQTPictureTransformKey1 @"Transform.m11"
+#define AQTPictureTransformKey2 @"Transform.m12"
+#define AQTPictureTransformKey3 @"Transform.m21"
+#define AQTPictureTransformKey4 @"Transform.m22"
+#define AQTPictureTransformKey5 @"Transform.tX"
+#define AQTPictureTransformKey6 @"Transform.tY"
 #define AQTPictureFitBoundsKey @"FitBounds"
 
 + (BOOL)supportsSecureCoding
@@ -148,7 +154,23 @@
       NSAssert([coder allowsKeyedCoding], @"No app should be sending non-keyed coding!");
       NSData *imgDat = [coder decodeObjectOfClass:[NSData class] forKey:AQTPictureBaseImageKey];
       baseImage = [[NSImage alloc] initWithData:imgDat];
-      self.transform = [coder decodeObjectOfClass:[NSAffineTransform class] forKey:AQTPictureTransformKey];
+      if ([coder containsValueForKey:AQTPictureTransformKey]) {
+         self.transform = [coder decodeObjectOfClass:[NSAffineTransform class] forKey:AQTPictureTransformKey];
+      } else {
+         NSAffineTransform *transform1 = [NSAffineTransform transform];
+         NSAffineTransformStruct aStruct;
+         aStruct.m11 = [coder decodeDoubleForKey:AQTPictureTransformKey1];
+         aStruct.m12 = [coder decodeDoubleForKey:AQTPictureTransformKey2];
+         aStruct.m21 = [coder decodeDoubleForKey:AQTPictureTransformKey3];
+         aStruct.m22 = [coder decodeDoubleForKey:AQTPictureTransformKey4];
+         aStruct.tX = [coder decodeDoubleForKey:AQTPictureTransformKey5];
+         aStruct.tY = [coder decodeDoubleForKey:AQTPictureTransformKey6];
+         transform1.transformStruct = aStruct;
+         self.transform = transform1;
+      }
+      if ([[NSAffineTransform transform] isEqual:transform]) {
+         fitBounds = YES;
+      }
       fitBounds = [coder decodeBoolForKey:AQTPictureFitBoundsKey];
       bitmapSize = [coder decodeSizeForKey:AQTPictureBitmapSizeKey];
    }
@@ -158,9 +180,15 @@
 - (void)encodeWithCoder:(NSCoder *)coder
 {
    [super encodeWithCoder:coder];
+   NSAffineTransformStruct theStruct = transform.transformStruct;
    [coder encodeObject:baseImage.TIFFRepresentation forKey:AQTPictureBaseImageKey];
    [coder encodeSize:bitmapSize forKey:AQTPictureBitmapSizeKey];
-   [coder encodeObject:transform forKey:AQTPictureTransformKey];
+   [coder encodeDouble:theStruct.m11 forKey:AQTPictureTransformKey1];
+   [coder encodeDouble:theStruct.m12 forKey:AQTPictureTransformKey2];
+   [coder encodeDouble:theStruct.m21 forKey:AQTPictureTransformKey3];
+   [coder encodeDouble:theStruct.m22 forKey:AQTPictureTransformKey4];
+   [coder encodeDouble:theStruct.tX forKey:AQTPictureTransformKey5];
+   [coder encodeDouble:theStruct.tY forKey:AQTPictureTransformKey6];
    [coder encodeBool:fitBounds forKey:AQTPictureFitBoundsKey];
 }
 

@@ -53,11 +53,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (getter=isFilled) BOOL filled;
 @property (readonly) BOOL hasPattern;
 
-/*! Set the line style to pattern style.
- 
- The linestyle is specified
- as a pattern, an array of at most 8 floats, where even positions correspond to dash-lengths and odd positions
- correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`. */
+/*!
+ * Set the line style to pattern style.
+ *
+ * The linestyle is specified
+ * as a pattern, an array of at most 8 floats, where even positions correspond to dash-lengths and odd positions
+ * correspond to gap-lengths. To produce e.g. a dash-dotted line, use the pattern `{4.0, 2.0, 1.0, 2.0}`. */
 - (void)setLinestylePattern:(nullable const float * __counted_by(newCount) __noescape)newPattern count:(int32_t)newCount phase:(CGFloat)newPhase;
 
 /**

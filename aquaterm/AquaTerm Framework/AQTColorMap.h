@@ -21,17 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
    AQTColorPtr colormap; ///< NB. Not an object but a pointer to a struct
    int32_t size; 
 }
-/** Creates an `AQTColorMap` with a size of 1.
+/**
+ * Creates an `AQTColorMap` with a size of 1.
  */
 -(instancetype)init;
 
-/** Creates an `AQTColorMap` with the indicated size.
+/**
+ * Creates an `AQTColorMap` with the indicated size.
  * \param size The amount of colors to store in the object.
  * If zero or negative, defaults to 1.
  */
 -(instancetype)initWithColormapSize:(int32_t)size NS_DESIGNATED_INITIALIZER;
 
-/** The number of colors that this object can hold.
+/**
+ * The number of colors that this object can hold.
  */
 @property (readonly) int32_t size;
 
@@ -52,12 +55,12 @@ NS_ASSUME_NONNULL_BEGIN
 -(AQTColor)colorForIndex:(int32_t)index;
 
 /** Returns the color at the specified index.
- 
- If `index` is outside the range of size, the first color is returned instead.
- 
- This is used for Objective-C subscripting.
- \param index The index of the color to get.
- \return The color at the specified index.
+ *
+ * If `index` is outside the range of size, the first color is returned instead.
+ *
+ * This is used for Objective-C subscripting.
+ * \param index The index of the color to get.
+ * \return The color at the specified index.
  */
 - (AQTColor)objectAtIndexedSubscript:(int32_t)index;
 

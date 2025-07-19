@@ -5,9 +5,27 @@
       "comment" : "Class = \"NSMenuItem\"; title = \"EPS\"; ObjectID = \"17\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "EPS"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "EPS"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "EPS"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
             "value" : "EPS"
           }
         }
@@ -23,15 +41,34 @@
             "value" : "OtherViews"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "20.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"PDF\"; ObjectID = \"20\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "PDF"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "PDF"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "PDF"
           }
         }
@@ -41,10 +78,28 @@
       "comment" : "Class = \"NSBox\"; title = \"Format\"; ObjectID = \"22\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Format"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Format"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Format"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "フォーマット"
           }
         }
       }
@@ -53,10 +108,28 @@
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Save figure as:\"; ObjectID = \"30\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abbildung speichern als:"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "new",
             "value" : "Save figure as:"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistrer la figure comme :"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "数字を次のように保存する："
           }
         }
       }

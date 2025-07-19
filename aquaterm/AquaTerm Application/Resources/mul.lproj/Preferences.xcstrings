@@ -10,6 +10,12 @@
             "state" : "new",
             "value" : "Preferences"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "好み"
+          }
         }
       }
     },
@@ -21,6 +27,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Default"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "デフォルト"
           }
         }
       }
@@ -34,6 +46,12 @@
             "state" : "new",
             "value" : "High"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "高い"
+          }
         }
       }
     },
@@ -45,6 +63,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Low"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "低い"
           }
         }
       }
@@ -70,6 +94,12 @@
             "state" : "new",
             "value" : "None"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "全然"
+          }
         }
       }
     },
@@ -81,6 +111,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Plotting"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "プロット"
           }
         }
       }
@@ -94,6 +130,12 @@
             "state" : "new",
             "value" : "Window title displays…"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ウィンドウのタイトルが表示されます..."
+          }
         }
       }
     },
@@ -106,6 +148,12 @@
             "state" : "new",
             "value" : "Window closing"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ウィンドウの閉鎖"
+          }
         }
       }
     },
@@ -117,6 +165,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Font encoding"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "フォントエンコーディング"
           }
         }
       }
@@ -142,6 +196,12 @@
             "state" : "new",
             "value" : "Red"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "赤"
+          }
         }
       }
     },
@@ -153,6 +213,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Yellow"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "黄色"
           }
         }
       }
@@ -166,6 +232,12 @@
             "state" : "new",
             "value" : "Green"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "緑"
+          }
         }
       }
     },
@@ -177,6 +249,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Blue"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "青"
           }
         }
       }
@@ -190,6 +268,12 @@
             "state" : "new",
             "value" : "Black"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "黒"
+          }
         }
       }
     },
@@ -201,6 +285,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "White"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "白"
           }
         }
       }
@@ -214,6 +304,12 @@
             "state" : "new",
             "value" : "Anti-alias drawing"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "アンチエイリアス描画"
+          }
         }
       }
     },
@@ -225,6 +321,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Image interpolation level"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "画像補間レベル"
           }
         }
       }
@@ -238,6 +340,12 @@
             "state" : "new",
             "value" : "OK"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "OKです"
+          }
         }
       }
     },
@@ -249,6 +357,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Cancel"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "中止する"
           }
         }
       }
@@ -262,6 +376,12 @@
             "state" : "new",
             "value" : "Client process name"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クライアントプロセス名"
+          }
         }
       }
     },
@@ -274,6 +394,12 @@
             "state" : "new",
             "value" : "Client process id"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クライアントプロセスID"
+          }
         }
       }
     },
@@ -285,6 +411,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Example:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "例："
           }
         }
       }
@@ -299,7 +431,8 @@
             "value" : "gnuplot (1151) Figure 1"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "102.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"0\"; ObjectID = \"102\";",
@@ -311,7 +444,8 @@
             "value" : "0"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "103.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"1\"; ObjectID = \"103\";",
@@ -323,7 +457,8 @@
             "value" : "1"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "104.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"0.25\"; ObjectID = \"104\";",
@@ -335,7 +470,8 @@
             "value" : "0.25"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "106.title" : {
       "comment" : "Class = \"NSTextFieldCell\"; title = \"Crosshair cursor color\"; ObjectID = \"106\";",
@@ -345,6 +481,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Crosshair cursor color"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "十字線カーソルカラー"
           }
         }
       }
@@ -357,6 +499,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Minimum linewidth:"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "最小線幅："
           }
         }
       }
@@ -393,6 +541,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Convert Symbol Font"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "シンボルフォントの変換"
           }
         }
       }

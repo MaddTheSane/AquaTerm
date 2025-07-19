@@ -69,11 +69,8 @@
    CGColorSpaceRelease(colrSpace);
    CGDataProviderRelease(dataRef);
    
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+   NSImage *img = [[NSImage alloc] initWithCGImage:imgRef size:size];
    CGImageRelease(imgRef);
-   NSImage *img = [[NSImage alloc] initWithSize:size];
-   [img addRepresentation:bir];
-   RELEASEOBJ(bir);
 
    self = [self initWithImage:img size:size bounds:bounds];
    RELEASEOBJ(img);
@@ -101,11 +98,8 @@
    CGColorSpaceRelease(colrSpace);
    CGDataProviderRelease(dataRef);
 
-   NSBitmapImageRep *bir = [[NSBitmapImageRep alloc] initWithCGImage:imgRef];
+   NSImage *img = [[NSImage alloc] initWithCGImage:imgRef size:size];
    CGImageRelease(imgRef);
-   NSImage *img = [[NSImage alloc] initWithSize:size];
-   [img addRepresentation:bir];
-   RELEASEOBJ(bir);
 
    self = [self initWithImage:img size:size bounds:bounds];
    RELEASEOBJ(img);

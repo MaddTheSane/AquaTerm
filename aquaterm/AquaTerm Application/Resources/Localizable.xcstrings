@@ -4,6 +4,12 @@
     "Another application has already registered the service \"aquatermServer\".\nYou may leave AquaTerm running by pressing Cancel, but no clients will be able to use it.\nPress Quit to close this copy of AquaTerm." : {
       "comment" : "Another App could be using \"aquatermServer\".",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Eine andere Anwendung hat den Dienst \"aquatermServer\" bereits registriert. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken, aber keine Clients können es verwenden. Drücken Sie Quit, um diese Kopie von AquaTerm zu schließen."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -19,43 +25,173 @@
       }
     },
     "Cancel" : {
-      "comment" : "Cancel"
+      "comment" : "Cancel",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Abbrechen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "中止する"
+          }
+        }
+      }
     },
     "Clients still awaiting events" : {
-      "comment" : "Clients still awaiting events"
+      "comment" : "Clients still awaiting events",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kunden warten immer noch auf Veranstaltungen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "まだイベントを待っているクライアント"
+          }
+        }
+      }
     },
     "Clients still connected" : {
-      "comment" : "Clients still connected"
+      "comment" : "Clients still connected",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Kunden noch verbunden"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クライアントはまだ接続されています"
+          }
+        }
+      }
     },
     "Close" : {
-      "comment" : "Close"
+      "comment" : "Close",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ende"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "閉じる"
+          }
+        }
+      }
     },
     "Close window?" : {
-      "comment" : "Close window?"
+      "comment" : "Close window?",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fenster schließen?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "窓を閉める？"
+          }
+        }
+      }
     },
     "Could not establish service" : {
       "comment" : "Could not establish service",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Service konnte nicht eingerichtet werden"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Impossible d'établir le service"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "サービスを確立できませんでした"
+          }
         }
       }
     },
     "Debug" : {
-      "comment" : "Debug"
+      "comment" : "Debug",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Debuggen"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "デバッグを行う"
+          }
+        }
+      }
     },
     "Keep" : {
-      "comment" : "Keep"
+      "comment" : "Keep",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Unterhalt"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "キープ"
+          }
+        }
+      }
     },
     "off" : {
-      "comment" : "off"
+      "comment" : "off",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Frei"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "オフ"
+          }
+        }
+      }
     },
     "Quit" : {
       "comment" : "Quit",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Beenden"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -67,10 +203,22 @@
     "Show bounds" : {
       "comment" : "Show bounds",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Grenzen Anzeigen"
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Show Bounds"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "境界を示す"
           }
         }
       }
@@ -78,20 +226,52 @@
     "The client is finished with the plot (or exiting) and tries to close the window. Do you want to close the window or keep it on screen?" : {
       "comment" : "Client closing. Keep window open?",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Der Client ist mit dem Plot fertig (oder verlässt) und versucht, das Fenster zu schließen. Möchten Sie das Fenster schließen oder auf dem Bildschirm bleiben?"
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Le client a terminé le tracé (ou sort) et essaie de fermer la fenêtre. Voulez-vous fermer la fenêtre ou la garder à l'écran ?"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クライアントはプロット（または終了）を完了し、ウィンドウを閉じようとします。ウィンドウを閉じますか、それとも画面に表示したままにしますか？"
+          }
         }
       }
     },
     "There are still clients connected to AquaTerm and quitting now may disrupt them.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
-      "comment" : "Idle client are still running."
+      "comment" : "Idle client are still running.",
+      "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind, und wenn sie jetzt aufhören, können sie stören. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "まだAquaTermに接続されているクライアントがあり、今終了すると混乱する可能性があります。キャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
+          }
+        }
+      }
     },
     "There are still clients connected to AquaTerm awaiting events and quitting now may leave them in an infinite loop.\nYou can leave AquaTerm running by pressing Cancel or confirm quitting by pressing Quit." : {
       "comment" : "Client are awaiting input.",
       "localizations" : {
+        "de" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind und auf Ereignisse warten, und wenn sie jetzt aufhören, können sie in einer unendlichen Schleife bleiben. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",

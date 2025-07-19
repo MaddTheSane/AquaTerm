@@ -1863,6 +1863,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = AquaTermApp;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1892,6 +1893,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm;
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = AquaTermApp;
+				STRINGS_FILE_OUTPUT_ENCODING = binary;
 				SWIFT_OBJC_BRIDGING_HEADER = "AquaTerm Application/AquaTerm-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};

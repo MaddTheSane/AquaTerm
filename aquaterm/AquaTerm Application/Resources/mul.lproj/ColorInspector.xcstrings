@@ -47,7 +47,8 @@
             "value" : "Item3"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "74.title" : {
       "comment" : "Class = \"NSMenu\"; title = \"OtherViews\"; ObjectID = \"74\";",
@@ -71,7 +72,8 @@
             "value" : "Item2"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "77.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Item1\"; ObjectID = \"77\";",
@@ -83,7 +85,8 @@
             "value" : "Item1"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "93.title" : {
       "comment" : "Class = \"NSButtonCell\"; title = \"Apply\"; ObjectID = \"93\";",

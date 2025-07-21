@@ -318,19 +318,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind, und wenn sie jetzt aufhören, können sie stören. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
+            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind, und wenn sie jetzt aufhören, können sie stören.\nSie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Il y a encore des clients connectés à AquaTerm et quitter maintenant peut les perturber. Vous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
+            "value" : "Il y a encore des clients connectés à AquaTerm et quitter maintenant peut les perturber.\nVous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "まだAquaTermに接続されているクライアントがあり、今終了すると混乱する可能性があります。キャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
+            "value" : "まだAquaTermに接続されているクライアントがあり、今終了すると混乱する可能性があります。\nキャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
           }
         }
       }
@@ -341,19 +341,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind und auf Ereignisse warten, und wenn sie jetzt aufhören, können sie in einer unendlichen Schleife bleiben. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
+            "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind und auf Ereignisse warten, und wenn sie jetzt aufhören, können sie in einer unendlichen Schleife bleiben.\nSie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "Il y a encore des clients connectés à AquaTerm en attente d'événements et quitter maintenant peut les laisser dans une boucle infinie. Vous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
+            "value" : "Il y a encore des clients connectés à AquaTerm en attente d'événements et quitter maintenant peut les laisser dans une boucle infinie.\nVous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
           }
         },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
-            "value" : "イベントを待っているAquaTermに接続されたクライアントがまだ存在し、今終了すると、無限のループに残される可能性があります。キャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
+            "value" : "イベントを待っているAquaTermに接続されたクライアントがまだ存在し、今終了すると、無限のループに残される可能性があります。\nキャンセルを押してAquaTermを実行したままにするか、終了を押して終了を確認することができます。"
           }
         }
       }

@@ -61,7 +61,7 @@ extern void aqtLineDrawingTest(id sender);
    // Make landscape printing the default
    NSPrintInfo *pi = [NSPrintInfo sharedPrintInfo];
    pi.orientation = NSPaperOrientationLandscape;
-   [NSPrintInfo setSharedPrintInfo:pi];
+   NSPrintInfo.sharedPrintInfo = pi;
 }
 
 -(instancetype)init
@@ -377,7 +377,14 @@ Configuration (please do not edit this section):\n\
    NSString *address = @"persquare@users.sourceforge.net";
    NSString *subject = @"AquaTerm bugreport";
    NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
-   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEscapesUsingEncoding: NSASCIIStringEncoding]]];
+   NSURL *aURL = nil;
+   if (@available(macOS 14.0, *)) {
+      NSURLComponents *comp = [[NSURLComponents alloc] initWithString:mailto encodingInvalidCharacters:YES];
+      aURL = comp.URL;
+   } else {
+      aURL = [NSURL URLWithString:[mailto stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet]];
+   }
+   [[NSWorkspace sharedWorkspace] openURL:aURL];
 }
 
 -(NSString *)_aqtMailMsg
@@ -393,7 +400,14 @@ Feedback:\n-----------------------\n\n\
    NSString *address = @"persquare@users.sourceforge.net";
    NSString *subject = @"AquaTerm feedback";
    NSString *mailto = [NSString stringWithFormat:@"mailto:%@?subject=%@&body=%@", address, subject, msg];
-   [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:[mailto stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet]]];
+   NSURL *aURL = nil;
+   if (@available(macOS 14.0, *)) {
+      NSURLComponents *comp = [[NSURLComponents alloc] initWithString:mailto encodingInvalidCharacters:YES];
+      aURL = comp.URL;
+   } else {
+      aURL = [NSURL URLWithString:[mailto stringByAddingPercentEncodingWithAllowedCharacters:NSCharacterSet.URLFragmentAllowedCharacterSet]];
+   }
+   [[NSWorkspace sharedWorkspace] openURL:aURL];
 }
 
 #pragma mark === Debug Actions ===

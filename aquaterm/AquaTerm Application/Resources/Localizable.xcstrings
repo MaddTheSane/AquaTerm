@@ -10,6 +10,12 @@
             "value" : "Eine andere Anwendung hat den Dienst \"aquatermServer\" bereits registriert. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken, aber keine Clients können es verwenden. Drücken Sie Quit, um diese Kopie von AquaTerm zu schließen."
           }
         },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Another application has already registered the service “aquatermServer”. You may leave AquaTerm running by pressing Cancel, but no clients will be able to use it. Press Quit to close this copy of AquaTerm."
+          }
+        },
         "fr" : {
           "stringUnit" : {
             "state" : "needs_review",

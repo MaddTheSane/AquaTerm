@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24093.9" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24093.9"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -26,7 +26,7 @@
                             <menuItem isSeparatorItem="YES" id="194">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences..." keyEquivalent="," id="129">
+                            <menuItem title="Preferences…" keyEquivalent="," id="129">
                                 <connections>
                                     <action selector="showPrefs:" target="234" id="285"/>
                                 </connections>
@@ -74,7 +74,7 @@
                                     <action selector="newDocument:" target="-1" id="298"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Open..." keyEquivalent="o" id="72"/>
+                            <menuItem title="Open…" keyEquivalent="o" id="72"/>
                             <menuItem title="Open Recent" id="124">
                                 <menu key="submenu" title="Open Recent" systemMenu="recentDocuments" id="125">
                                     <items>
@@ -99,7 +99,7 @@
                                     <action selector="saveDocument:" target="-1" id="244"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Save As..." keyEquivalent="S" id="80">
+                            <menuItem title="Save As…" keyEquivalent="S" id="80">
                                 <connections>
                                     <action selector="saveDocumentAs:" target="-1" id="245"/>
                                 </connections>
@@ -110,12 +110,12 @@
                             <menuItem isSeparatorItem="YES" id="74">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Page Setup..." keyEquivalent="P" id="77">
+                            <menuItem title="Page Setup…" keyEquivalent="P" id="77">
                                 <connections>
                                     <action selector="runPageLayout:" target="-1" id="87"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Print..." keyEquivalent="p" id="78">
+                            <menuItem title="Print…" keyEquivalent="p" id="78">
                                 <connections>
                                     <action selector="printDocument:" target="-1" id="253"/>
                                 </connections>
@@ -236,7 +236,7 @@
                                     <action selector="mailFeedback:" target="234" id="280"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="E-mail bugreport…" id="306">
+                            <menuItem title="E-mail bug report…" id="306">
                                 <connections>
                                     <action selector="mailBug:" target="234" id="307"/>
                                 </connections>

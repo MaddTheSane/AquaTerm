@@ -83,7 +83,8 @@
             "value" : "OtherViews"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "38.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"None\"; ObjectID = \"38\";",
@@ -185,7 +186,8 @@
             "value" : "OtherViews"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "84.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"Red\"; ObjectID = \"84\";",
@@ -386,13 +388,13 @@
       }
     },
     "99.title" : {
-      "comment" : "Class = \"NSButtonCell\"; title = \"Client process id\"; ObjectID = \"99\";",
+      "comment" : "Class = \"NSButtonCell\"; title = \"Client process ID\"; ObjectID = \"99\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Client process id"
+            "value" : "Client process ID"
           }
         },
         "ja" : {
@@ -492,13 +494,13 @@
       }
     },
     "108.title" : {
-      "comment" : "Class = \"NSTextFieldCell\"; title = \"Minimum linewidth:\"; ObjectID = \"108\";",
+      "comment" : "Class = \"NSTextFieldCell\"; title = \"Minimum line width:\"; ObjectID = \"108\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Minimum linewidth:"
+            "value" : "Minimum line width:"
           }
         },
         "ja" : {
@@ -518,6 +520,12 @@
             "state" : "new",
             "value" : "User confirmation"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ユーザー確認"
+          }
         }
       }
     },
@@ -529,6 +537,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Client controlled"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "クライアント制御"
           }
         }
       }

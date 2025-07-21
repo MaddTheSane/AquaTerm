@@ -10,6 +10,18 @@
             "state" : "new",
             "value" : "Bring All to Front"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Apportez tout à l'avant"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "すべてを前面に出す"
+          }
         }
       }
     },
@@ -21,6 +33,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Window"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "窓"
           }
         }
       }
@@ -34,6 +52,12 @@
             "state" : "new",
             "value" : "Minimize"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "軽視する"
+          }
         }
       }
     },
@@ -45,6 +69,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Window"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "窓"
           }
         }
       }
@@ -59,7 +89,8 @@
             "value" : "MainMenu1"
           }
         }
-      }
+      },
+      "shouldTranslate" : false
     },
     "56.title" : {
       "comment" : "Class = \"NSMenuItem\"; title = \"AquaTerm\"; ObjectID = \"56\";",
@@ -68,6 +99,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "AquaTerm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "AquaTerm"
           }
         }
@@ -82,6 +119,12 @@
             "state" : "new",
             "value" : "AquaTerm"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AquaTerm"
+          }
         }
       }
     },
@@ -94,17 +137,35 @@
             "state" : "new",
             "value" : "About AquaTerm…"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "À propos d'AquaTerm..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "AquaTermについて..."
+          }
         }
       }
     },
     "72.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Open...\"; ObjectID = \"72\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Open…\"; ObjectID = \"72\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Open..."
+            "value" : "Open…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "開く..."
           }
         }
       }
@@ -118,6 +179,12 @@
             "state" : "new",
             "value" : "Close"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "閉じる"
+          }
         }
       }
     },
@@ -130,41 +197,77 @@
             "state" : "new",
             "value" : "Save"
           }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "保存する"
+          }
         }
       }
     },
     "77.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Page Setup...\"; ObjectID = \"77\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Page Setup…\"; ObjectID = \"77\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Page Setup..."
+            "value" : "Page Setup…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Configuration de la page..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "ページ設定..."
           }
         }
       }
     },
     "78.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Print...\"; ObjectID = \"78\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Print…\"; ObjectID = \"78\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Print..."
+            "value" : "Print…"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "印刷..."
           }
         }
       }
     },
     "80.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Save As...\"; ObjectID = \"80\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Save As…\"; ObjectID = \"80\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Save As..."
+            "value" : "Save As…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Enregistrer Comme..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "として保存..."
           }
         }
       }
@@ -202,6 +305,12 @@
             "state" : "new",
             "value" : "Help"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aide"
+          }
         }
       }
     },
@@ -213,6 +322,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Help"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aide"
           }
         }
       }
@@ -266,13 +381,25 @@
       }
     },
     "129.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"Preferences...\"; ObjectID = \"129\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"Preferences…\"; ObjectID = \"129\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "Preferences..."
+            "value" : "Preferences…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Préférences..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "環境設定..."
           }
         }
       }
@@ -284,6 +411,12 @@
         "en" : {
           "stringUnit" : {
             "state" : "new",
+            "value" : "Services"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
             "value" : "Services"
           }
         }
@@ -298,6 +431,12 @@
             "state" : "new",
             "value" : "Services"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Services"
+          }
         }
       }
     },
@@ -309,6 +448,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Hide AquaTerm"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cacher AquaTerm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "アクアタームを隠す"
           }
         }
       }
@@ -322,6 +473,18 @@
             "state" : "new",
             "value" : "Quit AquaTerm"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Quitter AquaTerm"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "アクアタームを辞める"
+          }
         }
       }
     },
@@ -334,6 +497,18 @@
             "state" : "new",
             "value" : "Hide Others"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Cacher les autres"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "他の人を隠す"
+          }
         }
       }
     },
@@ -345,6 +520,18 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "Show All"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afficher tout"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "すべて表示"
           }
         }
       }
@@ -466,6 +653,12 @@
             "state" : "new",
             "value" : "AquaTerm Help"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Aide AquaTerm"
+          }
         }
       }
     },
@@ -478,6 +671,18 @@
             "state" : "new",
             "value" : "E-mail feedback…"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Commentaires par e-mail..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "メールでのフィードバック..."
+          }
         }
       }
     },
@@ -489,6 +694,12 @@
           "stringUnit" : {
             "state" : "new",
             "value" : "List Fonts"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Liste des polices"
           }
         }
       }
@@ -538,17 +749,35 @@
             "state" : "new",
             "value" : "Refresh"
           }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rafraîchir"
+          }
         }
       }
     },
     "306.title" : {
-      "comment" : "Class = \"NSMenuItem\"; title = \"E-mail bugreport…\"; ObjectID = \"306\";",
+      "comment" : "Class = \"NSMenuItem\"; title = \"E-mail bug report…\"; ObjectID = \"306\";",
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "new",
-            "value" : "E-mail bugreport…"
+            "value" : "E-mail bug report…"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Rapport de bogue par e-mail..."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "バグレポートをメールで送信..."
           }
         }
       }

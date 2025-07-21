@@ -33,6 +33,12 @@
             "value" : "Abbrechen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Annuler"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -48,6 +54,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Kunden warten immer noch auf Veranstaltungen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les clients attendent toujours des événements"
           }
         },
         "ja" : {
@@ -67,6 +79,12 @@
             "value" : "Kunden noch verbunden"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Les clients sont toujours connectés"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -84,6 +102,12 @@
             "value" : "Ende"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fermer"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -99,6 +123,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Fenster schließen?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Fermer la fenêtre ?"
           }
         },
         "ja" : {
@@ -141,6 +171,12 @@
             "value" : "Debuggen"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Déboguer"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -156,6 +192,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Unterhalt"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Garder"
           }
         },
         "ja" : {
@@ -175,6 +217,12 @@
             "value" : "Frei"
           }
         },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Juste à côté de"
+          }
+        },
         "ja" : {
           "stringUnit" : {
             "state" : "needs_review",
@@ -190,6 +238,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Beenden"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Quitter"
           }
         },
         "ja" : {
@@ -213,6 +267,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Show Bounds"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Afficher les limites"
           }
         },
         "ja" : {
@@ -253,6 +313,12 @@
           "stringUnit" : {
             "state" : "needs_review",
             "value" : "Es gibt immer noch Kunden, die mit AquaTerm verbunden sind, und wenn sie jetzt aufhören, können sie stören. Sie können AquaTerm laufen lassen, indem Sie auf Abbrechen klicken oder das Beenden bestätigen, indem Sie auf Beenden klicken."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Il y a encore des clients connectés à AquaTerm et quitter maintenant peut les perturber. Vous pouvez laisser AquaTerm en cours d'exécution en appuyant sur Annuler ou confirmer la quitte en appuyant sur Quitter."
           }
         },
         "ja" : {

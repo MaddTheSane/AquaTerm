@@ -82,13 +82,13 @@ typedef CF_ENUM(int32_t, AQTLineCapStyle) {
    AQTLineCapStyleSquare = 2,
 };
 
-/*! Use ``AQTLineCapStyle/butt`` instead.*/
+/*! Deprecated, use ``AQTLineCapStyle/butt`` instead.*/
 static const AQTLineCapStyle AQTButtLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleButt", macos(10.4, 10.9)) = AQTLineCapStyleButt;
 
-/*! Use ``AQTLineCapStyle/round`` instead.*/
+/*! Deprecated, use ``AQTLineCapStyle/round`` instead.*/
 static const AQTLineCapStyle AQTRoundLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleRound", macos(10.4, 10.9)) = AQTLineCapStyleRound;
 
-/*! Use ``AQTLineCapStyle/square`` instead.*/
+/*! Deprecated, use ``AQTLineCapStyle/square`` instead.*/
 static const AQTLineCapStyle AQTSquareLineCapStyle __API_DEPRECATED_WITH_REPLACEMENT("AQTLineCapStyleSquare", macos(10.4, 10.9)) = AQTLineCapStyleSquare;
 
 /*! Constants that specify horizontal and vertical alignment for labels. See ``AQTAdapter/addLabel:atPoint:angle:shearAngle:align:`` for definitions and use. */
@@ -154,9 +154,8 @@ void aqtTerminate(void);
 /** The event handler callback functionality should be used with caution, it may
    not be safe to use in all circumstances. It is certainly _not_ thread-safe.
    If in doubt, use aqtWaitNextEvent() instead. */
+
 /*!
- * aqtSetEventHandler
- *
  * The event handler callback functionality should be used with caution, it may
  * not be safe to use in all circumstances. It is certainly __not__ thread-safe.
  * If in doubt, use ``aqtWaitNextEvent`` instead.
@@ -164,8 +163,6 @@ void aqtTerminate(void);
 void aqtSetEventHandler(void (*func)(int ref, const char *event));
 
 /*!
- * @function aqtSetEventBlock
- *
  * The event handler callback functionality should be used with caution, it may
  * not be safe to use in all circumstances. It is certainly **not** thread-safe.
  * If in doubt, use ``aqtWaitNextEvent`` instead.
@@ -207,7 +204,9 @@ int32_t aqtWaitNextEvent(char *buffer);
  \name Clip rect, applies to all objects
  @{ */
 
+/// Clip rect, applies to all objects.
 void aqtSetClipRect(float originX, float originY, float width, float height);
+
 void aqtSetDefaultClipRect(void);
 
 /**

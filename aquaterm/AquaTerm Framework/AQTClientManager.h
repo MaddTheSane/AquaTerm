@@ -49,7 +49,17 @@ NS_ASSUME_NONNULL_BEGIN
 @property (copy, nullable) void (^errorBlock)(NSString *__nullable msg);
 /** A callback function optionally installed by the client */
 @property (copy, nullable) void (^eventBlock)(int index, NSString *__nullable event);
+/**
+ * A callback function optionally installed by the client
+ *
+ * Deprecated, use ``errorBlock`` instead
+ */
 - (void)setErrorHandler:(void (*__nullable)(NSString *__nullable errMsg))fPtr;
+/**
+ * A callback function optionally installed by the client
+ *
+ * Deprecated, use ``eventBlock`` instead
+ */
 - (void)setEventHandler:(void (*__nullable)(int index, NSString *__nullable event))fPtr;
 
 - (void)logMessage:(NSString *)msg logLevel:(int32_t)level;

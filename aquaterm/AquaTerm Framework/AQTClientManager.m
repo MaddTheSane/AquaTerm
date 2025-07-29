@@ -6,6 +6,7 @@
 //  Copyright (c) 2003-2012 The AquaTerm Team. All rights reserved.
 //
 
+#import <AppKit/AppKit.h>
 #import "AQTClientManager.h"
 #import "AQTModel.h"
 #import "AQTPlotBuilder.h"
@@ -180,7 +181,12 @@
       if (status != noErr) {
          // No, search for it based on bundle identifier, choose latest version
          {
-            NSArray *aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
+            NSArray *aquaTermURLs;
+            if (@available(macOS 12.0, *)) {
+               aquaTermURLs = [[NSWorkspace sharedWorkspace] URLsForApplicationsWithBundleIdentifier:@"net.sourceforge.aquaterm"];
+            } else {
+               aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
+            }
             if (aquaTermURLs) {
                NSMutableArray<NSBundle*> *aquaTermBundles = [NSMutableArray array];
                for (NSURL *aURL in aquaTermURLs) {

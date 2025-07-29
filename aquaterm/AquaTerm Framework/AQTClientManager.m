@@ -182,8 +182,45 @@
          {
             NSArray *aquaTermURLs = CFBridgingRelease(LSCopyApplicationURLsForBundleIdentifier(CFSTR("net.sourceforge.aquaterm"), NULL));
             if (aquaTermURLs) {
-               //TODO: iterate through the URLs, select latest version.
-               appURL = aquaTermURLs.firstObject;
+               NSMutableArray<NSBundle*> *aquaTermBundles = [NSMutableArray array];
+               for (NSURL *aURL in aquaTermURLs) {
+                  NSBundle *aBundle = [NSBundle bundleWithURL:aURL];
+                  if (aBundle) {
+                     [aquaTermBundles addObject:aBundle];
+                  }
+               }
+               // iterate through the URLs, sort by version.
+               [aquaTermBundles sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                  NSBundle *b1 = obj1, *b2 = obj2;
+                  NSDictionary<NSString *, id> * i1 = b1.infoDictionary, *i2 = b2.infoDictionary;
+                  NSString *v1 = i1[@"CFBundleShortVersionString"], *v2 = i2[@"CFBundleShortVersionString"];
+                  // CFBundleNumericVersion seems to be internal to CFBundle and is used to differentiate version numbers. Try that first.
+                  NSNumber *vv1 = i1[@"CFBundleNumericVersion"], *vv2 = i2[@"CFBundleNumericVersion"];
+                  if (vv1 != nil && vv2 != nil) {
+                     return [vv1 compare:vv2];
+                  }
+                  NSArray<NSString*>* sep1 = [v1 componentsSeparatedByString:@"."], *sep2 = [v2 componentsSeparatedByString:@"."];
+                  NSInteger sepCount = MIN(sep1.count, sep2.count);
+                  for (NSInteger i = 0; i < sepCount; i++) {
+                     NSString *comp1 = sep1[i], *comp2 = sep2[i];
+                     if (i == 0) {
+                        // Some version of AquaTerm prepend "AquaTerm v" to the version string.
+                        if ([comp1 hasPrefix:@"AquaTerm v"]) {
+                           comp1 = [comp1 substringFromIndex:10];
+                        }
+                        if ([comp2 hasPrefix:@"AquaTerm v"]) {
+                           comp2 = [comp2 substringFromIndex:10];
+                        }
+                     }
+                     NSComparisonResult res = [comp1 compare:comp2];
+                     if (res != NSOrderedSame) {
+                        return res;
+                     }
+                  }
+                  
+                  return NSOrderedSame;
+               }];
+               appURL = aquaTermURLs.lastObject;
             }
          }
          // No, search for it based on creator code, choose latest version

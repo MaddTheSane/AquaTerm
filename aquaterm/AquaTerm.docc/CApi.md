@@ -5,7 +5,7 @@ C API Documentation
 
 ### Constants and Enumerations
 
-- ``AQT_EVENTBUF_SIZE``
+- ``AQT_EVENTBUF_SIZE-8s7y``
 
 - ``AQTLineCapStyle``
 - ``AQTAlign``

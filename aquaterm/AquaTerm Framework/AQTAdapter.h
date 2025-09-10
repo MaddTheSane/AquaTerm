@@ -147,9 +147,9 @@ int main(void)
 - (BOOL)selectPlotWithIndex:(int32_t)refNum;
 
 /*! Set the limits of the plot area.
- 
- Must be set  *before* any drawing command following
- an ``openPlotWithIndex:`` or ``clearPlot`` command or behaviour is undefined.
+ *
+ * Must be set  *before* any drawing command following
+ * an ``openPlotWithIndex:`` or ``clearPlot`` command or behaviour is undefined.
  */
 @property NSSize plotSize;
 

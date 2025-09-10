@@ -1805,6 +1805,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 				RUN_DOCUMENTATION_COMPILER = YES;
+				SWIFT_ENABLE_EXPLICIT_MODULES = YES;
 			};
 			name = Debug;
 		};
@@ -1830,6 +1831,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.sourceforge.aquaterm.framework;
 				PRODUCT_NAME = AquaTerm;
 				RUN_DOCUMENTATION_COMPILER = YES;
+				SWIFT_ENABLE_EXPLICIT_MODULES = YES;
 			};
 			name = Release;
 		};
